@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<search>
+  <entry>
+    <title>Hello World</title>
+    <url>/2020/05/10/2020-05-10-hello-world/</url>
+    <content><![CDATA[<p>今日周末在家，想动手写个记录自己的网站。用<a href="https://mdbootstrap.com/" target="_blank" rel="noopener">mdbootstrap</a>写了一会儿静态页面之后，打算参考一下其他人的代码。搜了一下【搭建个人博客】关键词。然后，折腾了一天的<a href="https://hexo.io/" target="_blank" rel="noopener">Hexo</a>！第一次用Markdown，直接在Hello World文档基础上改，意外还挺好用的，比html好用多了，确实可以更少打扰的敲文字。</p>
+<h2 id="Markdown的一些功能"><a href="#Markdown的一些功能" class="headerlink" title="Markdown的一些功能"></a>Markdown的一些功能</h2><h3 id="可以简单的加三个-“-”-号来添加代码。"><a href="#可以简单的加三个-“-”-号来添加代码。" class="headerlink" title="可以简单的加三个 “ ``` ” 号来添加代码。"></a>可以简单的加三个 “ ``` ” 号来添加代码。</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo new <span class="string">"My New Post"</span></span><br></pre></td></tr></table></figure>
+
+<p>上面这段代码就是新建md文章的代码。</p>
+<h3 id="Run-server-启动本地服务器预览网页"><a href="#Run-server-启动本地服务器预览网页" class="headerlink" title="Run server 启动本地服务器预览网页"></a>Run server 启动本地服务器预览网页</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo server</span><br></pre></td></tr></table></figure>
+
+<p>一般直接用 <code>$ hexo s</code> ,比较简短。URL：<a href="http://localhost:4000/" target="_blank" rel="noopener">http://localhost:4000/</a></p>
+<h3 id="Generate-static-files-生成静态页面"><a href="#Generate-static-files-生成静态页面" class="headerlink" title="Generate static files 生成静态页面"></a>Generate static files 生成静态页面</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo generate</span><br></pre></td></tr></table></figure>
+
+<p>同上，可以直接用 <code>$ hexo g</code> ,比较简短。生成的文件会在 /public 文件夹下面。</p>
+<h3 id="Deploy-to-remote-sites-可以部署到github等"><a href="#Deploy-to-remote-sites-可以部署到github等" class="headerlink" title="Deploy to remote sites 可以部署到github等"></a>Deploy to remote sites 可以部署到github等</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo deploy</span><br></pre></td></tr></table></figure>
+
+<p>同上，可以直接用 <code>$ hexo g</code> ,比较简短。一键部署。</p>
+<h3 id="还有，挺开心的，想学习【ejs】了，希望自己可以坚持下去，把现有的html5-css3-JavaScript基础都过一遍。总之，越来越好的，只是时间问题，都能学会的。今天就到这里啦，等会儿链接到ganwt-com网址下就，晚安。"><a href="#还有，挺开心的，想学习【ejs】了，希望自己可以坚持下去，把现有的html5-css3-JavaScript基础都过一遍。总之，越来越好的，只是时间问题，都能学会的。今天就到这里啦，等会儿链接到ganwt-com网址下就，晚安。" class="headerlink" title="还有，挺开心的，想学习【ejs】了，希望自己可以坚持下去，把现有的html5+css3+JavaScript基础都过一遍。总之，越来越好的，只是时间问题，都能学会的。今天就到这里啦，等会儿链接到ganwt.com网址下就，晚安。"></a>还有，挺开心的，想学习【ejs】了，希望自己可以坚持下去，把现有的html5+css3+JavaScript基础都过一遍。总之，越来越好的，只是时间问题，都能学会的。今天就到这里啦，等会儿链接到ganwt.com网址下就，晚安。</h3>]]></content>
+  </entry>
+</search>
