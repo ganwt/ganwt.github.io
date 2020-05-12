@@ -2,7 +2,7 @@
 <search>
   <entry>
     <title>Hello World</title>
-    <url>/2020/05/10/2020-05-10-hello-world/</url>
+    <url>/2020/05/10/2020-05-10-hello-world%202/</url>
     <content><![CDATA[<p>今日周末在家，想动手写个记录自己的网站。用<a href="https://mdbootstrap.com/" target="_blank" rel="noopener">mdbootstrap</a>写了一会儿静态页面之后，打算参考一下其他人的代码。搜了一下【搭建个人博客】关键词。然后，折腾了一天的<a href="https://hexo.io/" target="_blank" rel="noopener">Hexo</a>！第一次用Markdown，直接在Hello World文档基础上改，意外还挺好用的，比html好用多了，确实可以更少打扰的敲文字。</p>
 <h2 id="Markdown的一些功能"><a href="#Markdown的一些功能" class="headerlink" title="Markdown的一些功能"></a>Markdown的一些功能</h2><h3 id="可以简单的加三个-“-”-号来添加代码。"><a href="#可以简单的加三个-“-”-号来添加代码。" class="headerlink" title="可以简单的加三个 “ ``` ” 号来添加代码。"></a>可以简单的加三个 “ ``` ” 号来添加代码。</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo new <span class="string">"My New Post"</span></span><br></pre></td></tr></table></figure>
 
@@ -17,5 +17,98 @@
 
 <p>同上，可以直接用 <code>$ hexo g</code> ,比较简短。一键部署。</p>
 <h3 id="还有，挺开心的，想学习【ejs】了，希望自己可以坚持下去，把现有的html5-css3-JavaScript基础都过一遍。总之，越来越好的，只是时间问题，都能学会的。今天就到这里啦，等会儿链接到ganwt-com网址下就，晚安。"><a href="#还有，挺开心的，想学习【ejs】了，希望自己可以坚持下去，把现有的html5-css3-JavaScript基础都过一遍。总之，越来越好的，只是时间问题，都能学会的。今天就到这里啦，等会儿链接到ganwt-com网址下就，晚安。" class="headerlink" title="还有，挺开心的，想学习【ejs】了，希望自己可以坚持下去，把现有的html5+css3+JavaScript基础都过一遍。总之，越来越好的，只是时间问题，都能学会的。今天就到这里啦，等会儿链接到ganwt.com网址下就，晚安。"></a>还有，挺开心的，想学习【ejs】了，希望自己可以坚持下去，把现有的html5+css3+JavaScript基础都过一遍。总之，越来越好的，只是时间问题，都能学会的。今天就到这里啦，等会儿链接到ganwt.com网址下就，晚安。</h3>]]></content>
+      <categories>
+        <category>随笔</category>
+      </categories>
+      <tags>
+        <tag>中文</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>IoTと無線ネットワーク(1)</title>
+    <url>/2020/05/12/2020-05-12-IoT%E3%81%A8%E7%84%A1%E7%B7%9A%E3%83%8D%E3%83%83%E3%83%88%E3%83%AF%E3%83%BC%E3%82%AF(1)/</url>
+    <content><![CDATA[<h4 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h4><p>今日からIoTと無線ネットワークのコースを始め、毎週火曜日roomより授業を受ける。演習課題を授業終わると書くつもりので、こちに記録してMarkdownの書く技も練習する。頑張れ！</p>
+<h4 id="内容"><a href="#内容" class="headerlink" title="内容"></a>内容</h4><ul>
+<li>IoTとは何か?<ol>
+<li>IoT = Internet of Things = Internet + Things<pre><code>「モノのインターネット(Internet)」
+インターネット(Internet)によって接続された「モノ」</code></pre></li>
+<li>Thing:単なる「モノ」<pre><code>コンピュータ(computer)，タブレット(tablet)，携帯 電話などのガジェット(gadget)ではない</code></pre></li>
+<li>インターネット(Internet)の役割<pre><code>情報を送受信
+インターネット(Internet)に接続されたクラウド (cloud)上の計算サーバ(server)で稼働しているプロ グラムの助けを借りて，知的(smart)な処理が可能</code></pre></li>
+</ol>
+</li>
+<li>なぜIoTが実現可能になったか?<ol>
+<li>半導体技術の進歩<pre><code>集積度(チップあたりのトランジスタ数)の向上
+機能と性能の向上
+価格性能比の向上</code></pre></li>
+<li>インターネットの普及<pre><code>端末(edge)側:無線化(WiFi，Bluetooth)
+サーバ側:クラウド・サービスの提供</code></pre></li>
+<li>ソフトウェア開発環境の進歩<pre><code>Python，Ruby
+プロトタイピングが容易に⇒ビジネスの高速化</code></pre></li>
+</ol>
+</li>
+</ul>
+<h4 id="演習課題（１−１）"><a href="#演習課題（１−１）" class="headerlink" title="演習課題（１−１）"></a>演習課題（１−１）</h4><ul>
+<li><p>半導体の集積度が18カ月ごとに2倍になるとすると， 9年後には集積度は何倍になるか?</p>
+<ul>
+<li><p>ヒント：$𝑝(𝑛) = 2^{𝑛/1.5}$</p>
+<table>
+<thead>
+<tr>
+<th>何年後</th>
+<th>何倍</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>9</td>
+<td>64</td>
+</tr>
+</tbody></table>
+</li>
+</ul>
+</li>
+</ul>
+<h4 id="演習課題（１−２）"><a href="#演習課題（１−２）" class="headerlink" title="演習課題（１−２）"></a>演習課題（１−２）</h4><ol>
+<li><p>演習課題 1-2-1</p>
+<ul>
+<li><p>次の計算を行って結果を確認しなさい。</p>
+<pre><code>5 % 3 
+5 % (-3) 
+(-5) % 3 
+(-5) % (-3)</code></pre>  <figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="number">5</span> % <span class="number">3</span>       //<span class="number">2</span></span><br><span class="line"><span class="number">5</span> % (<span class="number">-3</span>)    //<span class="number">-1</span></span><br><span class="line">(<span class="number">-5</span>) % <span class="number">3</span>    //<span class="number">1</span></span><br><span class="line">(<span class="number">-5</span>) % (<span class="number">-3</span>) //<span class="number">-2</span></span><br></pre></td></tr></table></figure></li>
+<li><p>どのような規則で計算されているかを考えなさい。</p>
+  <figure class="highlight python"><table><tr><td class="code"><pre><span class="line">//A ％ B = C , 除算して、余数を表示します。</span><br><span class="line">//「-」はもしかし:</span><br><span class="line">//  ・+B ＝ C</span><br><span class="line">//  ・-B ＝ -C</span><br></pre></td></tr></table></figure></li>
+</ul>
+</li>
+<li><p>演習課題 1-2-2</p>
+<ul>
+<li><p>次の計算を行って結果を確認しなさい。</p>
+<pre><code>5 // 3 
+5 // (-3) 
+(-5) // 3 
+(-5) // (-3) </code></pre>  <figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="number">5</span> // <span class="number">3</span>       //<span class="number">1</span></span><br><span class="line"><span class="number">5</span> // (<span class="number">-3</span>)    //<span class="number">-2</span></span><br><span class="line">(<span class="number">-5</span>) // <span class="number">3</span>    //<span class="number">-2</span></span><br><span class="line">(<span class="number">-5</span>) // (<span class="number">-3</span>) //<span class="number">1</span></span><br></pre></td></tr></table></figure></li>
+<li><p>どのような規則で計算されているかを考えなさい。</p>
+  <figure class="highlight python"><table><tr><td class="code"><pre><span class="line">//除算して、余数を抜き、整数だけ残っています。</span><br></pre></td></tr></table></figure></li>
+</ul>
+</li>
+<li><p>演習課題 1-2-3</p>
+<ul>
+<li><p>2つの数値を変数xおよびyに入力し，xとyの加算， 減算，乗算，浮動小数点除算，整数除算，剰余を計 算して出力するプログラムを作成して，ソースリス トをPDFで提出せよ。</p>
+  <figure class="highlight python"><table><tr><td class="code"><pre><span class="line">x=int(input(<span class="string">"x="</span>))                         //x=<span class="number">5</span></span><br><span class="line">y=int(input(<span class="string">"y="</span>))                         //y=<span class="number">3</span></span><br><span class="line"></span><br><span class="line">print(<span class="string">"\n加算:"</span>)                            //加算:</span><br><span class="line">print(<span class="string">"x+y = "</span> ,x+y)                       //x+y =  <span class="number">8</span></span><br><span class="line"></span><br><span class="line">print(<span class="string">"\n減算:"</span>)                            //減算:</span><br><span class="line">print(<span class="string">"x-y = "</span> ,x-y)                       //x-y =  <span class="number">2</span></span><br><span class="line"></span><br><span class="line">print(<span class="string">"\n乗算:"</span>)                            //乗算:</span><br><span class="line">print(<span class="string">"x*y = "</span> ,x*y)                       //x*y =  <span class="number">15</span></span><br><span class="line"></span><br><span class="line">print(<span class="string">"\n浮動小数点除算:"</span>)                   //浮動小数点除算:</span><br><span class="line">print(<span class="string">"x.0/y.0 = "</span> ,float(x)/float(y))     //x<span class="number">.0</span>/y<span class="number">.0</span> =  <span class="number">1.6666666666666667</span></span><br><span class="line"></span><br><span class="line">print(<span class="string">"\n整数除算:"</span>)                        //整数除算:</span><br><span class="line">print(<span class="string">"x//y = "</span> ,x//y)                     //x//y =  <span class="number">1</span></span><br><span class="line"></span><br><span class="line">print(<span class="string">"\n剰余:"</span>)                           //剰余:</span><br><span class="line">print(<span class="string">"x%y = "</span> ,x%y)                       //x%y =  <span class="number">2</span></span><br></pre></td></tr></table></figure>
+
+</li>
+</ul>
+</li>
+</ol>
+<p>以上</p>
+]]></content>
+      <categories>
+        <category>学习笔记</category>
+      </categories>
+      <tags>
+        <tag>日本語</tag>
+        <tag>メモ</tag>
+        <tag>python</tag>
+      </tags>
   </entry>
 </search>

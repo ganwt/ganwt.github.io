@@ -1,0 +1,391 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+<meta name="viewport"
+      content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+<meta http-equiv="X-UA-Compatible" content="ie=edge">
+
+    <meta name="author" content="GanWt">
+
+
+
+
+
+<title>IoTと無線ネットワーク(1) | GanWt</title>
+
+
+
+    <link rel="icon" href="/ganwt.ico">
+
+
+
+
+    <!-- stylesheets list from _config.yml -->
+    
+    <link rel="stylesheet" href="/css/style.css">
+    
+
+
+
+    <!-- scripts list from _config.yml -->
+    
+    <script src="/js/script.js"></script>
+    
+    <script src="/js/tocbot.min.js"></script>
+    
+
+
+
+    
+    
+        
+            <!-- MathJax配置，可通过单美元符号书写行内公式等 -->
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+    "HTML-CSS": {
+        preferredFont: "TeX",
+        availableFonts: ["STIX","TeX"],
+        linebreaks: { automatic:true },
+        EqnChunk: (MathJax.Hub.Browser.isMobile ? 10 : 50)
+    },
+    tex2jax: {
+        inlineMath: [ ["$", "$"], ["\\(","\\)"] ],
+        processEscapes: true,
+        ignoreClass: "tex2jax_ignore|dno",
+        skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+    },
+    TeX: {
+        equationNumbers: { autoNumber: "AMS" },
+        noUndefined: { attributes: { mathcolor: "red", mathbackground: "#FFEEEE", mathsize: "90%" } },
+        Macros: { href: "{}" }
+    },
+    messageStyle: "none"
+    });
+</script>
+<!-- 给MathJax元素添加has-jax class -->
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax(), i;
+        for(i=0; i < all.length; i += 1) {
+            all[i].SourceElement().parentNode.className += ' has-jax';
+        }
+    });
+</script>
+<!-- 通过连接CDN加载MathJax的js代码 -->
+<script type="text/javascript" async
+        src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js?config=TeX-MML-AM_CHTML">
+</script>
+
+
+        
+    
+
+
+<meta name="generator" content="Hexo 4.2.0"><link rel="alternate" href="/atom.xml" title="GanWt" type="application/atom+xml">
+</head>
+<body>
+    <div class="wrapper">
+        <header>
+    <nav class="navbar">
+        <div class="container">
+            <div class="navbar-header header-logo"><a href="/">GanWt Blog</a></div>
+            <div class="menu navbar-right">
+                
+                    <a class="menu-item" href="/archives">Posts</a>
+                
+                    <a class="menu-item" href="/categories">Categories</a>
+                
+                    <a class="menu-item" href="/tags">Tags</a>
+                
+                    <a class="menu-item" href="/about">About</a>
+                
+                <input id="switch_default" type="checkbox" class="switch_default">
+                <label for="switch_default" class="toggleBtn"></label>
+            </div>
+        </div>
+    </nav>
+
+    
+    <nav class="navbar-mobile" id="nav-mobile">
+        <div class="container">
+            <div class="navbar-header">
+                <div>
+                    <a href="/">GanWt Blog</a><a id="mobile-toggle-theme">·&nbsp;Light</a>
+                </div>
+                <div class="menu-toggle" onclick="mobileBtn()">&#9776; Menu</div>
+            </div>
+            <div class="menu" id="mobile-menu">
+                
+                    <a class="menu-item" href="/archives">Posts</a>
+                
+                    <a class="menu-item" href="/categories">Categories</a>
+                
+                    <a class="menu-item" href="/tags">Tags</a>
+                
+                    <a class="menu-item" href="/about">About</a>
+                
+            </div>
+        </div>
+    </nav>
+
+</header>
+<script>
+    var mobileBtn = function f() {
+        var toggleMenu = document.getElementsByClassName("menu-toggle")[0];
+        var mobileMenu = document.getElementById("mobile-menu");
+        if(toggleMenu.classList.contains("active")){
+           toggleMenu.classList.remove("active")
+            mobileMenu.classList.remove("active")
+        }else{
+            toggleMenu.classList.add("active")
+            mobileMenu.classList.add("active")
+        }
+    }
+</script>
+        <div class="main">
+            <div class="container">
+    
+    
+        <div class="post-toc">
+    <div class="tocbot-list">
+    </div>
+    <div class="tocbot-list-menu">
+        <a class="tocbot-toc-expand" onclick="expand_toc()">Expand all</a>
+        <a onclick="go_top()">Back to top</a>
+        <a onclick="go_bottom()">Go to bottom</a>
+    </div>
+</div>
+
+<script>
+    document.ready(
+        function () {
+            tocbot.init({
+                tocSelector: '.tocbot-list',
+                contentSelector: '.post-content',
+                headingSelector: 'h1, h2, h3, h4, h5',
+                collapseDepth: 1,
+                orderedList: false,
+                scrollSmooth: true,
+            })
+        }
+    )
+
+    function expand_toc() {
+        var b = document.querySelector(".tocbot-toc-expand");
+        tocbot.init({
+            tocSelector: '.tocbot-list',
+            contentSelector: '.post-content',
+            headingSelector: 'h1, h2, h3, h4, h5',
+            collapseDepth: 6,
+            orderedList: false,
+            scrollSmooth: true,
+        });
+        b.setAttribute("onclick", "collapse_toc()");
+        b.innerHTML = "Collapse all"
+    }
+
+    function collapse_toc() {
+        var b = document.querySelector(".tocbot-toc-expand");
+        tocbot.init({
+            tocSelector: '.tocbot-list',
+            contentSelector: '.post-content',
+            headingSelector: 'h1, h2, h3, h4, h5',
+            collapseDepth: 1,
+            orderedList: false,
+            scrollSmooth: true,
+        });
+        b.setAttribute("onclick", "expand_toc()");
+        b.innerHTML = "Expand all"
+    }
+
+    function go_top() {
+        window.scrollTo(0, 0);
+    }
+
+    function go_bottom() {
+        window.scrollTo(0, document.body.scrollHeight);
+    }
+
+</script>
+    
+
+    
+    <article class="post-wrap">
+        <header class="post-header">
+            <h1 class="post-title">IoTと無線ネットワーク(1)</h1>
+            
+                <div class="post-meta">
+                    
+                        Author: <a itemprop="author" rel="author" href="/">GanWt</a>
+                    
+
+                    
+                        <span class="post-time">
+                        Date: <a href="#">May 12, 2020&nbsp;&nbsp;23:02:03</a>
+                        </span>
+                    
+                    
+                        <span class="post-category">
+                    Category:
+                            
+                                <a href="/categories/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/">学习笔记</a>
+                            
+                        </span>
+                    
+                </div>
+            
+        </header>
+
+        <div class="post-content">
+            <h4 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h4><p>今日からIoTと無線ネットワークのコースを始め、毎週火曜日roomより授業を受ける。演習課題を授業終わると書くつもりので、こちに記録してMarkdownの書く技も練習する。頑張れ！</p>
+<h4 id="内容"><a href="#内容" class="headerlink" title="内容"></a>内容</h4><ul>
+<li>IoTとは何か?<ol>
+<li>IoT = Internet of Things = Internet + Things<pre><code>「モノのインターネット(Internet)」
+インターネット(Internet)によって接続された「モノ」</code></pre></li>
+<li>Thing:単なる「モノ」<pre><code>コンピュータ(computer)，タブレット(tablet)，携帯 電話などのガジェット(gadget)ではない</code></pre></li>
+<li>インターネット(Internet)の役割<pre><code>情報を送受信
+インターネット(Internet)に接続されたクラウド (cloud)上の計算サーバ(server)で稼働しているプロ グラムの助けを借りて，知的(smart)な処理が可能</code></pre></li>
+</ol>
+</li>
+<li>なぜIoTが実現可能になったか?<ol>
+<li>半導体技術の進歩<pre><code>集積度(チップあたりのトランジスタ数)の向上
+機能と性能の向上
+価格性能比の向上</code></pre></li>
+<li>インターネットの普及<pre><code>端末(edge)側:無線化(WiFi，Bluetooth)
+サーバ側:クラウド・サービスの提供</code></pre></li>
+<li>ソフトウェア開発環境の進歩<pre><code>Python，Ruby
+プロトタイピングが容易に⇒ビジネスの高速化</code></pre></li>
+</ol>
+</li>
+</ul>
+<h4 id="演習課題（１−１）"><a href="#演習課題（１−１）" class="headerlink" title="演習課題（１−１）"></a>演習課題（１−１）</h4><ul>
+<li><p>半導体の集積度が18カ月ごとに2倍になるとすると， 9年後には集積度は何倍になるか?</p>
+<ul>
+<li><p>ヒント：$𝑝(𝑛) = 2^{𝑛/1.5}$</p>
+<table>
+<thead>
+<tr>
+<th>何年後</th>
+<th>何倍</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>9</td>
+<td>64</td>
+</tr>
+</tbody></table>
+</li>
+</ul>
+</li>
+</ul>
+<h4 id="演習課題（１−２）"><a href="#演習課題（１−２）" class="headerlink" title="演習課題（１−２）"></a>演習課題（１−２）</h4><ol>
+<li><p>演習課題 1-2-1</p>
+<ul>
+<li><p>次の計算を行って結果を確認しなさい。</p>
+<pre><code>5 % 3 
+5 % (-3) 
+(-5) % 3 
+(-5) % (-3)</code></pre>  <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="number">5</span> % <span class="number">3</span>       //<span class="number">2</span></span><br><span class="line"><span class="number">5</span> % (<span class="number">-3</span>)    //<span class="number">-1</span></span><br><span class="line">(<span class="number">-5</span>) % <span class="number">3</span>    //<span class="number">1</span></span><br><span class="line">(<span class="number">-5</span>) % (<span class="number">-3</span>) //<span class="number">-2</span></span><br></pre></td></tr></table></figure></li>
+<li><p>どのような規則で計算されているかを考えなさい。</p>
+  <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">//A ％ B = C , 除算して、余数を表示します。</span><br><span class="line">//「-」はもしかし:</span><br><span class="line">//  ・+B ＝ C</span><br><span class="line">//  ・-B ＝ -C</span><br></pre></td></tr></table></figure></li>
+</ul>
+</li>
+<li><p>演習課題 1-2-2</p>
+<ul>
+<li><p>次の計算を行って結果を確認しなさい。</p>
+<pre><code>5 // 3 
+5 // (-3) 
+(-5) // 3 
+(-5) // (-3) </code></pre>  <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="number">5</span> // <span class="number">3</span>       //<span class="number">1</span></span><br><span class="line"><span class="number">5</span> // (<span class="number">-3</span>)    //<span class="number">-2</span></span><br><span class="line">(<span class="number">-5</span>) // <span class="number">3</span>    //<span class="number">-2</span></span><br><span class="line">(<span class="number">-5</span>) // (<span class="number">-3</span>) //<span class="number">1</span></span><br></pre></td></tr></table></figure></li>
+<li><p>どのような規則で計算されているかを考えなさい。</p>
+  <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">//除算して、余数を抜き、整数だけ残っています。</span><br></pre></td></tr></table></figure></li>
+</ul>
+</li>
+<li><p>演習課題 1-2-3</p>
+<ul>
+<li><p>2つの数値を変数xおよびyに入力し，xとyの加算， 減算，乗算，浮動小数点除算，整数除算，剰余を計 算して出力するプログラムを作成して，ソースリス トをPDFで提出せよ。</p>
+  <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line">x=int(input(<span class="string">"x="</span>))                         //x=<span class="number">5</span></span><br><span class="line">y=int(input(<span class="string">"y="</span>))                         //y=<span class="number">3</span></span><br><span class="line"></span><br><span class="line">print(<span class="string">"\n加算:"</span>)                            //加算:</span><br><span class="line">print(<span class="string">"x+y = "</span> ,x+y)                       //x+y =  <span class="number">8</span></span><br><span class="line"></span><br><span class="line">print(<span class="string">"\n減算:"</span>)                            //減算:</span><br><span class="line">print(<span class="string">"x-y = "</span> ,x-y)                       //x-y =  <span class="number">2</span></span><br><span class="line"></span><br><span class="line">print(<span class="string">"\n乗算:"</span>)                            //乗算:</span><br><span class="line">print(<span class="string">"x*y = "</span> ,x*y)                       //x*y =  <span class="number">15</span></span><br><span class="line"></span><br><span class="line">print(<span class="string">"\n浮動小数点除算:"</span>)                   //浮動小数点除算:</span><br><span class="line">print(<span class="string">"x.0/y.0 = "</span> ,float(x)/float(y))     //x<span class="number">.0</span>/y<span class="number">.0</span> =  <span class="number">1.6666666666666667</span></span><br><span class="line"></span><br><span class="line">print(<span class="string">"\n整数除算:"</span>)                        //整数除算:</span><br><span class="line">print(<span class="string">"x//y = "</span> ,x//y)                     //x//y =  <span class="number">1</span></span><br><span class="line"></span><br><span class="line">print(<span class="string">"\n剰余:"</span>)                           //剰余:</span><br><span class="line">print(<span class="string">"x%y = "</span> ,x%y)                       //x%y =  <span class="number">2</span></span><br></pre></td></tr></table></figure>
+
+</li>
+</ul>
+</li>
+</ol>
+<p>以上</p>
+
+        </div>
+
+        
+        <section class="post-tags">
+            <div>
+                <!-- 下面这段代码是阅读量统计 -->
+                <span id="/2020/05/12/2020-05-12-IoT%E3%81%A8%E7%84%A1%E7%B7%9A%E3%83%8D%E3%83%83%E3%83%88%E3%83%AF%E3%83%BC%E3%82%AF(1)/" class="leancloud-visitors view" data-flag-title="IoTと無線ネットワーク(1)">
+                    <em class="post-meta-item-text">Pageviews:</em>
+                    <i class="leancloud-visitors-count">loading</i>
+                </span>
+                <!-- 标签 -->
+                <span>Tags:</span>
+                <span class="tag">
+                    
+                    
+                        <a href="/tags/%E6%97%A5%E6%9C%AC%E8%AA%9E/"># 日本語</a>
+                    
+                        <a href="/tags/%E3%83%A1%E3%83%A2/"># メモ</a>
+                    
+                        <a href="/tags/python/"># python</a>
+                    
+                        
+                </span>
+            </div>
+            <div>
+                <a href="javascript:window.history.back();">back</a>
+                <span>· </span>
+                <a href="/">home</a>
+            </div>
+        </section>
+        <section class="post-nav">
+            
+            
+            <a class="next" rel="next" href="/2020/05/10/2020-05-10-hello-world%202/">Hello World</a>
+            
+        </section>
+        
+          <!-- 下面这段代码是评论的 -->
+        
+            <section id="comments" class="comments">
+              <style>
+                .comments{margin:30px;padding:10px;background:#fff}
+                @media screen and (max-width:800px){.comments{margin:auto;padding:10px;background:#fff}}
+              </style>
+              <div class="valine_comment"></div>
+<!--载入js，在</body>之前插入即可-->
+<!--Leancloud 操作库:-->
+<script src="//cdn1.lncld.net/static/js/3.0.4/av-min.js"></script>
+<!--Valine 的核心代码库-->
+<script src="//unpkg.com/valine/dist/Valine.min.js"></script>
+<script>
+  new Valine({
+      el: '.valine_comment',
+      app_id: 'mvWomOzSrHta71qCetznk9Ys-MdYXbMMI',
+      app_key: 'hxu4GRlAhGXaNfQG3AhvgebE',
+      placeholder: '这里留言。。',
+      notify: 'true',
+      verify: 'true',
+    });
+</script>
+            </section>
+        
+
+    </article>
+</div>
+
+        </div>
+        <footer id="footer" class="footer">
+    <div class="copyright">
+        <span>© GanWt | Powered by <span>Hexo</span> & <span>Chic</span></span>
+    </div>
+</footer>
+
+    </div>
+</body>
+</html>
