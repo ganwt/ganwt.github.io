@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://yoursite.com/"/>
-  <updated>2020-05-12T14:02:02.538Z</updated>
+  <updated>2020-05-16T09:23:09.036Z</updated>
   <id>http://yoursite.com/</id>
   
   <author>
@@ -17,11 +17,40 @@
   <generator uri="https://hexo.io/">Hexo</generator>
   
   <entry>
+    <title>ZCU106 MacBook UART VCP 终端调试 波特率</title>
+    <link href="http://yoursite.com/2020/05/16/2020-05-16-macOS%20USB%20%E8%87%B3%20UART%20%E6%A1%A5%20VCP%20%E9%A9%B1%E5%8A%A8%E5%99%A8/"/>
+    <id>http://yoursite.com/2020/05/16/2020-05-16-macOS%20USB%20%E8%87%B3%20UART%20%E6%A1%A5%20VCP%20%E9%A9%B1%E5%8A%A8%E5%99%A8/</id>
+    <published>2020-05-16T14:02:03.000Z</published>
+    <updated>2020-05-16T09:23:09.036Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        
+        
+          &lt;h3 id=&quot;前言&quot;&gt;&lt;a href=&quot;#前言&quot; class=&quot;headerlink&quot; title=&quot;前言&quot;&gt;&lt;/a&gt;前言&lt;/h3&gt;&lt;p&gt;&lt;a
+        
+      
+    
+    </summary>
+    
+    
+      <category term="工作笔记" scheme="http://yoursite.com/categories/%E5%B7%A5%E4%BD%9C%E7%AC%94%E8%AE%B0/"/>
+    
+    
+      <category term="中文" scheme="http://yoursite.com/tags/%E4%B8%AD%E6%96%87/"/>
+    
+      <category term="笔记" scheme="http://yoursite.com/tags/%E7%AC%94%E8%AE%B0/"/>
+    
+  </entry>
+  
+  <entry>
     <title>IoTと無線ネットワーク(1)</title>
     <link href="http://yoursite.com/2020/05/12/2020-05-12-IoT%E3%81%A8%E7%84%A1%E7%B7%9A%E3%83%8D%E3%83%83%E3%83%88%E3%83%AF%E3%83%BC%E3%82%AF(1)/"/>
     <id>http://yoursite.com/2020/05/12/2020-05-12-IoT%E3%81%A8%E7%84%A1%E7%B7%9A%E3%83%8D%E3%83%83%E3%83%88%E3%83%AF%E3%83%BC%E3%82%AF(1)/</id>
     <published>2020-05-12T14:02:03.000Z</published>
-    <updated>2020-05-12T14:02:02.538Z</updated>
+    <updated>2020-05-16T03:04:45.459Z</updated>
     
     <summary type="html">
     

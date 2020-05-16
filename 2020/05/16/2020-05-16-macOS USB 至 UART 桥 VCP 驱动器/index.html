@@ -1,0 +1,301 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+<meta name="viewport"
+      content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+<meta http-equiv="X-UA-Compatible" content="ie=edge">
+
+    <meta name="author" content="GanWt">
+
+
+
+
+
+<title>ZCU106 MacBook UART VCP 终端调试 波特率 | GanWt</title>
+
+
+
+    <link rel="icon" href="/ganwt.ico">
+
+
+
+
+    <!-- stylesheets list from _config.yml -->
+    
+    <link rel="stylesheet" href="/css/style.css">
+    
+
+
+
+    <!-- scripts list from _config.yml -->
+    
+    <script src="/js/script.js"></script>
+    
+    <script src="/js/tocbot.min.js"></script>
+    
+
+
+
+    
+    
+        
+    
+
+
+<meta name="generator" content="Hexo 4.2.0"><link rel="alternate" href="/atom.xml" title="GanWt" type="application/atom+xml">
+</head>
+<body>
+    <div class="wrapper">
+        <header>
+    <nav class="navbar">
+        <div class="container">
+            <div class="navbar-header header-logo"><a href="/">GanWt Blog</a></div>
+            <div class="menu navbar-right">
+                
+                    <a class="menu-item" href="/archives">Posts</a>
+                
+                    <a class="menu-item" href="/categories">Categories</a>
+                
+                    <a class="menu-item" href="/tags">Tags</a>
+                
+                    <a class="menu-item" href="/about">About</a>
+                
+                <input id="switch_default" type="checkbox" class="switch_default">
+                <label for="switch_default" class="toggleBtn"></label>
+            </div>
+        </div>
+    </nav>
+
+    
+    <nav class="navbar-mobile" id="nav-mobile">
+        <div class="container">
+            <div class="navbar-header">
+                <div>
+                    <a href="/">GanWt Blog</a><a id="mobile-toggle-theme">·&nbsp;Light</a>
+                </div>
+                <div class="menu-toggle" onclick="mobileBtn()">&#9776; Menu</div>
+            </div>
+            <div class="menu" id="mobile-menu">
+                
+                    <a class="menu-item" href="/archives">Posts</a>
+                
+                    <a class="menu-item" href="/categories">Categories</a>
+                
+                    <a class="menu-item" href="/tags">Tags</a>
+                
+                    <a class="menu-item" href="/about">About</a>
+                
+            </div>
+        </div>
+    </nav>
+
+</header>
+<script>
+    var mobileBtn = function f() {
+        var toggleMenu = document.getElementsByClassName("menu-toggle")[0];
+        var mobileMenu = document.getElementById("mobile-menu");
+        if(toggleMenu.classList.contains("active")){
+           toggleMenu.classList.remove("active")
+            mobileMenu.classList.remove("active")
+        }else{
+            toggleMenu.classList.add("active")
+            mobileMenu.classList.add("active")
+        }
+    }
+</script>
+        <div class="main">
+            <div class="container">
+    
+    
+        <div class="post-toc">
+    <div class="tocbot-list">
+    </div>
+    <div class="tocbot-list-menu">
+        <a class="tocbot-toc-expand" onclick="expand_toc()">Expand all</a>
+        <a onclick="go_top()">Back to top</a>
+        <a onclick="go_bottom()">Go to bottom</a>
+    </div>
+</div>
+
+<script>
+    document.ready(
+        function () {
+            tocbot.init({
+                tocSelector: '.tocbot-list',
+                contentSelector: '.post-content',
+                headingSelector: 'h1, h2, h3, h4, h5',
+                collapseDepth: 1,
+                orderedList: false,
+                scrollSmooth: true,
+            })
+        }
+    )
+
+    function expand_toc() {
+        var b = document.querySelector(".tocbot-toc-expand");
+        tocbot.init({
+            tocSelector: '.tocbot-list',
+            contentSelector: '.post-content',
+            headingSelector: 'h1, h2, h3, h4, h5',
+            collapseDepth: 6,
+            orderedList: false,
+            scrollSmooth: true,
+        });
+        b.setAttribute("onclick", "collapse_toc()");
+        b.innerHTML = "Collapse all"
+    }
+
+    function collapse_toc() {
+        var b = document.querySelector(".tocbot-toc-expand");
+        tocbot.init({
+            tocSelector: '.tocbot-list',
+            contentSelector: '.post-content',
+            headingSelector: 'h1, h2, h3, h4, h5',
+            collapseDepth: 1,
+            orderedList: false,
+            scrollSmooth: true,
+        });
+        b.setAttribute("onclick", "expand_toc()");
+        b.innerHTML = "Expand all"
+    }
+
+    function go_top() {
+        window.scrollTo(0, 0);
+    }
+
+    function go_bottom() {
+        window.scrollTo(0, document.body.scrollHeight);
+    }
+
+</script>
+    
+
+    
+    <article class="post-wrap">
+        <header class="post-header">
+            <h1 class="post-title">ZCU106 MacBook UART VCP 终端调试 波特率</h1>
+            
+                <div class="post-meta">
+                    
+                        Author: <a itemprop="author" rel="author" href="/">GanWt</a>
+                    
+
+                    
+                        <span class="post-time">
+                        Date: <a href="#">May 16, 2020&nbsp;&nbsp;23:02:03</a>
+                        </span>
+                    
+                    
+                        <span class="post-category">
+                    Category:
+                            
+                                <a href="/categories/%E5%B7%A5%E4%BD%9C%E7%AC%94%E8%AE%B0/">工作笔记</a>
+                            
+                        </span>
+                    
+                </div>
+            
+        </header>
+
+        <div class="post-content">
+            <h3 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h3><p><a href="https://china.xilinx.com/content/xilinx/zh/products/boards-and-kits/zcu106.html.html#hardware" target="_blank" rel="noopener">Zynq UltraScale+ MPSoC ZCU106</a> 评估套件做开发的时候，会有需要用到终端来调试的时候。Windows和Linux的话，有Xilinx 软件开发套件 (XSDK)可用，安装以后只要直接插入USB连接就可以了。而macOS系统，接入USB却发现不了。</p>
+<p>困恼了许久，网上相应的教程也甚少。线插上后毫无反应，怀疑过接口和线材有问题，各种测试后确认可能是没有相关驱动。最后同事帮忙，在Google搜【macos cu baute rate】才解决。</p>
+<p><img src="https://blog-svend-ganwt.s3.amazonaws.com/ipic/2020-05-16-083451.jpg" alt="ZCU106"></p>
+<h3 id="步骤1-查询"><a href="#步骤1-查询" class="headerlink" title="步骤1 查询"></a>步骤1 查询</h3><p>输入以下代码，查询已连接USB的接口。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ls -l &#x2F;dev&#x2F;tty.*</span><br></pre></td></tr></table></figure>
+
+
+
+<h3 id="步骤2-安装"><a href="#步骤2-安装" class="headerlink" title="步骤2 安装"></a>步骤2 安装</h3><p>到<a href="https://cn.silabs.com/products/development-tools/software/usb-to-uart-bridge-vcp-drivers" target="_blank" rel="noopener">CP210x USB 至 UART 桥 VCP 驱动器</a>下载软件。</p>
+<p><img src="https://blog-svend-ganwt.s3.amazonaws.com/ipic/2020-05-16-085201.png" alt="image-00020516175201357"></p>
+<p>下载之后，打开【Mac_OSX_VCP_Driver】文件夹，进入【SiLabsUSBDriverDisk.dmg】，双击【 Install Disk/Install CP210x VCP Driver】安装。</p>
+<p><img src="https://blog-svend-ganwt.s3.amazonaws.com/ipic/2020-05-16-090201.png" alt="image-00020516180200585"></p>
+<p>点击【打开】。</p>
+<p><img src="https://blog-svend-ganwt.s3.amazonaws.com/ipic/2020-05-16-090400.png" alt="image-00020516180359464"></p>
+<p><img src="https://blog-svend-ganwt.s3.amazonaws.com/ipic/2020-05-16-090508.png" alt="image-00020516180507863"></p>
+<p><img src="https://blog-svend-ganwt.s3.amazonaws.com/ipic/2020-05-16-090628.png" alt="image-00020516180628602"></p>
+<p><img src="https://blog-svend-ganwt.s3.amazonaws.com/ipic/2020-05-16-090815.png" alt="image-00020516180814310"></p>
+<p><img src="https://blog-svend-ganwt.s3.amazonaws.com/ipic/2020-05-16-091233.png" alt="image-00020516181233502"></p>
+<p><img src="https://blog-svend-ganwt.s3.amazonaws.com/ipic/2020-05-16-091733.png" alt="image-00020516181733354"></p>
+<p><img src="https://blog-svend-ganwt.s3.amazonaws.com/ipic/2020-05-16-091837.png" alt="image-00020516181837282"></p>
+<p><img src="https://blog-svend-ganwt.s3.amazonaws.com/ipic/2020-05-16-091906.png" alt="image-00020516181905675"></p>
+<p><img src="https://blog-svend-ganwt.s3.amazonaws.com/ipic/2020-05-16-092113.png" alt="image-00020516182113443"></p>
+<h3 id="步骤4-设置波特率"><a href="#步骤4-设置波特率" class="headerlink" title="步骤4 设置波特率"></a>步骤4 设置波特率</h3><p>主要用到以下的代码，在命令行里输入</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ screen &#x2F;dev&#x2F;cu.usbserial-FTHHQD0C 115200</span><br></pre></td></tr></table></figure>
+
+
+        </div>
+
+        
+        <section class="post-tags">
+            <div>
+                <!-- 标签 -->
+                <span>Tags:</span>
+                <span class="tag">
+                    
+                    
+                        <a href="/tags/%E4%B8%AD%E6%96%87/"># 中文</a>
+                    
+                        <a href="/tags/%E7%AC%94%E8%AE%B0/"># 笔记</a>
+                    
+                        
+                </span>
+                <!-- 下面这段代码是阅读量统计 -->
+                <span id="/2020/05/16/2020-05-16-macOS%20USB%20%E8%87%B3%20UART%20%E6%A1%A5%20VCP%20%E9%A9%B1%E5%8A%A8%E5%99%A8/" class="leancloud-visitors view" data-flag-title="ZCU106 MacBook UART VCP 终端调试 波特率">
+                    <em class="post-meta-item-text">&nbsp;&nbsp;Pageviews:</em>
+                    <i class="leancloud-visitors-count">loading</i>
+                </span>
+            </div>
+            <div>
+                <a href="javascript:window.history.back();">back</a>
+                <span>· </span>
+                <a href="/">home</a>
+            </div>
+        </section>
+        <section class="post-nav">
+            
+            
+            <a class="next" rel="next" href="/2020/05/12/2020-05-12-IoT%E3%81%A8%E7%84%A1%E7%B7%9A%E3%83%8D%E3%83%83%E3%83%88%E3%83%AF%E3%83%BC%E3%82%AF(1)/">IoTと無線ネットワーク(1)</a>
+            
+        </section>
+        <!-- 下面这段代码是评论的 -->
+        <br><br><br>
+        
+            <section id="comments" class="comments">
+              <style>
+                .comments{margin:30px;padding:10px;background:#fff}
+                @media screen and (max-width:800px){.comments{margin:auto;padding:10px;background:#fff}}
+              </style>
+              <div class="valine_comment"></div>
+<!--载入js，在</body>之前插入即可-->
+<!--Leancloud 操作库:-->
+<script src="//cdn1.lncld.net/static/js/3.0.4/av-min.js"></script>
+<!--Valine 的核心代码库-->
+<script src="//unpkg.com/valine/dist/Valine.min.js"></script>
+<script>
+  new Valine({
+      el: '.valine_comment',
+      app_id: 'mvWomOzSrHta71qCetznk9Ys-MdYXbMMI',
+      app_key: 'hxu4GRlAhGXaNfQG3AhvgebE',
+      placeholder: '这里留言。。',
+      notify: 'true',
+      verify: 'true',
+      visitor: true // 阅读量统计
+    });
+</script>
+            </section>
+        
+    </article>
+
+</div>
+        </div>
+        <footer id="footer" class="footer">
+    <div class="copyright">
+        <span>© GanWt | Powered by <span>Hexo</span> & <span>Chic</span></span>
+    </div>
+</footer>
+
+    </div>
+</body>
+</html>

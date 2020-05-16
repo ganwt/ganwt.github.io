@@ -1,9 +1,46 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title>ZCU106 MacBook UART VCP 终端调试 波特率</title>
+    <url>/2020/05/16/2020-05-16-macOS%20USB%20%E8%87%B3%20UART%20%E6%A1%A5%20VCP%20%E9%A9%B1%E5%8A%A8%E5%99%A8/</url>
+    <content><![CDATA[<h3 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h3><p><a href="https://china.xilinx.com/content/xilinx/zh/products/boards-and-kits/zcu106.html.html#hardware" target="_blank" rel="noopener">Zynq UltraScale+ MPSoC ZCU106</a> 评估套件做开发的时候，会有需要用到终端来调试的时候。Windows和Linux的话，有Xilinx 软件开发套件 (XSDK)可用，安装以后只要直接插入USB连接就可以了。而macOS系统，接入USB却发现不了。</p>
+<p>困恼了许久，网上相应的教程也甚少。线插上后毫无反应，怀疑过接口和线材有问题，各种测试后确认可能是没有相关驱动。最后同事帮忙，在Google搜【macos cu baute rate】才解决。</p>
+<p><img src="https://blog-svend-ganwt.s3.amazonaws.com/ipic/2020-05-16-083451.jpg" alt="ZCU106"></p>
+<h3 id="步骤1-查询"><a href="#步骤1-查询" class="headerlink" title="步骤1 查询"></a>步骤1 查询</h3><p>输入以下代码，查询已连接USB的接口。</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">ls -l &#x2F;dev&#x2F;tty.*</span><br></pre></td></tr></table></figure>
+
+
+
+<h3 id="步骤2-安装"><a href="#步骤2-安装" class="headerlink" title="步骤2 安装"></a>步骤2 安装</h3><p>到<a href="https://cn.silabs.com/products/development-tools/software/usb-to-uart-bridge-vcp-drivers" target="_blank" rel="noopener">CP210x USB 至 UART 桥 VCP 驱动器</a>下载软件。</p>
+<p><img src="https://blog-svend-ganwt.s3.amazonaws.com/ipic/2020-05-16-085201.png" alt="image-00020516175201357"></p>
+<p>下载之后，打开【Mac_OSX_VCP_Driver】文件夹，进入【SiLabsUSBDriverDisk.dmg】，双击【 Install Disk/Install CP210x VCP Driver】安装。</p>
+<p><img src="https://blog-svend-ganwt.s3.amazonaws.com/ipic/2020-05-16-090201.png" alt="image-00020516180200585"></p>
+<p>点击【打开】。</p>
+<p><img src="https://blog-svend-ganwt.s3.amazonaws.com/ipic/2020-05-16-090400.png" alt="image-00020516180359464"></p>
+<p><img src="https://blog-svend-ganwt.s3.amazonaws.com/ipic/2020-05-16-090508.png" alt="image-00020516180507863"></p>
+<p><img src="https://blog-svend-ganwt.s3.amazonaws.com/ipic/2020-05-16-090628.png" alt="image-00020516180628602"></p>
+<p><img src="https://blog-svend-ganwt.s3.amazonaws.com/ipic/2020-05-16-090815.png" alt="image-00020516180814310"></p>
+<p><img src="https://blog-svend-ganwt.s3.amazonaws.com/ipic/2020-05-16-091233.png" alt="image-00020516181233502"></p>
+<p><img src="https://blog-svend-ganwt.s3.amazonaws.com/ipic/2020-05-16-091733.png" alt="image-00020516181733354"></p>
+<p><img src="https://blog-svend-ganwt.s3.amazonaws.com/ipic/2020-05-16-091837.png" alt="image-00020516181837282"></p>
+<p><img src="https://blog-svend-ganwt.s3.amazonaws.com/ipic/2020-05-16-091906.png" alt="image-00020516181905675"></p>
+<p><img src="https://blog-svend-ganwt.s3.amazonaws.com/ipic/2020-05-16-092113.png" alt="image-00020516182113443"></p>
+<h3 id="步骤4-设置波特率"><a href="#步骤4-设置波特率" class="headerlink" title="步骤4 设置波特率"></a>步骤4 设置波特率</h3><p>主要用到以下的代码，在命令行里输入</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">$ screen &#x2F;dev&#x2F;cu.usbserial-FTHHQD0C 115200</span><br></pre></td></tr></table></figure>
+
+]]></content>
+      <categories>
+        <category>工作笔记</category>
+      </categories>
+      <tags>
+        <tag>中文</tag>
+        <tag>笔记</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>IoTと無線ネットワーク(1)</title>
     <url>/2020/05/12/2020-05-12-IoT%E3%81%A8%E7%84%A1%E7%B7%9A%E3%83%8D%E3%83%83%E3%83%88%E3%83%AF%E3%83%BC%E3%82%AF(1)/</url>
-    <content><![CDATA[<h4 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h4><p>今日からIoTと無線ネットワークのコースを始め、毎週火曜日roomより授業を受ける。演習課題を授業終わると書くつもりので、こちに記録してMarkdownの書く技も練習する。頑張れ！</p>
+    <content><![CDATA[<h4 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h4><p>今日からIoTと無線ネットワークのコースを始め、毎週火曜日zoomより授業を受ける。演習課題を授業終わると書くつもりので、こちに記録してMarkdownの書く技も練習する。頑張れ！</p>
 <h4 id="内容"><a href="#内容" class="headerlink" title="内容"></a>内容</h4><ul>
 <li>IoTとは何か?<ol>
 <li>IoT = Internet of Things = Internet + Things<pre><code>「モノのインターネット(Internet)」
