@@ -1,40 +1,27 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
-    <title>ZCU106 MacBook UART VCP 终端调试 波特率</title>
-    <url>/2020/05/16/2020-05-16-macOS%20USB%20%E8%87%B3%20UART%20%E6%A1%A5%20VCP%20%E9%A9%B1%E5%8A%A8%E5%99%A8/</url>
-    <content><![CDATA[<h3 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h3><p><a href="https://china.xilinx.com/content/xilinx/zh/products/boards-and-kits/zcu106.html.html#hardware" target="_blank" rel="noopener">Zynq UltraScale+ MPSoC ZCU106</a> 评估套件做开发的时候，会有需要用到终端来调试的时候。Windows和Linux的话，有Xilinx 软件开发套件 (XSDK)可用，安装以后只要直接插入USB连接就可以了。而macOS系统，接入USB却发现不了。</p>
-<p>困恼了许久，网上相应的教程也甚少。线插上后毫无反应，怀疑过接口和线材有问题，各种测试后确认可能是没有相关驱动。最后同事帮忙，在Google搜【macos cu baute rate】才解决。</p>
-<p><img src="https://blog-svend-ganwt.s3.amazonaws.com/ipic/2020-05-16-083451.jpg" alt="ZCU106"></p>
-<h3 id="步骤1-查询"><a href="#步骤1-查询" class="headerlink" title="步骤1 查询"></a>步骤1 查询</h3><p>输入以下代码，查询已连接USB的接口。</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">ls -l &#x2F;dev&#x2F;tty.*</span><br></pre></td></tr></table></figure>
+    <title>Hello World</title>
+    <url>/2020/05/10/2020-05-10-hello-world%202/</url>
+    <content><![CDATA[<p>今日周末在家，想动手写个记录自己的网站。用<a href="https://mdbootstrap.com/" target="_blank" rel="noopener">mdbootstrap</a>写了一会儿静态页面之后，打算参考一下其他人的代码。搜了一下【搭建个人博客】关键词。然后，折腾了一天的<a href="https://hexo.io/" target="_blank" rel="noopener">Hexo</a>！第一次用Markdown，直接在Hello World文档基础上改，意外还挺好用的，比html好用多了，确实可以更少打扰的敲文字。</p>
+<h2 id="Markdown的一些功能"><a href="#Markdown的一些功能" class="headerlink" title="Markdown的一些功能"></a>Markdown的一些功能</h2><h3 id="可以简单的加三个-“-”-号来添加代码。"><a href="#可以简单的加三个-“-”-号来添加代码。" class="headerlink" title="可以简单的加三个 “ ``` ” 号来添加代码。"></a>可以简单的加三个 “ ``` ” 号来添加代码。</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo new <span class="string">"My New Post"</span></span><br></pre></td></tr></table></figure>
 
+<p>上面这段代码就是新建md文章的代码。</p>
+<h3 id="Run-server-启动本地服务器预览网页"><a href="#Run-server-启动本地服务器预览网页" class="headerlink" title="Run server 启动本地服务器预览网页"></a>Run server 启动本地服务器预览网页</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo server</span><br></pre></td></tr></table></figure>
 
+<p>一般直接用 <code>$ hexo s</code> ,比较简短。URL：<a href="http://localhost:4000/" target="_blank" rel="noopener">http://localhost:4000/</a></p>
+<h3 id="Generate-static-files-生成静态页面"><a href="#Generate-static-files-生成静态页面" class="headerlink" title="Generate static files 生成静态页面"></a>Generate static files 生成静态页面</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo generate</span><br></pre></td></tr></table></figure>
 
-<h3 id="步骤2-安装"><a href="#步骤2-安装" class="headerlink" title="步骤2 安装"></a>步骤2 安装</h3><p>到<a href="https://cn.silabs.com/products/development-tools/software/usb-to-uart-bridge-vcp-drivers" target="_blank" rel="noopener">CP210x USB 至 UART 桥 VCP 驱动器</a>下载软件。</p>
-<p><img src="https://blog-svend-ganwt.s3.amazonaws.com/ipic/2020-05-16-085201.png" alt="image-00020516175201357"></p>
-<p>下载之后，打开【Mac_OSX_VCP_Driver】文件夹，进入【SiLabsUSBDriverDisk.dmg】，双击【 Install Disk/Install CP210x VCP Driver】安装。</p>
-<p><img src="https://blog-svend-ganwt.s3.amazonaws.com/ipic/2020-05-16-090201.png" alt="image-00020516180200585"></p>
-<p>点击【打开】。</p>
-<p><img src="https://blog-svend-ganwt.s3.amazonaws.com/ipic/2020-05-16-090400.png" alt="image-00020516180359464"></p>
-<p><img src="https://blog-svend-ganwt.s3.amazonaws.com/ipic/2020-05-16-090508.png" alt="image-00020516180507863"></p>
-<p><img src="https://blog-svend-ganwt.s3.amazonaws.com/ipic/2020-05-16-090628.png" alt="image-00020516180628602"></p>
-<p><img src="https://blog-svend-ganwt.s3.amazonaws.com/ipic/2020-05-16-090815.png" alt="image-00020516180814310"></p>
-<p><img src="https://blog-svend-ganwt.s3.amazonaws.com/ipic/2020-05-16-091233.png" alt="image-00020516181233502"></p>
-<p><img src="https://blog-svend-ganwt.s3.amazonaws.com/ipic/2020-05-16-091733.png" alt="image-00020516181733354"></p>
-<p><img src="https://blog-svend-ganwt.s3.amazonaws.com/ipic/2020-05-16-091837.png" alt="image-00020516181837282"></p>
-<p><img src="https://blog-svend-ganwt.s3.amazonaws.com/ipic/2020-05-16-091906.png" alt="image-00020516181905675"></p>
-<p><img src="https://blog-svend-ganwt.s3.amazonaws.com/ipic/2020-05-16-092113.png" alt="image-00020516182113443"></p>
-<h3 id="步骤4-设置波特率"><a href="#步骤4-设置波特率" class="headerlink" title="步骤4 设置波特率"></a>步骤4 设置波特率</h3><p>主要用到以下的代码，在命令行里输入</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">$ screen &#x2F;dev&#x2F;cu.usbserial-FTHHQD0C 115200</span><br></pre></td></tr></table></figure>
+<p>同上，可以直接用 <code>$ hexo g</code> ,比较简短。生成的文件会在 /public 文件夹下面。</p>
+<h3 id="Deploy-to-remote-sites-可以部署到github等"><a href="#Deploy-to-remote-sites-可以部署到github等" class="headerlink" title="Deploy to remote sites 可以部署到github等"></a>Deploy to remote sites 可以部署到github等</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo deploy</span><br></pre></td></tr></table></figure>
 
-]]></content>
+<p>同上，可以直接用 <code>$ hexo g</code> ,比较简短。一键部署。</p>
+<h3 id="还有，挺开心的，想学习【ejs】了，希望自己可以坚持下去，把现有的html5-css3-JavaScript基础都过一遍。总之，越来越好的，只是时间问题，都能学会的。今天就到这里啦，等会儿链接到ganwt-com网址下就，晚安。"><a href="#还有，挺开心的，想学习【ejs】了，希望自己可以坚持下去，把现有的html5-css3-JavaScript基础都过一遍。总之，越来越好的，只是时间问题，都能学会的。今天就到这里啦，等会儿链接到ganwt-com网址下就，晚安。" class="headerlink" title="还有，挺开心的，想学习【ejs】了，希望自己可以坚持下去，把现有的html5+css3+JavaScript基础都过一遍。总之，越来越好的，只是时间问题，都能学会的。今天就到这里啦，等会儿链接到ganwt.com网址下就，晚安。"></a>还有，挺开心的，想学习【ejs】了，希望自己可以坚持下去，把现有的html5+css3+JavaScript基础都过一遍。总之，越来越好的，只是时间问题，都能学会的。今天就到这里啦，等会儿链接到ganwt.com网址下就，晚安。</h3>]]></content>
       <categories>
-        <category>工作笔记</category>
+        <category>随笔</category>
       </categories>
       <tags>
         <tag>中文</tag>
-        <tag>笔记</tag>
       </tags>
   </entry>
   <entry>
@@ -125,27 +112,163 @@
       </tags>
   </entry>
   <entry>
-    <title>Hello World</title>
-    <url>/2020/05/10/2020-05-10-hello-world%202/</url>
-    <content><![CDATA[<p>今日周末在家，想动手写个记录自己的网站。用<a href="https://mdbootstrap.com/" target="_blank" rel="noopener">mdbootstrap</a>写了一会儿静态页面之后，打算参考一下其他人的代码。搜了一下【搭建个人博客】关键词。然后，折腾了一天的<a href="https://hexo.io/" target="_blank" rel="noopener">Hexo</a>！第一次用Markdown，直接在Hello World文档基础上改，意外还挺好用的，比html好用多了，确实可以更少打扰的敲文字。</p>
-<h2 id="Markdown的一些功能"><a href="#Markdown的一些功能" class="headerlink" title="Markdown的一些功能"></a>Markdown的一些功能</h2><h3 id="可以简单的加三个-“-”-号来添加代码。"><a href="#可以简单的加三个-“-”-号来添加代码。" class="headerlink" title="可以简单的加三个 “ ``` ” 号来添加代码。"></a>可以简单的加三个 “ ``` ” 号来添加代码。</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo new <span class="string">"My New Post"</span></span><br></pre></td></tr></table></figure>
+    <title>IoTと無線ネットワーク(2)</title>
+    <url>/2020/05/20/2020-05-19-IoT%E3%81%A8%E7%84%A1%E7%B7%9A%E3%83%8D%E3%83%83%E3%83%88%E3%83%AF%E3%83%BC%E3%82%AF(2)/</url>
+    <content><![CDATA[<h4 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h4><p>IoTと無線ネットワークのコースの第二回目授業メモです。</p>
+<h1 id="IoT"><a href="#IoT" class="headerlink" title="IoT"></a>IoT</h1><h2 id="インターネット通信の概要"><a href="#インターネット通信の概要" class="headerlink" title="インターネット通信の概要"></a>インターネット通信の概要</h2><h3 id="1-IP-インターネット・プロトコル"><a href="#1-IP-インターネット・プロトコル" class="headerlink" title="1.IP = インターネット・プロトコル"></a>1.IP = インターネット・プロトコル</h3><ul>
+<li>IP(Internet Protocol)：<br>複数の通信ネットワークを相互に接続し，データを中継・伝送 して一つの大きなネットワークにすることができる通信規約 (プロトコル)の一つ</li>
+<li>IPアドレス(IP Address)：<br>インターネット中のコンピュータの固有のアドレス</li>
+<li>パケット(Packet)：<br>コンピュータ間でデータを送受信するための転送単位。<br>メッセージは複数のパケットに分割して転送される</li>
+<li>パケットの内容：<br>ヘッダ<br>受信先アドレス(IPアドレス)<br>送信元アドレス(IPアドレス)<br>データ</li>
+</ul>
+<h3 id="2-TCP"><a href="#2-TCP" class="headerlink" title="2.TCP"></a>2.TCP</h3><ul>
+<li>概要：<br>メッセージは多数のパケットに分割されて受信先に転送<br>転送経路はパケットによって異なる<br>パケットの到着順はパケットの送信順と異なるかも知れ ない<br>到着したパケットを送信順に並べ替える必要がある<br>Transmission Control Protocol(TCP)<br>・パケットを正しい順序に並べ替えてメッセージを再構成するためのプロトコル</li>
+<li>信頼性：<br>メッセージを構成する全てのパケットが到着してい れば，パケットのロス(紛失)はない<br>データの品質に影響を及ぼすような通信の遅延はな い(VoIPでの会話，ストリーミング・オーディオ)<br>到着した全てのパケットは正しい順序(送信順)に 並べ替えられてメッセージが再構成される</li>
+<li>接続の確立：<img src="https://blog-svend-ganwt.s3.amazonaws.com/ipic/2020-05-19-131433.png" alt="image-接続の確立" style="zoom:50%;" /></li>
+<li>接続の確立(3-way handshake)：<img src="https://tva1.sinaimg.cn/large/007S8ZIlgy1gey2k62195j31cn0u0q6r.jpg" alt="image-接続の確立(3-way handshake)" style="zoom:50%;" /></li>
+<li>データの送信(成功)：<img src="https://tva1.sinaimg.cn/large/007S8ZIlgy1gey2kiakywj316e0u0gu5.jpg" alt="image-データの送信(成功)" style="zoom:50%;" /></li>
+<li>データの送信(失敗)：<img src="https://tva1.sinaimg.cn/large/007S8ZIlgy1gey2ku2zt7j313f0u0n6a.jpg" alt="image-データの送信(失敗)" style="zoom:50%;" /></li>
+<li>接続の終了<img src="https://tva1.sinaimg.cn/large/007S8ZIlgy1gey2l2piqlj317u0u077u.jpg" alt="image-接続の終了" style="zoom:50%;" />
 
-<p>上面这段代码就是新建md文章的代码。</p>
-<h3 id="Run-server-启动本地服务器预览网页"><a href="#Run-server-启动本地服务器预览网页" class="headerlink" title="Run server 启动本地服务器预览网页"></a>Run server 启动本地服务器预览网页</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo server</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<h3 id="3-UDP-User-Datagram-Protocol"><a href="#3-UDP-User-Datagram-Protocol" class="headerlink" title="3.UDP(User Datagram Protocol)"></a>3.UDP(User Datagram Protocol)</h3><ul>
+<li><p>UDPの概要：<br>コネクションレス型のプロトコル<br>TCPに比べると信頼性がない<br>高速転送が可能<br>UDPヘッダサイズが少ない(8byte)ので，その分アプ リケーションのデータを多く送受信することが可能<br>ただし，パケットが到達する保証がないので，パケットロスなどの場合には，アプリケーション側で再送処理をして通信を成立させるかパケットロスが容認きるアプリで使用する必要がある。</p>
+</li>
+<li><p>UDPの用途：<br>音声や映像などのリアルタイム性のあるデータを転送する場合<br>複数の相手に同じデータを同時に転送する場合:<br>・マルチキャスト通信(1対N)<br>・ブロードキャスト通信<br>信頼性が重要でなく，少量のデータ転送をしたい場合:<br>・Domain Name System (DNS)<br>・Simple Network Management Protocol (SNMP)<br>・Routing Information Protocol (RIP)<br>・Dynamic Host Configuration Protocol (DHCP)<br>・Network Time Protocol (NTP)</p>
+</li>
+<li><p>UDPのデータフォーマット</p>
+<img src="https://tva1.sinaimg.cn/large/007S8ZIlgy1gey3tjil3hj31es0m610g.jpg" alt="image-UDPのデータフォーマット" style="zoom:50%;" />
+</li>
+<li><p>TCPとUDPの比較</p>
+<img src="https://tva1.sinaimg.cn/large/007S8ZIlgy1gey3uc4lmoj31g20oq44m.jpg" alt="image-TCPとUDPの比較" style="zoom:50%;" /> 
 
-<p>一般直接用 <code>$ hexo s</code> ,比较简短。URL：<a href="http://localhost:4000/" target="_blank" rel="noopener">http://localhost:4000/</a></p>
-<h3 id="Generate-static-files-生成静态页面"><a href="#Generate-static-files-生成静态页面" class="headerlink" title="Generate static files 生成静态页面"></a>Generate static files 生成静态页面</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo generate</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<h3 id="4-TCP-IP"><a href="#4-TCP-IP" class="headerlink" title="4.TCP/IP"></a>4.TCP/IP</h3><ul>
+<li><p>概要：<br>TCPとIPの組み合わせは 非常によく使われるので，単に「TCP / IP」と呼ぶ。<br>それぞれのレイヤーが下にあるレイヤーの構成要素を用いて一連のプロトコルまたはスタックを記述。<br>OSI=Open System Interconnection</p>
+</li>
+<li><p>OSI参照モデル：</p>
+<table>
+<thead>
+<tr>
+<th></th>
+<th></th>
+<th></th>
+</tr>
+</thead>
+<tbody><tr>
+<td>7</td>
+<td>アプリケーション層</td>
+<td>ソフトウェアがあつかう通信サービス層，ファイル，メールの転送などを提 供。HTTPやFTP等の通信サービスなどが含まれる。</td>
+</tr>
+<tr>
+<td>6</td>
+<td>プレゼンテーション層</td>
+<td>データの表現方法，圧縮方式，文字コードなどの定義を管理する。</td>
+</tr>
+<tr>
+<td>5</td>
+<td>セッション層</td>
+<td>通信プログラム間の通信の開始から終了までのセッションを管理する。</td>
+</tr>
+<tr>
+<td>4</td>
+<td>トランスポート層</td>
+<td>エラー訂正，再送制御などTCPの機能などはここに位置する。</td>
+</tr>
+<tr>
+<td>3</td>
+<td>ネットワーク層</td>
+<td>ネットワーク上の通信経路の選択，つまり一般的なルーティングはこの層 でおこなわれる，ルータなどはこの階層での仕事が主になる。</td>
+</tr>
+<tr>
+<td>2</td>
+<td>データリンク層</td>
+<td>接続されている通信機器間の信号のやりとり，受け渡しなど，一般的なス イッチングハブなどはこの層を扱うことが可能となっている。</td>
+</tr>
+<tr>
+<td>1</td>
+<td>物理層</td>
+<td>物理的な接続，電気的であったり，その形状など，基本的な通信機器の 物理的なものを内包する。</td>
+</tr>
+</tbody></table>
+</li>
+<li><p>ルータの動作：</p>
+<img src="https://tva1.sinaimg.cn/large/007S8ZIlgy1gey496op8yj30u00y7tx5.jpg" alt="image-ルータの動作" style="zoom:50%;" />
 
-<p>同上，可以直接用 <code>$ hexo g</code> ,比较简短。生成的文件会在 /public 文件夹下面。</p>
-<h3 id="Deploy-to-remote-sites-可以部署到github等"><a href="#Deploy-to-remote-sites-可以部署到github等" class="headerlink" title="Deploy to remote sites 可以部署到github等"></a>Deploy to remote sites 可以部署到github等</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo deploy</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<h1 id="python"><a href="#python" class="headerlink" title="python"></a>python</h1><h2 id="Pythonプログラミング-2"><a href="#Pythonプログラミング-2" class="headerlink" title="Pythonプログラミング(2)"></a>Pythonプログラミング(2)</h2><h3 id="データ型"><a href="#データ型" class="headerlink" title="データ型"></a>データ型</h3><h4 id="文字列型"><a href="#文字列型" class="headerlink" title="文字列型"></a>文字列型</h4><h5 id="文字列型の記述方法-1"><a href="#文字列型の記述方法-1" class="headerlink" title="文字列型の記述方法(1)"></a>文字列型の記述方法(1)</h5><p>  ・文字の並びをダブルクォート(“)もしくはシングルクォー ト(‘)で囲んだオブジェクト</p>
+  <figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="string">"Hello, world!"</span></span><br><span class="line"><span class="comment">#'Hello, world!'</span></span><br><span class="line"></span><br><span class="line"><span class="string">'Hello, world!'</span></span><br><span class="line"><span class="comment">#'Hello, world!'</span></span><br></pre></td></tr></table></figure>
 
-<p>同上，可以直接用 <code>$ hexo g</code> ,比较简短。一键部署。</p>
-<h3 id="还有，挺开心的，想学习【ejs】了，希望自己可以坚持下去，把现有的html5-css3-JavaScript基础都过一遍。总之，越来越好的，只是时间问题，都能学会的。今天就到这里啦，等会儿链接到ganwt-com网址下就，晚安。"><a href="#还有，挺开心的，想学习【ejs】了，希望自己可以坚持下去，把现有的html5-css3-JavaScript基础都过一遍。总之，越来越好的，只是时间问题，都能学会的。今天就到这里啦，等会儿链接到ganwt-com网址下就，晚安。" class="headerlink" title="还有，挺开心的，想学习【ejs】了，希望自己可以坚持下去，把现有的html5+css3+JavaScript基础都过一遍。总之，越来越好的，只是时间问题，都能学会的。今天就到这里啦，等会儿链接到ganwt.com网址下就，晚安。"></a>还有，挺开心的，想学习【ejs】了，希望自己可以坚持下去，把现有的html5+css3+JavaScript基础都过一遍。总之，越来越好的，只是时间问题，都能学会的。今天就到这里啦，等会儿链接到ganwt.com网址下就，晚安。</h3>]]></content>
+<h5 id="文字列型の記述方法-2"><a href="#文字列型の記述方法-2" class="headerlink" title="文字列型の記述方法(2)"></a>文字列型の記述方法(2)</h5><p>  ・ダブルクォート(“)を含む文字列またはシングルクォート(‘) を含む文字列を作るには，文字列全体をそれぞれシングル クォート(‘)またはダブルクォート(“)で囲む</p>
+  <figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="string">'"Hello," he said.'</span></span><br><span class="line"><span class="comment">#'"Hello," he said.'</span></span><br><span class="line"></span><br><span class="line"><span class="string">"'Hello,' world!"</span></span><br><span class="line"><span class="comment">#"'Hello,' world!"</span></span><br></pre></td></tr></table></figure>
+
+<h5 id="文字列型の記述方法-3"><a href="#文字列型の記述方法-3" class="headerlink" title="文字列型の記述方法(3)"></a>文字列型の記述方法(3)</h5><p>  ・長さ0の文字列も生成できる(“” または ‘’)</p>
+  <figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="string">""</span></span><br><span class="line"><span class="comment">#''</span></span><br><span class="line"></span><br><span class="line"><span class="string">''</span></span><br><span class="line"><span class="comment">#''</span></span><br></pre></td></tr></table></figure>
+
+<h5 id="文字列型の記述方法-4"><a href="#文字列型の記述方法-4" class="headerlink" title="文字列型の記述方法(4)"></a>文字列型の記述方法(4)</h5><p>  ・複数の行にわたる文字列は，3つの連続したダブルクォー ト(“)またはシングルクォート(‘)で文字列を囲むことによっ て作成できる</p>
+  <figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="string">"""The quick brown fox</span></span><br><span class="line"><span class="string">jumps over the lazy dog."""</span></span><br><span class="line"><span class="comment">#'The quick brown fox¥jumps over the lazy dog.'</span></span><br><span class="line"><span class="comment"># ¥n　は　改行コード</span></span><br></pre></td></tr></table></figure>
+<p>  3重クォートで囲まれた文字列は，プログラムのコメント としても使用可能!</p>
+<h5 id="エスケープシーケンス-1"><a href="#エスケープシーケンス-1" class="headerlink" title="エスケープシーケンス(1)"></a>エスケープシーケンス(1)</h5><p>  ・改行やタブなど，通常の記述方法では表せない文字 を2文字以上の文字を組み合わせて表現する方法<br>  ・Windows環境でのPythonの場合，エスケープ文字 として「¥」を用いる</p>
+<h5 id="エスケープシーケンス-2"><a href="#エスケープシーケンス-2" class="headerlink" title="エスケープシーケンス(2)"></a>エスケープシーケンス(2)</h5><p>  ・正しい記述</p>
+  <figure class="highlight python"><table><tr><td class="code"><pre><span class="line">print(<span class="string">"It's me!"</span>)</span><br><span class="line"><span class="comment"># It's me!</span></span><br></pre></td></tr></table></figure>
+<p>  ・誤った記述</p>
+  <figure class="highlight python"><table><tr><td class="code"><pre><span class="line">print(<span class="string">'It'</span>s me!<span class="string">')</span></span><br><span class="line"><span class="string"># SyntaxError: invalid syntax</span></span><br></pre></td></tr></table></figure>
+
+<h5 id="エスケープシーケンス-3"><a href="#エスケープシーケンス-3" class="headerlink" title="エスケープシーケンス(3)"></a>エスケープシーケンス(3)</h5><p>  ・「’」で囲まれた文字列中の「’」</p>
+  <figure class="highlight python"><table><tr><td class="code"><pre><span class="line">print(<span class="string">'It¥'</span>s me!<span class="string">')</span></span><br><span class="line"><span class="string"># It'</span>s me!</span><br></pre></td></tr></table></figure>
+<p>  ・改行</p>
+  <figure class="highlight python"><table><tr><td class="code"><pre><span class="line">print(<span class="string">"abc¥ndef"</span>)</span><br><span class="line"><span class="comment"># abc</span></span><br><span class="line"><span class="comment"># def</span></span><br></pre></td></tr></table></figure>
+
+<p>  ・水平タブ</p>
+  <figure class="highlight python"><table><tr><td class="code"><pre><span class="line">print(<span class="string">"abc¥tdef"</span>)</span><br><span class="line"><span class="comment"># abc    def</span></span><br></pre></td></tr></table></figure>
+
+
+
+<h3 id="変数と名前"><a href="#変数と名前" class="headerlink" title="変数と名前"></a>変数と名前</h3><h2 id="演習課題"><a href="#演習課題" class="headerlink" title="演習課題"></a>演習課題</h2><h3 id="演習課題（2−1）"><a href="#演習課題（2−1）" class="headerlink" title="演習課題（2−1）"></a>演習課題（2−1）</h3><p>  文字列 s を “ abcdefghijklmnopqrstuvwxyz” とする。 (文字列の先頭にスペースがあることに注意)</p>
+<ol>
+<li>文字列 s を用いて，文字列 “<strong>elephant</strong>“ を生成するプログラム。<figure class="highlight python"><table><tr><td class="code"><pre><span class="line">s = <span class="string">" abcdefghijklmnopqrstuvwxyz"</span></span><br><span class="line">print(<span class="string">"演習課題 1"</span>)</span><br><span class="line">print(s[<span class="number">5</span>]+s[<span class="number">12</span>]+s[<span class="number">5</span>]+s[<span class="number">16</span>]+s[<span class="number">8</span>]+s[<span class="number">1</span>]+s[<span class="number">14</span>]+s[<span class="number">20</span>])</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">演習課題 1</span><br><span class="line">elephant</span><br></pre></td></tr></table></figure>
+
+</li>
+</ol>
+<p>(今日同僚と飲み会ので、２２時から宿題と文書を書くので、もう疲れた、あまりの内容はまたね。。。。。2020年5月20日 0:14)</p>
+<h3 id="演習課題（2−2）"><a href="#演習課題（2−2）" class="headerlink" title="演習課題（2−2）"></a>演習課題（2−2）</h3><p>  文字列 s を “** abcdefghijklmnopqrstuvwxyz**” とする。 (文字列の先頭にスペースがあることに注意)</p>
+<ol>
+<li><p>文字列 s からスライス記法を用いて文字列 “<strong>ehknq</strong>“ を生成する プログラム。ただし，スライスの先頭 start および末尾 end の値 は正とする。</p>
+</li>
+<li><p>文字列 s からスライス記法を用いて文字列 “<strong>ehknq</strong>“ を生成する プログラム。ただし，スライスの先頭 start および末尾 end の値 は負とする。</p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line">s = <span class="string">" abcdefghijklmnopqrstuvwxyz"</span></span><br><span class="line">print(<span class="string">"演習課題 2"</span>)</span><br><span class="line">print(<span class="string">"正とする結果:"</span>,s[<span class="number">5</span>:<span class="number">18</span>:<span class="number">3</span>])</span><br><span class="line">print(<span class="string">"負とする結果:"</span>,s[<span class="number">-22</span>:<span class="number">-9</span>:<span class="number">3</span>])</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">演習課題 2</span><br><span class="line">正とする結果: ehknq</span><br><span class="line">負とする結果: ehknq</span><br></pre></td></tr></table></figure>
+
+</li>
+</ol>
+<h3 id="演習課題（2−3）"><a href="#演習課題（2−3）" class="headerlink" title="演習課題（2−3）"></a>演習課題（2−3）</h3><p>  文字列 s を “ abcdefghijklmnopqrstuvwxyz” とする。 (文字列の先頭にスペースがあることに注意)</p>
+<ol>
+<li><p>文字列 s からスライス記法を用いて文字列 “<strong>qnkhe</strong>“ を生成する プログラム。ただし，スライスの先頭 start および末尾 end の値 は正とする。</p>
+</li>
+<li><p>文字列 s からスライス記法を用いて文字列 “<strong>qnkhe</strong>“ を生成する プログラム。ただし，スライスの先頭 start および末尾 end の値 は負とする。</p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line">s = <span class="string">" abcdefghijklmnopqrstuvwxyz"</span></span><br><span class="line">print(<span class="string">"演習課題 3"</span>)</span><br><span class="line">print(<span class="string">"正とする結果:"</span>,s[<span class="number">17</span>:<span class="number">4</span>:<span class="number">-3</span>])</span><br><span class="line">print(<span class="string">"負とする結果:"</span>,s[<span class="number">-10</span>:<span class="number">-23</span>:<span class="number">-3</span>])</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">演習課題 3</span><br><span class="line">正とする結果: qnkhe</span><br><span class="line">負とする結果: qnkhe</span><br></pre></td></tr></table></figure>
+
+</li>
+</ol>
+<h3 id="演習課題（2−4）"><a href="#演習課題（2−4）" class="headerlink" title="演習課題（2−4）"></a>演習課題（2−4）</h3><p>  文字列 “The quick brown fox jumps over the lazy dog.” に含まれる文字 “a”, “e”, “i”, “o”, “u” の個数をカウントして印字するプログラムを作成せよ。</p>
+  <figure class="highlight python"><table><tr><td class="code"><pre><span class="line">s = <span class="string">"The quick brown fox jumps over the lazy dog."</span></span><br><span class="line">print(<span class="string">"演習課題 4"</span>)</span><br><span class="line">a = s.count(<span class="string">"a"</span>)</span><br><span class="line">e = s.count(<span class="string">"e"</span>)</span><br><span class="line">i = s.count(<span class="string">"i"</span>)</span><br><span class="line">o = s.count(<span class="string">"o"</span>)</span><br><span class="line">u = s.count(<span class="string">"u"</span>)</span><br><span class="line">print(<span class="string">"a:"</span>,a,<span class="string">"\ne:"</span>,e,<span class="string">"\ni:"</span>,i,<span class="string">"\no:"</span>,o,<span class="string">"\nu:"</span>,u)</span><br><span class="line">print(<span class="string">"count:"</span>,a+e+i+o+u)</span><br></pre></td></tr></table></figure>
+  <figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">演習課題 4</span><br><span class="line">a: 1 </span><br><span class="line">e: 3 </span><br><span class="line">i: 1 </span><br><span class="line">o: 4 </span><br><span class="line">u: 2</span><br><span class="line">count: 11</span><br></pre></td></tr></table></figure>
+
+
+<p>以上</p>
+]]></content>
       <categories>
-        <category>随笔</category>
+        <category>学习笔记</category>
       </categories>
       <tags>
-        <tag>中文</tag>
+        <tag>日本語</tag>
+        <tag>メモ</tag>
+        <tag>python</tag>
       </tags>
   </entry>
 </search>
