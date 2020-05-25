@@ -40,6 +40,45 @@
     
     
         
+            <!-- MathJax配置，可通过单美元符号书写行内公式等 -->
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+    "HTML-CSS": {
+        preferredFont: "TeX",
+        availableFonts: ["STIX","TeX"],
+        linebreaks: { automatic:true },
+        EqnChunk: (MathJax.Hub.Browser.isMobile ? 10 : 50)
+    },
+    tex2jax: {
+        inlineMath: [ ["$", "$"], ["\\(","\\)"] ],
+        processEscapes: true,
+        ignoreClass: "tex2jax_ignore|dno",
+        skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+    },
+    TeX: {
+        equationNumbers: { autoNumber: "AMS" },
+        noUndefined: { attributes: { mathcolor: "red", mathbackground: "#FFEEEE", mathsize: "90%" } },
+        Macros: { href: "{}" }
+    },
+    messageStyle: "none"
+    });
+</script>
+<!-- 给MathJax元素添加has-jax class -->
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax(), i;
+        for(i=0; i < all.length; i += 1) {
+            all[i].SourceElement().parentNode.className += ' has-jax';
+        }
+    });
+</script>
+<!-- 通过连接CDN加载MathJax的js代码 -->
+<script type="text/javascript" async
+        src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js?config=TeX-MML-AM_CHTML">
+</script>
+
+
+        
     
 
 
@@ -199,17 +238,22 @@
         </header>
 
         <div class="post-content">
-            <h3 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h3><p><a href="https://china.xilinx.com/content/xilinx/zh/products/boards-and-kits/zcu106.html.html#hardware" target="_blank" rel="noopener">Zynq UltraScale+ MPSoC ZCU106</a> 评估套件做开发的时候，会有需要用到终端来调试的时候。Windows和Linux的话，有Xilinx 软件开发套件 (XSDK)可用，安装以后只要直接插入USB连接就可以了。而macOS系统，接入USB却发现不了。</p>
-<p>困恼了许久，网上相应的教程也甚少。线插上后毫无反应，怀疑过接口和线材有问题，各种测试后确认可能是没有相关驱动。最后同事帮忙，在Google搜【macos cu baute rate】才解决。</p>
+            <h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p><a href="https://china.xilinx.com/content/xilinx/zh/products/boards-and-kits/zcu106.html.html#hardware" target="_blank" rel="noopener">Zynq UltraScale+ MPSoC ZCU106</a> 评估套件做开发的时候，会有需要用到终端来调试的时候。Windows和Linux的话，有Xilinx 软件开发套件 (XSDK)可用，安装以后只要直接插入USB连接就可以了。而macOS系统，接入USB却发现不了。</p>
+<p>困恼了许久，网上相应的教程也甚少。线插上后毫无反应，怀疑过接口和线材有问题，各种测试后确认可能是没有相关驱动。最后チョウさん帮忙，在Google搜【macos cu baute rate】才解决。</p>
+<h2 id="关于波特率的介绍"><a href="#关于波特率的介绍" class="headerlink" title="关于波特率的介绍"></a>关于波特率的介绍</h2><h3 id="简介"><a href="#简介" class="headerlink" title="简介"></a>简介</h3><table><tr><td bgcolor=orange>（多亏チョウさん提醒，加上波特率的介绍）</td></tr></table>
+在电子通讯领域，**波特（Baud）**即调制速率，指的是有效数据讯号调制载波的速率，即单位时间内载波调制状态变化的次数。它是对符号传输速率的一种度量，1波特即指每秒传输1个符号，而透过不同的调制方式，可以在一个码元符号上负载多个bit位讯号。
+
+<p>注意以下两点<strong>常见</strong>错误：<br>1 “波特”（Baud）本身已是速率，所以不需要写成 Baud Rate（Rate 是赘字）。<br>2 单位“波特”本身就已经是代表每秒的调制数，以“波特每秒”（Baud per second）为单位是一种常见的错误，但是在一般中文口语化的沟通上还是常以“波特率”来描述“波特”（Baud）。</p>
+<h3 id="波特率的计算"><a href="#波特率的计算" class="headerlink" title="波特率的计算"></a>波特率的计算</h3><p>波特率有时候会同比特率混淆，实际上后者是对信息传输速率（传信率）的度量。波特率可以被理解为单位时间内传输符号的个数（传符号率），通过不同的调制方法可以在一个符号上负载多个比特信息。因此信息传输速率即比特率在数值上和波特率有这样的关系：<br>$$I=S\cdot \log _2{N}$$<br>其中$I$ 为传信率，$S$ 为波特率，$N$ 为每个符号负载的信息量，而${\displaystyle \log _{2}{N}}\log _2{N}$以比特为单位。因此只有在每个符号只代表一个比特信息的情况、或一些简单的调制方式下，例如基带二进制信号、或Bell 103或CCITT V.21（左列两种均为FSK）调制方式等，波特率与比特率才在数值上相等，但是它们的意义并不相同。</p>
 <p><img src="https://blog-svend-ganwt.s3.amazonaws.com/ipic/2020-05-16-083451.jpg" alt="ZCU106"></p>
-<h3 id="步骤1-查询"><a href="#步骤1-查询" class="headerlink" title="步骤1 查询"></a>步骤1 查询</h3><p>连接zcu106板子的 <strong>USB UART</strong> 接口（上图标示左下往上第五行），后输入以下代码，查询已连接USB的接口。</p>
+<h1 id="步骤1-查询"><a href="#步骤1-查询" class="headerlink" title="步骤1 查询"></a>步骤1 查询</h1><p>连接zcu106板子的 <strong>USB UART</strong> 接口（上图标示左下往上第五行），后输入以下代码，查询已连接USB的接口。</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ls -l &#x2F;dev&#x2F;tty.*</span><br></pre></td></tr></table></figure>
 
 <p><img src="https://blog-svend-ganwt.s3.ap-northeast-1.amazonaws.com/iPic/image-20200518143550130.png" alt="image-20200518143550130"></p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">lhc:~ lhc$ ls -l &#x2F;dev&#x2F;tty.* </span><br><span class="line">crw-rw-rw-  1 root  wheel   18,   0  5  4 11:54 &#x2F;dev&#x2F;tty.Ama-WirelessiAP</span><br><span class="line">crw-rw-rw-  1 root  wheel   18,   4  5  4 11:54 &#x2F;dev&#x2F;tty.Bluetooth-Incoming-Port</span><br><span class="line">crw-rw-rw-  1 root  wheel   18,   6  5  4 11:54 &#x2F;dev&#x2F;tty.X9-SerialPort</span><br><span class="line">crw-rw-rw-  1 root  wheel   18,   2  5  4 11:54 &#x2F;dev&#x2F;tty.ganwangtao-WirelessiAPv2-1</span><br></pre></td></tr></table></figure>
 
 <p>记住上面列出的数据。我电脑里总共发现了*<em>0 2 4 6 *</em>，4个已连接的口</p>
-<h3 id="步骤2-安装"><a href="#步骤2-安装" class="headerlink" title="步骤2 安装"></a>步骤2 安装</h3><p>到<a href="https://cn.silabs.com/products/development-tools/software/usb-to-uart-bridge-vcp-drivers" target="_blank" rel="noopener">CP210x USB 至 UART 桥 VCP 驱动器</a>下载软件。</p>
+<h1 id="步骤2-安装"><a href="#步骤2-安装" class="headerlink" title="步骤2 安装"></a>步骤2 安装</h1><p>到<a href="https://cn.silabs.com/products/development-tools/software/usb-to-uart-bridge-vcp-drivers" target="_blank" rel="noopener">CP210x USB 至 UART 桥 VCP 驱动器</a>下载软件。</p>
 <p><img src="https://blog-svend-ganwt.s3.amazonaws.com/ipic/2020-05-16-085201.png" alt="image-00020516175201357"></p>
 <p>下载之后，打开【Mac_OSX_VCP_Driver】文件夹，进入【SiLabsUSBDriverDisk.dmg】，双击【 Install Disk/Install CP210x VCP Driver】安装。</p>
 <p><img src="https://blog-svend-ganwt.s3.amazonaws.com/ipic/2020-05-16-090201.png" alt="image-00020516180200585"></p>
@@ -223,19 +267,19 @@
 <p><img src="https://blog-svend-ganwt.s3.amazonaws.com/ipic/2020-05-16-091837.png" alt="image-00020516181837282"></p>
 <p><img src="https://blog-svend-ganwt.s3.amazonaws.com/ipic/2020-05-16-091906.png" alt="image-00020516181905675"></p>
 <p><img src="https://blog-svend-ganwt.s3.amazonaws.com/ipic/2020-05-16-092113.png" alt="image-00020516182113443"></p>
-<h3 id="步骤4-连接并设置波特率"><a href="#步骤4-连接并设置波特率" class="headerlink" title="步骤4 连接并设置波特率"></a>步骤4 连接并设置波特率</h3><p>主要用到以下的代码，在终端命令行里输入</p>
+<h1 id="步骤3-连接并设置波特率"><a href="#步骤3-连接并设置波特率" class="headerlink" title="步骤3 连接并设置波特率"></a>步骤3 连接并设置波特率</h1><p>主要用到以下的代码，在终端命令行里输入</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ls -l &#x2F;dev&#x2F;tty.*</span><br></pre></td></tr></table></figure>
 
 <p><img src="https://blog-svend-ganwt.s3.ap-northeast-1.amazonaws.com/iPic/image-20200518143451585.png" alt="image-20200518143451585"></p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">lhc:~ lhc$ ls -l &#x2F;dev&#x2F;tty.*</span><br><span class="line">crw-rw-rw-  1 root  wheel   18,   0  5  4 11:54 &#x2F;dev&#x2F;tty.Ama-WirelessiAP</span><br><span class="line">crw-rw-rw-  1 root  wheel   18,   4  5  4 11:54 &#x2F;dev&#x2F;tty.Bluetooth-Incoming-Port</span><br><span class="line">crw-rw-rw-  1 root  wheel   18,   8  5 18 14:25 &#x2F;dev&#x2F;tty.SLAB_USBtoUART</span><br><span class="line">crw-rw-rw-  1 root  wheel   18,  10  5 18 14:25 &#x2F;dev&#x2F;tty.SLAB_USBtoUART5</span><br><span class="line">crw-rw-rw-  1 root  wheel   18,  12  5 18 14:25 &#x2F;dev&#x2F;tty.SLAB_USBtoUART6</span><br><span class="line">crw-rw-rw-  1 root  wheel   18,  14  5 18 14:25 &#x2F;dev&#x2F;tty.SLAB_USBtoUART7</span><br><span class="line">crw-rw-rw-  1 root  wheel   18,   6  5  4 11:54 &#x2F;dev&#x2F;tty.X9-SerialPort</span><br><span class="line">crw-rw-rw-  1 root  wheel   18,   2  5  4 11:54 &#x2F;dev&#x2F;tty.ganwangtao-WirelessiAPv2-1</span><br></pre></td></tr></table></figure>
 
 <p>安装了驱动之后，电脑里新发现了<strong>8 10 12 14</strong> 四个接口。</p>
-<h5 id="连接到A-core-CPU到终端"><a href="#连接到A-core-CPU到终端" class="headerlink" title="连接到A-core CPU到终端"></a>连接到<strong><em>A-core</em></strong> CPU到终端</h5><p>复制第新发现的第一个接口，也就是（8）的这一行，<strong>/dev/tty.SLAB_USBtoUART</strong> 。然后在终端里输入以下：</p>
+<h2 id="连接到A-core-CPU到终端"><a href="#连接到A-core-CPU到终端" class="headerlink" title="连接到A-core CPU到终端"></a>连接到<strong><em>A-core</em></strong> CPU到终端</h2><p>复制第新发现的第一个接口，也就是（8）的这一行，<strong>/dev/tty.SLAB_USBtoUART</strong> 。然后在终端里输入以下：</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ screen &#x2F;dev&#x2F;tty.SLAB_USBtoUART 115200</span><br></pre></td></tr></table></figure>
 
 <p><img src="https://blog-svend-ganwt.s3.ap-northeast-1.amazonaws.com/iPic/image-20200518144154744.png" alt="image-20200518144154744"></p>
 <p>这样就是连接上了，虽然看起来是空的，只要你在板子上操作CPU A-core 的话，相应的数据就会显示在你的终端页面上。</p>
-<h5 id="连接到R-core-CPU到终端"><a href="#连接到R-core-CPU到终端" class="headerlink" title="连接到R-core CPU到终端"></a>连接到<strong><em>R-core</em></strong> CPU到终端</h5><p>新建一个终端窗口，</p>
+<h2 id="连接到R-core-CPU到终端"><a href="#连接到R-core-CPU到终端" class="headerlink" title="连接到R-core CPU到终端"></a>连接到<strong><em>R-core</em></strong> CPU到终端</h2><p>新建一个终端窗口，</p>
 <p><img src="https://blog-svend-ganwt.s3.ap-northeast-1.amazonaws.com/iPic/image-20200518144911584.png" alt="image-20200518144911584"></p>
 <p>和之前的一样，先输入查看列表的代码</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ls -l &#x2F;dev&#x2F;tty.*</span><br></pre></td></tr></table></figure>

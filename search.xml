@@ -1,6 +1,117 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title>Hello World</title>
+    <url>/2020/05/10/2020-05-10-hello-world%202/</url>
+    <content><![CDATA[<p>今日周末在家，想动手写个记录自己的网站。用<a href="https://mdbootstrap.com/" target="_blank" rel="noopener">mdbootstrap</a>写了一会儿静态页面之后，打算参考一下其他人的代码。搜了一下【搭建个人博客】关键词。然后，折腾了一天的<a href="https://hexo.io/" target="_blank" rel="noopener">Hexo</a>！第一次用Markdown，直接在Hello World文档基础上改，意外还挺好用的，比html好用多了，确实可以更少打扰的敲文字。</p>
+<h2 id="Markdown的一些功能"><a href="#Markdown的一些功能" class="headerlink" title="Markdown的一些功能"></a>Markdown的一些功能</h2><h3 id="可以简单的加三个-“-”-号来添加代码。"><a href="#可以简单的加三个-“-”-号来添加代码。" class="headerlink" title="可以简单的加三个 “ ``` ” 号来添加代码。"></a>可以简单的加三个 “ ``` ” 号来添加代码。</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo new <span class="string">"My New Post"</span></span><br></pre></td></tr></table></figure>
+
+<p>上面这段代码就是新建md文章的代码。</p>
+<h3 id="Run-server-启动本地服务器预览网页"><a href="#Run-server-启动本地服务器预览网页" class="headerlink" title="Run server 启动本地服务器预览网页"></a>Run server 启动本地服务器预览网页</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo server</span><br></pre></td></tr></table></figure>
+
+<p>一般直接用 <code>$ hexo s</code> ,比较简短。URL：<a href="http://localhost:4000/" target="_blank" rel="noopener">http://localhost:4000/</a></p>
+<h3 id="Generate-static-files-生成静态页面"><a href="#Generate-static-files-生成静态页面" class="headerlink" title="Generate static files 生成静态页面"></a>Generate static files 生成静态页面</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo generate</span><br></pre></td></tr></table></figure>
+
+<p>同上，可以直接用 <code>$ hexo g</code> ,比较简短。生成的文件会在 /public 文件夹下面。</p>
+<h3 id="Deploy-to-remote-sites-可以部署到github等"><a href="#Deploy-to-remote-sites-可以部署到github等" class="headerlink" title="Deploy to remote sites 可以部署到github等"></a>Deploy to remote sites 可以部署到github等</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo deploy</span><br></pre></td></tr></table></figure>
+
+<p>同上，可以直接用 <code>$ hexo g</code> ,比较简短。一键部署。</p>
+<h3 id="还有，挺开心的，想学习【ejs】了，希望自己可以坚持下去，把现有的html5-css3-JavaScript基础都过一遍。总之，越来越好的，只是时间问题，都能学会的。今天就到这里啦，等会儿链接到ganwt-com网址下就，晚安。"><a href="#还有，挺开心的，想学习【ejs】了，希望自己可以坚持下去，把现有的html5-css3-JavaScript基础都过一遍。总之，越来越好的，只是时间问题，都能学会的。今天就到这里啦，等会儿链接到ganwt-com网址下就，晚安。" class="headerlink" title="还有，挺开心的，想学习【ejs】了，希望自己可以坚持下去，把现有的html5+css3+JavaScript基础都过一遍。总之，越来越好的，只是时间问题，都能学会的。今天就到这里啦，等会儿链接到ganwt.com网址下就，晚安。"></a>还有，挺开心的，想学习【ejs】了，希望自己可以坚持下去，把现有的html5+css3+JavaScript基础都过一遍。总之，越来越好的，只是时间问题，都能学会的。今天就到这里啦，等会儿链接到ganwt.com网址下就，晚安。</h3>]]></content>
+      <categories>
+        <category>随笔</category>
+      </categories>
+      <tags>
+        <tag>中文</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>IoTと無線ネットワーク(1)</title>
+    <url>/2020/05/12/2020-05-12-IoT%E3%81%A8%E7%84%A1%E7%B7%9A%E3%83%8D%E3%83%83%E3%83%88%E3%83%AF%E3%83%BC%E3%82%AF(1)/</url>
+    <content><![CDATA[<h4 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h4><p>今日からIoTと無線ネットワークのコースを始め、毎週火曜日zoomより授業を受ける。演習課題を授業終わると書くつもりので、こちに記録してMarkdownの書く技も練習する。頑張れ！</p>
+<h4 id="内容"><a href="#内容" class="headerlink" title="内容"></a>内容</h4><ul>
+<li>IoTとは何か?<ol>
+<li>IoT = Internet of Things = Internet + Things<pre><code>「モノのインターネット(Internet)」
+インターネット(Internet)によって接続された「モノ」</code></pre></li>
+<li>Thing:単なる「モノ」<pre><code>コンピュータ(computer)，タブレット(tablet)，携帯 電話などのガジェット(gadget)ではない</code></pre></li>
+<li>インターネット(Internet)の役割<pre><code>情報を送受信
+インターネット(Internet)に接続されたクラウド (cloud)上の計算サーバ(server)で稼働しているプロ グラムの助けを借りて，知的(smart)な処理が可能</code></pre></li>
+</ol>
+</li>
+<li>なぜIoTが実現可能になったか?<ol>
+<li>半導体技術の進歩<pre><code>集積度(チップあたりのトランジスタ数)の向上
+機能と性能の向上
+価格性能比の向上</code></pre></li>
+<li>インターネットの普及<pre><code>端末(edge)側:無線化(WiFi，Bluetooth)
+サーバ側:クラウド・サービスの提供</code></pre></li>
+<li>ソフトウェア開発環境の進歩<pre><code>Python，Ruby
+プロトタイピングが容易に⇒ビジネスの高速化</code></pre></li>
+</ol>
+</li>
+</ul>
+<h4 id="演習課題（１−１）"><a href="#演習課題（１−１）" class="headerlink" title="演習課題（１−１）"></a>演習課題（１−１）</h4><ul>
+<li><p>半導体の集積度が18カ月ごとに2倍になるとすると， 9年後には集積度は何倍になるか?</p>
+<ul>
+<li><p>ヒント：$𝑝(𝑛) = 2^{𝑛/1.5}$</p>
+<table>
+<thead>
+<tr>
+<th>何年後</th>
+<th>何倍</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>9</td>
+<td>64</td>
+</tr>
+</tbody></table>
+</li>
+</ul>
+</li>
+</ul>
+<h4 id="演習課題（１−２）"><a href="#演習課題（１−２）" class="headerlink" title="演習課題（１−２）"></a>演習課題（１−２）</h4><ol>
+<li><p>演習課題 1-2-1</p>
+<ul>
+<li><p>次の計算を行って結果を確認しなさい。</p>
+<pre><code>5 % 3 
+5 % (-3) 
+(-5) % 3 
+(-5) % (-3)</code></pre>  <figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="number">5</span> % <span class="number">3</span>       //<span class="number">2</span></span><br><span class="line"><span class="number">5</span> % (<span class="number">-3</span>)    //<span class="number">-1</span></span><br><span class="line">(<span class="number">-5</span>) % <span class="number">3</span>    //<span class="number">1</span></span><br><span class="line">(<span class="number">-5</span>) % (<span class="number">-3</span>) //<span class="number">-2</span></span><br></pre></td></tr></table></figure></li>
+<li><p>どのような規則で計算されているかを考えなさい。</p>
+  <figure class="highlight python"><table><tr><td class="code"><pre><span class="line">//A ％ B = C , 除算して、余数を表示します。</span><br><span class="line">//「-」はもしかし:</span><br><span class="line">//  ・+B ＝ C</span><br><span class="line">//  ・-B ＝ -C</span><br></pre></td></tr></table></figure></li>
+</ul>
+</li>
+<li><p>演習課題 1-2-2</p>
+<ul>
+<li><p>次の計算を行って結果を確認しなさい。</p>
+<pre><code>5 // 3 
+5 // (-3) 
+(-5) // 3 
+(-5) // (-3) </code></pre>  <figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="number">5</span> // <span class="number">3</span>       //<span class="number">1</span></span><br><span class="line"><span class="number">5</span> // (<span class="number">-3</span>)    //<span class="number">-2</span></span><br><span class="line">(<span class="number">-5</span>) // <span class="number">3</span>    //<span class="number">-2</span></span><br><span class="line">(<span class="number">-5</span>) // (<span class="number">-3</span>) //<span class="number">1</span></span><br></pre></td></tr></table></figure></li>
+<li><p>どのような規則で計算されているかを考えなさい。</p>
+  <figure class="highlight python"><table><tr><td class="code"><pre><span class="line">//除算して、余数を抜き、整数だけ残っています。</span><br></pre></td></tr></table></figure></li>
+</ul>
+</li>
+<li><p>演習課題 1-2-3</p>
+<ul>
+<li><p>2つの数値を変数xおよびyに入力し，xとyの加算， 減算，乗算，浮動小数点除算，整数除算，剰余を計 算して出力するプログラムを作成して，ソースリス トをPDFで提出せよ。</p>
+  <figure class="highlight python"><table><tr><td class="code"><pre><span class="line">x=int(input(<span class="string">"x="</span>))                         //x=<span class="number">5</span></span><br><span class="line">y=int(input(<span class="string">"y="</span>))                         //y=<span class="number">3</span></span><br><span class="line"></span><br><span class="line">print(<span class="string">"\n加算:"</span>)                            //加算:</span><br><span class="line">print(<span class="string">"x+y = "</span> ,x+y)                       //x+y =  <span class="number">8</span></span><br><span class="line"></span><br><span class="line">print(<span class="string">"\n減算:"</span>)                            //減算:</span><br><span class="line">print(<span class="string">"x-y = "</span> ,x-y)                       //x-y =  <span class="number">2</span></span><br><span class="line"></span><br><span class="line">print(<span class="string">"\n乗算:"</span>)                            //乗算:</span><br><span class="line">print(<span class="string">"x*y = "</span> ,x*y)                       //x*y =  <span class="number">15</span></span><br><span class="line"></span><br><span class="line">print(<span class="string">"\n浮動小数点除算:"</span>)                   //浮動小数点除算:</span><br><span class="line">print(<span class="string">"x.0/y.0 = "</span> ,float(x)/float(y))     //x<span class="number">.0</span>/y<span class="number">.0</span> =  <span class="number">1.6666666666666667</span></span><br><span class="line"></span><br><span class="line">print(<span class="string">"\n整数除算:"</span>)                        //整数除算:</span><br><span class="line">print(<span class="string">"x//y = "</span> ,x//y)                     //x//y =  <span class="number">1</span></span><br><span class="line"></span><br><span class="line">print(<span class="string">"\n剰余:"</span>)                           //剰余:</span><br><span class="line">print(<span class="string">"x%y = "</span> ,x%y)                       //x%y =  <span class="number">2</span></span><br></pre></td></tr></table></figure>
+
+</li>
+</ul>
+</li>
+</ol>
+<p>以上</p>
+]]></content>
+      <categories>
+        <category>学习笔记</category>
+      </categories>
+      <tags>
+        <tag>日本語</tag>
+        <tag>メモ</tag>
+        <tag>python</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>IoTと無線ネットワーク(2)</title>
     <url>/2020/05/20/2020-05-19-IoT%E3%81%A8%E7%84%A1%E7%B7%9A%E3%83%8D%E3%83%83%E3%83%88%E3%83%AF%E3%83%BC%E3%82%AF(2)/</url>
     <content><![CDATA[<h4 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h4><p>IoTと無線ネットワークのコースの第二回目授業メモです。</p>
@@ -163,17 +274,22 @@
   <entry>
     <title>ZCU106 MacBook UART VCP 终端调试 波特率</title>
     <url>/2020/05/18/2020-05-18-ZCU106%20MacBook%20UART%20VCP%20%E7%BB%88%E7%AB%AF%E8%B0%83%E8%AF%95%20%E6%B3%A2%E7%89%B9%E7%8E%87/</url>
-    <content><![CDATA[<h3 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h3><p><a href="https://china.xilinx.com/content/xilinx/zh/products/boards-and-kits/zcu106.html.html#hardware" target="_blank" rel="noopener">Zynq UltraScale+ MPSoC ZCU106</a> 评估套件做开发的时候，会有需要用到终端来调试的时候。Windows和Linux的话，有Xilinx 软件开发套件 (XSDK)可用，安装以后只要直接插入USB连接就可以了。而macOS系统，接入USB却发现不了。</p>
-<p>困恼了许久，网上相应的教程也甚少。线插上后毫无反应，怀疑过接口和线材有问题，各种测试后确认可能是没有相关驱动。最后同事帮忙，在Google搜【macos cu baute rate】才解决。</p>
+    <content><![CDATA[<h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p><a href="https://china.xilinx.com/content/xilinx/zh/products/boards-and-kits/zcu106.html.html#hardware" target="_blank" rel="noopener">Zynq UltraScale+ MPSoC ZCU106</a> 评估套件做开发的时候，会有需要用到终端来调试的时候。Windows和Linux的话，有Xilinx 软件开发套件 (XSDK)可用，安装以后只要直接插入USB连接就可以了。而macOS系统，接入USB却发现不了。</p>
+<p>困恼了许久，网上相应的教程也甚少。线插上后毫无反应，怀疑过接口和线材有问题，各种测试后确认可能是没有相关驱动。最后チョウさん帮忙，在Google搜【macos cu baute rate】才解决。</p>
+<h2 id="关于波特率的介绍"><a href="#关于波特率的介绍" class="headerlink" title="关于波特率的介绍"></a>关于波特率的介绍</h2><h3 id="简介"><a href="#简介" class="headerlink" title="简介"></a>简介</h3><table><tr><td bgcolor=orange>（多亏チョウさん提醒，加上波特率的介绍）</td></tr></table>
+在电子通讯领域，**波特（Baud）**即调制速率，指的是有效数据讯号调制载波的速率，即单位时间内载波调制状态变化的次数。它是对符号传输速率的一种度量，1波特即指每秒传输1个符号，而透过不同的调制方式，可以在一个码元符号上负载多个bit位讯号。
+
+<p>注意以下两点<strong>常见</strong>错误：<br>1 “波特”（Baud）本身已是速率，所以不需要写成 Baud Rate（Rate 是赘字）。<br>2 单位“波特”本身就已经是代表每秒的调制数，以“波特每秒”（Baud per second）为单位是一种常见的错误，但是在一般中文口语化的沟通上还是常以“波特率”来描述“波特”（Baud）。</p>
+<h3 id="波特率的计算"><a href="#波特率的计算" class="headerlink" title="波特率的计算"></a>波特率的计算</h3><p>波特率有时候会同比特率混淆，实际上后者是对信息传输速率（传信率）的度量。波特率可以被理解为单位时间内传输符号的个数（传符号率），通过不同的调制方法可以在一个符号上负载多个比特信息。因此信息传输速率即比特率在数值上和波特率有这样的关系：<br>$$I=S\cdot \log _2{N}$$<br>其中$I$ 为传信率，$S$ 为波特率，$N$ 为每个符号负载的信息量，而${\displaystyle \log _{2}{N}}\log _2{N}$以比特为单位。因此只有在每个符号只代表一个比特信息的情况、或一些简单的调制方式下，例如基带二进制信号、或Bell 103或CCITT V.21（左列两种均为FSK）调制方式等，波特率与比特率才在数值上相等，但是它们的意义并不相同。</p>
 <p><img src="https://blog-svend-ganwt.s3.amazonaws.com/ipic/2020-05-16-083451.jpg" alt="ZCU106"></p>
-<h3 id="步骤1-查询"><a href="#步骤1-查询" class="headerlink" title="步骤1 查询"></a>步骤1 查询</h3><p>连接zcu106板子的 <strong>USB UART</strong> 接口（上图标示左下往上第五行），后输入以下代码，查询已连接USB的接口。</p>
+<h1 id="步骤1-查询"><a href="#步骤1-查询" class="headerlink" title="步骤1 查询"></a>步骤1 查询</h1><p>连接zcu106板子的 <strong>USB UART</strong> 接口（上图标示左下往上第五行），后输入以下代码，查询已连接USB的接口。</p>
 <figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">ls -l &#x2F;dev&#x2F;tty.*</span><br></pre></td></tr></table></figure>
 
 <p><img src="https://blog-svend-ganwt.s3.ap-northeast-1.amazonaws.com/iPic/image-20200518143550130.png" alt="image-20200518143550130"></p>
 <figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">lhc:~ lhc$ ls -l &#x2F;dev&#x2F;tty.* </span><br><span class="line">crw-rw-rw-  1 root  wheel   18,   0  5  4 11:54 &#x2F;dev&#x2F;tty.Ama-WirelessiAP</span><br><span class="line">crw-rw-rw-  1 root  wheel   18,   4  5  4 11:54 &#x2F;dev&#x2F;tty.Bluetooth-Incoming-Port</span><br><span class="line">crw-rw-rw-  1 root  wheel   18,   6  5  4 11:54 &#x2F;dev&#x2F;tty.X9-SerialPort</span><br><span class="line">crw-rw-rw-  1 root  wheel   18,   2  5  4 11:54 &#x2F;dev&#x2F;tty.ganwangtao-WirelessiAPv2-1</span><br></pre></td></tr></table></figure>
 
 <p>记住上面列出的数据。我电脑里总共发现了*<em>0 2 4 6 *</em>，4个已连接的口</p>
-<h3 id="步骤2-安装"><a href="#步骤2-安装" class="headerlink" title="步骤2 安装"></a>步骤2 安装</h3><p>到<a href="https://cn.silabs.com/products/development-tools/software/usb-to-uart-bridge-vcp-drivers" target="_blank" rel="noopener">CP210x USB 至 UART 桥 VCP 驱动器</a>下载软件。</p>
+<h1 id="步骤2-安装"><a href="#步骤2-安装" class="headerlink" title="步骤2 安装"></a>步骤2 安装</h1><p>到<a href="https://cn.silabs.com/products/development-tools/software/usb-to-uart-bridge-vcp-drivers" target="_blank" rel="noopener">CP210x USB 至 UART 桥 VCP 驱动器</a>下载软件。</p>
 <p><img src="https://blog-svend-ganwt.s3.amazonaws.com/ipic/2020-05-16-085201.png" alt="image-00020516175201357"></p>
 <p>下载之后，打开【Mac_OSX_VCP_Driver】文件夹，进入【SiLabsUSBDriverDisk.dmg】，双击【 Install Disk/Install CP210x VCP Driver】安装。</p>
 <p><img src="https://blog-svend-ganwt.s3.amazonaws.com/ipic/2020-05-16-090201.png" alt="image-00020516180200585"></p>
@@ -187,19 +303,19 @@
 <p><img src="https://blog-svend-ganwt.s3.amazonaws.com/ipic/2020-05-16-091837.png" alt="image-00020516181837282"></p>
 <p><img src="https://blog-svend-ganwt.s3.amazonaws.com/ipic/2020-05-16-091906.png" alt="image-00020516181905675"></p>
 <p><img src="https://blog-svend-ganwt.s3.amazonaws.com/ipic/2020-05-16-092113.png" alt="image-00020516182113443"></p>
-<h3 id="步骤4-连接并设置波特率"><a href="#步骤4-连接并设置波特率" class="headerlink" title="步骤4 连接并设置波特率"></a>步骤4 连接并设置波特率</h3><p>主要用到以下的代码，在终端命令行里输入</p>
+<h1 id="步骤3-连接并设置波特率"><a href="#步骤3-连接并设置波特率" class="headerlink" title="步骤3 连接并设置波特率"></a>步骤3 连接并设置波特率</h1><p>主要用到以下的代码，在终端命令行里输入</p>
 <figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">ls -l &#x2F;dev&#x2F;tty.*</span><br></pre></td></tr></table></figure>
 
 <p><img src="https://blog-svend-ganwt.s3.ap-northeast-1.amazonaws.com/iPic/image-20200518143451585.png" alt="image-20200518143451585"></p>
 <figure class="highlight plain"><table><tr><td class="code"><pre><span class="line"></span><br><span class="line">lhc:~ lhc$ ls -l &#x2F;dev&#x2F;tty.*</span><br><span class="line">crw-rw-rw-  1 root  wheel   18,   0  5  4 11:54 &#x2F;dev&#x2F;tty.Ama-WirelessiAP</span><br><span class="line">crw-rw-rw-  1 root  wheel   18,   4  5  4 11:54 &#x2F;dev&#x2F;tty.Bluetooth-Incoming-Port</span><br><span class="line">crw-rw-rw-  1 root  wheel   18,   8  5 18 14:25 &#x2F;dev&#x2F;tty.SLAB_USBtoUART</span><br><span class="line">crw-rw-rw-  1 root  wheel   18,  10  5 18 14:25 &#x2F;dev&#x2F;tty.SLAB_USBtoUART5</span><br><span class="line">crw-rw-rw-  1 root  wheel   18,  12  5 18 14:25 &#x2F;dev&#x2F;tty.SLAB_USBtoUART6</span><br><span class="line">crw-rw-rw-  1 root  wheel   18,  14  5 18 14:25 &#x2F;dev&#x2F;tty.SLAB_USBtoUART7</span><br><span class="line">crw-rw-rw-  1 root  wheel   18,   6  5  4 11:54 &#x2F;dev&#x2F;tty.X9-SerialPort</span><br><span class="line">crw-rw-rw-  1 root  wheel   18,   2  5  4 11:54 &#x2F;dev&#x2F;tty.ganwangtao-WirelessiAPv2-1</span><br></pre></td></tr></table></figure>
 
 <p>安装了驱动之后，电脑里新发现了<strong>8 10 12 14</strong> 四个接口。</p>
-<h5 id="连接到A-core-CPU到终端"><a href="#连接到A-core-CPU到终端" class="headerlink" title="连接到A-core CPU到终端"></a>连接到<strong><em>A-core</em></strong> CPU到终端</h5><p>复制第新发现的第一个接口，也就是（8）的这一行，<strong>/dev/tty.SLAB_USBtoUART</strong> 。然后在终端里输入以下：</p>
+<h2 id="连接到A-core-CPU到终端"><a href="#连接到A-core-CPU到终端" class="headerlink" title="连接到A-core CPU到终端"></a>连接到<strong><em>A-core</em></strong> CPU到终端</h2><p>复制第新发现的第一个接口，也就是（8）的这一行，<strong>/dev/tty.SLAB_USBtoUART</strong> 。然后在终端里输入以下：</p>
 <figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">$ screen &#x2F;dev&#x2F;tty.SLAB_USBtoUART 115200</span><br></pre></td></tr></table></figure>
 
 <p><img src="https://blog-svend-ganwt.s3.ap-northeast-1.amazonaws.com/iPic/image-20200518144154744.png" alt="image-20200518144154744"></p>
 <p>这样就是连接上了，虽然看起来是空的，只要你在板子上操作CPU A-core 的话，相应的数据就会显示在你的终端页面上。</p>
-<h5 id="连接到R-core-CPU到终端"><a href="#连接到R-core-CPU到终端" class="headerlink" title="连接到R-core CPU到终端"></a>连接到<strong><em>R-core</em></strong> CPU到终端</h5><p>新建一个终端窗口，</p>
+<h2 id="连接到R-core-CPU到终端"><a href="#连接到R-core-CPU到终端" class="headerlink" title="连接到R-core CPU到终端"></a>连接到<strong><em>R-core</em></strong> CPU到终端</h2><p>新建一个终端窗口，</p>
 <p><img src="https://blog-svend-ganwt.s3.ap-northeast-1.amazonaws.com/iPic/image-20200518144911584.png" alt="image-20200518144911584"></p>
 <p>和之前的一样，先输入查看列表的代码</p>
 <figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">ls -l &#x2F;dev&#x2F;tty.*</span><br></pre></td></tr></table></figure>
@@ -218,117 +334,6 @@
       <tags>
         <tag>中文</tag>
         <tag>笔记</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>IoTと無線ネットワーク(1)</title>
-    <url>/2020/05/12/2020-05-12-IoT%E3%81%A8%E7%84%A1%E7%B7%9A%E3%83%8D%E3%83%83%E3%83%88%E3%83%AF%E3%83%BC%E3%82%AF(1)/</url>
-    <content><![CDATA[<h4 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h4><p>今日からIoTと無線ネットワークのコースを始め、毎週火曜日zoomより授業を受ける。演習課題を授業終わると書くつもりので、こちに記録してMarkdownの書く技も練習する。頑張れ！</p>
-<h4 id="内容"><a href="#内容" class="headerlink" title="内容"></a>内容</h4><ul>
-<li>IoTとは何か?<ol>
-<li>IoT = Internet of Things = Internet + Things<pre><code>「モノのインターネット(Internet)」
-インターネット(Internet)によって接続された「モノ」</code></pre></li>
-<li>Thing:単なる「モノ」<pre><code>コンピュータ(computer)，タブレット(tablet)，携帯 電話などのガジェット(gadget)ではない</code></pre></li>
-<li>インターネット(Internet)の役割<pre><code>情報を送受信
-インターネット(Internet)に接続されたクラウド (cloud)上の計算サーバ(server)で稼働しているプロ グラムの助けを借りて，知的(smart)な処理が可能</code></pre></li>
-</ol>
-</li>
-<li>なぜIoTが実現可能になったか?<ol>
-<li>半導体技術の進歩<pre><code>集積度(チップあたりのトランジスタ数)の向上
-機能と性能の向上
-価格性能比の向上</code></pre></li>
-<li>インターネットの普及<pre><code>端末(edge)側:無線化(WiFi，Bluetooth)
-サーバ側:クラウド・サービスの提供</code></pre></li>
-<li>ソフトウェア開発環境の進歩<pre><code>Python，Ruby
-プロトタイピングが容易に⇒ビジネスの高速化</code></pre></li>
-</ol>
-</li>
-</ul>
-<h4 id="演習課題（１−１）"><a href="#演習課題（１−１）" class="headerlink" title="演習課題（１−１）"></a>演習課題（１−１）</h4><ul>
-<li><p>半導体の集積度が18カ月ごとに2倍になるとすると， 9年後には集積度は何倍になるか?</p>
-<ul>
-<li><p>ヒント：$𝑝(𝑛) = 2^{𝑛/1.5}$</p>
-<table>
-<thead>
-<tr>
-<th>何年後</th>
-<th>何倍</th>
-</tr>
-</thead>
-<tbody><tr>
-<td>9</td>
-<td>64</td>
-</tr>
-</tbody></table>
-</li>
-</ul>
-</li>
-</ul>
-<h4 id="演習課題（１−２）"><a href="#演習課題（１−２）" class="headerlink" title="演習課題（１−２）"></a>演習課題（１−２）</h4><ol>
-<li><p>演習課題 1-2-1</p>
-<ul>
-<li><p>次の計算を行って結果を確認しなさい。</p>
-<pre><code>5 % 3 
-5 % (-3) 
-(-5) % 3 
-(-5) % (-3)</code></pre>  <figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="number">5</span> % <span class="number">3</span>       //<span class="number">2</span></span><br><span class="line"><span class="number">5</span> % (<span class="number">-3</span>)    //<span class="number">-1</span></span><br><span class="line">(<span class="number">-5</span>) % <span class="number">3</span>    //<span class="number">1</span></span><br><span class="line">(<span class="number">-5</span>) % (<span class="number">-3</span>) //<span class="number">-2</span></span><br></pre></td></tr></table></figure></li>
-<li><p>どのような規則で計算されているかを考えなさい。</p>
-  <figure class="highlight python"><table><tr><td class="code"><pre><span class="line">//A ％ B = C , 除算して、余数を表示します。</span><br><span class="line">//「-」はもしかし:</span><br><span class="line">//  ・+B ＝ C</span><br><span class="line">//  ・-B ＝ -C</span><br></pre></td></tr></table></figure></li>
-</ul>
-</li>
-<li><p>演習課題 1-2-2</p>
-<ul>
-<li><p>次の計算を行って結果を確認しなさい。</p>
-<pre><code>5 // 3 
-5 // (-3) 
-(-5) // 3 
-(-5) // (-3) </code></pre>  <figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="number">5</span> // <span class="number">3</span>       //<span class="number">1</span></span><br><span class="line"><span class="number">5</span> // (<span class="number">-3</span>)    //<span class="number">-2</span></span><br><span class="line">(<span class="number">-5</span>) // <span class="number">3</span>    //<span class="number">-2</span></span><br><span class="line">(<span class="number">-5</span>) // (<span class="number">-3</span>) //<span class="number">1</span></span><br></pre></td></tr></table></figure></li>
-<li><p>どのような規則で計算されているかを考えなさい。</p>
-  <figure class="highlight python"><table><tr><td class="code"><pre><span class="line">//除算して、余数を抜き、整数だけ残っています。</span><br></pre></td></tr></table></figure></li>
-</ul>
-</li>
-<li><p>演習課題 1-2-3</p>
-<ul>
-<li><p>2つの数値を変数xおよびyに入力し，xとyの加算， 減算，乗算，浮動小数点除算，整数除算，剰余を計 算して出力するプログラムを作成して，ソースリス トをPDFで提出せよ。</p>
-  <figure class="highlight python"><table><tr><td class="code"><pre><span class="line">x=int(input(<span class="string">"x="</span>))                         //x=<span class="number">5</span></span><br><span class="line">y=int(input(<span class="string">"y="</span>))                         //y=<span class="number">3</span></span><br><span class="line"></span><br><span class="line">print(<span class="string">"\n加算:"</span>)                            //加算:</span><br><span class="line">print(<span class="string">"x+y = "</span> ,x+y)                       //x+y =  <span class="number">8</span></span><br><span class="line"></span><br><span class="line">print(<span class="string">"\n減算:"</span>)                            //減算:</span><br><span class="line">print(<span class="string">"x-y = "</span> ,x-y)                       //x-y =  <span class="number">2</span></span><br><span class="line"></span><br><span class="line">print(<span class="string">"\n乗算:"</span>)                            //乗算:</span><br><span class="line">print(<span class="string">"x*y = "</span> ,x*y)                       //x*y =  <span class="number">15</span></span><br><span class="line"></span><br><span class="line">print(<span class="string">"\n浮動小数点除算:"</span>)                   //浮動小数点除算:</span><br><span class="line">print(<span class="string">"x.0/y.0 = "</span> ,float(x)/float(y))     //x<span class="number">.0</span>/y<span class="number">.0</span> =  <span class="number">1.6666666666666667</span></span><br><span class="line"></span><br><span class="line">print(<span class="string">"\n整数除算:"</span>)                        //整数除算:</span><br><span class="line">print(<span class="string">"x//y = "</span> ,x//y)                     //x//y =  <span class="number">1</span></span><br><span class="line"></span><br><span class="line">print(<span class="string">"\n剰余:"</span>)                           //剰余:</span><br><span class="line">print(<span class="string">"x%y = "</span> ,x%y)                       //x%y =  <span class="number">2</span></span><br></pre></td></tr></table></figure>
-
-</li>
-</ul>
-</li>
-</ol>
-<p>以上</p>
-]]></content>
-      <categories>
-        <category>学习笔记</category>
-      </categories>
-      <tags>
-        <tag>日本語</tag>
-        <tag>メモ</tag>
-        <tag>python</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>Hello World</title>
-    <url>/2020/05/10/2020-05-10-hello-world%202/</url>
-    <content><![CDATA[<p>今日周末在家，想动手写个记录自己的网站。用<a href="https://mdbootstrap.com/" target="_blank" rel="noopener">mdbootstrap</a>写了一会儿静态页面之后，打算参考一下其他人的代码。搜了一下【搭建个人博客】关键词。然后，折腾了一天的<a href="https://hexo.io/" target="_blank" rel="noopener">Hexo</a>！第一次用Markdown，直接在Hello World文档基础上改，意外还挺好用的，比html好用多了，确实可以更少打扰的敲文字。</p>
-<h2 id="Markdown的一些功能"><a href="#Markdown的一些功能" class="headerlink" title="Markdown的一些功能"></a>Markdown的一些功能</h2><h3 id="可以简单的加三个-“-”-号来添加代码。"><a href="#可以简单的加三个-“-”-号来添加代码。" class="headerlink" title="可以简单的加三个 “ ``` ” 号来添加代码。"></a>可以简单的加三个 “ ``` ” 号来添加代码。</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo new <span class="string">"My New Post"</span></span><br></pre></td></tr></table></figure>
-
-<p>上面这段代码就是新建md文章的代码。</p>
-<h3 id="Run-server-启动本地服务器预览网页"><a href="#Run-server-启动本地服务器预览网页" class="headerlink" title="Run server 启动本地服务器预览网页"></a>Run server 启动本地服务器预览网页</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo server</span><br></pre></td></tr></table></figure>
-
-<p>一般直接用 <code>$ hexo s</code> ,比较简短。URL：<a href="http://localhost:4000/" target="_blank" rel="noopener">http://localhost:4000/</a></p>
-<h3 id="Generate-static-files-生成静态页面"><a href="#Generate-static-files-生成静态页面" class="headerlink" title="Generate static files 生成静态页面"></a>Generate static files 生成静态页面</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo generate</span><br></pre></td></tr></table></figure>
-
-<p>同上，可以直接用 <code>$ hexo g</code> ,比较简短。生成的文件会在 /public 文件夹下面。</p>
-<h3 id="Deploy-to-remote-sites-可以部署到github等"><a href="#Deploy-to-remote-sites-可以部署到github等" class="headerlink" title="Deploy to remote sites 可以部署到github等"></a>Deploy to remote sites 可以部署到github等</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo deploy</span><br></pre></td></tr></table></figure>
-
-<p>同上，可以直接用 <code>$ hexo g</code> ,比较简短。一键部署。</p>
-<h3 id="还有，挺开心的，想学习【ejs】了，希望自己可以坚持下去，把现有的html5-css3-JavaScript基础都过一遍。总之，越来越好的，只是时间问题，都能学会的。今天就到这里啦，等会儿链接到ganwt-com网址下就，晚安。"><a href="#还有，挺开心的，想学习【ejs】了，希望自己可以坚持下去，把现有的html5-css3-JavaScript基础都过一遍。总之，越来越好的，只是时间问题，都能学会的。今天就到这里啦，等会儿链接到ganwt-com网址下就，晚安。" class="headerlink" title="还有，挺开心的，想学习【ejs】了，希望自己可以坚持下去，把现有的html5+css3+JavaScript基础都过一遍。总之，越来越好的，只是时间问题，都能学会的。今天就到这里啦，等会儿链接到ganwt.com网址下就，晚安。"></a>还有，挺开心的，想学习【ejs】了，希望自己可以坚持下去，把现有的html5+css3+JavaScript基础都过一遍。总之，越来越好的，只是时间问题，都能学会的。今天就到这里啦，等会儿链接到ganwt.com网址下就，晚安。</h3>]]></content>
-      <categories>
-        <category>随笔</category>
-      </categories>
-      <tags>
-        <tag>中文</tag>
       </tags>
   </entry>
 </search>
