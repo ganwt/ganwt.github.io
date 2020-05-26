@@ -348,24 +348,24 @@
     <tr>
         <th>種類</th>
         <th>要素へのアクセス方法</th>
-        <th>ミュータブル/<br>イミュータブル</th>
+        <th>mutable/<br>imutable</th>
         <th>特徴</th>
    </tr>
    <tr>
         <td>リスト</td>
         <td rowspan="2">オフセットで位置を指定，値が含まれているかどうかも判定可能</td>
-        <td>ミュータブル</td>
+        <td>mutable</td>
         <td>スタック(FIFO)としても使用可</td>
    </tr>
    <tr>
         <td>タプル</td>
-        <td>イミュータブル</td>
+        <td>imutable</td>
         <td>要素の値の変更，要素の追加・削除は<b>不可</b></td>
    </tr>
    <tr>
         <td>辞書</td>
         <td>オフセットの代わりにキーを用いて指定</td>
-        <td rowspan="2">ミュータブル</td>
+        <td rowspan="2">mutable</td>
         <td>キーとバリューを関連付けて格納連想記憶，ハッシュと類似</td>
    </tr>
    <tr>
@@ -375,7 +375,8 @@
    </tr>
 </table>
 
-<h3 id="リスト"><a href="#リスト" class="headerlink" title="リスト"></a>リスト</h3><h4 id="1-リストの生成-リストへの変換"><a href="#1-リストの生成-リストへの変換" class="headerlink" title="1.リストの生成, リストへの変換"></a>1.リストの生成, リストへの変換</h4><ol>
+
+<h3 id="リスト"><a href="#リスト" class="headerlink" title="リスト"></a>リスト</h3><h4 id="一-リストの生成-リストへの変換"><a href="#一-リストの生成-リストへの変換" class="headerlink" title="一.リストの生成, リストへの変換"></a>一.リストの生成, リストへの変換</h4><ol>
 <li><p>リストの生成</p>
 <ul>
 <li><p>空リストの生成</p>
@@ -395,7 +396,7 @@
 </ul>
 </li>
 </ol>
-<h4 id="2-インデックスを用いた要素の参照と変更"><a href="#2-インデックスを用いた要素の参照と変更" class="headerlink" title="2.インデックスを用いた要素の参照と変更"></a>2.インデックスを用いた要素の参照と変更</h4><ol>
+<h4 id="二-インデックスを用いた要素の参照と変更"><a href="#二-インデックスを用いた要素の参照と変更" class="headerlink" title="二.インデックスを用いた要素の参照と変更"></a>二.インデックスを用いた要素の参照と変更</h4><ol>
 <li><p>要素の参照</p>
 <ul>
 <li><p>インデックスを用いた参照</p>
@@ -440,7 +441,7 @@
 </ul>
 </li>
 </ol>
-<h4 id="3-リストへの要素の追加と削除"><a href="#3-リストへの要素の追加と削除" class="headerlink" title="3.リストへの要素の追加と削除"></a>3.リストへの要素の追加と削除</h4><ol>
+<h4 id="三-リストへの要素の追加と削除"><a href="#三-リストへの要素の追加と削除" class="headerlink" title="三.リストへの要素の追加と削除"></a>三.リストへの要素の追加と削除</h4><ol>
 <li><p>末尾への要素の追加</p>
 <ul>
 <li><p>メソッドppend()</p>
@@ -451,7 +452,7 @@
 </li>
 </ol>
 <p>2.要素の取り出し<br>    - メソッド pop()  末尾の要素の取り出し<br>    - メソッド pop(i) インデックスを用いた要素の取り出し</p>
-<pre><code><figure class="highlight python"><table><tr><td class="code"><pre><span class="line">x = [<span class="string">"a"</span>,<span class="string">"b"</span>,<span class="string">"c"</span>]</span><br><span class="line">y = []</span><br><span class="line">print(<span class="string">"x = "</span>,x)</span><br><span class="line">print(<span class="string">"y = "</span>,y)</span><br><span class="line">y.append(x.pop())</span><br><span class="line">print(<span class="string">"x = "</span>,x)</span><br><span class="line">print(<span class="string">"y = "</span>,y)</span><br><span class="line">y.append(x.pop())</span><br><span class="line">print(<span class="string">"x = "</span>,x)</span><br><span class="line">print(<span class="string">"y = "</span>,y)</span><br><span class="line">y.append(x.pop())</span><br><span class="line">print(<span class="string">"x = "</span>,x)</span><br><span class="line">print(<span class="string">"y = "</span>,y)</span><br><span class="line"></span><br><span class="line"><span class="comment"># x =  ['a', 'b', 'c']</span></span><br><span class="line"><span class="comment"># y =  []</span></span><br><span class="line"><span class="comment"># x =  ['a', 'b']</span></span><br><span class="line"><span class="comment"># y =  ['c']</span></span><br><span class="line"><span class="comment"># x =  ['a']</span></span><br><span class="line"><span class="comment"># y =  ['c', 'b']</span></span><br><span class="line"><span class="comment"># x =  []</span></span><br><span class="line"><span class="comment"># y =  ['c', 'b', 'a']</span></span><br></pre></td></tr></table></figure></code></pre><h4 id="4-リストに対する操作と関数"><a href="#4-リストに対する操作と関数" class="headerlink" title="4.リストに対する操作と関数"></a>4.リストに対する操作と関数</h4><ol>
+<pre><code><figure class="highlight python"><table><tr><td class="code"><pre><span class="line">x = [<span class="string">"a"</span>,<span class="string">"b"</span>,<span class="string">"c"</span>]</span><br><span class="line">y = []</span><br><span class="line">print(<span class="string">"x = "</span>,x)</span><br><span class="line">print(<span class="string">"y = "</span>,y)</span><br><span class="line">y.append(x.pop())</span><br><span class="line">print(<span class="string">"x = "</span>,x)</span><br><span class="line">print(<span class="string">"y = "</span>,y)</span><br><span class="line">y.append(x.pop())</span><br><span class="line">print(<span class="string">"x = "</span>,x)</span><br><span class="line">print(<span class="string">"y = "</span>,y)</span><br><span class="line">y.append(x.pop())</span><br><span class="line">print(<span class="string">"x = "</span>,x)</span><br><span class="line">print(<span class="string">"y = "</span>,y)</span><br><span class="line"></span><br><span class="line"><span class="comment"># x =  ['a', 'b', 'c']</span></span><br><span class="line"><span class="comment"># y =  []</span></span><br><span class="line"><span class="comment"># x =  ['a', 'b']</span></span><br><span class="line"><span class="comment"># y =  ['c']</span></span><br><span class="line"><span class="comment"># x =  ['a']</span></span><br><span class="line"><span class="comment"># y =  ['c', 'b']</span></span><br><span class="line"><span class="comment"># x =  []</span></span><br><span class="line"><span class="comment"># y =  ['c', 'b', 'a']</span></span><br></pre></td></tr></table></figure></code></pre><h4 id="四-リストに対する操作と関数"><a href="#四-リストに対する操作と関数" class="headerlink" title="四.リストに対する操作と関数"></a>四.リストに対する操作と関数</h4><ol>
 <li><p>リストの連接</p>
 <ul>
 <li><p>+演算子</p>
@@ -487,7 +488,7 @@
 </ul>
 </li>
 </ol>
-<h4 id="5-リストの代入とコピー"><a href="#5-リストの代入とコピー" class="headerlink" title="5.リストの代入とコピー"></a>5.リストの代入とコピー</h4><ol>
+<h4 id="五-リストの代入とコピー"><a href="#五-リストの代入とコピー" class="headerlink" title="五.リストの代入とコピー"></a>五.リストの代入とコピー</h4><ol>
 <li><p>リストの代入</p>
 <ul>
 <li>= による変数への代入</li>
