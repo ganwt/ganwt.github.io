@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://yoursite.com/"/>
-  <updated>2020-05-25T13:44:57.620Z</updated>
+  <updated>2020-05-26T12:57:28.688Z</updated>
   <id>http://yoursite.com/</id>
   
   <author>
@@ -15,6 +15,38 @@
   </author>
   
   <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>IoTと無線ネットワーク(3)</title>
+    <link href="http://yoursite.com/2020/05/26/2020-05-26-IoT%E3%81%A8%E7%84%A1%E7%B7%9A%E3%83%8D%E3%83%83%E3%83%88%E3%83%AF%E3%83%BC%E3%82%AF(3)/"/>
+    <id>http://yoursite.com/2020/05/26/2020-05-26-IoT%E3%81%A8%E7%84%A1%E7%B7%9A%E3%83%8D%E3%83%83%E3%83%88%E3%83%AF%E3%83%BC%E3%82%AF(3)/</id>
+    <published>2020-05-26T12:57:03.000Z</published>
+    <updated>2020-05-26T12:57:28.688Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        
+        
+          &lt;h1 id=&quot;前言&quot;&gt;&lt;a href=&quot;#前言&quot; class=&quot;headerlink&quot; title=&quot;前言&quot;&gt;&lt;/a&gt;前言&lt;/h1&gt;&lt;p&gt;先生の無線マイクが信号混乱かも、今日はサイレント授業をやった。&lt;/p&gt;
+&lt;h1 id=&quot;IoT知識&quot;&gt;&lt;a href=&quot;#IoT知識&quot;
+        
+      
+    
+    </summary>
+    
+    
+      <category term="学习笔记" scheme="http://yoursite.com/categories/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/"/>
+    
+    
+      <category term="日本語" scheme="http://yoursite.com/tags/%E6%97%A5%E6%9C%AC%E8%AA%9E/"/>
+    
+      <category term="メモ" scheme="http://yoursite.com/tags/%E3%83%A1%E3%83%A2/"/>
+    
+      <category term="python" scheme="http://yoursite.com/tags/python/"/>
+    
+  </entry>
   
   <entry>
     <title>IoTと無線ネットワーク(2)</title>
