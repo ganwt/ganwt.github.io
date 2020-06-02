@@ -1,81 +1,500 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
-    <title>IoTと無線ネットワーク(1)</title>
-    <url>/2020/05/12/2020-05-12-IoT%E3%81%A8%E7%84%A1%E7%B7%9A%E3%83%8D%E3%83%83%E3%83%88%E3%83%AF%E3%83%BC%E3%82%AF(1)/</url>
-    <content><![CDATA[<h4 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h4><p>今日からIoTと無線ネットワークのコースを始め、毎週火曜日zoomより授業を受ける。演習課題を授業終わると書くつもりので、こちに記録してMarkdownの書く技も練習する。頑張れ！</p>
-<h4 id="内容"><a href="#内容" class="headerlink" title="内容"></a>内容</h4><ul>
-<li>IoTとは何か?<ol>
-<li>IoT = Internet of Things = Internet + Things<pre><code>「モノのインターネット(Internet)」
-インターネット(Internet)によって接続された「モノ」</code></pre></li>
-<li>Thing:単なる「モノ」<pre><code>コンピュータ(computer)，タブレット(tablet)，携帯 電話などのガジェット(gadget)ではない</code></pre></li>
-<li>インターネット(Internet)の役割<pre><code>情報を送受信
-インターネット(Internet)に接続されたクラウド (cloud)上の計算サーバ(server)で稼働しているプロ グラムの助けを借りて，知的(smart)な処理が可能</code></pre></li>
-</ol>
-</li>
-<li>なぜIoTが実現可能になったか?<ol>
-<li>半導体技術の進歩<pre><code>集積度(チップあたりのトランジスタ数)の向上
-機能と性能の向上
-価格性能比の向上</code></pre></li>
-<li>インターネットの普及<pre><code>端末(edge)側:無線化(WiFi，Bluetooth)
-サーバ側:クラウド・サービスの提供</code></pre></li>
-<li>ソフトウェア開発環境の進歩<pre><code>Python，Ruby
-プロトタイピングが容易に⇒ビジネスの高速化</code></pre></li>
-</ol>
-</li>
-</ul>
-<h4 id="演習課題（１−１）"><a href="#演習課題（１−１）" class="headerlink" title="演習課題（１−１）"></a>演習課題（１−１）</h4><ul>
-<li><p>半導体の集積度が18カ月ごとに2倍になるとすると， 9年後には集積度は何倍になるか?</p>
+    <title>IoTと無線ネットワーク(4)</title>
+    <url>/2020/06/02/2020-06-02-IoT%E3%81%A8%E7%84%A1%E7%B7%9A%E3%83%8D%E3%83%83%E3%83%88%E3%83%AF%E3%83%BC%E3%82%AF(4)/</url>
+    <content><![CDATA[<h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>今日の授業はプロトタイピングです。</p>
+<h1 id="IoT知識"><a href="#IoT知識" class="headerlink" title="IoT知識"></a>IoT知識</h1><p>参考資料：<a href="https://ja.wikipedia.org/wiki/プロトタイピング" target="_blank" rel="noopener">https://ja.wikipedia.org/wiki/プロトタイピング</a></p>
+<h1 id="python"><a href="#python" class="headerlink" title="python"></a>python</h1><h2 id="pythonプログラミング-４"><a href="#pythonプログラミング-４" class="headerlink" title="pythonプログラミング(４)"></a>pythonプログラミング(４)</h2><h3 id="一、タプル"><a href="#一、タプル" class="headerlink" title="一、タプル"></a>一、タプル</h3><h4 id="タプルの生成"><a href="#タプルの生成" class="headerlink" title="タプルの生成"></a>タプルの生成</h4><ol>
+<li><p>空タプルの生成</p>
 <ul>
-<li><p>ヒント：$𝑝(𝑛) = 2^{𝑛/1.5}$</p>
-<table>
-<thead>
-<tr>
-<th>何年後</th>
-<th>何倍</th>
-</tr>
-</thead>
-<tbody><tr>
-<td>9</td>
-<td>64</td>
-</tr>
-</tbody></table>
+<li><p>関数 tuple()</p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line">empty = tuple()</span><br><span class="line">print(empty)</span><br><span class="line"></span><br><span class="line"><span class="comment"># ()</span></span><br></pre></td></tr></table></figure>
+</li>
+<li><p>()</p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line">empty = ()</span><br><span class="line">print(empty)</span><br><span class="line"></span><br><span class="line"><span class="comment"># ()</span></span><br></pre></td></tr></table></figure>
 </li>
 </ul>
 </li>
-</ul>
-<h4 id="演習課題（１−２）"><a href="#演習課題（１−２）" class="headerlink" title="演習課題（１−２）"></a>演習課題（１−２）</h4><ol>
-<li><p>演習課題 1-2-1</p>
+<li><p>空でないタプルの生成</p>
 <ul>
-<li><p>次の計算を行って結果を確認しなさい。</p>
-<pre><code>5 % 3 
-5 % (-3) 
-(-5) % 3 
-(-5) % (-3)</code></pre>  <figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="number">5</span> % <span class="number">3</span>       //<span class="number">2</span></span><br><span class="line"><span class="number">5</span> % (<span class="number">-3</span>)    //<span class="number">-1</span></span><br><span class="line">(<span class="number">-5</span>) % <span class="number">3</span>    //<span class="number">1</span></span><br><span class="line">(<span class="number">-5</span>) % (<span class="number">-3</span>) //<span class="number">-2</span></span><br></pre></td></tr></table></figure></li>
-<li><p>どのような規則で計算されているかを考えなさい。</p>
-  <figure class="highlight python"><table><tr><td class="code"><pre><span class="line">//A ％ B = C , 除算して、余数を表示します。</span><br><span class="line">//「-」はもしかし:</span><br><span class="line">//  ・+B ＝ C</span><br><span class="line">//  ・-B ＝ -C</span><br></pre></td></tr></table></figure></li>
+<li>(【要素の並び】)<figure class="highlight python"><table><tr><td class="code"><pre><span class="line">rndm = (<span class="string">"M. Jackson"</span>, <span class="number">1958</span>, <span class="literal">True</span>)</span><br><span class="line">print(rndm)</span><br><span class="line"></span><br><span class="line"><span class="comment"># ('M. Jackson', 1958, True)</span></span><br></pre></td></tr></table></figure>
+</li>
 </ul>
 </li>
-<li><p>演習課題 1-2-2</p>
+<li><p>タプルへの変換</p>
 <ul>
-<li><p>次の計算を行って結果を確認しなさい。</p>
-<pre><code>5 // 3 
-5 // (-3) 
-(-5) // 3 
-(-5) // (-3) </code></pre>  <figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="number">5</span> // <span class="number">3</span>       //<span class="number">1</span></span><br><span class="line"><span class="number">5</span> // (<span class="number">-3</span>)    //<span class="number">-2</span></span><br><span class="line">(<span class="number">-5</span>) // <span class="number">3</span>    //<span class="number">-2</span></span><br><span class="line">(<span class="number">-5</span>) // (<span class="number">-3</span>) //<span class="number">1</span></span><br></pre></td></tr></table></figure></li>
-<li><p>どのような規則で計算されているかを考えなさい。</p>
-  <figure class="highlight python"><table><tr><td class="code"><pre><span class="line">//除算して、余数を抜き、整数だけ残っています。</span><br></pre></td></tr></table></figure></li>
-</ul>
+<li><p>リストからタプルへの変換</p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line">numbers = tuple([<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>,<span class="number">4</span>,<span class="number">5</span>])</span><br><span class="line">print(numbers)</span><br><span class="line"></span><br><span class="line"><span class="comment"># (1,2,3,4,5)</span></span><br></pre></td></tr></table></figure>
 </li>
-<li><p>演習課題 1-2-3</p>
-<ul>
-<li><p>2つの数値を変数xおよびyに入力し，xとyの加算， 減算，乗算，浮動小数点除算，整数除算，剰余を計 算して出力するプログラムを作成して，ソースリス トをPDFで提出せよ。</p>
-  <figure class="highlight python"><table><tr><td class="code"><pre><span class="line">x=int(input(<span class="string">"x="</span>))                         //x=<span class="number">5</span></span><br><span class="line">y=int(input(<span class="string">"y="</span>))                         //y=<span class="number">3</span></span><br><span class="line"></span><br><span class="line">print(<span class="string">"\n加算:"</span>)                            //加算:</span><br><span class="line">print(<span class="string">"x+y = "</span> ,x+y)                       //x+y =  <span class="number">8</span></span><br><span class="line"></span><br><span class="line">print(<span class="string">"\n減算:"</span>)                            //減算:</span><br><span class="line">print(<span class="string">"x-y = "</span> ,x-y)                       //x-y =  <span class="number">2</span></span><br><span class="line"></span><br><span class="line">print(<span class="string">"\n乗算:"</span>)                            //乗算:</span><br><span class="line">print(<span class="string">"x*y = "</span> ,x*y)                       //x*y =  <span class="number">15</span></span><br><span class="line"></span><br><span class="line">print(<span class="string">"\n浮動小数点除算:"</span>)                   //浮動小数点除算:</span><br><span class="line">print(<span class="string">"x.0/y.0 = "</span> ,float(x)/float(y))     //x<span class="number">.0</span>/y<span class="number">.0</span> =  <span class="number">1.6666666666666667</span></span><br><span class="line"></span><br><span class="line">print(<span class="string">"\n整数除算:"</span>)                        //整数除算:</span><br><span class="line">print(<span class="string">"x//y = "</span> ,x//y)                     //x//y =  <span class="number">1</span></span><br><span class="line"></span><br><span class="line">print(<span class="string">"\n剰余:"</span>)                           //剰余:</span><br><span class="line">print(<span class="string">"x%y = "</span> ,x%y)                       //x%y =  <span class="number">2</span></span><br></pre></td></tr></table></figure>
+<li><p>文字列からタプルへの変換</p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line">abc = tuple(<span class="string">"abcde"</span>)</span><br><span class="line">print(abc)</span><br><span class="line"></span><br><span class="line"><span class="comment"># ('a','b','c','d','e')</span></span><br></pre></td></tr></table></figure>
 
 </li>
 </ul>
 </li>
 </ol>
+<h4 id="要素の参照と検索"><a href="#要素の参照と検索" class="headerlink" title="要素の参照と検索"></a>要素の参照と検索</h4><ol>
+<li><p>タプルの要素の参照</p>
+<ul>
+<li><p>先頭からのオフセットによる参照</p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line">dys = (<span class="string">"1984"</span>,<span class="string">"Brave New World"</span>,<span class="string">"Faherenheit 451"</span>)</span><br><span class="line">print(dys[<span class="number">0</span>])</span><br><span class="line">print(dys[<span class="number">1</span>])</span><br><span class="line">print(dys[<span class="number">2</span>])</span><br><span class="line"></span><br><span class="line"><span class="comment"># 1984</span></span><br><span class="line"><span class="comment"># Brave New World</span></span><br><span class="line"><span class="comment"># Faherenheit 451</span></span><br></pre></td></tr></table></figure>
+</li>
+<li><p>末尾からのオフセットによる参照</p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line">dys = (<span class="string">"1984"</span>,<span class="string">"Brave New World"</span>,<span class="string">"Faherenheit 451"</span>)</span><br><span class="line">print(dys[<span class="number">-1</span>])</span><br><span class="line">print(dys[<span class="number">-2</span>])</span><br><span class="line">print(dys[<span class="number">-2</span>])</span><br><span class="line"></span><br><span class="line"><span class="comment"># Faherenheit 451</span></span><br><span class="line"><span class="comment"># Brave New World</span></span><br><span class="line"><span class="comment"># 1984</span></span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+</li>
+<li><p>タプルの要素の検索</p>
+<ul>
+<li>演算子 in の使用<figure class="highlight python"><table><tr><td class="code"><pre><span class="line">dys = (<span class="string">"1984"</span>,<span class="string">"Brave New World"</span>,<span class="string">"Faherenheit 451"</span>)</span><br><span class="line">print(<span class="string">"1984"</span> <span class="keyword">in</span> dys)</span><br><span class="line">print(<span class="string">"Handmaid's"</span> <span class="keyword">not</span> <span class="keyword">in</span> dys)</span><br><span class="line"></span><br><span class="line"><span class="comment"># True</span></span><br><span class="line"><span class="comment"># True</span></span><br></pre></td></tr></table></figure>
+
+</li>
+</ul>
+</li>
+</ol>
+<h3 id="二、辞書"><a href="#二、辞書" class="headerlink" title="二、辞書"></a>二、辞書</h3><h4 id="辞書の生成"><a href="#辞書の生成" class="headerlink" title="辞書の生成"></a>辞書の生成</h4><ol>
+<li><p>空辞書の生成</p>
+<ul>
+<li><p>dict()</p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line">fruits = dict()</span><br><span class="line">print(fruits)</span><br><span class="line"></span><br><span class="line"><span class="comment"># &#123;&#125;</span></span><br></pre></td></tr></table></figure>
+</li>
+<li><p>()</p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line">fruits = &#123;&#125;</span><br><span class="line">print(fruits)</span><br><span class="line"></span><br><span class="line"><span class="comment"># &#123;&#125;</span></span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+</li>
+<li><p>空でない辞書の生成</p>
+<ul>
+<li>{【キーとバリューのペアの並び】}<figure class="highlight python"><table><tr><td class="code"><pre><span class="line">fruits = &#123;<span class="string">"Apple"</span>:<span class="string">"Red"</span>,</span><br><span class="line">        <span class="string">"Banana"</span>:<span class="string">"Yellow"</span>&#125;</span><br><span class="line">print(fruits)</span><br><span class="line"></span><br><span class="line"><span class="comment"># &#123;'Apple':'Red','Banana':'Yellow'&#125;</span></span><br></pre></td></tr></table></figure>
+
+</li>
+</ul>
+</li>
+</ol>
+<h4 id="要素の追加，参照，値の変更"><a href="#要素の追加，参照，値の変更" class="headerlink" title="要素の追加，参照，値の変更"></a>要素の追加，参照，値の変更</h4><ol>
+<li><p>要素の追加</p>
+<ul>
+<li>辞書名[キー]=バリュー<figure class="highlight python"><table><tr><td class="code"><pre><span class="line">fruits = dict()</span><br><span class="line">fruits[<span class="string">"Apple"</span>] = <span class="string">"Red"</span></span><br><span class="line">fruits[<span class="string">"Banana"</span>] = <span class="string">"Yellow"</span></span><br><span class="line">print(fruits)</span><br><span class="line"></span><br><span class="line"><span class="comment"># &#123;'Apple':'Red','Banana':'Yellow'&#125;</span></span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+</li>
+<li><p>要素の参照</p>
+<ul>
+<li>辞書名[キー]<figure class="highlight python"><table><tr><td class="code"><pre><span class="line">fruits = dict()</span><br><span class="line">fruits[<span class="string">"Apple"</span>] = <span class="string">"Red"</span></span><br><span class="line">fruits[<span class="string">"Banana"</span>] = <span class="string">"Yellow"</span></span><br><span class="line">print(<span class="string">"Apple is"</span>,fruits[<span class="string">"Apple"</span>])</span><br><span class="line">print(<span class="string">"Banana is"</span>,fruits[<span class="string">"Banana"</span>])</span><br><span class="line"></span><br><span class="line"><span class="comment"># Apple is Red</span></span><br><span class="line"><span class="comment"># Banana is Yellow</span></span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+</li>
+<li><p>要素の値の変更</p>
+<ul>
+<li>辞書名[キー]=バリュー<figure class="highlight python"><table><tr><td class="code"><pre><span class="line">fruits = &#123;<span class="string">"Apple"</span>:<span class="string">"Red"</span>,</span><br><span class="line">        <span class="string">"Banana"</span>:<span class="string">"Yellow"</span>&#125;</span><br><span class="line">fruits[<span class="string">"Lemon"</span>] = <span class="string">"Green"</span></span><br><span class="line">print(<span class="string">"Apple is"</span>,fruits[<span class="string">"Apple"</span>])</span><br><span class="line">print(<span class="string">"Banana is"</span>,fruits[<span class="string">"Banana"</span>])</span><br><span class="line">print(<span class="string">"Lemon is"</span>,fruits[<span class="string">"Green"</span>])</span><br><span class="line"></span><br><span class="line"><span class="comment"># Apple is Red</span></span><br><span class="line"><span class="comment"># Banana is Yellow</span></span><br><span class="line"><span class="comment"># Lemon is Green</span></span><br></pre></td></tr></table></figure>
+
+</li>
+</ul>
+</li>
+</ol>
+<h4 id="キーによる検索，キーと値の取得"><a href="#キーによる検索，キーと値の取得" class="headerlink" title="キーによる検索，キーと値の取得"></a>キーによる検索，キーと値の取得</h4><ol>
+<li><p>キーの検索</p>
+<ul>
+<li>演算子 in<figure class="highlight python"><table><tr><td class="code"><pre><span class="line">fruits = &#123;<span class="string">"Apple"</span>:<span class="string">"Red"</span>,</span><br><span class="line">        <span class="string">"Banana"</span>:<span class="string">"Yellow"</span>,</span><br><span class="line">        <span class="string">"Lemon"</span>:<span class="string">"Green"</span>&#125;</span><br><span class="line">print(<span class="string">"Apple"</span> <span class="keyword">in</span> fruits)</span><br><span class="line">print(<span class="string">"Melon"</span> <span class="keyword">in</span> fruits)</span><br><span class="line"></span><br><span class="line"><span class="comment"># True</span></span><br><span class="line"><span class="comment"># False</span></span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+</li>
+<li><p>全ての <strong>キー</strong> の取得</p>
+<ul>
+<li>関数 keys()<figure class="highlight python"><table><tr><td class="code"><pre><span class="line">fruits = &#123;<span class="string">"Apple"</span>:<span class="string">"Red"</span>,</span><br><span class="line">        <span class="string">"Banana"</span>:<span class="string">"Yellow"</span>,</span><br><span class="line">        <span class="string">"Lemon"</span>:<span class="string">"Green"</span>&#125;</span><br><span class="line">print(fruits.keys())</span><br><span class="line"></span><br><span class="line"><span class="comment"># dict_keys(['Apple','Banana','Meron'])</span></span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+</li>
+<li><p>全ての <strong>値</strong> の取得</p>
+<ul>
+<li>関数 values()<figure class="highlight python"><table><tr><td class="code"><pre><span class="line">fruits = &#123;<span class="string">"Apple"</span>:<span class="string">"Red"</span>,</span><br><span class="line">        <span class="string">"Banana"</span>:<span class="string">"Yellow"</span>,</span><br><span class="line">        <span class="string">"Lemon"</span>:<span class="string">"Green"</span>&#125;</span><br><span class="line">print(fruits.values())</span><br><span class="line"></span><br><span class="line"><span class="comment"># dict_values(['Red','Yellow','Green'])</span></span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+</li>
+<li><p>全ての <strong>キー/値ペア</strong> の取得</p>
+<ul>
+<li>関数 items()<figure class="highlight python"><table><tr><td class="code"><pre><span class="line">fruits = &#123;<span class="string">"Apple"</span>:<span class="string">"Red"</span>,</span><br><span class="line">        <span class="string">"Banana"</span>:<span class="string">"Yellow"</span>,</span><br><span class="line">        <span class="string">"Lemon"</span>:<span class="string">"Green"</span>&#125;</span><br><span class="line">print(fruits.items())</span><br><span class="line"></span><br><span class="line"><span class="comment"># dict_items((['Apple':'Red'),('Banana':'Yellow'),('Lemon':'Green')])</span></span><br></pre></td></tr></table></figure>
+
+</li>
+</ul>
+</li>
+</ol>
+<h4 id="要素の削除，辞書の削除"><a href="#要素の削除，辞書の削除" class="headerlink" title="要素の削除，辞書の削除"></a>要素の削除，辞書の削除</h4><ol>
+<li><p>辞書の要素の削除</p>
+<ul>
+<li>del文<figure class="highlight python"><table><tr><td class="code"><pre><span class="line">fruits = &#123;<span class="string">"Apple"</span>:<span class="string">"Red"</span>,</span><br><span class="line">        <span class="string">"Banana"</span>:<span class="string">"Yellow"</span>,</span><br><span class="line">        <span class="string">"Lemon"</span>:<span class="string">"Green"</span>&#125;</span><br><span class="line">print(fruits)</span><br><span class="line"><span class="keyword">del</span> fruits[<span class="string">"Banana"</span>]</span><br><span class="line">print(fruits)</span><br><span class="line"></span><br><span class="line"><span class="comment"># &#123;'Apple':'Red','Banana':'Yellow','Lemon':'Green'&#125;</span></span><br><span class="line"><span class="comment"># &#123;'Apple':'Red','Lemon':'Green'&#125;</span></span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+</li>
+<li><p>辞書の全要素の削除</p>
+<ul>
+<li>メソッド clear()<figure class="highlight python"><table><tr><td class="code"><pre><span class="line">fruits = &#123;<span class="string">"Apple"</span>:<span class="string">"Red"</span>,</span><br><span class="line">        <span class="string">"Banana"</span>:<span class="string">"Yellow"</span>,</span><br><span class="line">        <span class="string">"Lemon"</span>:<span class="string">"Green"</span>&#125;</span><br><span class="line">print(fruits)</span><br><span class="line">fruits.clear()</span><br><span class="line">print(fruits)</span><br><span class="line"></span><br><span class="line"><span class="comment"># &#123;'Apple':'Red','Banana':'Yellow','Lemon':'Green'&#125;</span></span><br><span class="line"><span class="comment"># &#123;&#125;</span></span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+</li>
+<li><p>辞書の削除</p>
+<ul>
+<li>del文<figure class="highlight python"><table><tr><td class="code"><pre><span class="line">fruits = &#123;<span class="string">"Apple"</span>:<span class="string">"Red"</span>,</span><br><span class="line">        <span class="string">"Banana"</span>:<span class="string">"Yellow"</span>,</span><br><span class="line">        <span class="string">"Lemon"</span>:<span class="string">"Green"</span>&#125;</span><br><span class="line">print(fruits)</span><br><span class="line"><span class="keyword">del</span> fruits</span><br><span class="line">print(fruits)</span><br><span class="line"></span><br><span class="line"><span class="comment"># &#123;'Apple':'Red','Banana':'Yellow','Lemon':'Green'&#125;</span></span><br><span class="line"><span class="comment"># Error</span></span><br></pre></td></tr></table></figure>
+<h4 id="便利な関数"><a href="#便利な関数" class="headerlink" title="便利な関数"></a>便利な関数</h4></li>
+</ul>
+</li>
+</ol>
+<ul>
+<li>pprint(): pretty print  <figure class="highlight python"><table><tr><td class="code"><pre><span class="line">fruits = dict()</span><br><span class="line">fruits[<span class="string">"Apple"</span>] = <span class="string">"Red"</span></span><br><span class="line">fruits[<span class="string">"Banana"</span>] = <span class="string">"Yellow"</span></span><br><span class="line">pp.pprint(fruits)</span><br><span class="line"></span><br><span class="line"><span class="comment"># &#123;'Apple':'Red','Banana':'Yellow'&#125;</span></span><br></pre></td></tr></table></figure>
+
+</li>
+</ul>
+<h3 id="三、集合"><a href="#三、集合" class="headerlink" title="三、集合"></a>三、集合</h3><h4 id="集合の生成"><a href="#集合の生成" class="headerlink" title="集合の生成"></a>集合の生成</h4><ol>
+<li><p>空集合の生成</p>
+<ul>
+<li><p>関数 set()</p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line">x = set()</span><br><span class="line">print(x)</span><br><span class="line"></span><br><span class="line"><span class="comment"># &#123;&#125;</span></span><br></pre></td></tr></table></figure>
+</li>
+<li><p>{}</p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line">x = &#123;&#125;</span><br><span class="line">print(x)</span><br><span class="line"></span><br><span class="line"><span class="comment"># &#123;&#125;</span></span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+</li>
+<li><p>空でない集合の生成</p>
+<ul>
+<li>{【要素の並び】}<figure class="highlight python"><table><tr><td class="code"><pre><span class="line">even = &#123;<span class="number">0</span>,<span class="number">2</span>,<span class="number">4</span>,<span class="number">6</span>,<span class="number">8</span>,<span class="number">10</span>&#125;</span><br><span class="line">print(even)</span><br><span class="line"></span><br><span class="line"><span class="comment"># &#123;0,2,4,6,8,10&#125;</span></span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+</li>
+<li><p>リストや文字列からの生成</p>
+<ul>
+<li><p>リストからの生成</p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line">num = [<span class="number">0</span>,<span class="number">2</span>,<span class="number">4</span>,<span class="number">6</span>,<span class="number">8</span>,<span class="number">10</span>]</span><br><span class="line">even = set(num)</span><br><span class="line">print(even)</span><br><span class="line"></span><br><span class="line"><span class="comment"># &#123;0,2,4,6,8,10&#125;</span></span><br></pre></td></tr></table></figure>
+</li>
+<li><p>文字列からの生成</p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line">letters = set(<span class="string">"good people"</span>)</span><br><span class="line">print(letters)</span><br><span class="line"></span><br><span class="line"><span class="comment"># &#123;'e','d','l',' ','g','o','p'&#125;</span></span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+</li>
+<li><p>タプルや辞書からの生成</p>
+<ul>
+<li><p>タプルからの生成</p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line">num = (<span class="number">0</span>,<span class="number">2</span>,<span class="number">4</span>,<span class="number">6</span>,<span class="number">8</span>,<span class="number">10</span>)</span><br><span class="line">even = set(num)</span><br><span class="line">print(even)</span><br><span class="line"></span><br><span class="line"><span class="comment"># &#123;0,2,4,6,8,10&#125;</span></span><br></pre></td></tr></table></figure>
+</li>
+<li><p>辞書からの生成</p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line">fruits = &#123;<span class="string">"Apple"</span>:<span class="string">"Red"</span>,</span><br><span class="line">        <span class="string">"Banana"</span>:<span class="string">"Yellow"</span>,</span><br><span class="line">        <span class="string">"Meron"</span>:<span class="string">"Green"</span>&#125;</span><br><span class="line">plant = set(fruits)</span><br><span class="line">print(plant)</span><br><span class="line"></span><br><span class="line"><span class="comment"># &#123;'Apple','Meron','Banana'&#125;</span></span><br></pre></td></tr></table></figure>
+
+</li>
+</ul>
+</li>
+</ol>
+<h4 id="要素の追加と削除"><a href="#要素の追加と削除" class="headerlink" title="要素の追加と削除"></a>要素の追加と削除</h4><ol>
+<li><p>集合への要素の追加</p>
+<ul>
+<li><p>メソッド add()</p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line">s = &#123;<span class="number">0</span>,<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>,<span class="number">4</span>&#125;</span><br><span class="line">s.add(<span class="number">3</span>)</span><br><span class="line">print(s)</span><br><span class="line"></span><br><span class="line"><span class="comment"># &#123;0,1,2,3,4&#125;</span></span><br></pre></td></tr></table></figure>
+
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line">s = &#123;<span class="number">0</span>,<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>,<span class="number">4</span>&#125;</span><br><span class="line">s.add(<span class="number">5</span>)</span><br><span class="line">print(s)</span><br><span class="line"></span><br><span class="line"><span class="comment"># &#123;0,1,2,3,4,5&#125;</span></span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+</li>
+<li><p>集合からの要素の削除</p>
+<ul>
+<li><p>メソッド discard()</p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line">s = &#123;<span class="number">0</span>,<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>,<span class="number">4</span>&#125;</span><br><span class="line">s.discard(<span class="number">1</span>)</span><br><span class="line">print(s)</span><br><span class="line"></span><br><span class="line"><span class="comment"># &#123;0,2,3,4&#125;</span></span><br></pre></td></tr></table></figure>
+
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line">s = &#123;<span class="number">0</span>,<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>,<span class="number">4</span>&#125;</span><br><span class="line">s.discard(<span class="number">5</span>)</span><br><span class="line">print(s)</span><br><span class="line"></span><br><span class="line"><span class="comment"># &#123;0,1,2,3,4&#125;</span></span><br></pre></td></tr></table></figure>
+</li>
+<li><p>関数 pop()</p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line">s = &#123;<span class="number">0</span>,<span class="number">1</span>,<span class="number">2</span>&#125;</span><br><span class="line">print(s.pop())</span><br><span class="line">print(s.pop())</span><br><span class="line">print(s.pop())</span><br><span class="line"></span><br><span class="line"><span class="comment"># 0</span></span><br><span class="line"><span class="comment"># 1</span></span><br><span class="line"><span class="comment"># 2</span></span><br></pre></td></tr></table></figure>
+
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line">s = &#123;<span class="number">2</span>,<span class="number">0</span>,<span class="number">1</span>&#125;</span><br><span class="line">print(s.pop())</span><br><span class="line">print(s.pop())</span><br><span class="line">print(s.pop())</span><br><span class="line"></span><br><span class="line"><span class="comment"># 0</span></span><br><span class="line"><span class="comment"># 1</span></span><br><span class="line"><span class="comment"># 2</span></span><br></pre></td></tr></table></figure>
+
+</li>
+</ul>
+</li>
+</ol>
+<h4 id="集合に対する演算と関数"><a href="#集合に対する演算と関数" class="headerlink" title="集合に対する演算と関数"></a>集合に対する演算と関数</h4><ol>
+<li><p>集合の要素数の計算</p>
+<ul>
+<li>関数 len()<figure class="highlight python"><table><tr><td class="code"><pre><span class="line">s = &#123;<span class="number">0</span>,<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>,<span class="number">4</span>&#125;</span><br><span class="line">n = len(s)</span><br><span class="line">print(n)</span><br><span class="line"></span><br><span class="line"><span class="comment"># 5</span></span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+</li>
+<li><p>和集合</p>
+<ul>
+<li><p>演算子 | </p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line">s1 = &#123;<span class="number">0</span>,<span class="number">1</span>,<span class="number">2</span>&#125;</span><br><span class="line">s2 = &#123;<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>&#125;</span><br><span class="line"></span><br><span class="line">s_union = s1 | s2</span><br><span class="line">print(s_union)</span><br><span class="line"></span><br><span class="line"><span class="comment"># &#123;0,1,2,3&#125;</span></span><br></pre></td></tr></table></figure>
+</li>
+<li><p>関数 union()</p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line">s1 = &#123;<span class="number">0</span>,<span class="number">1</span>,<span class="number">2</span>&#125;</span><br><span class="line">s2 = &#123;<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>&#125;</span><br><span class="line"></span><br><span class="line">s_union = s1.union(s2)</span><br><span class="line">print(s_union)</span><br><span class="line"></span><br><span class="line"><span class="comment"># &#123;0,1,2,3&#125;</span></span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+</li>
+<li><p>積集合</p>
+<ul>
+<li><p>演算子 &amp;</p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line">s1 = &#123;<span class="number">0</span>,<span class="number">1</span>,<span class="number">2</span>&#125;</span><br><span class="line">s2 = &#123;<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>&#125;</span><br><span class="line"></span><br><span class="line">s_intsec = s1 &amp; s2</span><br><span class="line">print(s_intsec)</span><br><span class="line"></span><br><span class="line"><span class="comment"># &#123;1,2&#125;</span></span><br></pre></td></tr></table></figure>
+</li>
+<li><p>関数 intersection()</p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line">s1 = &#123;<span class="number">0</span>,<span class="number">1</span>,<span class="number">2</span>&#125;</span><br><span class="line">s2 = &#123;<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>&#125;</span><br><span class="line"></span><br><span class="line">s_intsec = s1.intersection(s2)</span><br><span class="line">print(s_intsec)</span><br><span class="line"></span><br><span class="line"><span class="comment"># &#123;1,2&#125;</span></span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+</li>
+<li><p>差集合</p>
+<ul>
+<li><p>演算子 - </p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line">s1 = &#123;<span class="number">0</span>,<span class="number">1</span>,<span class="number">2</span>&#125;</span><br><span class="line">s2 = &#123;<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>&#125;</span><br><span class="line"></span><br><span class="line">s_diff = s1 - s2</span><br><span class="line">print(s_diff)</span><br><span class="line"></span><br><span class="line"><span class="comment"># &#123;0&#125;</span></span><br></pre></td></tr></table></figure>
+
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line">s1 = &#123;<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>&#125;</span><br><span class="line">s2 = &#123;<span class="number">0</span>,<span class="number">1</span>,<span class="number">2</span>&#125;</span><br><span class="line"></span><br><span class="line">s_diff = s1 - s2</span><br><span class="line">print(s_diff)</span><br><span class="line"></span><br><span class="line"><span class="comment"># &#123;0&#125;</span></span><br></pre></td></tr></table></figure>
+</li>
+<li><p>関数 difference</p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line">s1 = &#123;<span class="number">0</span>,<span class="number">1</span>,<span class="number">2</span>&#125;</span><br><span class="line">s2 = &#123;<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>&#125;</span><br><span class="line"></span><br><span class="line">s_diff = s1.difference(s2)</span><br><span class="line">print(s_diff)</span><br><span class="line"></span><br><span class="line"><span class="comment"># &#123;3&#125;</span></span><br></pre></td></tr></table></figure>
+
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line">s1 = &#123;<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>&#125;</span><br><span class="line">s2 = &#123;<span class="number">0</span>,<span class="number">1</span>,<span class="number">2</span>&#125;</span><br><span class="line"></span><br><span class="line">s_diff = s1.difference(s2)</span><br><span class="line">print(s_diff)</span><br><span class="line"></span><br><span class="line"><span class="comment"># &#123;3&#125;</span></span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+</li>
+<li><p>対象差集合(排他的論理和に相当)</p>
+<ul>
+<li><p>演算子 ^ 演算子</p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line">s1 = &#123;<span class="number">0</span>,<span class="number">1</span>,<span class="number">2</span>&#125;</span><br><span class="line">s2 = &#123;<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>&#125;</span><br><span class="line"></span><br><span class="line">s_sd = s1 ^ s2</span><br><span class="line">print(s_sd)</span><br><span class="line"></span><br><span class="line"><span class="comment"># &#123;0,3&#125;</span></span><br></pre></td></tr></table></figure>
+</li>
+<li><p>関数 symmetric_difference()</p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line">s1 = &#123;<span class="number">0</span>,<span class="number">1</span>,<span class="number">2</span>&#125;</span><br><span class="line">s2 = &#123;<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>&#125;</span><br><span class="line"></span><br><span class="line">s_sd = s1.symmetric_difference(s2)</span><br><span class="line">print(s_sd)</span><br><span class="line"></span><br><span class="line"><span class="comment"># &#123;0,3&#125;</span></span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+</li>
+<li><p>部分集合かどうかの判定</p>
+<ul>
+<li><p>演算子  &lt;=</p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line">s1 = &#123;<span class="number">0</span>,<span class="number">1</span>&#125;</span><br><span class="line">s2 = &#123;<span class="number">0</span>,<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>&#125;</span><br><span class="line"></span><br><span class="line">s_s = s1 &lt;= s2</span><br><span class="line">print(s_s)</span><br><span class="line"></span><br><span class="line"><span class="comment"># True</span></span><br></pre></td></tr></table></figure>
+</li>
+<li><p>関数 issubset()</p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line">s1 = &#123;<span class="number">0</span>,<span class="number">1</span>&#125;</span><br><span class="line">s2 = &#123;<span class="number">0</span>,<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>&#125;</span><br><span class="line"></span><br><span class="line">s_s = s1.issubset(s2)</span><br><span class="line">print(s_s)</span><br><span class="line"></span><br><span class="line"><span class="comment"># True</span></span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+</li>
+<li><p>上位集合かどうかの判定</p>
+<ul>
+<li><p>演算子  &gt;=</p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line">s1 = &#123;<span class="number">0</span>,<span class="number">1</span>&#125;</span><br><span class="line">s2 = &#123;<span class="number">0</span>,<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>&#125;</span><br><span class="line"></span><br><span class="line">s_s = s2 &gt;= s1</span><br><span class="line">print(s_s)</span><br><span class="line"></span><br><span class="line"><span class="comment"># True</span></span><br></pre></td></tr></table></figure>
+</li>
+<li><p>関数 issuperset()</p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line">s1 = &#123;<span class="number">0</span>,<span class="number">1</span>&#125;</span><br><span class="line">s2 = &#123;<span class="number">0</span>,<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>&#125;</span><br><span class="line"></span><br><span class="line">s_s = s2.issuperset(s1)</span><br><span class="line">print(s_s)</span><br><span class="line"></span><br><span class="line"><span class="comment"># True</span></span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+</li>
+<li><p>互いに素かどうかを判定</p>
+<ul>
+<li>関数 isdisjoint()<figure class="highlight python"><table><tr><td class="code"><pre><span class="line">s1 = &#123;<span class="number">0</span>,<span class="number">1</span>&#125;</span><br><span class="line">s2 = &#123;<span class="number">1</span>,<span class="number">2</span>&#125;</span><br><span class="line">s3 = &#123;<span class="number">2</span>,<span class="number">3</span>&#125;</span><br><span class="line"></span><br><span class="line">print(s1.isdisjoint(s2))</span><br><span class="line">print(s1.isdisjoint(s3))</span><br><span class="line"></span><br><span class="line"><span class="comment"># False</span></span><br><span class="line"><span class="comment"># True</span></span><br></pre></td></tr></table></figure>
+
+</li>
+</ul>
+</li>
+</ol>
+<h2 id="演習課題"><a href="#演習課題" class="headerlink" title="演習課題"></a>演習課題</h2><ol>
+<li>num = [2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25] とする。</li>
+<li>num を集合に変換し，n に代入する。</li>
+<li>num からスライスを用いて，4以上の2の倍数を取り出し，集合に変換してn2に代入する。</li>
+<li>num からスライスを用いて，6以上の3の倍数を取り出し，集合に変換してn3に代入する。</li>
+<li>num からスライスを用いて，10以上の5の倍数を取り出し，集合に変換してn5に代入する。</li>
+<li>nからn2, n3, n5の要素を取り除く。</li>
+<li>n の要素を印刷する。</li>
+</ol>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line">num = [<span class="number">2</span>, <span class="number">3</span>, <span class="number">4</span>, <span class="number">5</span>, <span class="number">6</span>, <span class="number">7</span>, <span class="number">8</span>, <span class="number">9</span>, <span class="number">10</span>, <span class="number">11</span>, <span class="number">12</span>, <span class="number">13</span>, <span class="number">14</span>, <span class="number">15</span>, <span class="number">16</span>, <span class="number">17</span>, <span class="number">18</span>, <span class="number">19</span>, <span class="number">20</span>, <span class="number">21</span>, <span class="number">22</span>, <span class="number">23</span>, <span class="number">24</span>, <span class="number">25</span>]</span><br><span class="line">print(<span class="string">"num: "</span>,num)</span><br><span class="line"></span><br><span class="line">n = set(num)</span><br><span class="line">print(<span class="string">"n  : "</span>,n)</span><br><span class="line"></span><br><span class="line">n2 = set(num[<span class="number">2</span>::<span class="number">2</span>])</span><br><span class="line"><span class="keyword">print</span> (<span class="string">"n2 : "</span>,n2)</span><br><span class="line"></span><br><span class="line">n3 = set(num[<span class="number">4</span>::<span class="number">3</span>])</span><br><span class="line"><span class="keyword">print</span> (<span class="string">"n3 : "</span>,n3)</span><br><span class="line"></span><br><span class="line">n5 = set(num[<span class="number">8</span>::<span class="number">5</span>])</span><br><span class="line"><span class="keyword">print</span> (<span class="string">"n5 : "</span>,n5)</span><br><span class="line"></span><br><span class="line">n = n-n2</span><br><span class="line">n = n-n3</span><br><span class="line">n = n-n5</span><br><span class="line">print(<span class="string">"n  : "</span>,n)</span><br><span class="line"></span><br><span class="line"><span class="comment"># num:  [2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25]</span></span><br><span class="line"><span class="comment"># n  :  &#123;2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25&#125;</span></span><br><span class="line"><span class="comment"># n2 :  &#123;4, 6, 8, 10, 12, 14, 16, 18, 20, 22, 24&#125;</span></span><br><span class="line"><span class="comment"># n3 :  &#123;6, 9, 12, 15, 18, 21, 24&#125;</span></span><br><span class="line"><span class="comment"># n5 :  &#123;25, 10, 20, 15&#125;</span></span><br><span class="line"><span class="comment"># n  :  &#123;2, 3, 5, 7, 11, 13, 17, 19, 23&#125;</span></span><br></pre></td></tr></table></figure>]]></content>
+      <categories>
+        <category>学习笔记</category>
+      </categories>
+      <tags>
+        <tag>日本語</tag>
+        <tag>メモ</tag>
+        <tag>python</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>IoTと無線ネットワーク(3)</title>
+    <url>/2020/05/26/2020-05-26-IoT%E3%81%A8%E7%84%A1%E7%B7%9A%E3%83%8D%E3%83%83%E3%83%88%E3%83%AF%E3%83%BC%E3%82%AF(3)/</url>
+    <content><![CDATA[<h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>先生の無線マイクが信号混乱かも、今日はサイレント授業をやった。</p>
+<h1 id="IoT知識"><a href="#IoT知識" class="headerlink" title="IoT知識"></a>IoT知識</h1><p>静音授業なので、魚を触っていた。すまない父親が払った学費/泣きかぶり</p>
+<h1 id="python"><a href="#python" class="headerlink" title="python"></a>python</h1><h2 id="pythonプログラミング-3"><a href="#pythonプログラミング-3" class="headerlink" title="pythonプログラミング(3)"></a>pythonプログラミング(3)</h2><h3 id="コンテナの種類"><a href="#コンテナの種類" class="headerlink" title="コンテナの種類"></a>コンテナの種類</h3><p>Markdownは行列の合併ができない為、以下の表はHTMLより作成</p>
+<table>
+    <tr>
+        <th>種類</th>
+        <th>要素へのアクセス方法</th>
+        <th>mutable/<br>imutable</th>
+        <th>特徴</th>
+   </tr>
+   <tr>
+        <td>リスト</td>
+        <td rowspan="2">オフセットで位置を指定，値が含まれているかどうかも判定可能</td>
+        <td>mutable</td>
+        <td>スタック(FIFO)としても使用可</td>
+   </tr>
+   <tr>
+        <td>タプル</td>
+        <td>imutable</td>
+        <td>要素の値の変更，要素の追加・削除は<b>不可</b></td>
+   </tr>
+   <tr>
+        <td>辞書</td>
+        <td>オフセットの代わりにキーを用いて指定</td>
+        <td rowspan="2">mutable</td>
+        <td>キーとバリューを関連付けて格納連想記憶，ハッシュと類似</td>
+   </tr>
+   <tr>
+        <td>集合</td>
+        <td>集合に含まれているかどうかを判定</td>
+        <td>キーのみを持つ辞書のようなもの要素の重複がなく順番もない</td>
+   </tr>
+</table>
+
+
+<h3 id="リスト"><a href="#リスト" class="headerlink" title="リスト"></a>リスト</h3><h4 id="一-リストの生成-リストへの変換"><a href="#一-リストの生成-リストへの変換" class="headerlink" title="一.リストの生成, リストへの変換"></a>一.リストの生成, リストへの変換</h4><ol>
+<li><p>リストの生成</p>
+<ul>
+<li><p>空リストの生成</p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line">x = list()</span><br><span class="line">print(x)</span><br><span class="line"><span class="comment"># []</span></span><br><span class="line"></span><br><span class="line">x = []</span><br><span class="line">print(x)</span><br><span class="line"><span class="comment"># []</span></span><br></pre></td></tr></table></figure>
+</li>
+<li><p>空でないリストの生成</p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line">x = [<span class="string">"apple"</span>,<span class="string">"orange"</span>,<span class="string">"pear"</span>]</span><br><span class="line">print(x)</span><br><span class="line"><span class="comment"># ['apple','orange','pear']</span></span><br><span class="line"></span><br><span class="line">x = [<span class="string">"2"</span>,<span class="string">"0"</span>,<span class="string">"1"</span>,<span class="string">"9"</span>]</span><br><span class="line">print(x)</span><br><span class="line"><span class="comment"># ['2','0','1','9']</span></span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+</li>
+<li><p>リストへの変換</p>
+<ul>
+<li><p>文字列からリストへの変換</p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line">x = list(<span class="string">"cat"</span>)</span><br><span class="line">print(x)</span><br><span class="line"><span class="comment"># ['c','a','t']</span></span><br><span class="line"></span><br><span class="line">x = (<span class="string">"Apple"</span>,<span class="string">"Orange"</span>,<span class="string">"Pear"</span>) <span class="comment">#tuple</span></span><br><span class="line">y = list(x)</span><br><span class="line">print(y)</span><br><span class="line"><span class="comment"># ['Apple','Orange','Pear']</span></span><br></pre></td></tr></table></figure>
+
+</li>
+</ul>
+</li>
+</ol>
+<h4 id="二-インデックスを用いた要素の参照と変更"><a href="#二-インデックスを用いた要素の参照と変更" class="headerlink" title="二.インデックスを用いた要素の参照と変更"></a>二.インデックスを用いた要素の参照と変更</h4><ol>
+<li><p>要素の参照</p>
+<ul>
+<li><p>インデックスを用いた参照</p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line">x = [<span class="string">"a"</span>,<span class="string">"b"</span>,<span class="string">"c"</span>,<span class="string">"d"</span>,<span class="string">"e"</span>,<span class="string">"f"</span>]</span><br><span class="line">print(x[<span class="number">0</span>])</span><br><span class="line">print(x[<span class="number">1</span>])</span><br><span class="line">print(x[<span class="number">2</span>])</span><br><span class="line">print(x[<span class="number">-1</span>])</span><br><span class="line">print(x[<span class="number">-2</span>])</span><br><span class="line">print(x[<span class="number">-3</span>])</span><br><span class="line"></span><br><span class="line"><span class="comment">#a</span></span><br><span class="line"><span class="comment">#b</span></span><br><span class="line"><span class="comment">#c</span></span><br><span class="line"><span class="comment">#f</span></span><br><span class="line"><span class="comment">#e</span></span><br><span class="line"><span class="comment">#d</span></span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+</li>
+<li><p>リスト要素の値の変更</p>
+<ul>
+<li><p>インデックスを用いた値の変更</p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line">x = [<span class="string">"green"</span>,<span class="string">"yellow"</span>,<span class="string">"red"</span>]</span><br><span class="line">x[<span class="number">0</span>] = <span class="string">"oops"</span></span><br><span class="line">print(x)</span><br><span class="line"></span><br><span class="line"><span class="comment"># ['oops', 'yellow', 'red']</span></span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+</li>
+<li><p>サブシークエンスの参照</p>
+<ul>
+<li><p>スライス(インデックスを用いた範囲指定)</p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line">x = [<span class="string">"a"</span>,<span class="string">"b"</span>,<span class="string">"c"</span>,<span class="string">"d"</span>,<span class="string">"e"</span>,<span class="string">"f"</span>]</span><br><span class="line">print(x[:])</span><br><span class="line">print(x[<span class="number">0</span>:])</span><br><span class="line">print(x[<span class="number">1</span>:])</span><br><span class="line">print(x[<span class="number">2</span>:<span class="number">4</span>])</span><br><span class="line">print(x[<span class="number">-4</span>:<span class="number">-2</span>])</span><br><span class="line"></span><br><span class="line"><span class="comment">#['a', 'b', 'c', 'd', 'e', 'f']</span></span><br><span class="line"><span class="comment">#['a', 'c', 'e']</span></span><br><span class="line"><span class="comment">#['b', 'd', 'f']</span></span><br><span class="line"><span class="comment">#['b', 'e']</span></span><br><span class="line"><span class="comment">#['c', 'e']</span></span><br><span class="line"><span class="comment">#['c', 'f']</span></span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+</li>
+<li><p>サブシークエンスの変更</p>
+<ul>
+<li><p>スライスを用いた値の変更</p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line">x = [<span class="string">"a"</span>,<span class="string">"b"</span>,<span class="string">"c"</span>,<span class="string">"d"</span>,<span class="string">"e"</span>,<span class="string">"f"</span>]</span><br><span class="line">x[<span class="number">2</span>:<span class="number">4</span>] = [<span class="string">"x"</span>,<span class="string">"y"</span>]</span><br><span class="line">print(x)</span><br><span class="line"></span><br><span class="line"><span class="comment"># ['a', 'b', 'x', 'y', 'e', 'f']</span></span><br><span class="line"></span><br><span class="line">x = [<span class="string">"a"</span>,<span class="string">"b"</span>,<span class="string">"c"</span>,<span class="string">"d"</span>,<span class="string">"e"</span>,<span class="string">"f"</span>]</span><br><span class="line">x[<span class="number">1</span>::<span class="number">2</span>] = [<span class="string">"x"</span>,<span class="string">"y"</span>,<span class="string">"z"</span>]</span><br><span class="line">print(x)</span><br><span class="line"></span><br><span class="line"><span class="comment"># ['a', 'x', 'c', 'y', 'e', 'z']</span></span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+</li>
+<li><p>要素の有無の確認</p>
+<ul>
+<li><p>演算子 in を用いた要素の有無の確認</p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line">x = [<span class="string">"green"</span>,<span class="string">"yellow"</span>,<span class="string">"red"</span>]</span><br><span class="line">print(<span class="string">"green"</span> <span class="keyword">in</span> x)</span><br><span class="line">print(<span class="string">"black"</span> <span class="keyword">not</span> <span class="keyword">in</span> x)</span><br><span class="line"></span><br><span class="line"><span class="comment"># True</span></span><br><span class="line"><span class="comment"># True</span></span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+</li>
+<li><p>要素のインデックスの検索</p>
+<ul>
+<li><p>関数 index() を用いた要素のインデックスの検索</p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line">x = [<span class="string">"a"</span>,<span class="string">"b"</span>,<span class="string">"c"</span>,<span class="string">"d"</span>,<span class="string">"e"</span>,<span class="string">"f"</span>]</span><br><span class="line">print(x.index(<span class="string">"c"</span>))</span><br><span class="line">print(x.index(<span class="string">"f"</span>))</span><br><span class="line"></span><br><span class="line"><span class="comment"># 2</span></span><br><span class="line"><span class="comment"># 5</span></span><br><span class="line"></span><br><span class="line">print(x.index(<span class="string">"z"</span>))</span><br><span class="line"></span><br><span class="line"><span class="comment"># ValueError: 'z' is not in list</span></span><br></pre></td></tr></table></figure>
+
+</li>
+</ul>
+</li>
+</ol>
+<h4 id="三-リストへの要素の追加と削除"><a href="#三-リストへの要素の追加と削除" class="headerlink" title="三.リストへの要素の追加と削除"></a>三.リストへの要素の追加と削除</h4><ol>
+<li><p>末尾への要素の追加</p>
+<ul>
+<li><p>メソッドppend()</p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line">x = [<span class="number">3</span>,<span class="number">1</span>,<span class="number">4</span>]</span><br><span class="line">print(x)</span><br><span class="line">x.append(<span class="number">1</span>)</span><br><span class="line">print(x)</span><br><span class="line">x.append(<span class="number">5</span>)</span><br><span class="line">print(x)</span><br><span class="line"></span><br><span class="line"><span class="comment"># [3, 1, 4]</span></span><br><span class="line"><span class="comment"># [3, 1, 4, 1]</span></span><br><span class="line"><span class="comment"># [3, 1, 4, 1, 5]</span></span><br></pre></td></tr></table></figure>
+
+</li>
+</ul>
+</li>
+</ol>
+<p>2.要素の取り出し<br>    - メソッド pop()  末尾の要素の取り出し<br>    - メソッド pop(i) インデックスを用いた要素の取り出し</p>
+<pre><code><figure class="highlight python"><table><tr><td class="code"><pre><span class="line">x = [<span class="string">"a"</span>,<span class="string">"b"</span>,<span class="string">"c"</span>]</span><br><span class="line">y = []</span><br><span class="line">print(<span class="string">"x = "</span>,x)</span><br><span class="line">print(<span class="string">"y = "</span>,y)</span><br><span class="line">y.append(x.pop())</span><br><span class="line">print(<span class="string">"x = "</span>,x)</span><br><span class="line">print(<span class="string">"y = "</span>,y)</span><br><span class="line">y.append(x.pop())</span><br><span class="line">print(<span class="string">"x = "</span>,x)</span><br><span class="line">print(<span class="string">"y = "</span>,y)</span><br><span class="line">y.append(x.pop())</span><br><span class="line">print(<span class="string">"x = "</span>,x)</span><br><span class="line">print(<span class="string">"y = "</span>,y)</span><br><span class="line"></span><br><span class="line"><span class="comment"># x =  ['a', 'b', 'c']</span></span><br><span class="line"><span class="comment"># y =  []</span></span><br><span class="line"><span class="comment"># x =  ['a', 'b']</span></span><br><span class="line"><span class="comment"># y =  ['c']</span></span><br><span class="line"><span class="comment"># x =  ['a']</span></span><br><span class="line"><span class="comment"># y =  ['c', 'b']</span></span><br><span class="line"><span class="comment"># x =  []</span></span><br><span class="line"><span class="comment"># y =  ['c', 'b', 'a']</span></span><br></pre></td></tr></table></figure></code></pre><h4 id="四-リストに対する操作と関数"><a href="#四-リストに対する操作と関数" class="headerlink" title="四.リストに対する操作と関数"></a>四.リストに対する操作と関数</h4><ol>
+<li><p>リストの連接</p>
+<ul>
+<li><p>+演算子</p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line">x = [<span class="string">"a"</span>,<span class="string">"b"</span>,<span class="string">"c"</span>]</span><br><span class="line">y = [<span class="string">"d"</span>,<span class="string">"e"</span>,<span class="string">"f"</span>]</span><br><span class="line">z = x + y</span><br><span class="line">print(z)</span><br><span class="line"></span><br><span class="line"><span class="comment"># ['a', 'b', 'c', 'd', 'e', 'f']</span></span><br><span class="line"></span><br><span class="line">x = [<span class="string">"a"</span>,<span class="string">"b"</span>,<span class="string">"c"</span>]</span><br><span class="line">y = [<span class="string">"d"</span>,<span class="string">"e"</span>,<span class="string">"f"</span>]</span><br><span class="line">x += y</span><br><span class="line">print(x)</span><br><span class="line"></span><br><span class="line"><span class="comment"># ['a', 'b', 'c', 'd', 'e', 'f']</span></span><br></pre></td></tr></table></figure>
+</li>
+<li><p>メソッド append() の違い</p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line">x = [<span class="string">"a"</span>,<span class="string">"b"</span>,<span class="string">"c"</span>]</span><br><span class="line">y = [<span class="string">"d"</span>,<span class="string">"e"</span>,<span class="string">"f"</span>]</span><br><span class="line">x.append(y)</span><br><span class="line">print(x)</span><br><span class="line"></span><br><span class="line"><span class="comment"># ['a', 'b', 'c', ['d', 'e', 'f']]</span></span><br></pre></td></tr></table></figure>
+</li>
+<li><p>メソッド extend()</p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line">x = [<span class="string">"a"</span>,<span class="string">"b"</span>,<span class="string">"c"</span>]</span><br><span class="line">y = [<span class="string">"d"</span>,<span class="string">"e"</span>,<span class="string">"f"</span>]</span><br><span class="line">x.extend(y)</span><br><span class="line">print(x)</span><br><span class="line"></span><br><span class="line"><span class="comment"># ['a', 'b', 'c', 'd', 'e', 'f']</span></span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+</li>
+<li><p>要素の削除</p>
+<ul>
+<li><p>del 文を使用</p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line">x = [<span class="string">"a"</span>,<span class="string">"b"</span>,<span class="string">"c"</span>]</span><br><span class="line"><span class="keyword">del</span> x[<span class="number">1</span>]</span><br><span class="line">print(x)</span><br><span class="line"></span><br><span class="line"><span class="comment"># ['a', 'c']</span></span><br><span class="line"></span><br><span class="line">x = [<span class="string">"a"</span>,<span class="string">"b"</span>,<span class="string">"c"</span>]</span><br><span class="line"><span class="keyword">del</span> x[<span class="number">-1</span>]</span><br><span class="line">print(x)</span><br><span class="line"></span><br><span class="line"><span class="comment"># ['a','b']</span></span><br></pre></td></tr></table></figure>
+</li>
+<li><p>メソッド remove()</p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line">x = [<span class="string">"a"</span>,<span class="string">"b"</span>,<span class="string">"c"</span>]</span><br><span class="line">x.remove[<span class="string">"b"</span>]</span><br><span class="line">print(x)</span><br><span class="line"></span><br><span class="line"><span class="comment"># ['a', 'c']</span></span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+</li>
+<li><p>リストの長さ(要素数)</p>
+<ul>
+<li><p>関数 len()</p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line">x = [<span class="string">"a"</span>,<span class="string">"b"</span>,<span class="string">"c"</span>]</span><br><span class="line">n = len(x)</span><br><span class="line">print(n)</span><br><span class="line"></span><br><span class="line"><span class="comment"># 3</span></span><br></pre></td></tr></table></figure>
+</li>
+<li><p>関数 count()</p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line">x = list(<span class="string">"abc"</span>)</span><br><span class="line">print(x)</span><br><span class="line">n = x.count(<span class="string">"b"</span>)</span><br><span class="line">print(n)</span><br><span class="line"></span><br><span class="line"><span class="comment"># ["a","b","c"]</span></span><br><span class="line"><span class="comment"># 2</span></span><br><span class="line"></span><br><span class="line">x = <span class="string">"abc"</span></span><br><span class="line">print(x)</span><br><span class="line">n = x.count(<span class="string">"b"</span>)</span><br><span class="line">print(n)</span><br><span class="line"></span><br><span class="line"><span class="comment"># abc</span></span><br><span class="line"><span class="comment"># 2</span></span><br></pre></td></tr></table></figure>
+
+</li>
+</ul>
+</li>
+</ol>
+<h4 id="五-リストの代入とコピー"><a href="#五-リストの代入とコピー" class="headerlink" title="五.リストの代入とコピー"></a>五.リストの代入とコピー</h4><ol>
+<li><p>リストの代入</p>
+<ul>
+<li>= による変数への代入</li>
+</ul>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line">x = [<span class="string">"green"</span>,<span class="string">"yellow"</span>,<span class="string">"red"</span>]</span><br><span class="line">y = x</span><br><span class="line">print(<span class="string">"x = "</span>,x)</span><br><span class="line">print(<span class="string">"y = "</span>,y)</span><br><span class="line"></span><br><span class="line"><span class="comment"># x =  ['green', 'yellow', 'red']</span></span><br><span class="line"><span class="comment"># y =  ['green', 'yellow', 'red']</span></span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>元のリストの要素の修 正結果が代入先にも反 映される</li>
+</ul>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line">x = [<span class="string">"green"</span>,<span class="string">"yellow"</span>,<span class="string">"red"</span>]</span><br><span class="line">y = x</span><br><span class="line">print(<span class="string">"x = "</span>,x)</span><br><span class="line">print(<span class="string">"y = "</span>,y)</span><br><span class="line">x[<span class="number">0</span>] = <span class="string">"oops"</span></span><br><span class="line">print(<span class="string">"x = "</span>,x)</span><br><span class="line">print(<span class="string">"y = "</span>,y)</span><br><span class="line"></span><br><span class="line"><span class="comment"># x =  ['green', 'yellow', 'red']</span></span><br><span class="line"><span class="comment"># y =  ['green', 'yellow', 'red']</span></span><br><span class="line"><span class="comment"># x =  ['oops', 'yellow', 'red']</span></span><br><span class="line"><span class="comment"># y =  ['oops', 'yellow', 'red']</span></span><br></pre></td></tr></table></figure>
+
+</li>
+</ol>
+<ol start="2">
+<li><p>関数 copy()</p>
+<ul>
+<li><p>copy()を用いると別のオブジェクトが生成される</p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line">x = [<span class="string">"green"</span>,<span class="string">"yellow"</span>,<span class="string">"red"</span>]</span><br><span class="line">y = x.copy()</span><br><span class="line">print(<span class="string">"x = "</span>,x)</span><br><span class="line">print(<span class="string">"y = "</span>,y)</span><br><span class="line">x[<span class="number">0</span>] = <span class="string">"oops"</span></span><br><span class="line">print(<span class="string">"x = "</span>,x)</span><br><span class="line">print(<span class="string">"y = "</span>,y)</span><br><span class="line"></span><br><span class="line"><span class="comment"># x =  ['green', 'yellow', 'red']</span></span><br><span class="line"><span class="comment"># y =  ['green', 'yellow', 'red']</span></span><br><span class="line"><span class="comment"># x =  ['oops', 'yellow', 'red']</span></span><br><span class="line"><span class="comment"># y =  ['green', 'yellow', 'red']</span></span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+</li>
+<li><p>list()変換関数</p>
+<ul>
+<li><p>リストのスライス [:]</p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line">x = [<span class="string">"green"</span>,<span class="string">"yellow"</span>,<span class="string">"red"</span>]</span><br><span class="line">y = x[:]</span><br><span class="line">print(<span class="string">"x = "</span>,x)</span><br><span class="line">print(<span class="string">"y = "</span>,y)</span><br><span class="line">x[<span class="number">0</span>] = <span class="string">"oops"</span></span><br><span class="line">print(<span class="string">"x = "</span>,x)</span><br><span class="line">print(<span class="string">"y = "</span>,y)</span><br><span class="line"></span><br><span class="line"><span class="comment"># x =  ['green', 'yellow', 'red']</span></span><br><span class="line"><span class="comment"># y =  ['green', 'yellow', 'red']</span></span><br><span class="line"><span class="comment"># x =  ['oops', 'yellow', 'red']</span></span><br><span class="line"><span class="comment"># y =  ['green', 'yellow', 'red']</span></span><br></pre></td></tr></table></figure>
+
+</li>
+</ul>
+</li>
+</ol>
+<h2 id="演習課題"><a href="#演習課題" class="headerlink" title="演習課題"></a>演習課題</h2><p>略</p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="comment"># 略</span></span><br></pre></td></tr></table></figure>
+
+<h1 id="質問"><a href="#質問" class="headerlink" title="質問"></a>質問</h1><p>何か質問が有ったら、コメントしてください。<br>多分何も回答しない（笑）、</p>
+<p>何故なら？この部落のURLは自分しか知ってる人間がいないので、<br>自分を自分に質問など、<br>面白いかな？</p>
+<p>未来の私が今の私にコメントする事（笑い</p>
 <p>以上</p>
 ]]></content>
       <categories>
@@ -315,192 +734,81 @@
       </tags>
   </entry>
   <entry>
-    <title>IoTと無線ネットワーク(3)</title>
-    <url>/2020/05/26/2020-05-26-IoT%E3%81%A8%E7%84%A1%E7%B7%9A%E3%83%8D%E3%83%83%E3%83%88%E3%83%AF%E3%83%BC%E3%82%AF(3)/</url>
-    <content><![CDATA[<h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>先生の無線マイクが信号混乱かも、今日はサイレント授業をやった。</p>
-<h1 id="IoT知識"><a href="#IoT知識" class="headerlink" title="IoT知識"></a>IoT知識</h1><p>静音授業なので、魚を触っていた。すまない父親が払った学費/泣きかぶり</p>
-<h1 id="python"><a href="#python" class="headerlink" title="python"></a>python</h1><h2 id="pythonプログラミング-3"><a href="#pythonプログラミング-3" class="headerlink" title="pythonプログラミング(3)"></a>pythonプログラミング(3)</h2><h3 id="コンテナの種類"><a href="#コンテナの種類" class="headerlink" title="コンテナの種類"></a>コンテナの種類</h3><p>Markdownは行列の合併ができない為、以下の表はHTMLより作成</p>
+    <title>IoTと無線ネットワーク(1)</title>
+    <url>/2020/05/12/2020-05-12-IoT%E3%81%A8%E7%84%A1%E7%B7%9A%E3%83%8D%E3%83%83%E3%83%88%E3%83%AF%E3%83%BC%E3%82%AF(1)/</url>
+    <content><![CDATA[<h4 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h4><p>今日からIoTと無線ネットワークのコースを始め、毎週火曜日zoomより授業を受ける。演習課題を授業終わると書くつもりので、こちに記録してMarkdownの書く技も練習する。頑張れ！</p>
+<h4 id="内容"><a href="#内容" class="headerlink" title="内容"></a>内容</h4><ul>
+<li>IoTとは何か?<ol>
+<li>IoT = Internet of Things = Internet + Things<pre><code>「モノのインターネット(Internet)」
+インターネット(Internet)によって接続された「モノ」</code></pre></li>
+<li>Thing:単なる「モノ」<pre><code>コンピュータ(computer)，タブレット(tablet)，携帯 電話などのガジェット(gadget)ではない</code></pre></li>
+<li>インターネット(Internet)の役割<pre><code>情報を送受信
+インターネット(Internet)に接続されたクラウド (cloud)上の計算サーバ(server)で稼働しているプロ グラムの助けを借りて，知的(smart)な処理が可能</code></pre></li>
+</ol>
+</li>
+<li>なぜIoTが実現可能になったか?<ol>
+<li>半導体技術の進歩<pre><code>集積度(チップあたりのトランジスタ数)の向上
+機能と性能の向上
+価格性能比の向上</code></pre></li>
+<li>インターネットの普及<pre><code>端末(edge)側:無線化(WiFi，Bluetooth)
+サーバ側:クラウド・サービスの提供</code></pre></li>
+<li>ソフトウェア開発環境の進歩<pre><code>Python，Ruby
+プロトタイピングが容易に⇒ビジネスの高速化</code></pre></li>
+</ol>
+</li>
+</ul>
+<h4 id="演習課題（１−１）"><a href="#演習課題（１−１）" class="headerlink" title="演習課題（１−１）"></a>演習課題（１−１）</h4><ul>
+<li><p>半導体の集積度が18カ月ごとに2倍になるとすると， 9年後には集積度は何倍になるか?</p>
+<ul>
+<li><p>ヒント：$𝑝(𝑛) = 2^{𝑛/1.5}$</p>
 <table>
-    <tr>
-        <th>種類</th>
-        <th>要素へのアクセス方法</th>
-        <th>mutable/<br>imutable</th>
-        <th>特徴</th>
-   </tr>
-   <tr>
-        <td>リスト</td>
-        <td rowspan="2">オフセットで位置を指定，値が含まれているかどうかも判定可能</td>
-        <td>mutable</td>
-        <td>スタック(FIFO)としても使用可</td>
-   </tr>
-   <tr>
-        <td>タプル</td>
-        <td>imutable</td>
-        <td>要素の値の変更，要素の追加・削除は<b>不可</b></td>
-   </tr>
-   <tr>
-        <td>辞書</td>
-        <td>オフセットの代わりにキーを用いて指定</td>
-        <td rowspan="2">mutable</td>
-        <td>キーとバリューを関連付けて格納連想記憶，ハッシュと類似</td>
-   </tr>
-   <tr>
-        <td>集合</td>
-        <td>集合に含まれているかどうかを判定</td>
-        <td>キーのみを持つ辞書のようなもの要素の重複がなく順番もない</td>
-   </tr>
-</table>
-
-
-<h3 id="リスト"><a href="#リスト" class="headerlink" title="リスト"></a>リスト</h3><h4 id="一-リストの生成-リストへの変換"><a href="#一-リストの生成-リストへの変換" class="headerlink" title="一.リストの生成, リストへの変換"></a>一.リストの生成, リストへの変換</h4><ol>
-<li><p>リストの生成</p>
-<ul>
-<li><p>空リストの生成</p>
-<figure class="highlight python"><table><tr><td class="code"><pre><span class="line">x = list()</span><br><span class="line">print(x)</span><br><span class="line"><span class="comment"># []</span></span><br><span class="line"></span><br><span class="line">x = []</span><br><span class="line">print(x)</span><br><span class="line"><span class="comment"># []</span></span><br></pre></td></tr></table></figure>
-</li>
-<li><p>空でないリストの生成</p>
-<figure class="highlight python"><table><tr><td class="code"><pre><span class="line">x = [<span class="string">"apple"</span>,<span class="string">"orange"</span>,<span class="string">"pear"</span>]</span><br><span class="line">print(x)</span><br><span class="line"><span class="comment"># ['apple','orange','pear']</span></span><br><span class="line"></span><br><span class="line">x = [<span class="string">"2"</span>,<span class="string">"0"</span>,<span class="string">"1"</span>,<span class="string">"9"</span>]</span><br><span class="line">print(x)</span><br><span class="line"><span class="comment"># ['2','0','1','9']</span></span><br></pre></td></tr></table></figure>
+<thead>
+<tr>
+<th>何年後</th>
+<th>何倍</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>9</td>
+<td>64</td>
+</tr>
+</tbody></table>
 </li>
 </ul>
 </li>
-<li><p>リストへの変換</p>
+</ul>
+<h4 id="演習課題（１−２）"><a href="#演習課題（１−２）" class="headerlink" title="演習課題（１−２）"></a>演習課題（１−２）</h4><ol>
+<li><p>演習課題 1-2-1</p>
 <ul>
-<li><p>文字列からリストへの変換</p>
-<figure class="highlight python"><table><tr><td class="code"><pre><span class="line">x = list(<span class="string">"cat"</span>)</span><br><span class="line">print(x)</span><br><span class="line"><span class="comment"># ['c','a','t']</span></span><br><span class="line"></span><br><span class="line">x = (<span class="string">"Apple"</span>,<span class="string">"Orange"</span>,<span class="string">"Pear"</span>) <span class="comment">#tuple</span></span><br><span class="line">y = list(x)</span><br><span class="line">print(y)</span><br><span class="line"><span class="comment"># ['Apple','Orange','Pear']</span></span><br></pre></td></tr></table></figure>
+<li><p>次の計算を行って結果を確認しなさい。</p>
+<pre><code>5 % 3 
+5 % (-3) 
+(-5) % 3 
+(-5) % (-3)</code></pre>  <figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="number">5</span> % <span class="number">3</span>       //<span class="number">2</span></span><br><span class="line"><span class="number">5</span> % (<span class="number">-3</span>)    //<span class="number">-1</span></span><br><span class="line">(<span class="number">-5</span>) % <span class="number">3</span>    //<span class="number">1</span></span><br><span class="line">(<span class="number">-5</span>) % (<span class="number">-3</span>) //<span class="number">-2</span></span><br></pre></td></tr></table></figure></li>
+<li><p>どのような規則で計算されているかを考えなさい。</p>
+  <figure class="highlight python"><table><tr><td class="code"><pre><span class="line">//A ％ B = C , 除算して、余数を表示します。</span><br><span class="line">//「-」はもしかし:</span><br><span class="line">//  ・+B ＝ C</span><br><span class="line">//  ・-B ＝ -C</span><br></pre></td></tr></table></figure></li>
+</ul>
+</li>
+<li><p>演習課題 1-2-2</p>
+<ul>
+<li><p>次の計算を行って結果を確認しなさい。</p>
+<pre><code>5 // 3 
+5 // (-3) 
+(-5) // 3 
+(-5) // (-3) </code></pre>  <figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="number">5</span> // <span class="number">3</span>       //<span class="number">1</span></span><br><span class="line"><span class="number">5</span> // (<span class="number">-3</span>)    //<span class="number">-2</span></span><br><span class="line">(<span class="number">-5</span>) // <span class="number">3</span>    //<span class="number">-2</span></span><br><span class="line">(<span class="number">-5</span>) // (<span class="number">-3</span>) //<span class="number">1</span></span><br></pre></td></tr></table></figure></li>
+<li><p>どのような規則で計算されているかを考えなさい。</p>
+  <figure class="highlight python"><table><tr><td class="code"><pre><span class="line">//除算して、余数を抜き、整数だけ残っています。</span><br></pre></td></tr></table></figure></li>
+</ul>
+</li>
+<li><p>演習課題 1-2-3</p>
+<ul>
+<li><p>2つの数値を変数xおよびyに入力し，xとyの加算， 減算，乗算，浮動小数点除算，整数除算，剰余を計 算して出力するプログラムを作成して，ソースリス トをPDFで提出せよ。</p>
+  <figure class="highlight python"><table><tr><td class="code"><pre><span class="line">x=int(input(<span class="string">"x="</span>))                         //x=<span class="number">5</span></span><br><span class="line">y=int(input(<span class="string">"y="</span>))                         //y=<span class="number">3</span></span><br><span class="line"></span><br><span class="line">print(<span class="string">"\n加算:"</span>)                            //加算:</span><br><span class="line">print(<span class="string">"x+y = "</span> ,x+y)                       //x+y =  <span class="number">8</span></span><br><span class="line"></span><br><span class="line">print(<span class="string">"\n減算:"</span>)                            //減算:</span><br><span class="line">print(<span class="string">"x-y = "</span> ,x-y)                       //x-y =  <span class="number">2</span></span><br><span class="line"></span><br><span class="line">print(<span class="string">"\n乗算:"</span>)                            //乗算:</span><br><span class="line">print(<span class="string">"x*y = "</span> ,x*y)                       //x*y =  <span class="number">15</span></span><br><span class="line"></span><br><span class="line">print(<span class="string">"\n浮動小数点除算:"</span>)                   //浮動小数点除算:</span><br><span class="line">print(<span class="string">"x.0/y.0 = "</span> ,float(x)/float(y))     //x<span class="number">.0</span>/y<span class="number">.0</span> =  <span class="number">1.6666666666666667</span></span><br><span class="line"></span><br><span class="line">print(<span class="string">"\n整数除算:"</span>)                        //整数除算:</span><br><span class="line">print(<span class="string">"x//y = "</span> ,x//y)                     //x//y =  <span class="number">1</span></span><br><span class="line"></span><br><span class="line">print(<span class="string">"\n剰余:"</span>)                           //剰余:</span><br><span class="line">print(<span class="string">"x%y = "</span> ,x%y)                       //x%y =  <span class="number">2</span></span><br></pre></td></tr></table></figure>
 
 </li>
 </ul>
 </li>
 </ol>
-<h4 id="二-インデックスを用いた要素の参照と変更"><a href="#二-インデックスを用いた要素の参照と変更" class="headerlink" title="二.インデックスを用いた要素の参照と変更"></a>二.インデックスを用いた要素の参照と変更</h4><ol>
-<li><p>要素の参照</p>
-<ul>
-<li><p>インデックスを用いた参照</p>
-<figure class="highlight python"><table><tr><td class="code"><pre><span class="line">x = [<span class="string">"a"</span>,<span class="string">"b"</span>,<span class="string">"c"</span>,<span class="string">"d"</span>,<span class="string">"e"</span>,<span class="string">"f"</span>]</span><br><span class="line">print(x[<span class="number">0</span>])</span><br><span class="line">print(x[<span class="number">1</span>])</span><br><span class="line">print(x[<span class="number">2</span>])</span><br><span class="line">print(x[<span class="number">-1</span>])</span><br><span class="line">print(x[<span class="number">-2</span>])</span><br><span class="line">print(x[<span class="number">-3</span>])</span><br><span class="line"></span><br><span class="line"><span class="comment">#a</span></span><br><span class="line"><span class="comment">#b</span></span><br><span class="line"><span class="comment">#c</span></span><br><span class="line"><span class="comment">#f</span></span><br><span class="line"><span class="comment">#e</span></span><br><span class="line"><span class="comment">#d</span></span><br></pre></td></tr></table></figure>
-</li>
-</ul>
-</li>
-<li><p>リスト要素の値の変更</p>
-<ul>
-<li><p>インデックスを用いた値の変更</p>
-<figure class="highlight python"><table><tr><td class="code"><pre><span class="line">x = [<span class="string">"green"</span>,<span class="string">"yellow"</span>,<span class="string">"red"</span>]</span><br><span class="line">x[<span class="number">0</span>] = <span class="string">"oops"</span></span><br><span class="line">print(x)</span><br><span class="line"></span><br><span class="line"><span class="comment"># ['oops', 'yellow', 'red']</span></span><br></pre></td></tr></table></figure>
-</li>
-</ul>
-</li>
-<li><p>サブシークエンスの参照</p>
-<ul>
-<li><p>スライス(インデックスを用いた範囲指定)</p>
-<figure class="highlight python"><table><tr><td class="code"><pre><span class="line">x = [<span class="string">"a"</span>,<span class="string">"b"</span>,<span class="string">"c"</span>,<span class="string">"d"</span>,<span class="string">"e"</span>,<span class="string">"f"</span>]</span><br><span class="line">print(x[:])</span><br><span class="line">print(x[<span class="number">0</span>:])</span><br><span class="line">print(x[<span class="number">1</span>:])</span><br><span class="line">print(x[<span class="number">2</span>:<span class="number">4</span>])</span><br><span class="line">print(x[<span class="number">-4</span>:<span class="number">-2</span>])</span><br><span class="line"></span><br><span class="line"><span class="comment">#['a', 'b', 'c', 'd', 'e', 'f']</span></span><br><span class="line"><span class="comment">#['a', 'c', 'e']</span></span><br><span class="line"><span class="comment">#['b', 'd', 'f']</span></span><br><span class="line"><span class="comment">#['b', 'e']</span></span><br><span class="line"><span class="comment">#['c', 'e']</span></span><br><span class="line"><span class="comment">#['c', 'f']</span></span><br></pre></td></tr></table></figure>
-</li>
-</ul>
-</li>
-<li><p>サブシークエンスの変更</p>
-<ul>
-<li><p>スライスを用いた値の変更</p>
-<figure class="highlight python"><table><tr><td class="code"><pre><span class="line">x = [<span class="string">"a"</span>,<span class="string">"b"</span>,<span class="string">"c"</span>,<span class="string">"d"</span>,<span class="string">"e"</span>,<span class="string">"f"</span>]</span><br><span class="line">x[<span class="number">2</span>:<span class="number">4</span>] = [<span class="string">"x"</span>,<span class="string">"y"</span>]</span><br><span class="line">print(x)</span><br><span class="line"></span><br><span class="line"><span class="comment"># ['a', 'b', 'x', 'y', 'e', 'f']</span></span><br><span class="line"></span><br><span class="line">x = [<span class="string">"a"</span>,<span class="string">"b"</span>,<span class="string">"c"</span>,<span class="string">"d"</span>,<span class="string">"e"</span>,<span class="string">"f"</span>]</span><br><span class="line">x[<span class="number">1</span>::<span class="number">2</span>] = [<span class="string">"x"</span>,<span class="string">"y"</span>,<span class="string">"z"</span>]</span><br><span class="line">print(x)</span><br><span class="line"></span><br><span class="line"><span class="comment"># ['a', 'x', 'c', 'y', 'e', 'z']</span></span><br></pre></td></tr></table></figure>
-</li>
-</ul>
-</li>
-<li><p>要素の有無の確認</p>
-<ul>
-<li><p>演算子 in を用いた要素の有無の確認</p>
-<figure class="highlight python"><table><tr><td class="code"><pre><span class="line">x = [<span class="string">"green"</span>,<span class="string">"yellow"</span>,<span class="string">"red"</span>]</span><br><span class="line">print(<span class="string">"green"</span> <span class="keyword">in</span> x)</span><br><span class="line">print(<span class="string">"black"</span> <span class="keyword">not</span> <span class="keyword">in</span> x)</span><br><span class="line"></span><br><span class="line"><span class="comment"># True</span></span><br><span class="line"><span class="comment"># True</span></span><br></pre></td></tr></table></figure>
-</li>
-</ul>
-</li>
-<li><p>要素のインデックスの検索</p>
-<ul>
-<li><p>関数 index() を用いた要素のインデックスの検索</p>
-<figure class="highlight python"><table><tr><td class="code"><pre><span class="line">x = [<span class="string">"a"</span>,<span class="string">"b"</span>,<span class="string">"c"</span>,<span class="string">"d"</span>,<span class="string">"e"</span>,<span class="string">"f"</span>]</span><br><span class="line">print(x.index(<span class="string">"c"</span>))</span><br><span class="line">print(x.index(<span class="string">"f"</span>))</span><br><span class="line"></span><br><span class="line"><span class="comment"># 2</span></span><br><span class="line"><span class="comment"># 5</span></span><br><span class="line"></span><br><span class="line">print(x.index(<span class="string">"z"</span>))</span><br><span class="line"></span><br><span class="line"><span class="comment"># ValueError: 'z' is not in list</span></span><br></pre></td></tr></table></figure>
-
-</li>
-</ul>
-</li>
-</ol>
-<h4 id="三-リストへの要素の追加と削除"><a href="#三-リストへの要素の追加と削除" class="headerlink" title="三.リストへの要素の追加と削除"></a>三.リストへの要素の追加と削除</h4><ol>
-<li><p>末尾への要素の追加</p>
-<ul>
-<li><p>メソッドppend()</p>
-<figure class="highlight python"><table><tr><td class="code"><pre><span class="line">x = [<span class="number">3</span>,<span class="number">1</span>,<span class="number">4</span>]</span><br><span class="line">print(x)</span><br><span class="line">x.append(<span class="number">1</span>)</span><br><span class="line">print(x)</span><br><span class="line">x.append(<span class="number">5</span>)</span><br><span class="line">print(x)</span><br><span class="line"></span><br><span class="line"><span class="comment"># [3, 1, 4]</span></span><br><span class="line"><span class="comment"># [3, 1, 4, 1]</span></span><br><span class="line"><span class="comment"># [3, 1, 4, 1, 5]</span></span><br></pre></td></tr></table></figure>
-
-</li>
-</ul>
-</li>
-</ol>
-<p>2.要素の取り出し<br>    - メソッド pop()  末尾の要素の取り出し<br>    - メソッド pop(i) インデックスを用いた要素の取り出し</p>
-<pre><code><figure class="highlight python"><table><tr><td class="code"><pre><span class="line">x = [<span class="string">"a"</span>,<span class="string">"b"</span>,<span class="string">"c"</span>]</span><br><span class="line">y = []</span><br><span class="line">print(<span class="string">"x = "</span>,x)</span><br><span class="line">print(<span class="string">"y = "</span>,y)</span><br><span class="line">y.append(x.pop())</span><br><span class="line">print(<span class="string">"x = "</span>,x)</span><br><span class="line">print(<span class="string">"y = "</span>,y)</span><br><span class="line">y.append(x.pop())</span><br><span class="line">print(<span class="string">"x = "</span>,x)</span><br><span class="line">print(<span class="string">"y = "</span>,y)</span><br><span class="line">y.append(x.pop())</span><br><span class="line">print(<span class="string">"x = "</span>,x)</span><br><span class="line">print(<span class="string">"y = "</span>,y)</span><br><span class="line"></span><br><span class="line"><span class="comment"># x =  ['a', 'b', 'c']</span></span><br><span class="line"><span class="comment"># y =  []</span></span><br><span class="line"><span class="comment"># x =  ['a', 'b']</span></span><br><span class="line"><span class="comment"># y =  ['c']</span></span><br><span class="line"><span class="comment"># x =  ['a']</span></span><br><span class="line"><span class="comment"># y =  ['c', 'b']</span></span><br><span class="line"><span class="comment"># x =  []</span></span><br><span class="line"><span class="comment"># y =  ['c', 'b', 'a']</span></span><br></pre></td></tr></table></figure></code></pre><h4 id="四-リストに対する操作と関数"><a href="#四-リストに対する操作と関数" class="headerlink" title="四.リストに対する操作と関数"></a>四.リストに対する操作と関数</h4><ol>
-<li><p>リストの連接</p>
-<ul>
-<li><p>+演算子</p>
-<figure class="highlight python"><table><tr><td class="code"><pre><span class="line">x = [<span class="string">"a"</span>,<span class="string">"b"</span>,<span class="string">"c"</span>]</span><br><span class="line">y = [<span class="string">"d"</span>,<span class="string">"e"</span>,<span class="string">"f"</span>]</span><br><span class="line">z = x + y</span><br><span class="line">print(z)</span><br><span class="line"></span><br><span class="line"><span class="comment"># ['a', 'b', 'c', 'd', 'e', 'f']</span></span><br><span class="line"></span><br><span class="line">x = [<span class="string">"a"</span>,<span class="string">"b"</span>,<span class="string">"c"</span>]</span><br><span class="line">y = [<span class="string">"d"</span>,<span class="string">"e"</span>,<span class="string">"f"</span>]</span><br><span class="line">x += y</span><br><span class="line">print(x)</span><br><span class="line"></span><br><span class="line"><span class="comment"># ['a', 'b', 'c', 'd', 'e', 'f']</span></span><br></pre></td></tr></table></figure>
-</li>
-<li><p>メソッド append() の違い</p>
-<figure class="highlight python"><table><tr><td class="code"><pre><span class="line">x = [<span class="string">"a"</span>,<span class="string">"b"</span>,<span class="string">"c"</span>]</span><br><span class="line">y = [<span class="string">"d"</span>,<span class="string">"e"</span>,<span class="string">"f"</span>]</span><br><span class="line">x.append(y)</span><br><span class="line">print(x)</span><br><span class="line"></span><br><span class="line"><span class="comment"># ['a', 'b', 'c', ['d', 'e', 'f']]</span></span><br></pre></td></tr></table></figure>
-</li>
-<li><p>メソッド extend()</p>
-<figure class="highlight python"><table><tr><td class="code"><pre><span class="line">x = [<span class="string">"a"</span>,<span class="string">"b"</span>,<span class="string">"c"</span>]</span><br><span class="line">y = [<span class="string">"d"</span>,<span class="string">"e"</span>,<span class="string">"f"</span>]</span><br><span class="line">x.extend(y)</span><br><span class="line">print(x)</span><br><span class="line"></span><br><span class="line"><span class="comment"># ['a', 'b', 'c', 'd', 'e', 'f']</span></span><br></pre></td></tr></table></figure>
-</li>
-</ul>
-</li>
-<li><p>要素の削除</p>
-<ul>
-<li><p>del 文を使用</p>
-<figure class="highlight python"><table><tr><td class="code"><pre><span class="line">x = [<span class="string">"a"</span>,<span class="string">"b"</span>,<span class="string">"c"</span>]</span><br><span class="line"><span class="keyword">del</span> x[<span class="number">1</span>]</span><br><span class="line">print(x)</span><br><span class="line"></span><br><span class="line"><span class="comment"># ['a', 'c']</span></span><br><span class="line"></span><br><span class="line">x = [<span class="string">"a"</span>,<span class="string">"b"</span>,<span class="string">"c"</span>]</span><br><span class="line"><span class="keyword">del</span> x[<span class="number">-1</span>]</span><br><span class="line">print(x)</span><br><span class="line"></span><br><span class="line"><span class="comment"># ['a','b']</span></span><br></pre></td></tr></table></figure>
-</li>
-<li><p>メソッド remove()</p>
-<figure class="highlight python"><table><tr><td class="code"><pre><span class="line">x = [<span class="string">"a"</span>,<span class="string">"b"</span>,<span class="string">"c"</span>]</span><br><span class="line">x.remove[<span class="string">"b"</span>]</span><br><span class="line">print(x)</span><br><span class="line"></span><br><span class="line"><span class="comment"># ['a', 'c']</span></span><br></pre></td></tr></table></figure>
-</li>
-</ul>
-</li>
-<li><p>リストの長さ(要素数)</p>
-<ul>
-<li><p>関数 len()</p>
-<figure class="highlight python"><table><tr><td class="code"><pre><span class="line">x = [<span class="string">"a"</span>,<span class="string">"b"</span>,<span class="string">"c"</span>]</span><br><span class="line">n = len(x)</span><br><span class="line">print(n)</span><br><span class="line"></span><br><span class="line"><span class="comment"># 3</span></span><br></pre></td></tr></table></figure>
-</li>
-<li><p>関数 count()</p>
-<figure class="highlight python"><table><tr><td class="code"><pre><span class="line">x = list(<span class="string">"abc"</span>)</span><br><span class="line">print(x)</span><br><span class="line">n = x.count(<span class="string">"b"</span>)</span><br><span class="line">print(n)</span><br><span class="line"></span><br><span class="line"><span class="comment"># ["a","b","c"]</span></span><br><span class="line"><span class="comment"># 2</span></span><br><span class="line"></span><br><span class="line">x = <span class="string">"abc"</span></span><br><span class="line">print(x)</span><br><span class="line">n = x.count(<span class="string">"b"</span>)</span><br><span class="line">print(n)</span><br><span class="line"></span><br><span class="line"><span class="comment"># abc</span></span><br><span class="line"><span class="comment"># 2</span></span><br></pre></td></tr></table></figure>
-
-</li>
-</ul>
-</li>
-</ol>
-<h4 id="五-リストの代入とコピー"><a href="#五-リストの代入とコピー" class="headerlink" title="五.リストの代入とコピー"></a>五.リストの代入とコピー</h4><ol>
-<li><p>リストの代入</p>
-<ul>
-<li>= による変数への代入</li>
-</ul>
-<figure class="highlight python"><table><tr><td class="code"><pre><span class="line">x = [<span class="string">"green"</span>,<span class="string">"yellow"</span>,<span class="string">"red"</span>]</span><br><span class="line">y = x</span><br><span class="line">print(<span class="string">"x = "</span>,x)</span><br><span class="line">print(<span class="string">"y = "</span>,y)</span><br><span class="line"></span><br><span class="line"><span class="comment"># x =  ['green', 'yellow', 'red']</span></span><br><span class="line"><span class="comment"># y =  ['green', 'yellow', 'red']</span></span><br></pre></td></tr></table></figure>
-
-<ul>
-<li>元のリストの要素の修 正結果が代入先にも反 映される</li>
-</ul>
-<figure class="highlight python"><table><tr><td class="code"><pre><span class="line">x = [<span class="string">"green"</span>,<span class="string">"yellow"</span>,<span class="string">"red"</span>]</span><br><span class="line">y = x</span><br><span class="line">print(<span class="string">"x = "</span>,x)</span><br><span class="line">print(<span class="string">"y = "</span>,y)</span><br><span class="line">x[<span class="number">0</span>] = <span class="string">"oops"</span></span><br><span class="line">print(<span class="string">"x = "</span>,x)</span><br><span class="line">print(<span class="string">"y = "</span>,y)</span><br><span class="line"></span><br><span class="line"><span class="comment"># x =  ['green', 'yellow', 'red']</span></span><br><span class="line"><span class="comment"># y =  ['green', 'yellow', 'red']</span></span><br><span class="line"><span class="comment"># x =  ['oops', 'yellow', 'red']</span></span><br><span class="line"><span class="comment"># y =  ['oops', 'yellow', 'red']</span></span><br></pre></td></tr></table></figure>
-
-</li>
-</ol>
-<ol start="2">
-<li><p>関数 copy()</p>
-<ul>
-<li><p>copy()を用いると別のオブジェクトが生成される</p>
-<figure class="highlight python"><table><tr><td class="code"><pre><span class="line">x = [<span class="string">"green"</span>,<span class="string">"yellow"</span>,<span class="string">"red"</span>]</span><br><span class="line">y = x.copy()</span><br><span class="line">print(<span class="string">"x = "</span>,x)</span><br><span class="line">print(<span class="string">"y = "</span>,y)</span><br><span class="line">x[<span class="number">0</span>] = <span class="string">"oops"</span></span><br><span class="line">print(<span class="string">"x = "</span>,x)</span><br><span class="line">print(<span class="string">"y = "</span>,y)</span><br><span class="line"></span><br><span class="line"><span class="comment"># x =  ['green', 'yellow', 'red']</span></span><br><span class="line"><span class="comment"># y =  ['green', 'yellow', 'red']</span></span><br><span class="line"><span class="comment"># x =  ['oops', 'yellow', 'red']</span></span><br><span class="line"><span class="comment"># y =  ['green', 'yellow', 'red']</span></span><br></pre></td></tr></table></figure>
-</li>
-</ul>
-</li>
-<li><p>list()変換関数</p>
-<ul>
-<li><p>リストのスライス [:]</p>
-<figure class="highlight python"><table><tr><td class="code"><pre><span class="line">x = [<span class="string">"green"</span>,<span class="string">"yellow"</span>,<span class="string">"red"</span>]</span><br><span class="line">y = x[:]</span><br><span class="line">print(<span class="string">"x = "</span>,x)</span><br><span class="line">print(<span class="string">"y = "</span>,y)</span><br><span class="line">x[<span class="number">0</span>] = <span class="string">"oops"</span></span><br><span class="line">print(<span class="string">"x = "</span>,x)</span><br><span class="line">print(<span class="string">"y = "</span>,y)</span><br><span class="line"></span><br><span class="line"><span class="comment"># x =  ['green', 'yellow', 'red']</span></span><br><span class="line"><span class="comment"># y =  ['green', 'yellow', 'red']</span></span><br><span class="line"><span class="comment"># x =  ['oops', 'yellow', 'red']</span></span><br><span class="line"><span class="comment"># y =  ['green', 'yellow', 'red']</span></span><br></pre></td></tr></table></figure>
-
-</li>
-</ul>
-</li>
-</ol>
-<h2 id="演習課題"><a href="#演習課題" class="headerlink" title="演習課題"></a>演習課題</h2><p>略</p>
-<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="comment"># 略</span></span><br></pre></td></tr></table></figure>
-
-<h1 id="質問"><a href="#質問" class="headerlink" title="質問"></a>質問</h1><p>何か質問が有ったら、コメントしてください。<br>多分何も回答しない（笑）、</p>
-<p>何故なら？この部落のURLは自分しか知ってる人間がいないので、<br>自分を自分に質問など、<br>面白いかな？</p>
-<p>未来の私が今の私にコメントする事（笑い</p>
 <p>以上</p>
 ]]></content>
       <categories>
@@ -534,310 +842,6 @@
       </categories>
       <tags>
         <tag>中文</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>IoTと無線ネットワーク(4)</title>
-    <url>/2020/06/02/2020-06-02-IoT%E3%81%A8%E7%84%A1%E7%B7%9A%E3%83%8D%E3%83%83%E3%83%88%E3%83%AF%E3%83%BC%E3%82%AF(4)/</url>
-    <content><![CDATA[<h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>今日の授業はプロトタイピングです。</p>
-<h1 id="IoT知識"><a href="#IoT知識" class="headerlink" title="IoT知識"></a>IoT知識</h1><p>参考資料：<a href="https://ja.wikipedia.org/wiki/プロトタイピング" target="_blank" rel="noopener">https://ja.wikipedia.org/wiki/プロトタイピング</a></p>
-<h1 id="python"><a href="#python" class="headerlink" title="python"></a>python</h1><h2 id="pythonプログラミング-４"><a href="#pythonプログラミング-４" class="headerlink" title="pythonプログラミング(４)"></a>pythonプログラミング(４)</h2><h3 id="一、タプル"><a href="#一、タプル" class="headerlink" title="一、タプル"></a>一、タプル</h3><h4 id="タプルの生成"><a href="#タプルの生成" class="headerlink" title="タプルの生成"></a>タプルの生成</h4><ol>
-<li><p>空タプルの生成</p>
-<ul>
-<li><p>関数 tuple()</p>
-<figure class="highlight python"><table><tr><td class="code"><pre><span class="line">empty = tuple()</span><br><span class="line">print(empty)</span><br><span class="line"></span><br><span class="line"><span class="comment"># ()</span></span><br></pre></td></tr></table></figure>
-</li>
-<li><p>()</p>
-<figure class="highlight python"><table><tr><td class="code"><pre><span class="line">empty = ()</span><br><span class="line">print(empty)</span><br><span class="line"></span><br><span class="line"><span class="comment"># ()</span></span><br></pre></td></tr></table></figure>
-</li>
-</ul>
-</li>
-<li><p>空でないタプルの生成</p>
-<ul>
-<li>(【要素の並び】)<figure class="highlight python"><table><tr><td class="code"><pre><span class="line">rndm = (<span class="string">"M. Jackson"</span>, <span class="number">1958</span>, <span class="literal">True</span>)</span><br><span class="line">print(rndm)</span><br><span class="line"></span><br><span class="line"><span class="comment"># ('M. Jackson', 1958, True)</span></span><br></pre></td></tr></table></figure>
-</li>
-</ul>
-</li>
-<li><p>タプルへの変換</p>
-<ul>
-<li><p>リストからタプルへの変換</p>
-<figure class="highlight python"><table><tr><td class="code"><pre><span class="line">numbers = tuple([<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>,<span class="number">4</span>,<span class="number">5</span>])</span><br><span class="line">print(numbers)</span><br><span class="line"></span><br><span class="line"><span class="comment"># (1,2,3,4,5)</span></span><br></pre></td></tr></table></figure>
-</li>
-<li><p>文字列からタプルへの変換</p>
-<figure class="highlight python"><table><tr><td class="code"><pre><span class="line">abc = tuple(<span class="string">"abcde"</span>)</span><br><span class="line">print(abc)</span><br><span class="line"></span><br><span class="line"><span class="comment"># ('a','b','c','d','e')</span></span><br></pre></td></tr></table></figure>
-
-</li>
-</ul>
-</li>
-</ol>
-<h4 id="要素の参照と検索"><a href="#要素の参照と検索" class="headerlink" title="要素の参照と検索"></a>要素の参照と検索</h4><ol>
-<li><p>タプルの要素の参照</p>
-<ul>
-<li><p>先頭からのオフセットによる参照</p>
-<figure class="highlight python"><table><tr><td class="code"><pre><span class="line">dys = (<span class="string">"1984"</span>,<span class="string">"Brave New World"</span>,<span class="string">"Faherenheit 451"</span>)</span><br><span class="line">print(dys[<span class="number">0</span>])</span><br><span class="line">print(dys[<span class="number">1</span>])</span><br><span class="line">print(dys[<span class="number">2</span>])</span><br><span class="line"></span><br><span class="line"><span class="comment"># 1984</span></span><br><span class="line"><span class="comment"># Brave New World</span></span><br><span class="line"><span class="comment"># Faherenheit 451</span></span><br></pre></td></tr></table></figure>
-</li>
-<li><p>末尾からのオフセットによる参照</p>
-<figure class="highlight python"><table><tr><td class="code"><pre><span class="line">dys = (<span class="string">"1984"</span>,<span class="string">"Brave New World"</span>,<span class="string">"Faherenheit 451"</span>)</span><br><span class="line">print(dys[<span class="number">-1</span>])</span><br><span class="line">print(dys[<span class="number">-2</span>])</span><br><span class="line">print(dys[<span class="number">-2</span>])</span><br><span class="line"></span><br><span class="line"><span class="comment"># Faherenheit 451</span></span><br><span class="line"><span class="comment"># Brave New World</span></span><br><span class="line"><span class="comment"># 1984</span></span><br></pre></td></tr></table></figure>
-</li>
-</ul>
-</li>
-<li><p>タプルの要素の検索</p>
-<ul>
-<li>演算子 in の使用<figure class="highlight python"><table><tr><td class="code"><pre><span class="line">dys = (<span class="string">"1984"</span>,<span class="string">"Brave New World"</span>,<span class="string">"Faherenheit 451"</span>)</span><br><span class="line">print(<span class="string">"1984"</span> <span class="keyword">in</span> dys)</span><br><span class="line">print(<span class="string">"Handmaid's"</span> <span class="keyword">not</span> <span class="keyword">in</span> dys)</span><br><span class="line"></span><br><span class="line"><span class="comment"># True</span></span><br><span class="line"><span class="comment"># True</span></span><br></pre></td></tr></table></figure>
-
-</li>
-</ul>
-</li>
-</ol>
-<h3 id="二、辞書"><a href="#二、辞書" class="headerlink" title="二、辞書"></a>二、辞書</h3><h4 id="辞書の生成"><a href="#辞書の生成" class="headerlink" title="辞書の生成"></a>辞書の生成</h4><ol>
-<li><p>空辞書の生成</p>
-<ul>
-<li><p>dict()</p>
-<figure class="highlight python"><table><tr><td class="code"><pre><span class="line">fruits = dict()</span><br><span class="line">print(fruits)</span><br><span class="line"></span><br><span class="line"><span class="comment"># &#123;&#125;</span></span><br></pre></td></tr></table></figure>
-</li>
-<li><p>()</p>
-<figure class="highlight python"><table><tr><td class="code"><pre><span class="line">fruits = &#123;&#125;</span><br><span class="line">print(fruits)</span><br><span class="line"></span><br><span class="line"><span class="comment"># &#123;&#125;</span></span><br></pre></td></tr></table></figure>
-</li>
-</ul>
-</li>
-<li><p>空でない辞書の生成</p>
-<ul>
-<li>{【キーとバリューのペアの並び】}<figure class="highlight python"><table><tr><td class="code"><pre><span class="line">fruits = &#123;<span class="string">"Apple"</span>:<span class="string">"Red"</span>,</span><br><span class="line">        <span class="string">"Banana"</span>:<span class="string">"Yellow"</span>&#125;</span><br><span class="line">print(fruits)</span><br><span class="line"></span><br><span class="line"><span class="comment"># &#123;'Apple':'Red','Banana':'Yellow'&#125;</span></span><br></pre></td></tr></table></figure>
-
-</li>
-</ul>
-</li>
-</ol>
-<h4 id="要素の追加，参照，値の変更"><a href="#要素の追加，参照，値の変更" class="headerlink" title="要素の追加，参照，値の変更"></a>要素の追加，参照，値の変更</h4><ol>
-<li><p>要素の追加</p>
-<ul>
-<li>辞書名[キー]=バリュー<figure class="highlight python"><table><tr><td class="code"><pre><span class="line">fruits = dict()</span><br><span class="line">fruits[<span class="string">"Apple"</span>] = <span class="string">"Red"</span></span><br><span class="line">fruits[<span class="string">"Banana"</span>] = <span class="string">"Yellow"</span></span><br><span class="line">print(fruits)</span><br><span class="line"></span><br><span class="line"><span class="comment"># &#123;'Apple':'Red','Banana':'Yellow'&#125;</span></span><br></pre></td></tr></table></figure>
-</li>
-</ul>
-</li>
-<li><p>要素の参照</p>
-<ul>
-<li>辞書名[キー]<figure class="highlight python"><table><tr><td class="code"><pre><span class="line">fruits = dict()</span><br><span class="line">fruits[<span class="string">"Apple"</span>] = <span class="string">"Red"</span></span><br><span class="line">fruits[<span class="string">"Banana"</span>] = <span class="string">"Yellow"</span></span><br><span class="line">print(<span class="string">"Apple is"</span>,fruits[<span class="string">"Apple"</span>])</span><br><span class="line">print(<span class="string">"Banana is"</span>,fruits[<span class="string">"Banana"</span>])</span><br><span class="line"></span><br><span class="line"><span class="comment"># Apple is Red</span></span><br><span class="line"><span class="comment"># Banana is Yellow</span></span><br></pre></td></tr></table></figure>
-</li>
-</ul>
-</li>
-<li><p>要素の値の変更</p>
-<ul>
-<li>辞書名[キー]=バリュー<figure class="highlight python"><table><tr><td class="code"><pre><span class="line">fruits = &#123;<span class="string">"Apple"</span>:<span class="string">"Red"</span>,</span><br><span class="line">        <span class="string">"Banana"</span>:<span class="string">"Yellow"</span>&#125;</span><br><span class="line">fruits[<span class="string">"Lemon"</span>] = <span class="string">"Green"</span></span><br><span class="line">print(<span class="string">"Apple is"</span>,fruits[<span class="string">"Apple"</span>])</span><br><span class="line">print(<span class="string">"Banana is"</span>,fruits[<span class="string">"Banana"</span>])</span><br><span class="line">print(<span class="string">"Lemon is"</span>,fruits[<span class="string">"Green"</span>])</span><br><span class="line"></span><br><span class="line"><span class="comment"># Apple is Red</span></span><br><span class="line"><span class="comment"># Banana is Yellow</span></span><br><span class="line"><span class="comment"># Lemon is Green</span></span><br></pre></td></tr></table></figure>
-
-</li>
-</ul>
-</li>
-</ol>
-<h4 id="キーによる検索，キーと値の取得"><a href="#キーによる検索，キーと値の取得" class="headerlink" title="キーによる検索，キーと値の取得"></a>キーによる検索，キーと値の取得</h4><ol>
-<li><p>キーの検索</p>
-<ul>
-<li>演算子 in<figure class="highlight python"><table><tr><td class="code"><pre><span class="line">fruits = &#123;<span class="string">"Apple"</span>:<span class="string">"Red"</span>,</span><br><span class="line">        <span class="string">"Banana"</span>:<span class="string">"Yellow"</span>,</span><br><span class="line">        <span class="string">"Lemon"</span>:<span class="string">"Green"</span>&#125;</span><br><span class="line">print(<span class="string">"Apple"</span> <span class="keyword">in</span> fruits)</span><br><span class="line">print(<span class="string">"Melon"</span> <span class="keyword">in</span> fruits)</span><br><span class="line"></span><br><span class="line"><span class="comment"># True</span></span><br><span class="line"><span class="comment"># False</span></span><br></pre></td></tr></table></figure>
-</li>
-</ul>
-</li>
-<li><p>全ての <strong>キー</strong> の取得</p>
-<ul>
-<li>関数 keys()<figure class="highlight python"><table><tr><td class="code"><pre><span class="line">fruits = &#123;<span class="string">"Apple"</span>:<span class="string">"Red"</span>,</span><br><span class="line">        <span class="string">"Banana"</span>:<span class="string">"Yellow"</span>,</span><br><span class="line">        <span class="string">"Lemon"</span>:<span class="string">"Green"</span>&#125;</span><br><span class="line">print(fruits.keys())</span><br><span class="line"></span><br><span class="line"><span class="comment"># dict_keys(['Apple','Banana','Meron'])</span></span><br></pre></td></tr></table></figure>
-</li>
-</ul>
-</li>
-<li><p>全ての <strong>値</strong> の取得</p>
-<ul>
-<li>関数 values()<figure class="highlight python"><table><tr><td class="code"><pre><span class="line">fruits = &#123;<span class="string">"Apple"</span>:<span class="string">"Red"</span>,</span><br><span class="line">        <span class="string">"Banana"</span>:<span class="string">"Yellow"</span>,</span><br><span class="line">        <span class="string">"Lemon"</span>:<span class="string">"Green"</span>&#125;</span><br><span class="line">print(fruits.values())</span><br><span class="line"></span><br><span class="line"><span class="comment"># dict_values(['Red','Yellow','Green'])</span></span><br></pre></td></tr></table></figure>
-</li>
-</ul>
-</li>
-<li><p>全ての <strong>キー/値ペア</strong> の取得</p>
-<ul>
-<li>関数 items()<figure class="highlight python"><table><tr><td class="code"><pre><span class="line">fruits = &#123;<span class="string">"Apple"</span>:<span class="string">"Red"</span>,</span><br><span class="line">        <span class="string">"Banana"</span>:<span class="string">"Yellow"</span>,</span><br><span class="line">        <span class="string">"Lemon"</span>:<span class="string">"Green"</span>&#125;</span><br><span class="line">print(fruits.items())</span><br><span class="line"></span><br><span class="line"><span class="comment"># dict_items((['Apple':'Red'),('Banana':'Yellow'),('Lemon':'Green')])</span></span><br></pre></td></tr></table></figure>
-
-</li>
-</ul>
-</li>
-</ol>
-<h4 id="要素の削除，辞書の削除"><a href="#要素の削除，辞書の削除" class="headerlink" title="要素の削除，辞書の削除"></a>要素の削除，辞書の削除</h4><ol>
-<li><p>辞書の要素の削除</p>
-<ul>
-<li>del文<figure class="highlight python"><table><tr><td class="code"><pre><span class="line">fruits = &#123;<span class="string">"Apple"</span>:<span class="string">"Red"</span>,</span><br><span class="line">        <span class="string">"Banana"</span>:<span class="string">"Yellow"</span>,</span><br><span class="line">        <span class="string">"Lemon"</span>:<span class="string">"Green"</span>&#125;</span><br><span class="line">print(fruits)</span><br><span class="line"><span class="keyword">del</span> fruits[<span class="string">"Banana"</span>]</span><br><span class="line">print(fruits)</span><br><span class="line"></span><br><span class="line"><span class="comment"># &#123;'Apple':'Red','Banana':'Yellow','Lemon':'Green'&#125;</span></span><br><span class="line"><span class="comment"># &#123;'Apple':'Red','Lemon':'Green'&#125;</span></span><br></pre></td></tr></table></figure>
-</li>
-</ul>
-</li>
-<li><p>辞書の全要素の削除</p>
-<ul>
-<li>メソッド clear()<figure class="highlight python"><table><tr><td class="code"><pre><span class="line">fruits = &#123;<span class="string">"Apple"</span>:<span class="string">"Red"</span>,</span><br><span class="line">        <span class="string">"Banana"</span>:<span class="string">"Yellow"</span>,</span><br><span class="line">        <span class="string">"Lemon"</span>:<span class="string">"Green"</span>&#125;</span><br><span class="line">print(fruits)</span><br><span class="line">fruits.clear()</span><br><span class="line">print(fruits)</span><br><span class="line"></span><br><span class="line"><span class="comment"># &#123;'Apple':'Red','Banana':'Yellow','Lemon':'Green'&#125;</span></span><br><span class="line"><span class="comment"># &#123;&#125;</span></span><br></pre></td></tr></table></figure>
-</li>
-</ul>
-</li>
-<li><p>辞書の削除</p>
-<ul>
-<li>del文<figure class="highlight python"><table><tr><td class="code"><pre><span class="line">    fruits = &#123;<span class="string">"Apple"</span>:<span class="string">"Red"</span>,</span><br><span class="line">            <span class="string">"Banana"</span>:<span class="string">"Yellow"</span>,</span><br><span class="line">            <span class="string">"Lemon"</span>:<span class="string">"Green"</span>&#125;</span><br><span class="line">    print(fruits)</span><br><span class="line">    <span class="keyword">del</span> fruits</span><br><span class="line">    print(fruits)</span><br><span class="line"></span><br><span class="line">    <span class="comment"># &#123;'Apple':'Red','Banana':'Yellow','Lemon':'Green'&#125;</span></span><br><span class="line">    <span class="comment"># Error</span></span><br><span class="line">    </span><br><span class="line"><span class="comment">#### 便利な関数</span></span><br><span class="line"></span><br><span class="line">- pprint(): pretty <span class="keyword">print</span></span><br><span class="line">    ``` python</span><br><span class="line">    fruits = dict()</span><br><span class="line">    fruits[<span class="string">"Apple"</span>] = <span class="string">"Red"</span></span><br><span class="line">    fruits[<span class="string">"Banana"</span>] = <span class="string">"Yellow"</span></span><br><span class="line">    pp.pprint(fruits)</span><br><span class="line"></span><br><span class="line">    <span class="comment"># &#123;'Apple':'Red','Banana':'Yellow'&#125;</span></span><br></pre></td></tr></table></figure>
-
-</li>
-</ul>
-</li>
-</ol>
-<h3 id="三、集合"><a href="#三、集合" class="headerlink" title="三、集合"></a>三、集合</h3><h4 id="集合の生成"><a href="#集合の生成" class="headerlink" title="集合の生成"></a>集合の生成</h4><ol>
-<li><p>空集合の生成</p>
-<ul>
-<li><p>関数 set()</p>
-<figure class="highlight python"><table><tr><td class="code"><pre><span class="line">x = set()</span><br><span class="line">print(x)</span><br><span class="line"></span><br><span class="line"><span class="comment"># &#123;&#125;</span></span><br></pre></td></tr></table></figure>
-</li>
-<li><p>{}</p>
-<figure class="highlight python"><table><tr><td class="code"><pre><span class="line">x = &#123;&#125;</span><br><span class="line">print(x)</span><br><span class="line"></span><br><span class="line"><span class="comment"># &#123;&#125;</span></span><br></pre></td></tr></table></figure>
-</li>
-</ul>
-</li>
-<li><p>空でない集合の生成</p>
-<ul>
-<li>{【要素の並び】}<figure class="highlight python"><table><tr><td class="code"><pre><span class="line">even = &#123;<span class="number">0</span>,<span class="number">2</span>,<span class="number">4</span>,<span class="number">6</span>,<span class="number">8</span>,<span class="number">10</span>&#125;</span><br><span class="line">print(even)</span><br><span class="line"></span><br><span class="line"><span class="comment"># &#123;0,2,4,6,8,10&#125;</span></span><br></pre></td></tr></table></figure>
-</li>
-</ul>
-</li>
-<li><p>リストや文字列からの生成</p>
-<ul>
-<li><p>リストからの生成</p>
-<figure class="highlight python"><table><tr><td class="code"><pre><span class="line">num = [<span class="number">0</span>,<span class="number">2</span>,<span class="number">4</span>,<span class="number">6</span>,<span class="number">8</span>,<span class="number">10</span>]</span><br><span class="line">even = set(num)</span><br><span class="line">print(even)</span><br><span class="line"></span><br><span class="line"><span class="comment"># &#123;0,2,4,6,8,10&#125;</span></span><br></pre></td></tr></table></figure>
-</li>
-<li><p>文字列からの生成</p>
-<figure class="highlight python"><table><tr><td class="code"><pre><span class="line">letters = set(<span class="string">"good people"</span>)</span><br><span class="line">print(letters)</span><br><span class="line"></span><br><span class="line"><span class="comment"># &#123;'e','d','l',' ','g','o','p'&#125;</span></span><br></pre></td></tr></table></figure>
-</li>
-</ul>
-</li>
-<li><p>タプルや辞書からの生成</p>
-<ul>
-<li><p>タプルからの生成</p>
-<figure class="highlight python"><table><tr><td class="code"><pre><span class="line">num = (<span class="number">0</span>,<span class="number">2</span>,<span class="number">4</span>,<span class="number">6</span>,<span class="number">8</span>,<span class="number">10</span>)</span><br><span class="line">even = set(num)</span><br><span class="line">print(even)</span><br><span class="line"></span><br><span class="line"><span class="comment"># &#123;0,2,4,6,8,10&#125;</span></span><br></pre></td></tr></table></figure>
-</li>
-<li><p>辞書からの生成</p>
-<figure class="highlight python"><table><tr><td class="code"><pre><span class="line">fruits = &#123;<span class="string">"Apple"</span>:<span class="string">"Red"</span>,</span><br><span class="line">        <span class="string">"Banana"</span>:<span class="string">"Yellow"</span>,</span><br><span class="line">        <span class="string">"Meron"</span>:<span class="string">"Green"</span>&#125;</span><br><span class="line">plant = set(fruits)</span><br><span class="line">print(plant)</span><br><span class="line"></span><br><span class="line"><span class="comment"># &#123;'Apple','Meron','Banana'&#125;</span></span><br></pre></td></tr></table></figure>
-
-</li>
-</ul>
-</li>
-</ol>
-<h4 id="要素の追加と削除"><a href="#要素の追加と削除" class="headerlink" title="要素の追加と削除"></a>要素の追加と削除</h4><ol>
-<li><p>集合への要素の追加</p>
-<ul>
-<li><p>メソッド add()</p>
-<figure class="highlight python"><table><tr><td class="code"><pre><span class="line">s = &#123;<span class="number">0</span>,<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>,<span class="number">4</span>&#125;</span><br><span class="line">s.add(<span class="number">3</span>)</span><br><span class="line">print(s)</span><br><span class="line"></span><br><span class="line"><span class="comment"># &#123;0,1,2,3,4&#125;</span></span><br></pre></td></tr></table></figure>
-
-<figure class="highlight python"><table><tr><td class="code"><pre><span class="line">s = &#123;<span class="number">0</span>,<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>,<span class="number">4</span>&#125;</span><br><span class="line">s.add(<span class="number">5</span>)</span><br><span class="line">print(s)</span><br><span class="line"></span><br><span class="line"><span class="comment"># &#123;0,1,2,3,4,5&#125;</span></span><br></pre></td></tr></table></figure>
-</li>
-</ul>
-</li>
-<li><p>集合からの要素の削除</p>
-<ul>
-<li><p>メソッド discard()</p>
-<figure class="highlight python"><table><tr><td class="code"><pre><span class="line">s = &#123;<span class="number">0</span>,<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>,<span class="number">4</span>&#125;</span><br><span class="line">s.discard(<span class="number">1</span>)</span><br><span class="line">print(s)</span><br><span class="line"></span><br><span class="line"><span class="comment"># &#123;0,2,3,4&#125;</span></span><br></pre></td></tr></table></figure>
-
-<figure class="highlight python"><table><tr><td class="code"><pre><span class="line">s = &#123;<span class="number">0</span>,<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>,<span class="number">4</span>&#125;</span><br><span class="line">s.discard(<span class="number">5</span>)</span><br><span class="line">print(s)</span><br><span class="line"></span><br><span class="line"><span class="comment"># &#123;0,1,2,3,4&#125;</span></span><br></pre></td></tr></table></figure>
-</li>
-<li><p>関数 pop()</p>
-<figure class="highlight python"><table><tr><td class="code"><pre><span class="line">s = &#123;<span class="number">0</span>,<span class="number">1</span>,<span class="number">2</span>&#125;</span><br><span class="line">print(s.pop())</span><br><span class="line">print(s.pop())</span><br><span class="line">print(s.pop())</span><br><span class="line"></span><br><span class="line"><span class="comment"># 0</span></span><br><span class="line"><span class="comment"># 1</span></span><br><span class="line"><span class="comment"># 2</span></span><br></pre></td></tr></table></figure>
-
-<figure class="highlight python"><table><tr><td class="code"><pre><span class="line">s = &#123;<span class="number">2</span>,<span class="number">0</span>,<span class="number">1</span>&#125;</span><br><span class="line">print(s.pop())</span><br><span class="line">print(s.pop())</span><br><span class="line">print(s.pop())</span><br><span class="line"></span><br><span class="line"><span class="comment"># 0</span></span><br><span class="line"><span class="comment"># 1</span></span><br><span class="line"><span class="comment"># 2</span></span><br></pre></td></tr></table></figure>
-
-</li>
-</ul>
-</li>
-</ol>
-<h4 id="集合に対する演算と関数"><a href="#集合に対する演算と関数" class="headerlink" title="集合に対する演算と関数"></a>集合に対する演算と関数</h4><ol>
-<li><p>集合の要素数の計算</p>
-<ul>
-<li>関数 len()<figure class="highlight python"><table><tr><td class="code"><pre><span class="line">s = &#123;<span class="number">0</span>,<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>,<span class="number">4</span>&#125;</span><br><span class="line">n = len(s)</span><br><span class="line">print(n)</span><br><span class="line"></span><br><span class="line"><span class="comment"># 5</span></span><br></pre></td></tr></table></figure>
-</li>
-</ul>
-</li>
-<li><p>和集合</p>
-<ul>
-<li><p>演算子 | </p>
-<figure class="highlight python"><table><tr><td class="code"><pre><span class="line">s1 = &#123;<span class="number">0</span>,<span class="number">1</span>,<span class="number">2</span>&#125;</span><br><span class="line">s2 = &#123;<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>&#125;</span><br><span class="line"></span><br><span class="line">s_union = s1 | s2</span><br><span class="line">print(s_union)</span><br><span class="line"></span><br><span class="line"><span class="comment"># &#123;0,1,2,3&#125;</span></span><br></pre></td></tr></table></figure>
-</li>
-<li><p>関数 union()</p>
-<figure class="highlight python"><table><tr><td class="code"><pre><span class="line">s1 = &#123;<span class="number">0</span>,<span class="number">1</span>,<span class="number">2</span>&#125;</span><br><span class="line">s2 = &#123;<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>&#125;</span><br><span class="line"></span><br><span class="line">s_union = s1.union(s2)</span><br><span class="line">print(s_union)</span><br><span class="line"></span><br><span class="line"><span class="comment"># &#123;0,1,2,3&#125;</span></span><br></pre></td></tr></table></figure>
-</li>
-</ul>
-</li>
-<li><p>積集合</p>
-<ul>
-<li><p>演算子</p>
-<figure class="highlight python"><table><tr><td class="code"><pre><span class="line">s1 = &#123;<span class="number">0</span>,<span class="number">1</span>,<span class="number">2</span>&#125;</span><br><span class="line">s2 = &#123;<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>&#125;</span><br><span class="line"></span><br><span class="line">s_intsec = s1 &amp; s2</span><br><span class="line">print(s_intsec)</span><br><span class="line"></span><br><span class="line"><span class="comment"># &#123;1,2&#125;</span></span><br></pre></td></tr></table></figure>
-</li>
-<li><p>関数 intersection()</p>
-<figure class="highlight python"><table><tr><td class="code"><pre><span class="line">s1 = &#123;<span class="number">0</span>,<span class="number">1</span>,<span class="number">2</span>&#125;</span><br><span class="line">s2 = &#123;<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>&#125;</span><br><span class="line"></span><br><span class="line">s_intsec = s1.intersection(s2)</span><br><span class="line">print(s_intsec)</span><br><span class="line"></span><br><span class="line"><span class="comment"># &#123;1,2&#125;</span></span><br></pre></td></tr></table></figure>
-</li>
-</ul>
-</li>
-<li><p>差集合</p>
-<ul>
-<li><p>演算子 - </p>
-<figure class="highlight python"><table><tr><td class="code"><pre><span class="line">s1 = &#123;<span class="number">0</span>,<span class="number">1</span>,<span class="number">2</span>&#125;</span><br><span class="line">s2 = &#123;<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>&#125;</span><br><span class="line"></span><br><span class="line">s_diff = s1 - s2</span><br><span class="line">print(s_diff)</span><br><span class="line"></span><br><span class="line"><span class="comment"># &#123;0&#125;</span></span><br></pre></td></tr></table></figure>
-
-<figure class="highlight python"><table><tr><td class="code"><pre><span class="line">s1 = &#123;<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>&#125;</span><br><span class="line">s2 = &#123;<span class="number">0</span>,<span class="number">1</span>,<span class="number">2</span>&#125;</span><br><span class="line"></span><br><span class="line">s_diff = s1 - s2</span><br><span class="line">print(s_diff)</span><br><span class="line"></span><br><span class="line"><span class="comment"># &#123;0&#125;</span></span><br></pre></td></tr></table></figure>
-</li>
-<li><p>関数 difference</p>
-<figure class="highlight python"><table><tr><td class="code"><pre><span class="line">s1 = &#123;<span class="number">0</span>,<span class="number">1</span>,<span class="number">2</span>&#125;</span><br><span class="line">s2 = &#123;<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>&#125;</span><br><span class="line"></span><br><span class="line">s_diff = s1.difference(s2)</span><br><span class="line">print(s_diff)</span><br><span class="line"></span><br><span class="line"><span class="comment"># &#123;3&#125;</span></span><br></pre></td></tr></table></figure>
-
-<figure class="highlight python"><table><tr><td class="code"><pre><span class="line">s1 = &#123;<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>&#125;</span><br><span class="line">s2 = &#123;<span class="number">0</span>,<span class="number">1</span>,<span class="number">2</span>&#125;</span><br><span class="line"></span><br><span class="line">s_diff = s1.difference(s2)</span><br><span class="line">print(s_diff)</span><br><span class="line"></span><br><span class="line"><span class="comment"># &#123;3&#125;</span></span><br></pre></td></tr></table></figure>
-</li>
-</ul>
-</li>
-<li><p>対象差集合(排他的論理和に相当)</p>
-<ul>
-<li><p>演算子 ^ 演算子</p>
-<figure class="highlight python"><table><tr><td class="code"><pre><span class="line">s1 = &#123;<span class="number">0</span>,<span class="number">1</span>,<span class="number">2</span>&#125;</span><br><span class="line">s2 = &#123;<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>&#125;</span><br><span class="line"></span><br><span class="line">s_sd = s1 ^ s2</span><br><span class="line">print(s_sd)</span><br><span class="line"></span><br><span class="line"><span class="comment"># &#123;0,3&#125;</span></span><br></pre></td></tr></table></figure>
-</li>
-<li><p>関数 symmetric_difference()</p>
-<figure class="highlight python"><table><tr><td class="code"><pre><span class="line">s1 = &#123;<span class="number">0</span>,<span class="number">1</span>,<span class="number">2</span>&#125;</span><br><span class="line">s2 = &#123;<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>&#125;</span><br><span class="line"></span><br><span class="line">s_sd = s1.symmetric_difference(s2)</span><br><span class="line">print(s_sd)</span><br><span class="line"></span><br><span class="line"><span class="comment"># &#123;0,3&#125;</span></span><br></pre></td></tr></table></figure>
-</li>
-</ul>
-</li>
-<li><p>部分集合かどうかの判定</p>
-<ul>
-<li><p>演算子  &lt;=</p>
-<figure class="highlight python"><table><tr><td class="code"><pre><span class="line">s1 = &#123;<span class="number">0</span>,<span class="number">1</span>&#125;</span><br><span class="line">s2 = &#123;<span class="number">0</span>,<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>&#125;</span><br><span class="line"></span><br><span class="line">s_s = s1 &lt;= s2</span><br><span class="line">print(s_s)</span><br><span class="line"></span><br><span class="line"><span class="comment"># True</span></span><br></pre></td></tr></table></figure>
-</li>
-<li><p>関数 issubset()</p>
-<figure class="highlight python"><table><tr><td class="code"><pre><span class="line">s1 = &#123;<span class="number">0</span>,<span class="number">1</span>&#125;</span><br><span class="line">s2 = &#123;<span class="number">0</span>,<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>&#125;</span><br><span class="line"></span><br><span class="line">s_s = s1.issubset(s2)</span><br><span class="line">print(s_s)</span><br><span class="line"></span><br><span class="line"><span class="comment"># True</span></span><br></pre></td></tr></table></figure>
-</li>
-</ul>
-</li>
-<li><p>上位集合かどうかの判定</p>
-<ul>
-<li><p>演算子  &gt;=</p>
-<figure class="highlight python"><table><tr><td class="code"><pre><span class="line">s1 = &#123;<span class="number">0</span>,<span class="number">1</span>&#125;</span><br><span class="line">s2 = &#123;<span class="number">0</span>,<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>&#125;</span><br><span class="line"></span><br><span class="line">s_s = s2 &gt;= s1</span><br><span class="line">print(s_s)</span><br><span class="line"></span><br><span class="line"><span class="comment"># True</span></span><br></pre></td></tr></table></figure>
-</li>
-<li><p>関数 issuperset()</p>
-<figure class="highlight python"><table><tr><td class="code"><pre><span class="line">s1 = &#123;<span class="number">0</span>,<span class="number">1</span>&#125;</span><br><span class="line">s2 = &#123;<span class="number">0</span>,<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>&#125;</span><br><span class="line"></span><br><span class="line">s_s = s2.issuperset(s1)</span><br><span class="line">print(s_s)</span><br><span class="line"></span><br><span class="line"><span class="comment"># True</span></span><br></pre></td></tr></table></figure>
-</li>
-</ul>
-</li>
-<li><p>互いに素かどうかを判定</p>
-<ul>
-<li>関数 isdisjoint()<figure class="highlight python"><table><tr><td class="code"><pre><span class="line">s1 = &#123;<span class="number">0</span>,<span class="number">1</span>&#125;</span><br><span class="line">s2 = &#123;<span class="number">1</span>,<span class="number">2</span>&#125;</span><br><span class="line">s3 = &#123;<span class="number">2</span>,<span class="number">3</span>&#125;</span><br><span class="line"></span><br><span class="line">print(s1.isdisjoint(s2))</span><br><span class="line">print(s1.isdisjoint(s3))</span><br><span class="line"></span><br><span class="line"><span class="comment"># False</span></span><br><span class="line"><span class="comment"># True</span></span><br></pre></td></tr></table></figure>
-
-</li>
-</ul>
-</li>
-</ol>
-<h2 id="演習課題"><a href="#演習課題" class="headerlink" title="演習課題"></a>演習課題</h2><ol>
-<li>num = [2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25] とする。</li>
-<li>num を集合に変換し，n に代入する。</li>
-<li>num からスライスを用いて，4以上の2の倍数を取り出し，集合に変換してn2に代入する。</li>
-<li>num からスライスを用いて，6以上の3の倍数を取り出し，集合に変換してn3に代入する。</li>
-<li>num からスライスを用いて，10以上の5の倍数を取り出し，集合に変換してn5に代入する。</li>
-<li>nからn2, n3, n5の要素を取り除く。</li>
-<li>n の要素を印刷する。</li>
-</ol>
-<figure class="highlight python"><table><tr><td class="code"><pre><span class="line">num = [<span class="number">2</span>, <span class="number">3</span>, <span class="number">4</span>, <span class="number">5</span>, <span class="number">6</span>, <span class="number">7</span>, <span class="number">8</span>, <span class="number">9</span>, <span class="number">10</span>, <span class="number">11</span>, <span class="number">12</span>, <span class="number">13</span>, <span class="number">14</span>, <span class="number">15</span>, <span class="number">16</span>, <span class="number">17</span>, <span class="number">18</span>, <span class="number">19</span>, <span class="number">20</span>, <span class="number">21</span>, <span class="number">22</span>, <span class="number">23</span>, <span class="number">24</span>, <span class="number">25</span>]</span><br><span class="line">print(<span class="string">"num: "</span>,num)</span><br><span class="line"></span><br><span class="line">n = set(num)</span><br><span class="line">print(<span class="string">"n  : "</span>,n)</span><br><span class="line"></span><br><span class="line">n2 = set(num[<span class="number">2</span>::<span class="number">2</span>])</span><br><span class="line"><span class="keyword">print</span> (<span class="string">"n2 : "</span>,n2)</span><br><span class="line"></span><br><span class="line">n3 = set(num[<span class="number">4</span>::<span class="number">3</span>])</span><br><span class="line"><span class="keyword">print</span> (<span class="string">"n3 : "</span>,n3)</span><br><span class="line"></span><br><span class="line">n5 = set(num[<span class="number">8</span>::<span class="number">5</span>])</span><br><span class="line"><span class="keyword">print</span> (<span class="string">"n5 : "</span>,n5)</span><br><span class="line"></span><br><span class="line">n = n-n2</span><br><span class="line">n = n-n3</span><br><span class="line">n = n-n5</span><br><span class="line">print(<span class="string">"n  : "</span>,n)</span><br><span class="line"></span><br><span class="line"><span class="comment"># num:  [2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25]</span></span><br><span class="line"><span class="comment"># n  :  &#123;2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25&#125;</span></span><br><span class="line"><span class="comment"># n2 :  &#123;4, 6, 8, 10, 12, 14, 16, 18, 20, 22, 24&#125;</span></span><br><span class="line"><span class="comment"># n3 :  &#123;6, 9, 12, 15, 18, 21, 24&#125;</span></span><br><span class="line"><span class="comment"># n5 :  &#123;25, 10, 20, 15&#125;</span></span><br><span class="line"><span class="comment"># n  :  &#123;2, 3, 5, 7, 11, 13, 17, 19, 23&#125;</span></span><br></pre></td></tr></table></figure>]]></content>
-      <categories>
-        <category>学习笔记</category>
-      </categories>
-      <tags>
-        <tag>日本語</tag>
-        <tag>メモ</tag>
-        <tag>python</tag>
       </tags>
   </entry>
 </search>
