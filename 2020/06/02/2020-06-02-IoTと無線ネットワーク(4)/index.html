@@ -1,0 +1,608 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+<meta name="viewport"
+      content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+<meta http-equiv="X-UA-Compatible" content="ie=edge">
+
+    <meta name="author" content="GanWt">
+
+
+
+
+
+<title>IoTと無線ネットワーク(4) | GanWt</title>
+
+
+
+    <link rel="icon" href="/ganwt.ico">
+
+
+
+
+    <!-- stylesheets list from _config.yml -->
+    
+    <link rel="stylesheet" href="/css/style.css">
+    
+
+
+
+    <!-- scripts list from _config.yml -->
+    
+    <script src="/js/script.js"></script>
+    
+    <script src="/js/tocbot.min.js"></script>
+    
+
+
+
+    
+    
+        
+            <!-- MathJax配置，可通过单美元符号书写行内公式等 -->
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+    "HTML-CSS": {
+        preferredFont: "TeX",
+        availableFonts: ["STIX","TeX"],
+        linebreaks: { automatic:true },
+        EqnChunk: (MathJax.Hub.Browser.isMobile ? 10 : 50)
+    },
+    tex2jax: {
+        inlineMath: [ ["$", "$"], ["\\(","\\)"] ],
+        processEscapes: true,
+        ignoreClass: "tex2jax_ignore|dno",
+        skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+    },
+    TeX: {
+        equationNumbers: { autoNumber: "AMS" },
+        noUndefined: { attributes: { mathcolor: "red", mathbackground: "#FFEEEE", mathsize: "90%" } },
+        Macros: { href: "{}" }
+    },
+    messageStyle: "none"
+    });
+</script>
+<!-- 给MathJax元素添加has-jax class -->
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax(), i;
+        for(i=0; i < all.length; i += 1) {
+            all[i].SourceElement().parentNode.className += ' has-jax';
+        }
+    });
+</script>
+<!-- 通过连接CDN加载MathJax的js代码 -->
+<script type="text/javascript" async
+        src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js?config=TeX-MML-AM_CHTML">
+</script>
+
+
+        
+    
+
+
+<meta name="generator" content="Hexo 4.2.0"><link rel="alternate" href="/atom.xml" title="GanWt" type="application/atom+xml">
+</head>
+<body>
+    <div class="wrapper">
+        <header>
+    <nav class="navbar">
+        <div class="container">
+            <div class="navbar-header header-logo"><a href="/">GanWt Blog</a></div>
+            <div class="menu navbar-right">
+                
+                    <a class="menu-item" href="/archives">Posts</a>
+                
+                    <a class="menu-item" href="/categories">Categories</a>
+                
+                    <a class="menu-item" href="/tags">Tags</a>
+                
+                    <a class="menu-item" href="/about">About</a>
+                
+                <input id="switch_default" type="checkbox" class="switch_default">
+                <label for="switch_default" class="toggleBtn"></label>
+            </div>
+        </div>
+    </nav>
+
+    
+    <nav class="navbar-mobile" id="nav-mobile">
+        <div class="container">
+            <div class="navbar-header">
+                <div>
+                    <a href="/">GanWt Blog</a><a id="mobile-toggle-theme">·&nbsp;Light</a>
+                </div>
+                <div class="menu-toggle" onclick="mobileBtn()">&#9776; Menu</div>
+            </div>
+            <div class="menu" id="mobile-menu">
+                
+                    <a class="menu-item" href="/archives">Posts</a>
+                
+                    <a class="menu-item" href="/categories">Categories</a>
+                
+                    <a class="menu-item" href="/tags">Tags</a>
+                
+                    <a class="menu-item" href="/about">About</a>
+                
+            </div>
+        </div>
+    </nav>
+
+</header>
+<script>
+    var mobileBtn = function f() {
+        var toggleMenu = document.getElementsByClassName("menu-toggle")[0];
+        var mobileMenu = document.getElementById("mobile-menu");
+        if(toggleMenu.classList.contains("active")){
+           toggleMenu.classList.remove("active")
+            mobileMenu.classList.remove("active")
+        }else{
+            toggleMenu.classList.add("active")
+            mobileMenu.classList.add("active")
+        }
+    }
+</script>
+        <div class="main">
+            <div class="container">
+    
+    
+        <div class="post-toc">
+    <div class="tocbot-list">
+    </div>
+    <div class="tocbot-list-menu">
+        <a class="tocbot-toc-expand" onclick="expand_toc()">Expand all</a>
+        <a onclick="go_top()">Back to top</a>
+        <a onclick="go_bottom()">Go to bottom</a>
+    </div>
+</div>
+
+<script>
+    document.ready(
+        function () {
+            tocbot.init({
+                tocSelector: '.tocbot-list',
+                contentSelector: '.post-content',
+                headingSelector: 'h1, h2, h3, h4, h5',
+                collapseDepth: 1,
+                orderedList: false,
+                scrollSmooth: true,
+            })
+        }
+    )
+
+    function expand_toc() {
+        var b = document.querySelector(".tocbot-toc-expand");
+        tocbot.init({
+            tocSelector: '.tocbot-list',
+            contentSelector: '.post-content',
+            headingSelector: 'h1, h2, h3, h4, h5',
+            collapseDepth: 6,
+            orderedList: false,
+            scrollSmooth: true,
+        });
+        b.setAttribute("onclick", "collapse_toc()");
+        b.innerHTML = "Collapse all"
+    }
+
+    function collapse_toc() {
+        var b = document.querySelector(".tocbot-toc-expand");
+        tocbot.init({
+            tocSelector: '.tocbot-list',
+            contentSelector: '.post-content',
+            headingSelector: 'h1, h2, h3, h4, h5',
+            collapseDepth: 1,
+            orderedList: false,
+            scrollSmooth: true,
+        });
+        b.setAttribute("onclick", "expand_toc()");
+        b.innerHTML = "Expand all"
+    }
+
+    function go_top() {
+        window.scrollTo(0, 0);
+    }
+
+    function go_bottom() {
+        window.scrollTo(0, document.body.scrollHeight);
+    }
+
+</script>
+    
+
+    
+    <article class="post-wrap">
+        <header class="post-header">
+            <h1 class="post-title">IoTと無線ネットワーク(4)</h1>
+            
+                <div class="post-meta">
+                    
+                        Author: <a itemprop="author" rel="author" href="/">GanWt</a>
+                    
+
+                    
+                        <span class="post-time">
+                        Date: <a href="#">June 2, 2020&nbsp;&nbsp;16:33:03</a>
+                        </span>
+                    
+                    
+                        <span class="post-category">
+                    Category:
+                            
+                                <a href="/categories/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/">学习笔记</a>
+                            
+                        </span>
+                    
+                </div>
+            
+        </header>
+
+        <div class="post-content">
+            <h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>今日の授業はプロトタイピングです。</p>
+<h1 id="IoT知識"><a href="#IoT知識" class="headerlink" title="IoT知識"></a>IoT知識</h1><p>参考資料：<a href="https://ja.wikipedia.org/wiki/プロトタイピング" target="_blank" rel="noopener">https://ja.wikipedia.org/wiki/プロトタイピング</a></p>
+<h1 id="python"><a href="#python" class="headerlink" title="python"></a>python</h1><h2 id="pythonプログラミング-４"><a href="#pythonプログラミング-４" class="headerlink" title="pythonプログラミング(４)"></a>pythonプログラミング(４)</h2><h3 id="一、タプル"><a href="#一、タプル" class="headerlink" title="一、タプル"></a>一、タプル</h3><h4 id="タプルの生成"><a href="#タプルの生成" class="headerlink" title="タプルの生成"></a>タプルの生成</h4><ol>
+<li><p>空タプルの生成</p>
+<ul>
+<li><p>関数 tuple()</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">empty = tuple()</span><br><span class="line">print(empty)</span><br><span class="line"></span><br><span class="line"><span class="comment"># ()</span></span><br></pre></td></tr></table></figure>
+</li>
+<li><p>()</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">empty = ()</span><br><span class="line">print(empty)</span><br><span class="line"></span><br><span class="line"><span class="comment"># ()</span></span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+</li>
+<li><p>空でないタプルの生成</p>
+<ul>
+<li>(【要素の並び】)<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">rndm = (<span class="string">"M. Jackson"</span>, <span class="number">1958</span>, <span class="literal">True</span>)</span><br><span class="line">print(rndm)</span><br><span class="line"></span><br><span class="line"><span class="comment"># ('M. Jackson', 1958, True)</span></span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+</li>
+<li><p>タプルへの変換</p>
+<ul>
+<li><p>リストからタプルへの変換</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">numbers = tuple([<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>,<span class="number">4</span>,<span class="number">5</span>])</span><br><span class="line">print(numbers)</span><br><span class="line"></span><br><span class="line"><span class="comment"># (1,2,3,4,5)</span></span><br></pre></td></tr></table></figure>
+</li>
+<li><p>文字列からタプルへの変換</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">abc = tuple(<span class="string">"abcde"</span>)</span><br><span class="line">print(abc)</span><br><span class="line"></span><br><span class="line"><span class="comment"># ('a','b','c','d','e')</span></span><br></pre></td></tr></table></figure>
+
+</li>
+</ul>
+</li>
+</ol>
+<h4 id="要素の参照と検索"><a href="#要素の参照と検索" class="headerlink" title="要素の参照と検索"></a>要素の参照と検索</h4><ol>
+<li><p>タプルの要素の参照</p>
+<ul>
+<li><p>先頭からのオフセットによる参照</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">dys = (<span class="string">"1984"</span>,<span class="string">"Brave New World"</span>,<span class="string">"Faherenheit 451"</span>)</span><br><span class="line">print(dys[<span class="number">0</span>])</span><br><span class="line">print(dys[<span class="number">1</span>])</span><br><span class="line">print(dys[<span class="number">2</span>])</span><br><span class="line"></span><br><span class="line"><span class="comment"># 1984</span></span><br><span class="line"><span class="comment"># Brave New World</span></span><br><span class="line"><span class="comment"># Faherenheit 451</span></span><br></pre></td></tr></table></figure>
+</li>
+<li><p>末尾からのオフセットによる参照</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">dys = (<span class="string">"1984"</span>,<span class="string">"Brave New World"</span>,<span class="string">"Faherenheit 451"</span>)</span><br><span class="line">print(dys[<span class="number">-1</span>])</span><br><span class="line">print(dys[<span class="number">-2</span>])</span><br><span class="line">print(dys[<span class="number">-2</span>])</span><br><span class="line"></span><br><span class="line"><span class="comment"># Faherenheit 451</span></span><br><span class="line"><span class="comment"># Brave New World</span></span><br><span class="line"><span class="comment"># 1984</span></span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+</li>
+<li><p>タプルの要素の検索</p>
+<ul>
+<li>演算子 in の使用<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">dys = (<span class="string">"1984"</span>,<span class="string">"Brave New World"</span>,<span class="string">"Faherenheit 451"</span>)</span><br><span class="line">print(<span class="string">"1984"</span> <span class="keyword">in</span> dys)</span><br><span class="line">print(<span class="string">"Handmaid's"</span> <span class="keyword">not</span> <span class="keyword">in</span> dys)</span><br><span class="line"></span><br><span class="line"><span class="comment"># True</span></span><br><span class="line"><span class="comment"># True</span></span><br></pre></td></tr></table></figure>
+
+</li>
+</ul>
+</li>
+</ol>
+<h3 id="二、辞書"><a href="#二、辞書" class="headerlink" title="二、辞書"></a>二、辞書</h3><h4 id="辞書の生成"><a href="#辞書の生成" class="headerlink" title="辞書の生成"></a>辞書の生成</h4><ol>
+<li><p>空辞書の生成</p>
+<ul>
+<li><p>dict()</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">fruits = dict()</span><br><span class="line">print(fruits)</span><br><span class="line"></span><br><span class="line"><span class="comment"># &#123;&#125;</span></span><br></pre></td></tr></table></figure>
+</li>
+<li><p>()</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">fruits = &#123;&#125;</span><br><span class="line">print(fruits)</span><br><span class="line"></span><br><span class="line"><span class="comment"># &#123;&#125;</span></span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+</li>
+<li><p>空でない辞書の生成</p>
+<ul>
+<li>{【キーとバリューのペアの並び】}<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">fruits = &#123;<span class="string">"Apple"</span>:<span class="string">"Red"</span>,</span><br><span class="line">        <span class="string">"Banana"</span>:<span class="string">"Yellow"</span>&#125;</span><br><span class="line">print(fruits)</span><br><span class="line"></span><br><span class="line"><span class="comment"># &#123;'Apple':'Red','Banana':'Yellow'&#125;</span></span><br></pre></td></tr></table></figure>
+
+</li>
+</ul>
+</li>
+</ol>
+<h4 id="要素の追加，参照，値の変更"><a href="#要素の追加，参照，値の変更" class="headerlink" title="要素の追加，参照，値の変更"></a>要素の追加，参照，値の変更</h4><ol>
+<li><p>要素の追加</p>
+<ul>
+<li>辞書名[キー]=バリュー<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">fruits = dict()</span><br><span class="line">fruits[<span class="string">"Apple"</span>] = <span class="string">"Red"</span></span><br><span class="line">fruits[<span class="string">"Banana"</span>] = <span class="string">"Yellow"</span></span><br><span class="line">print(fruits)</span><br><span class="line"></span><br><span class="line"><span class="comment"># &#123;'Apple':'Red','Banana':'Yellow'&#125;</span></span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+</li>
+<li><p>要素の参照</p>
+<ul>
+<li>辞書名[キー]<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">fruits = dict()</span><br><span class="line">fruits[<span class="string">"Apple"</span>] = <span class="string">"Red"</span></span><br><span class="line">fruits[<span class="string">"Banana"</span>] = <span class="string">"Yellow"</span></span><br><span class="line">print(<span class="string">"Apple is"</span>,fruits[<span class="string">"Apple"</span>])</span><br><span class="line">print(<span class="string">"Banana is"</span>,fruits[<span class="string">"Banana"</span>])</span><br><span class="line"></span><br><span class="line"><span class="comment"># Apple is Red</span></span><br><span class="line"><span class="comment"># Banana is Yellow</span></span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+</li>
+<li><p>要素の値の変更</p>
+<ul>
+<li>辞書名[キー]=バリュー<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">fruits = &#123;<span class="string">"Apple"</span>:<span class="string">"Red"</span>,</span><br><span class="line">        <span class="string">"Banana"</span>:<span class="string">"Yellow"</span>&#125;</span><br><span class="line">fruits[<span class="string">"Lemon"</span>] = <span class="string">"Green"</span></span><br><span class="line">print(<span class="string">"Apple is"</span>,fruits[<span class="string">"Apple"</span>])</span><br><span class="line">print(<span class="string">"Banana is"</span>,fruits[<span class="string">"Banana"</span>])</span><br><span class="line">print(<span class="string">"Lemon is"</span>,fruits[<span class="string">"Green"</span>])</span><br><span class="line"></span><br><span class="line"><span class="comment"># Apple is Red</span></span><br><span class="line"><span class="comment"># Banana is Yellow</span></span><br><span class="line"><span class="comment"># Lemon is Green</span></span><br></pre></td></tr></table></figure>
+
+</li>
+</ul>
+</li>
+</ol>
+<h4 id="キーによる検索，キーと値の取得"><a href="#キーによる検索，キーと値の取得" class="headerlink" title="キーによる検索，キーと値の取得"></a>キーによる検索，キーと値の取得</h4><ol>
+<li><p>キーの検索</p>
+<ul>
+<li>演算子 in<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">fruits = &#123;<span class="string">"Apple"</span>:<span class="string">"Red"</span>,</span><br><span class="line">        <span class="string">"Banana"</span>:<span class="string">"Yellow"</span>,</span><br><span class="line">        <span class="string">"Lemon"</span>:<span class="string">"Green"</span>&#125;</span><br><span class="line">print(<span class="string">"Apple"</span> <span class="keyword">in</span> fruits)</span><br><span class="line">print(<span class="string">"Melon"</span> <span class="keyword">in</span> fruits)</span><br><span class="line"></span><br><span class="line"><span class="comment"># True</span></span><br><span class="line"><span class="comment"># False</span></span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+</li>
+<li><p>全ての <strong>キー</strong> の取得</p>
+<ul>
+<li>関数 keys()<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">fruits = &#123;<span class="string">"Apple"</span>:<span class="string">"Red"</span>,</span><br><span class="line">        <span class="string">"Banana"</span>:<span class="string">"Yellow"</span>,</span><br><span class="line">        <span class="string">"Lemon"</span>:<span class="string">"Green"</span>&#125;</span><br><span class="line">print(fruits.keys())</span><br><span class="line"></span><br><span class="line"><span class="comment"># dict_keys(['Apple','Banana','Meron'])</span></span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+</li>
+<li><p>全ての <strong>値</strong> の取得</p>
+<ul>
+<li>関数 values()<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">fruits = &#123;<span class="string">"Apple"</span>:<span class="string">"Red"</span>,</span><br><span class="line">        <span class="string">"Banana"</span>:<span class="string">"Yellow"</span>,</span><br><span class="line">        <span class="string">"Lemon"</span>:<span class="string">"Green"</span>&#125;</span><br><span class="line">print(fruits.values())</span><br><span class="line"></span><br><span class="line"><span class="comment"># dict_values(['Red','Yellow','Green'])</span></span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+</li>
+<li><p>全ての <strong>キー/値ペア</strong> の取得</p>
+<ul>
+<li>関数 items()<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">fruits = &#123;<span class="string">"Apple"</span>:<span class="string">"Red"</span>,</span><br><span class="line">        <span class="string">"Banana"</span>:<span class="string">"Yellow"</span>,</span><br><span class="line">        <span class="string">"Lemon"</span>:<span class="string">"Green"</span>&#125;</span><br><span class="line">print(fruits.items())</span><br><span class="line"></span><br><span class="line"><span class="comment"># dict_items((['Apple':'Red'),('Banana':'Yellow'),('Lemon':'Green')])</span></span><br></pre></td></tr></table></figure>
+
+</li>
+</ul>
+</li>
+</ol>
+<h4 id="要素の削除，辞書の削除"><a href="#要素の削除，辞書の削除" class="headerlink" title="要素の削除，辞書の削除"></a>要素の削除，辞書の削除</h4><ol>
+<li><p>辞書の要素の削除</p>
+<ul>
+<li>del文<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">fruits = &#123;<span class="string">"Apple"</span>:<span class="string">"Red"</span>,</span><br><span class="line">        <span class="string">"Banana"</span>:<span class="string">"Yellow"</span>,</span><br><span class="line">        <span class="string">"Lemon"</span>:<span class="string">"Green"</span>&#125;</span><br><span class="line">print(fruits)</span><br><span class="line"><span class="keyword">del</span> fruits[<span class="string">"Banana"</span>]</span><br><span class="line">print(fruits)</span><br><span class="line"></span><br><span class="line"><span class="comment"># &#123;'Apple':'Red','Banana':'Yellow','Lemon':'Green'&#125;</span></span><br><span class="line"><span class="comment"># &#123;'Apple':'Red','Lemon':'Green'&#125;</span></span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+</li>
+<li><p>辞書の全要素の削除</p>
+<ul>
+<li>メソッド clear()<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">fruits = &#123;<span class="string">"Apple"</span>:<span class="string">"Red"</span>,</span><br><span class="line">        <span class="string">"Banana"</span>:<span class="string">"Yellow"</span>,</span><br><span class="line">        <span class="string">"Lemon"</span>:<span class="string">"Green"</span>&#125;</span><br><span class="line">print(fruits)</span><br><span class="line">fruits.clear()</span><br><span class="line">print(fruits)</span><br><span class="line"></span><br><span class="line"><span class="comment"># &#123;'Apple':'Red','Banana':'Yellow','Lemon':'Green'&#125;</span></span><br><span class="line"><span class="comment"># &#123;&#125;</span></span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+</li>
+<li><p>辞書の削除</p>
+<ul>
+<li>del文<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line">    fruits = &#123;<span class="string">"Apple"</span>:<span class="string">"Red"</span>,</span><br><span class="line">            <span class="string">"Banana"</span>:<span class="string">"Yellow"</span>,</span><br><span class="line">            <span class="string">"Lemon"</span>:<span class="string">"Green"</span>&#125;</span><br><span class="line">    print(fruits)</span><br><span class="line">    <span class="keyword">del</span> fruits</span><br><span class="line">    print(fruits)</span><br><span class="line"></span><br><span class="line">    <span class="comment"># &#123;'Apple':'Red','Banana':'Yellow','Lemon':'Green'&#125;</span></span><br><span class="line">    <span class="comment"># Error</span></span><br><span class="line">    </span><br><span class="line"><span class="comment">#### 便利な関数</span></span><br><span class="line"></span><br><span class="line">- pprint(): pretty <span class="keyword">print</span></span><br><span class="line">    ``` python</span><br><span class="line">    fruits = dict()</span><br><span class="line">    fruits[<span class="string">"Apple"</span>] = <span class="string">"Red"</span></span><br><span class="line">    fruits[<span class="string">"Banana"</span>] = <span class="string">"Yellow"</span></span><br><span class="line">    pp.pprint(fruits)</span><br><span class="line"></span><br><span class="line">    <span class="comment"># &#123;'Apple':'Red','Banana':'Yellow'&#125;</span></span><br></pre></td></tr></table></figure>
+
+</li>
+</ul>
+</li>
+</ol>
+<h3 id="三、集合"><a href="#三、集合" class="headerlink" title="三、集合"></a>三、集合</h3><h4 id="集合の生成"><a href="#集合の生成" class="headerlink" title="集合の生成"></a>集合の生成</h4><ol>
+<li><p>空集合の生成</p>
+<ul>
+<li><p>関数 set()</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">x = set()</span><br><span class="line">print(x)</span><br><span class="line"></span><br><span class="line"><span class="comment"># &#123;&#125;</span></span><br></pre></td></tr></table></figure>
+</li>
+<li><p>{}</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">x = &#123;&#125;</span><br><span class="line">print(x)</span><br><span class="line"></span><br><span class="line"><span class="comment"># &#123;&#125;</span></span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+</li>
+<li><p>空でない集合の生成</p>
+<ul>
+<li>{【要素の並び】}<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">even = &#123;<span class="number">0</span>,<span class="number">2</span>,<span class="number">4</span>,<span class="number">6</span>,<span class="number">8</span>,<span class="number">10</span>&#125;</span><br><span class="line">print(even)</span><br><span class="line"></span><br><span class="line"><span class="comment"># &#123;0,2,4,6,8,10&#125;</span></span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+</li>
+<li><p>リストや文字列からの生成</p>
+<ul>
+<li><p>リストからの生成</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">num = [<span class="number">0</span>,<span class="number">2</span>,<span class="number">4</span>,<span class="number">6</span>,<span class="number">8</span>,<span class="number">10</span>]</span><br><span class="line">even = set(num)</span><br><span class="line">print(even)</span><br><span class="line"></span><br><span class="line"><span class="comment"># &#123;0,2,4,6,8,10&#125;</span></span><br></pre></td></tr></table></figure>
+</li>
+<li><p>文字列からの生成</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">letters = set(<span class="string">"good people"</span>)</span><br><span class="line">print(letters)</span><br><span class="line"></span><br><span class="line"><span class="comment"># &#123;'e','d','l',' ','g','o','p'&#125;</span></span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+</li>
+<li><p>タプルや辞書からの生成</p>
+<ul>
+<li><p>タプルからの生成</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">num = (<span class="number">0</span>,<span class="number">2</span>,<span class="number">4</span>,<span class="number">6</span>,<span class="number">8</span>,<span class="number">10</span>)</span><br><span class="line">even = set(num)</span><br><span class="line">print(even)</span><br><span class="line"></span><br><span class="line"><span class="comment"># &#123;0,2,4,6,8,10&#125;</span></span><br></pre></td></tr></table></figure>
+</li>
+<li><p>辞書からの生成</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">fruits = &#123;<span class="string">"Apple"</span>:<span class="string">"Red"</span>,</span><br><span class="line">        <span class="string">"Banana"</span>:<span class="string">"Yellow"</span>,</span><br><span class="line">        <span class="string">"Meron"</span>:<span class="string">"Green"</span>&#125;</span><br><span class="line">plant = set(fruits)</span><br><span class="line">print(plant)</span><br><span class="line"></span><br><span class="line"><span class="comment"># &#123;'Apple','Meron','Banana'&#125;</span></span><br></pre></td></tr></table></figure>
+
+</li>
+</ul>
+</li>
+</ol>
+<h4 id="要素の追加と削除"><a href="#要素の追加と削除" class="headerlink" title="要素の追加と削除"></a>要素の追加と削除</h4><ol>
+<li><p>集合への要素の追加</p>
+<ul>
+<li><p>メソッド add()</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">s = &#123;<span class="number">0</span>,<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>,<span class="number">4</span>&#125;</span><br><span class="line">s.add(<span class="number">3</span>)</span><br><span class="line">print(s)</span><br><span class="line"></span><br><span class="line"><span class="comment"># &#123;0,1,2,3,4&#125;</span></span><br></pre></td></tr></table></figure>
+
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">s = &#123;<span class="number">0</span>,<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>,<span class="number">4</span>&#125;</span><br><span class="line">s.add(<span class="number">5</span>)</span><br><span class="line">print(s)</span><br><span class="line"></span><br><span class="line"><span class="comment"># &#123;0,1,2,3,4,5&#125;</span></span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+</li>
+<li><p>集合からの要素の削除</p>
+<ul>
+<li><p>メソッド discard()</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">s = &#123;<span class="number">0</span>,<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>,<span class="number">4</span>&#125;</span><br><span class="line">s.discard(<span class="number">1</span>)</span><br><span class="line">print(s)</span><br><span class="line"></span><br><span class="line"><span class="comment"># &#123;0,2,3,4&#125;</span></span><br></pre></td></tr></table></figure>
+
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">s = &#123;<span class="number">0</span>,<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>,<span class="number">4</span>&#125;</span><br><span class="line">s.discard(<span class="number">5</span>)</span><br><span class="line">print(s)</span><br><span class="line"></span><br><span class="line"><span class="comment"># &#123;0,1,2,3,4&#125;</span></span><br></pre></td></tr></table></figure>
+</li>
+<li><p>関数 pop()</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">s = &#123;<span class="number">0</span>,<span class="number">1</span>,<span class="number">2</span>&#125;</span><br><span class="line">print(s.pop())</span><br><span class="line">print(s.pop())</span><br><span class="line">print(s.pop())</span><br><span class="line"></span><br><span class="line"><span class="comment"># 0</span></span><br><span class="line"><span class="comment"># 1</span></span><br><span class="line"><span class="comment"># 2</span></span><br></pre></td></tr></table></figure>
+
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">s = &#123;<span class="number">2</span>,<span class="number">0</span>,<span class="number">1</span>&#125;</span><br><span class="line">print(s.pop())</span><br><span class="line">print(s.pop())</span><br><span class="line">print(s.pop())</span><br><span class="line"></span><br><span class="line"><span class="comment"># 0</span></span><br><span class="line"><span class="comment"># 1</span></span><br><span class="line"><span class="comment"># 2</span></span><br></pre></td></tr></table></figure>
+
+</li>
+</ul>
+</li>
+</ol>
+<h4 id="集合に対する演算と関数"><a href="#集合に対する演算と関数" class="headerlink" title="集合に対する演算と関数"></a>集合に対する演算と関数</h4><ol>
+<li><p>集合の要素数の計算</p>
+<ul>
+<li>関数 len()<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">s = &#123;<span class="number">0</span>,<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>,<span class="number">4</span>&#125;</span><br><span class="line">n = len(s)</span><br><span class="line">print(n)</span><br><span class="line"></span><br><span class="line"><span class="comment"># 5</span></span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+</li>
+<li><p>和集合</p>
+<ul>
+<li><p>演算子 | </p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">s1 = &#123;<span class="number">0</span>,<span class="number">1</span>,<span class="number">2</span>&#125;</span><br><span class="line">s2 = &#123;<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>&#125;</span><br><span class="line"></span><br><span class="line">s_union = s1 | s2</span><br><span class="line">print(s_union)</span><br><span class="line"></span><br><span class="line"><span class="comment"># &#123;0,1,2,3&#125;</span></span><br></pre></td></tr></table></figure>
+</li>
+<li><p>関数 union()</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">s1 = &#123;<span class="number">0</span>,<span class="number">1</span>,<span class="number">2</span>&#125;</span><br><span class="line">s2 = &#123;<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>&#125;</span><br><span class="line"></span><br><span class="line">s_union = s1.union(s2)</span><br><span class="line">print(s_union)</span><br><span class="line"></span><br><span class="line"><span class="comment"># &#123;0,1,2,3&#125;</span></span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+</li>
+<li><p>積集合</p>
+<ul>
+<li><p>演算子</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">s1 = &#123;<span class="number">0</span>,<span class="number">1</span>,<span class="number">2</span>&#125;</span><br><span class="line">s2 = &#123;<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>&#125;</span><br><span class="line"></span><br><span class="line">s_intsec = s1 &amp; s2</span><br><span class="line">print(s_intsec)</span><br><span class="line"></span><br><span class="line"><span class="comment"># &#123;1,2&#125;</span></span><br></pre></td></tr></table></figure>
+</li>
+<li><p>関数 intersection()</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">s1 = &#123;<span class="number">0</span>,<span class="number">1</span>,<span class="number">2</span>&#125;</span><br><span class="line">s2 = &#123;<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>&#125;</span><br><span class="line"></span><br><span class="line">s_intsec = s1.intersection(s2)</span><br><span class="line">print(s_intsec)</span><br><span class="line"></span><br><span class="line"><span class="comment"># &#123;1,2&#125;</span></span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+</li>
+<li><p>差集合</p>
+<ul>
+<li><p>演算子 - </p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">s1 = &#123;<span class="number">0</span>,<span class="number">1</span>,<span class="number">2</span>&#125;</span><br><span class="line">s2 = &#123;<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>&#125;</span><br><span class="line"></span><br><span class="line">s_diff = s1 - s2</span><br><span class="line">print(s_diff)</span><br><span class="line"></span><br><span class="line"><span class="comment"># &#123;0&#125;</span></span><br></pre></td></tr></table></figure>
+
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">s1 = &#123;<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>&#125;</span><br><span class="line">s2 = &#123;<span class="number">0</span>,<span class="number">1</span>,<span class="number">2</span>&#125;</span><br><span class="line"></span><br><span class="line">s_diff = s1 - s2</span><br><span class="line">print(s_diff)</span><br><span class="line"></span><br><span class="line"><span class="comment"># &#123;0&#125;</span></span><br></pre></td></tr></table></figure>
+</li>
+<li><p>関数 difference</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">s1 = &#123;<span class="number">0</span>,<span class="number">1</span>,<span class="number">2</span>&#125;</span><br><span class="line">s2 = &#123;<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>&#125;</span><br><span class="line"></span><br><span class="line">s_diff = s1.difference(s2)</span><br><span class="line">print(s_diff)</span><br><span class="line"></span><br><span class="line"><span class="comment"># &#123;3&#125;</span></span><br></pre></td></tr></table></figure>
+
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">s1 = &#123;<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>&#125;</span><br><span class="line">s2 = &#123;<span class="number">0</span>,<span class="number">1</span>,<span class="number">2</span>&#125;</span><br><span class="line"></span><br><span class="line">s_diff = s1.difference(s2)</span><br><span class="line">print(s_diff)</span><br><span class="line"></span><br><span class="line"><span class="comment"># &#123;3&#125;</span></span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+</li>
+<li><p>対象差集合(排他的論理和に相当)</p>
+<ul>
+<li><p>演算子 ^ 演算子</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">s1 = &#123;<span class="number">0</span>,<span class="number">1</span>,<span class="number">2</span>&#125;</span><br><span class="line">s2 = &#123;<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>&#125;</span><br><span class="line"></span><br><span class="line">s_sd = s1 ^ s2</span><br><span class="line">print(s_sd)</span><br><span class="line"></span><br><span class="line"><span class="comment"># &#123;0,3&#125;</span></span><br></pre></td></tr></table></figure>
+</li>
+<li><p>関数 symmetric_difference()</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">s1 = &#123;<span class="number">0</span>,<span class="number">1</span>,<span class="number">2</span>&#125;</span><br><span class="line">s2 = &#123;<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>&#125;</span><br><span class="line"></span><br><span class="line">s_sd = s1.symmetric_difference(s2)</span><br><span class="line">print(s_sd)</span><br><span class="line"></span><br><span class="line"><span class="comment"># &#123;0,3&#125;</span></span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+</li>
+<li><p>部分集合かどうかの判定</p>
+<ul>
+<li><p>演算子  &lt;=</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">s1 = &#123;<span class="number">0</span>,<span class="number">1</span>&#125;</span><br><span class="line">s2 = &#123;<span class="number">0</span>,<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>&#125;</span><br><span class="line"></span><br><span class="line">s_s = s1 &lt;= s2</span><br><span class="line">print(s_s)</span><br><span class="line"></span><br><span class="line"><span class="comment"># True</span></span><br></pre></td></tr></table></figure>
+</li>
+<li><p>関数 issubset()</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">s1 = &#123;<span class="number">0</span>,<span class="number">1</span>&#125;</span><br><span class="line">s2 = &#123;<span class="number">0</span>,<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>&#125;</span><br><span class="line"></span><br><span class="line">s_s = s1.issubset(s2)</span><br><span class="line">print(s_s)</span><br><span class="line"></span><br><span class="line"><span class="comment"># True</span></span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+</li>
+<li><p>上位集合かどうかの判定</p>
+<ul>
+<li><p>演算子  &gt;=</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">s1 = &#123;<span class="number">0</span>,<span class="number">1</span>&#125;</span><br><span class="line">s2 = &#123;<span class="number">0</span>,<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>&#125;</span><br><span class="line"></span><br><span class="line">s_s = s2 &gt;= s1</span><br><span class="line">print(s_s)</span><br><span class="line"></span><br><span class="line"><span class="comment"># True</span></span><br></pre></td></tr></table></figure>
+</li>
+<li><p>関数 issuperset()</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">s1 = &#123;<span class="number">0</span>,<span class="number">1</span>&#125;</span><br><span class="line">s2 = &#123;<span class="number">0</span>,<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>&#125;</span><br><span class="line"></span><br><span class="line">s_s = s2.issuperset(s1)</span><br><span class="line">print(s_s)</span><br><span class="line"></span><br><span class="line"><span class="comment"># True</span></span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+</li>
+<li><p>互いに素かどうかを判定</p>
+<ul>
+<li>関数 isdisjoint()<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">s1 = &#123;<span class="number">0</span>,<span class="number">1</span>&#125;</span><br><span class="line">s2 = &#123;<span class="number">1</span>,<span class="number">2</span>&#125;</span><br><span class="line">s3 = &#123;<span class="number">2</span>,<span class="number">3</span>&#125;</span><br><span class="line"></span><br><span class="line">print(s1.isdisjoint(s2))</span><br><span class="line">print(s1.isdisjoint(s3))</span><br><span class="line"></span><br><span class="line"><span class="comment"># False</span></span><br><span class="line"><span class="comment"># True</span></span><br></pre></td></tr></table></figure>
+
+</li>
+</ul>
+</li>
+</ol>
+<h2 id="演習課題"><a href="#演習課題" class="headerlink" title="演習課題"></a>演習課題</h2><ol>
+<li>num = [2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25] とする。</li>
+<li>num を集合に変換し，n に代入する。</li>
+<li>num からスライスを用いて，4以上の2の倍数を取り出し，集合に変換してn2に代入する。</li>
+<li>num からスライスを用いて，6以上の3の倍数を取り出し，集合に変換してn3に代入する。</li>
+<li>num からスライスを用いて，10以上の5の倍数を取り出し，集合に変換してn5に代入する。</li>
+<li>nからn2, n3, n5の要素を取り除く。</li>
+<li>n の要素を印刷する。</li>
+</ol>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line">num = [<span class="number">2</span>, <span class="number">3</span>, <span class="number">4</span>, <span class="number">5</span>, <span class="number">6</span>, <span class="number">7</span>, <span class="number">8</span>, <span class="number">9</span>, <span class="number">10</span>, <span class="number">11</span>, <span class="number">12</span>, <span class="number">13</span>, <span class="number">14</span>, <span class="number">15</span>, <span class="number">16</span>, <span class="number">17</span>, <span class="number">18</span>, <span class="number">19</span>, <span class="number">20</span>, <span class="number">21</span>, <span class="number">22</span>, <span class="number">23</span>, <span class="number">24</span>, <span class="number">25</span>]</span><br><span class="line">print(<span class="string">"num: "</span>,num)</span><br><span class="line"></span><br><span class="line">n = set(num)</span><br><span class="line">print(<span class="string">"n  : "</span>,n)</span><br><span class="line"></span><br><span class="line">n2 = set(num[<span class="number">2</span>::<span class="number">2</span>])</span><br><span class="line"><span class="keyword">print</span> (<span class="string">"n2 : "</span>,n2)</span><br><span class="line"></span><br><span class="line">n3 = set(num[<span class="number">4</span>::<span class="number">3</span>])</span><br><span class="line"><span class="keyword">print</span> (<span class="string">"n3 : "</span>,n3)</span><br><span class="line"></span><br><span class="line">n5 = set(num[<span class="number">8</span>::<span class="number">5</span>])</span><br><span class="line"><span class="keyword">print</span> (<span class="string">"n5 : "</span>,n5)</span><br><span class="line"></span><br><span class="line">n = n-n2</span><br><span class="line">n = n-n3</span><br><span class="line">n = n-n5</span><br><span class="line">print(<span class="string">"n  : "</span>,n)</span><br><span class="line"></span><br><span class="line"><span class="comment"># num:  [2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25]</span></span><br><span class="line"><span class="comment"># n  :  &#123;2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25&#125;</span></span><br><span class="line"><span class="comment"># n2 :  &#123;4, 6, 8, 10, 12, 14, 16, 18, 20, 22, 24&#125;</span></span><br><span class="line"><span class="comment"># n3 :  &#123;6, 9, 12, 15, 18, 21, 24&#125;</span></span><br><span class="line"><span class="comment"># n5 :  &#123;25, 10, 20, 15&#125;</span></span><br><span class="line"><span class="comment"># n  :  &#123;2, 3, 5, 7, 11, 13, 17, 19, 23&#125;</span></span><br></pre></td></tr></table></figure>
+        </div>
+
+        
+        <section class="post-tags">
+            <div>
+                <!-- 标签 -->
+                <span>Tags:</span>
+                <span class="tag">
+                    
+                    
+                        <a href="/tags/%E6%97%A5%E6%9C%AC%E8%AA%9E/"># 日本語</a>
+                    
+                        <a href="/tags/%E3%83%A1%E3%83%A2/"># メモ</a>
+                    
+                        <a href="/tags/python/"># python</a>
+                    
+                        
+                </span>
+                <!-- 下面这段代码是阅读量统计 -->
+                <span id="/2020/06/02/2020-06-02-IoT%E3%81%A8%E7%84%A1%E7%B7%9A%E3%83%8D%E3%83%83%E3%83%88%E3%83%AF%E3%83%BC%E3%82%AF(4)/" class="leancloud-visitors view" data-flag-title="IoTと無線ネットワーク(4)">
+                    <em class="post-meta-item-text">&nbsp;&nbsp;Pageviews:</em>
+                    <i class="leancloud-visitors-count">loading</i>
+                </span>
+            </div>
+            <div>
+                <a href="javascript:window.history.back();">back</a>
+                <span>· </span>
+                <a href="/">home</a>
+            </div>
+        </section>
+        <section class="post-nav">
+            
+            
+            <a class="next" rel="next" href="/2020/05/26/2020-05-26-IoT%E3%81%A8%E7%84%A1%E7%B7%9A%E3%83%8D%E3%83%83%E3%83%88%E3%83%AF%E3%83%BC%E3%82%AF(3)/">IoTと無線ネットワーク(3)</a>
+            
+        </section>
+        <!-- 下面这段代码是评论的 -->
+        <br><br><br>
+        
+            <section id="comments" class="comments">
+              <style>
+                .comments{margin:30px;padding:10px;background:#fff}
+                @media screen and (max-width:800px){.comments{margin:auto;padding:10px;background:#fff}}
+              </style>
+              <div class="valine_comment"></div>
+<!--载入js，在</body>之前插入即可-->
+<!--Leancloud 操作库:-->
+<script src="//cdn1.lncld.net/static/js/3.0.4/av-min.js"></script>
+<!--Valine 的核心代码库-->
+<script src="//unpkg.com/valine/dist/Valine.min.js"></script>
+<script>
+  new Valine({
+      el: '.valine_comment',
+      app_id: 'mvWomOzSrHta71qCetznk9Ys-MdYXbMMI',
+      app_key: 'hxu4GRlAhGXaNfQG3AhvgebE',
+      placeholder: '这里留言。。',
+      notify: 'true',
+      verify: 'true',
+      visitor: true // 阅读量统计
+    });
+</script>
+            </section>
+        
+    </article>
+
+</div>
+        </div>
+        <footer id="footer" class="footer">
+    <div class="copyright">
+        <span>© GanWt | Powered by <span>Hexo</span> & <span>Chic</span></span>
+    </div>
+</footer>
+
+    </div>
+</body>
+</html>
