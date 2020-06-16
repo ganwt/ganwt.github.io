@@ -12,7 +12,7 @@
 
 
 
-<title>IoTと無線ネットワーク(5) | GanWt</title>
+<title>IoTと無線ネットワーク(6) | GanWt</title>
 
 
 
@@ -213,7 +213,7 @@
     
     <article class="post-wrap">
         <header class="post-header">
-            <h1 class="post-title">IoTと無線ネットワーク(5)</h1>
+            <h1 class="post-title">IoTと無線ネットワーク(6)</h1>
             
                 <div class="post-meta">
                     
@@ -222,7 +222,7 @@
 
                     
                         <span class="post-time">
-                        Date: <a href="#">June 9, 2020&nbsp;&nbsp;21:39:03</a>
+                        Date: <a href="#">June 16, 2020&nbsp;&nbsp;19:36:03</a>
                         </span>
                     
                     
@@ -238,26 +238,25 @@
         </header>
 
         <div class="post-content">
-            <h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>今天老师讲了各种开源协议，开源代码。</p>
+            <h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>授業中で寝ちゃった</p>
 <h1 id="IoT知識"><a href="#IoT知識" class="headerlink" title="IoT知識"></a>IoT知識</h1><p>略</p>
-<h1 id="python"><a href="#python" class="headerlink" title="python"></a>python</h1><h2 id="pythonプログラミング-5"><a href="#pythonプログラミング-5" class="headerlink" title="pythonプログラミング(5)"></a>pythonプログラミング(5)</h2><h3 id="単純文と複合文"><a href="#単純文と複合文" class="headerlink" title="単純文と複合文"></a>単純文と複合文</h3><p>略</p>
-<h3 id="条件文"><a href="#条件文" class="headerlink" title="条件文"></a>条件文</h3><p>略</p>
-<h3 id="for文"><a href="#for文" class="headerlink" title="for文"></a>for文</h3><p>略</p>
-<h3 id="while文"><a href="#while文" class="headerlink" title="while文"></a>while文</h3><p>略</p>
-<h3 id="関数-range"><a href="#関数-range" class="headerlink" title="関数 range()"></a>関数 range()</h3><p>略</p>
-<h2 id="演習課題"><a href="#演習課題" class="headerlink" title="演習課題"></a>演習課題</h2><p> エラトステネスの篩(ふるい)は，指定された整数以下の全ての素数を発見する ための単純なアルゴリズムである。古代ギリシアの科学者、エラトステネスが考 案したとされるため、この名がある。 (<a href="https://ja.wikipedia.org/wiki/%E3%82%A8%E3%83%A9%E3%83%88%E3%82" target="_blank" rel="noopener">https://ja.wikipedia.org/wiki/%E3%82%A8%E3%83%A9%E3%83%88%E3%82</a> %B9%E3%83%86%E3%83%8D%E3%82%B9%E3%81%AE%E7%AF%A9)<br> このアルゴリズムを用いて，標準入力から入力された整数以下の素数をすべて標 準出力に出力するPythonのプログラムを作成しなさい。<br> このプログラムを用いて，1000以下の素数を全て出力せよ。</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 今天可能状态也不行吧，总之这题目不是我自己解的。参照了网上的方案，有两种解法。</span></span><br><span class="line"><span class="comment"># 解法一</span></span><br><span class="line">num=[]</span><br><span class="line">i=<span class="number">2</span></span><br><span class="line"><span class="keyword">for</span> i <span class="keyword">in</span> range(<span class="number">2</span>,<span class="number">100</span>):</span><br><span class="line">   j=<span class="number">2</span></span><br><span class="line">   <span class="keyword">for</span> j <span class="keyword">in</span> range(<span class="number">2</span>,i):</span><br><span class="line">      <span class="keyword">if</span>(i%j==<span class="number">0</span>):</span><br><span class="line">         <span class="keyword">break</span></span><br><span class="line">   <span class="keyword">else</span>:</span><br><span class="line">      num.append(i)</span><br><span class="line">print(num)</span><br><span class="line"></span><br><span class="line"><span class="comment"># 解法二</span></span><br><span class="line"><span class="keyword">import</span> math</span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">func_get_prime</span><span class="params">(n)</span>:</span></span><br><span class="line">  <span class="keyword">return</span> filter(<span class="keyword">lambda</span> x: <span class="keyword">not</span> [x%i <span class="keyword">for</span> i <span class="keyword">in</span> range(<span class="number">2</span>, int(math.sqrt(x))+<span class="number">1</span>) <span class="keyword">if</span> x%i ==<span class="number">0</span>], range(<span class="number">2</span>,n+<span class="number">1</span>))</span><br><span class="line"> </span><br><span class="line"><span class="keyword">print</span> func_get_prime(<span class="number">100</span>)</span><br><span class="line"></span><br><span class="line"><span class="comment"># 我的解法</span></span><br><span class="line">p = []</span><br><span class="line">n = <span class="number">1000</span></span><br><span class="line"><span class="keyword">for</span> num <span class="keyword">in</span> range(<span class="number">2</span>,n+<span class="number">1</span>):</span><br><span class="line">    <span class="keyword">for</span> i <span class="keyword">in</span> range(<span class="number">2</span>,num):</span><br><span class="line">        <span class="keyword">if</span>(num%i)==<span class="number">0</span>:</span><br><span class="line">            <span class="keyword">break</span></span><br><span class="line">    <span class="keyword">else</span>:</span><br><span class="line">        p.append(num)</span><br><span class="line">print(p)</span><br></pre></td></tr></table></figure>
+<h1 id="python"><a href="#python" class="headerlink" title="python"></a>python</h1><h2 id="pythonプログラミング-5"><a href="#pythonプログラミング-5" class="headerlink" title="pythonプログラミング(5)"></a>pythonプログラミング(5)</h2><h3 id="内包表記"><a href="#内包表記" class="headerlink" title="内包表記"></a>内包表記</h3><p>略</p>
+<h3 id="関数"><a href="#関数" class="headerlink" title="関数"></a>関数</h3><p>略</p>
+<h3 id="組込み関数"><a href="#組込み関数" class="headerlink" title="組込み関数"></a>組込み関数</h3><p>略</p>
+<h3 id="グローバル変数とローカル変数"><a href="#グローバル変数とローカル変数" class="headerlink" title="グローバル変数とローカル変数"></a>グローバル変数とローカル変数</h3><p>略</p>
+<h3 id="例外処理"><a href="#例外処理" class="headerlink" title="例外処理"></a>例外処理</h3><p>略</p>
+<h2 id="演習課題"><a href="#演習課題" class="headerlink" title="演習課題"></a>演習課題</h2><h4 id="演習課題１"><a href="#演習課題１" class="headerlink" title="演習課題１"></a>演習課題１</h4><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 次の内包表現と等価なプログラムをPythonで作成しなさい。</span></span><br><span class="line">rows = range(<span class="number">1</span>,<span class="number">3</span>)</span><br><span class="line">cols = range(<span class="number">1</span>,<span class="number">4</span>)</span><br><span class="line">cells = [(row,col) <span class="keyword">for</span> row <span class="keyword">in</span> rows <span class="keyword">for</span> col <span class="keyword">in</span> cols]</span><br><span class="line">print(cells)</span><br><span class="line"><span class="comment"># [(1, 1), (1, 2), (1, 3), (2, 1), (2, 2), (2, 3)]</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 答</span></span><br><span class="line">cells2 = []</span><br><span class="line"><span class="keyword">for</span> row2 <span class="keyword">in</span> rows:</span><br><span class="line">    <span class="keyword">for</span> col2 <span class="keyword">in</span> cols:</span><br><span class="line">        cells2.append((row2,col2))</span><br><span class="line">print(cells2)</span><br><span class="line"><span class="comment"># [(1, 1), (1, 2), (1, 3), (2, 1), (2, 2), (2, 3)]</span></span><br></pre></td></tr></table></figure>
 
-<pre><code>我可能有烦心事了，说是放弃就会快乐，并非如是。之前的烦恼是时间不够用，学校要写论文，公司要写代码，吉他得练，健身，登山，合气道，聚会。因为疫情的缘故，各种活动都停了，短暂的轻松，可是论文，研发，吉他。三件事就够我忙碌的了。
 
-上周五晚买了人生第一条领带，周六一早正装危坐的做着论文答辩的初审。校长说这样的论文，完成度只有三分之一，要到学会，杂志发表的程度，还有三分之二要走。写了邮件给老师，说要努力，写出满意的论文之后，和jt去大阪。
 
-一个星期的时间，终于，今天写邮件和教授商量着，论文要放弃了，不想写了。研究太累，还是敲敲代码毕业轻松吧。公司研发这边，把设定的部分交给了其他人去做，我只做运行的部分。放弃了，这周不再有梦中研究，却也空空的。
+<h4 id="演習課題２"><a href="#演習課題２" class="headerlink" title="演習課題２"></a>演習課題２</h4><p>フィボナッチ関数を再帰を用いないで，ループを使っ て記述しなさい。</p>
+<p>$$ 𝐹(0)=1 $$<br>$$ 𝐹(1)=1 $$<br>$$ 𝐹(𝑛)=𝐹(𝑛−1)+𝐹(𝑛−2), 𝑛&gt;1 $$</p>
+<p><strong>ヒント</strong>  : フィボナッチ関数の定義式を用いて， $ 𝐹 (𝑛) $ の値を， $ 𝑛 = 2, 3, 4, … $ の順に計算すればよい。</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">fib</span><span class="params">(n)</span>:</span></span><br><span class="line">    <span class="keyword">if</span> n == <span class="number">0</span>:</span><br><span class="line">        <span class="keyword">return</span> <span class="number">1</span></span><br><span class="line">    <span class="keyword">elif</span> n == <span class="number">1</span>:</span><br><span class="line">        <span class="keyword">return</span> <span class="number">1</span></span><br><span class="line">    <span class="keyword">else</span>:</span><br><span class="line">        <span class="keyword">return</span> fib(n<span class="number">-1</span>)+fib(n<span class="number">-2</span>)</span><br><span class="line"></span><br><span class="line">n = fib(<span class="number">2</span>)</span><br><span class="line">print(n)</span><br><span class="line"></span><br><span class="line">n = fib(<span class="number">3</span>)</span><br><span class="line">print(n)</span><br><span class="line"></span><br><span class="line">n = fib(<span class="number">4</span>)</span><br><span class="line">print(n)</span><br><span class="line"></span><br><span class="line">n = fib(<span class="number">5</span>)</span><br><span class="line">print(n)</span><br><span class="line"></span><br><span class="line"><span class="comment"># 2</span></span><br><span class="line"><span class="comment"># 3</span></span><br><span class="line"><span class="comment"># 5</span></span><br><span class="line"><span class="comment"># 8</span></span><br></pre></td></tr></table></figure>
 
-制定了一个粗略的目标，一年时间准备，存钱。搬家，换装，换状态。
 
-看中了一块手表，想买，信用卡花太多了，剩下的额度不够，申请了提额被拒了。</code></pre><p><img src="https://tva1.sinaimg.cn/large/007S8ZIlgy1gfmci29kmuj30nr0rs42t.jpg" alt="238091591703316_.pic_hd"></p>
-<p><img src="https://tva1.sinaimg.cn/large/007S8ZIlgy1gfmcigpc0uj30rs0kutcr.jpg" alt="238091591703316_.pic_hd"></p>
+
+<p>LJT约出门逛逛，昨天因为公司学习会没得去。现在约了出门去逛逛，走了 。20200616 19:36</p>
 
         </div>
 
@@ -278,7 +277,7 @@
                         
                 </span>
                 <!-- 下面这段代码是阅读量统计 -->
-                <span id="/2020/06/09/2020-06-09-IoT%E3%81%A8%E7%84%A1%E7%B7%9A%E3%83%8D%E3%83%83%E3%83%88%E3%83%AF%E3%83%BC%E3%82%AF(5)/" class="leancloud-visitors view" data-flag-title="IoTと無線ネットワーク(5)">
+                <span id="/2020/06/16/2020-06-16-IoT%E3%81%A8%E7%84%A1%E7%B7%9A%E3%83%8D%E3%83%83%E3%83%88%E3%83%AF%E3%83%BC%E3%82%AF(6)/" class="leancloud-visitors view" data-flag-title="IoTと無線ネットワーク(6)">
                     <em class="post-meta-item-text">&nbsp;&nbsp;Pageviews:</em>
                     <i class="leancloud-visitors-count">loading</i>
                 </span>
@@ -291,10 +290,8 @@
         </section>
         <section class="post-nav">
             
-                <a class="prev" rel="prev" href="/2020/06/16/2020-06-16-IoT%E3%81%A8%E7%84%A1%E7%B7%9A%E3%83%8D%E3%83%83%E3%83%88%E3%83%AF%E3%83%BC%E3%82%AF(6)/">IoTと無線ネットワーク(6)</a>
             
-            
-            <a class="next" rel="next" href="/2020/06/02/2020-06-02-IoT%E3%81%A8%E7%84%A1%E7%B7%9A%E3%83%8D%E3%83%83%E3%83%88%E3%83%AF%E3%83%BC%E3%82%AF(4)/">IoTと無線ネットワーク(4)</a>
+            <a class="next" rel="next" href="/2020/06/09/2020-06-09-IoT%E3%81%A8%E7%84%A1%E7%B7%9A%E3%83%8D%E3%83%83%E3%83%88%E3%83%AF%E3%83%BC%E3%82%AF(5)/">IoTと無線ネットワーク(5)</a>
             
         </section>
         <!-- 下面这段代码是评论的 -->
