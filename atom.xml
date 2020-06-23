@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://yoursite.com/"/>
-  <updated>2020-06-16T10:36:34.142Z</updated>
+  <updated>2020-06-17T02:02:48.000Z</updated>
   <id>http://yoursite.com/</id>
   
   <author>
@@ -15,6 +15,35 @@
   </author>
   
   <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>赛灵思xilinx(ZCU106) 连接PC文件I/O和局域网Apache2</title>
+    <link href="http://yoursite.com/2020/06/17/2020-06-17-ZCU106%20%E8%BF%9E%E6%8E%A5PC%E6%96%87%E4%BB%B6I:O%E5%92%8C%E5%B1%80%E5%9F%9F%E7%BD%91Apache2/"/>
+    <id>http://yoursite.com/2020/06/17/2020-06-17-ZCU106%20%E8%BF%9E%E6%8E%A5PC%E6%96%87%E4%BB%B6I:O%E5%92%8C%E5%B1%80%E5%9F%9F%E7%BD%91Apache2/</id>
+    <published>2020-06-17T05:56:03.000Z</published>
+    <updated>2020-06-17T02:02:48.000Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        
+        
+          &lt;h3 id=&quot;前言&quot;&gt;&lt;a href=&quot;#前言&quot; class=&quot;headerlink&quot; title=&quot;前言&quot;&gt;&lt;/a&gt;前言&lt;/h3&gt;&lt;p&gt;我们在用 &lt;a
+        
+      
+    
+    </summary>
+    
+    
+      <category term="工作笔记" scheme="http://yoursite.com/categories/%E5%B7%A5%E4%BD%9C%E7%AC%94%E8%AE%B0/"/>
+    
+    
+      <category term="中文" scheme="http://yoursite.com/tags/%E4%B8%AD%E6%96%87/"/>
+    
+      <category term="笔记" scheme="http://yoursite.com/tags/%E7%AC%94%E8%AE%B0/"/>
+    
+  </entry>
   
   <entry>
     <title>IoTと無線ネットワーク(6)</title>
