@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://yoursite.com/"/>
-  <updated>2020-06-17T02:02:48.000Z</updated>
+  <updated>2020-06-25T03:20:15.606Z</updated>
   <id>http://yoursite.com/</id>
   
   <author>
@@ -15,6 +15,39 @@
   </author>
   
   <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>IoTと無線ネットワーク(7)</title>
+    <link href="http://yoursite.com/2020/06/25/2020-06-25-IoT%E3%81%A8%E7%84%A1%E7%B7%9A%E3%83%8D%E3%83%83%E3%83%88%E3%83%AF%E3%83%BC%E3%82%AF(7)/"/>
+    <id>http://yoursite.com/2020/06/25/2020-06-25-IoT%E3%81%A8%E7%84%A1%E7%B7%9A%E3%83%8D%E3%83%83%E3%83%88%E3%83%AF%E3%83%BC%E3%82%AF(7)/</id>
+    <published>2020-06-25T02:42:03.000Z</published>
+    <updated>2020-06-25T03:20:15.606Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        
+        
+          &lt;h1 id=&quot;前言&quot;&gt;&lt;a href=&quot;#前言&quot; class=&quot;headerlink&quot; title=&quot;前言&quot;&gt;&lt;/a&gt;前言&lt;/h1&gt;&lt;p&gt;授業中で寝ちゃった&lt;/p&gt;
+&lt;p&gt;やる気なくなちゃった&lt;/p&gt;
+&lt;h1 id=&quot;IoT知識&quot;&gt;&lt;a href=&quot;#IoT知識&quot;
+        
+      
+    
+    </summary>
+    
+    
+      <category term="学习笔记" scheme="http://yoursite.com/categories/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/"/>
+    
+    
+      <category term="日本語" scheme="http://yoursite.com/tags/%E6%97%A5%E6%9C%AC%E8%AA%9E/"/>
+    
+      <category term="メモ" scheme="http://yoursite.com/tags/%E3%83%A1%E3%83%A2/"/>
+    
+      <category term="python" scheme="http://yoursite.com/tags/python/"/>
+    
+  </entry>
   
   <entry>
     <title>赛灵思xilinx(ZCU106) 连接PC文件I/O和局域网Apache2</title>
@@ -50,7 +83,7 @@
     <link href="http://yoursite.com/2020/06/16/2020-06-16-IoT%E3%81%A8%E7%84%A1%E7%B7%9A%E3%83%8D%E3%83%83%E3%83%88%E3%83%AF%E3%83%BC%E3%82%AF(6)/"/>
     <id>http://yoursite.com/2020/06/16/2020-06-16-IoT%E3%81%A8%E7%84%A1%E7%B7%9A%E3%83%8D%E3%83%83%E3%83%88%E3%83%AF%E3%83%BC%E3%82%AF(6)/</id>
     <published>2020-06-16T10:36:03.000Z</published>
-    <updated>2020-06-16T10:36:34.142Z</updated>
+    <updated>2020-06-25T04:28:44.385Z</updated>
     
     <summary type="html">
     
@@ -82,7 +115,7 @@
     <link href="http://yoursite.com/2020/06/09/2020-06-09-IoT%E3%81%A8%E7%84%A1%E7%B7%9A%E3%83%8D%E3%83%83%E3%83%88%E3%83%AF%E3%83%BC%E3%82%AF(5)/"/>
     <id>http://yoursite.com/2020/06/09/2020-06-09-IoT%E3%81%A8%E7%84%A1%E7%B7%9A%E3%83%8D%E3%83%83%E3%83%88%E3%83%AF%E3%83%BC%E3%82%AF(5)/</id>
     <published>2020-06-09T12:39:03.000Z</published>
-    <updated>2020-06-09T13:25:42.814Z</updated>
+    <updated>2020-06-25T03:49:31.235Z</updated>
     
     <summary type="html">
     
@@ -210,7 +243,7 @@
     <link href="http://yoursite.com/2020/05/18/2020-05-18-ZCU106%20MacBook%20UART%20VCP%20%E7%BB%88%E7%AB%AF%E8%B0%83%E8%AF%95%20%E6%B3%A2%E7%89%B9%E7%8E%87/"/>
     <id>http://yoursite.com/2020/05/18/2020-05-18-ZCU106%20MacBook%20UART%20VCP%20%E7%BB%88%E7%AB%AF%E8%B0%83%E8%AF%95%20%E6%B3%A2%E7%89%B9%E7%8E%87/</id>
     <published>2020-05-18T05:56:03.000Z</published>
-    <updated>2020-05-25T13:37:06.270Z</updated>
+    <updated>2020-06-25T03:23:27.431Z</updated>
     
     <summary type="html">
     
@@ -218,7 +251,7 @@
       
         
         
-          &lt;h1 id=&quot;前言&quot;&gt;&lt;a href=&quot;#前言&quot; class=&quot;headerlink&quot; title=&quot;前言&quot;&gt;&lt;/a&gt;前言&lt;/h1&gt;&lt;p&gt;&lt;a
+          &lt;h1 id=&quot;前言&quot;&gt;&lt;a href=&quot;#前言&quot; class=&quot;headerlink&quot; title=&quot;前言&quot;&gt;&lt;/a&gt;前言&lt;/h1&gt;&lt;figure class=&quot;highlight plain&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span
         
       
     

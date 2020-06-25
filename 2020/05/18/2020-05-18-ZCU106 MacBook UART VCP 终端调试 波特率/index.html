@@ -238,7 +238,11 @@
         </header>
 
         <div class="post-content">
-            <h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p><a href="https://china.xilinx.com/content/xilinx/zh/products/boards-and-kits/zcu106.html.html#hardware" target="_blank" rel="noopener">Zynq UltraScale+ MPSoC ZCU106</a> 评估套件做开发的时候，会有需要用到终端来调试的时候。Windows和Linux的话，有Xilinx 软件开发套件 (XSDK)可用，安装以后只要直接插入USB连接就可以了。而macOS系统，接入USB却发现不了。</p>
+            <h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">查询：</span><br><span class="line">ls -l &#x2F;dev&#x2F;tty.* </span><br><span class="line"></span><br><span class="line">设置：</span><br><span class="line">screen &#x2F;dev&#x2F;tty.SLAB_USBtoUART 115200</span><br></pre></td></tr></table></figure>
+
+
+
+<p><a href="https://china.xilinx.com/content/xilinx/zh/products/boards-and-kits/zcu106.html.html#hardware" target="_blank" rel="noopener">Zynq UltraScale+ MPSoC ZCU106</a> 评估套件做开发的时候，会有需要用到终端来调试的时候。Windows和Linux的话，有Xilinx 软件开发套件 (XSDK)可用，安装以后只要直接插入USB连接就可以了。而macOS系统，接入USB却发现不了。</p>
 <p>困恼了许久，网上相应的教程也甚少。线插上后毫无反应，怀疑过接口和线材有问题，各种测试后确认可能是没有相关驱动。最后チョウさん帮忙，在Google搜【macos cu baute rate】才解决。</p>
 <h2 id="关于波特率的介绍"><a href="#关于波特率的介绍" class="headerlink" title="关于波特率的介绍"></a>关于波特率的介绍</h2><h3 id="简介"><a href="#简介" class="headerlink" title="简介"></a>简介</h3><table><tr><td bgcolor=orange>（多亏チョウさん提醒，加上波特率的介绍）</td></tr></table>
 在电子通讯领域，**波特(Baud)**即调制速率，指的是有效数据讯号调制载波的速率，即单位时间内载波调制状态变化的次数。它是对符号传输速率的一种度量，1波特即指每秒传输1个符号，而透过不同的调制方式，可以在一个码元符号上负载多个bit位讯号。
