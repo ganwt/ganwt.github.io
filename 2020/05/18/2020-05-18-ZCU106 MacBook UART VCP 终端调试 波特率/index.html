@@ -244,9 +244,9 @@
 
 <p><a href="https://china.xilinx.com/content/xilinx/zh/products/boards-and-kits/zcu106.html.html#hardware" target="_blank" rel="noopener">Zynq UltraScale+ MPSoC ZCU106</a> 评估套件做开发的时候，会有需要用到终端来调试的时候。Windows和Linux的话，有Xilinx 软件开发套件 (XSDK)可用，安装以后只要直接插入USB连接就可以了。而macOS系统，接入USB却发现不了。</p>
 <p>困恼了许久，网上相应的教程也甚少。线插上后毫无反应，怀疑过接口和线材有问题，各种测试后确认可能是没有相关驱动。最后チョウさん帮忙，在Google搜【macos cu baute rate】才解决。</p>
-<h2 id="关于波特率的介绍"><a href="#关于波特率的介绍" class="headerlink" title="关于波特率的介绍"></a>关于波特率的介绍</h2><h3 id="简介"><a href="#简介" class="headerlink" title="简介"></a>简介</h3><table><tr><td bgcolor=orange>（多亏チョウさん提醒，加上波特率的介绍）</td></tr></table>
-在电子通讯领域，**波特(Baud)**即调制速率，指的是有效数据讯号调制载波的速率，即单位时间内载波调制状态变化的次数。它是对符号传输速率的一种度量，1波特即指每秒传输1个符号，而透过不同的调制方式，可以在一个码元符号上负载多个bit位讯号。
+<h2 id="关于波特率的介绍"><a href="#关于波特率的介绍" class="headerlink" title="关于波特率的介绍"></a>关于波特率的介绍</h2><h3 id="简介"><a href="#简介" class="headerlink" title="简介"></a>简介</h3><table><tr><td bgcolor=orange>（チョウさん提醒，加上波特率的介绍）</td></tr></table>
 
+<p>在电子通讯领域，<strong>波特(Baud)</strong>即调制速率，指的是有效数据讯号调制载波的速率，即单位时间内载波调制状态变化的次数。它是对符号传输速率的一种度量，1波特即指每秒传输1个符号，而透过不同的调制方式，可以在一个码元符号上负载多个bit位讯号。</p>
 <p>注意以下两点<strong>常见</strong>错误：<br>1 “波特”（Baud）本身已是速率，所以不需要写成 Baud Rate（Rate 是赘字）。<br>2 单位“波特”本身就已经是代表每秒的调制数，以“波特每秒”（Baud per second）为单位是一种常见的错误，但是在一般中文口语化的沟通上还是常以“波特率”来描述“波特”（Baud）。</p>
 <h3 id="波特率的计算"><a href="#波特率的计算" class="headerlink" title="波特率的计算"></a>波特率的计算</h3><p>波特率有时候会同比特率混淆，实际上后者是对信息传输速率（传信率）的度量。波特率可以被理解为单位时间内传输符号的个数（传符号率），通过不同的调制方法可以在一个符号上负载多个比特信息。因此信息传输速率即比特率在数值上和波特率有这样的关系：<br>$$I=S\cdot \log _2{N}$$<br>其中$I$ 为传信率，$S$ 为波特率，$N$ 为每个符号负载的信息量，而${\displaystyle \log _{2}{N}}\log _2{N}$以比特为单位。因此只有在每个符号只代表一个比特信息的情况、或一些简单的调制方式下，例如基带二进制信号、或Bell 103或CCITT V.21（左列两种均为FSK）调制方式等，波特率与比特率才在数值上相等，但是它们的意义并不相同。</p>
 <p>ZCU106 板子</p>
