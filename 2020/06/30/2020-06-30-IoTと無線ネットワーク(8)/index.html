@@ -1,0 +1,880 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+<meta name="viewport"
+      content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+<meta http-equiv="X-UA-Compatible" content="ie=edge">
+
+    <meta name="author" content="GanWt">
+
+
+
+
+
+<title>IoTと無線ネットワーク(8) | GanWt</title>
+
+
+
+    <link rel="icon" href="/ganwt.ico">
+
+
+
+
+    <!-- stylesheets list from _config.yml -->
+    
+    <link rel="stylesheet" href="/css/style.css">
+    
+
+
+
+    <!-- scripts list from _config.yml -->
+    
+    <script src="/js/script.js"></script>
+    
+    <script src="/js/tocbot.min.js"></script>
+    
+
+
+
+    
+    
+        
+            <!-- MathJax配置，可通过单美元符号书写行内公式等 -->
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+    "HTML-CSS": {
+        preferredFont: "TeX",
+        availableFonts: ["STIX","TeX"],
+        linebreaks: { automatic:true },
+        EqnChunk: (MathJax.Hub.Browser.isMobile ? 10 : 50)
+    },
+    tex2jax: {
+        inlineMath: [ ["$", "$"], ["\\(","\\)"] ],
+        processEscapes: true,
+        ignoreClass: "tex2jax_ignore|dno",
+        skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+    },
+    TeX: {
+        equationNumbers: { autoNumber: "AMS" },
+        noUndefined: { attributes: { mathcolor: "red", mathbackground: "#FFEEEE", mathsize: "90%" } },
+        Macros: { href: "{}" }
+    },
+    messageStyle: "none"
+    });
+</script>
+<!-- 给MathJax元素添加has-jax class -->
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax(), i;
+        for(i=0; i < all.length; i += 1) {
+            all[i].SourceElement().parentNode.className += ' has-jax';
+        }
+    });
+</script>
+<!-- 通过连接CDN加载MathJax的js代码 -->
+<script type="text/javascript" async
+        src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js?config=TeX-MML-AM_CHTML">
+</script>
+
+
+        
+    
+
+
+<meta name="generator" content="Hexo 4.2.0"><link rel="alternate" href="/atom.xml" title="GanWt" type="application/atom+xml">
+</head>
+<body>
+    <div class="wrapper">
+        <header>
+    <nav class="navbar">
+        <div class="container">
+            <div class="navbar-header header-logo"><a href="/">GanWt Blog</a></div>
+            <div class="menu navbar-right">
+                
+                    <a class="menu-item" href="/archives">Posts</a>
+                
+                    <a class="menu-item" href="/categories">Categories</a>
+                
+                    <a class="menu-item" href="/tags">Tags</a>
+                
+                    <a class="menu-item" href="/about">About</a>
+                
+                <input id="switch_default" type="checkbox" class="switch_default">
+                <label for="switch_default" class="toggleBtn"></label>
+            </div>
+        </div>
+    </nav>
+
+    
+    <nav class="navbar-mobile" id="nav-mobile">
+        <div class="container">
+            <div class="navbar-header">
+                <div>
+                    <a href="/">GanWt Blog</a><a id="mobile-toggle-theme">·&nbsp;Light</a>
+                </div>
+                <div class="menu-toggle" onclick="mobileBtn()">&#9776; Menu</div>
+            </div>
+            <div class="menu" id="mobile-menu">
+                
+                    <a class="menu-item" href="/archives">Posts</a>
+                
+                    <a class="menu-item" href="/categories">Categories</a>
+                
+                    <a class="menu-item" href="/tags">Tags</a>
+                
+                    <a class="menu-item" href="/about">About</a>
+                
+            </div>
+        </div>
+    </nav>
+
+</header>
+<script>
+    var mobileBtn = function f() {
+        var toggleMenu = document.getElementsByClassName("menu-toggle")[0];
+        var mobileMenu = document.getElementById("mobile-menu");
+        if(toggleMenu.classList.contains("active")){
+           toggleMenu.classList.remove("active")
+            mobileMenu.classList.remove("active")
+        }else{
+            toggleMenu.classList.add("active")
+            mobileMenu.classList.add("active")
+        }
+    }
+</script>
+        <div class="main">
+            <div class="container">
+    
+    
+        <div class="post-toc">
+    <div class="tocbot-list">
+    </div>
+    <div class="tocbot-list-menu">
+        <a class="tocbot-toc-expand" onclick="expand_toc()">Expand all</a>
+        <a onclick="go_top()">Back to top</a>
+        <a onclick="go_bottom()">Go to bottom</a>
+    </div>
+</div>
+
+<script>
+    document.ready(
+        function () {
+            tocbot.init({
+                tocSelector: '.tocbot-list',
+                contentSelector: '.post-content',
+                headingSelector: 'h1, h2, h3, h4, h5',
+                collapseDepth: 1,
+                orderedList: false,
+                scrollSmooth: true,
+            })
+        }
+    )
+
+    function expand_toc() {
+        var b = document.querySelector(".tocbot-toc-expand");
+        tocbot.init({
+            tocSelector: '.tocbot-list',
+            contentSelector: '.post-content',
+            headingSelector: 'h1, h2, h3, h4, h5',
+            collapseDepth: 6,
+            orderedList: false,
+            scrollSmooth: true,
+        });
+        b.setAttribute("onclick", "collapse_toc()");
+        b.innerHTML = "Collapse all"
+    }
+
+    function collapse_toc() {
+        var b = document.querySelector(".tocbot-toc-expand");
+        tocbot.init({
+            tocSelector: '.tocbot-list',
+            contentSelector: '.post-content',
+            headingSelector: 'h1, h2, h3, h4, h5',
+            collapseDepth: 1,
+            orderedList: false,
+            scrollSmooth: true,
+        });
+        b.setAttribute("onclick", "expand_toc()");
+        b.innerHTML = "Expand all"
+    }
+
+    function go_top() {
+        window.scrollTo(0, 0);
+    }
+
+    function go_bottom() {
+        window.scrollTo(0, document.body.scrollHeight);
+    }
+
+</script>
+    
+
+    
+    <article class="post-wrap">
+        <header class="post-header">
+            <h1 class="post-title">IoTと無線ネットワーク(8)</h1>
+            
+                <div class="post-meta">
+                    
+                        Author: <a itemprop="author" rel="author" href="/">GanWt</a>
+                    
+
+                    
+                        <span class="post-time">
+                        Date: <a href="#">June 30, 2020&nbsp;&nbsp;16:00:03</a>
+                        </span>
+                    
+                    
+                        <span class="post-category">
+                    Category:
+                            
+                                <a href="/categories/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/">学习笔记</a>
+                            
+                        </span>
+                    
+                </div>
+            
+        </header>
+
+        <div class="post-content">
+            <h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>よ、始めましょう！</p>
+<h1 id="IoT知識"><a href="#IoT知識" class="headerlink" title="IoT知識"></a>IoT知識</h1><p>なしけど、代わりにOpenWeatherMapを教えます。</p>
+<h3 id="1-準備"><a href="#1-準備" class="headerlink" title="1. 準備"></a>1. 準備</h3><ul>
+<li><p>天候情報提供サイトOpenWeatherMap へのアクセス</p>
+<ul>
+<li><a href="https://openweathermap.org/" target="_blank" rel="noopener">https://openweathermap.org/</a></li>
+<li>ユーザ登録を行って下さい</li>
+<li>API key がメイルで送られてきます</li>
+</ul>
+</li>
+<li><p>OpenWeatherMap API guide</p>
+</li>
+<li><p><a href="https://openweathermap.org/guide%23intro" target="_blank" rel="noopener">Introduction</a></p>
+</li>
+<li><p><a href="https://openweathermap.org/guide%23how" target="_blank" rel="noopener">I. Registration process: How to start</a></p>
+</li>
+<li><p><a href="https://openweathermap.org/guide%23api" target="_blank" rel="noopener">II. API Documentation</a></p>
+</li>
+<li><p><a href="https://openweathermap.org/guide%23plans" target="_blank" rel="noopener">III. Subscription plans</a></p>
+</li>
+<li><p><a href="https://openweathermap.org/guide%23current" target="_blank" rel="noopener">Current weather and forecasts collection</a></p>
+</li>
+<li><p><a href="https://openweathermap.org/guide%23history" target="_blank" rel="noopener">Historical weather collection</a></p>
+</li>
+<li><p><a href="https://openweathermap.org/guide%23payment" target="_blank" rel="noopener">IV. Payment process</a></p>
+</li>
+</ul>
+<h3 id="2-ユーザ登録"><a href="#2-ユーザ登録" class="headerlink" title="2. ユーザ登録"></a>2. ユーザ登録</h3><img src="https://ganwt.com/image/2020-06-30-IoTと無線ネットワーク(8)/1.png" alt="image-00020630181115284" style="zoom:50%;" />
+
+<img src="https://ganwt.com/image/2020-06-30-IoTと無線ネットワーク(8)/2.png" alt="image-00020630181336499" style="zoom:50%;" />
+
+<h3 id="3-APIからのレスポンス"><a href="#3-APIからのレスポンス" class="headerlink" title="3. APIからのレスポンス"></a>3. APIからのレスポンス</h3><ul>
+<li>lat : 緯度 (latitude)</li>
+<li>lon : 経度 (longitude) </li>
+<li>timezone : タイムゾーン名 </li>
+<li>timezone_offset UTCとの差分(秒)</li>
+<li>current.dt : 現在の時刻(UTC) </li>
+<li>current.sunrise : 日の出の時刻(UTC) </li>
+<li>current.sunset : 日の入の時刻(UTC)</li>
+<li>current.temp : 気温<br> (単位: Default: Kelvin, Metric: Celsius, Imperial: Fahrenheit. )</li>
+<li>current.feels_like : 体感温度</li>
+<li>current.pressure : 海面レベルでの気圧(hPa) </li>
+<li>current.humidity : 湿度(%) </li>
+<li>current.dew_point : 露点(度) </li>
+<li>current.clouds : 雲量(%)</li>
+<li>current.uvi : 紫外線量(UV index) </li>
+<li>current.visibility : 視界(m)</li>
+<li>current.wind_speed : 風速(m/s) </li>
+<li>current.wind_gust : 突風(m/s) </li>
+<li>current.wind_deg : 風向(度)</li>
+<li>current.rain : 降雨量(mm)</li>
+<li>current.rain.1h : 過去1時間当たりの降雨量(mm) </li>
+<li>current.snow : 降雪量(mm) </li>
+<li>current.snow.1h : 過去1時間当たりの降雪量(mm)</li>
+<li>current.weather : 天候コード</li>
+<li>current.weather.id : 天候id</li>
+<li>current.weather.main : 天候グループパラメー タ(雨，雪，荒天など)</li>
+<li>current.weather.description : 天候の記述 </li>
+<li>current.weather.icon : 天候アイコンid</li>
+</ul>
+<h3 id="4-天候の状態-Weather-Conditions"><a href="#4-天候の状態-Weather-Conditions" class="headerlink" title="4. 天候の状態(Weather Conditions)"></a>4. 天候の状態(Weather Conditions)</h3><ul>
+<li><p><a href="https://openweathermap.org/weather-conditions" target="_blank" rel="noopener">https://openweathermap.org/weather-conditions</a></p>
+<table class="table table-bordered">
+        <caption><h3>Icon list</h3></caption>
+        <tbody><tr>
+            <th>Day icon</th>
+            <th>Night icon</th>
+            <th>Description</th>
+        </tr>
+        <tr>
+            <td>01d.png  <img src="http://openweathermap.org/img/wn/01d@2x.png" width="50px" height="50px" alt="">  </td>
+            <td> 01n.png  <img src="http://openweathermap.org/img/wn/01n@2x.png" width="50px" height="50px" alt="">  </td>
+            <td> clear sky</td>
+        </tr>
+        <tr>
+            <td>02d.png  <img src="http://openweathermap.org/img/wn/02d@2x.png" width="50px" height="50px" alt=""> </td>
+            <td> 02n.png  <img src="http://openweathermap.org/img/wn/02n@2x.png" width="50px" height="50px" alt="">  </td>
+            <td> few clouds </td>
+        </tr>
+        <tr>
+            <td>03d.png  <img src="http://openweathermap.org/img/wn/03d@2x.png" width="50px" height="50px" alt="">  </td>
+            <td> 03n.png  <img src="http://openweathermap.org/img/wn/03n@2x.png" width="50px" height="50px" alt="">  </td>
+            <td> scattered clouds </td>
+        </tr>
+        <tr>
+            <td>04d.png  <img src="http://openweathermap.org/img/wn/04d@2x.png" width="50px" height="50px" alt=""> </td>
+            <td> 04n.png  <img src="http://openweathermap.org/img/wn/04n@2x.png" width="50px" height="50px" alt="">  </td>
+            <td> broken clouds </td>
+        </tr>
+        <tr>
+            <td>09d.png  <img src="http://openweathermap.org/img/wn/09d@2x.png" width="50px" height="50px" alt="">  </td>
+            <td> 09n.png  <img src="http://openweathermap.org/img/wn/09n@2x.png" width="50px" height="50px" alt="">  </td>
+            <td> shower rain </td>
+        </tr>
+        <tr>
+            <td>10d.png  <img src="http://openweathermap.org/img/wn/10d@2x.png" width="50px" height="50px" alt="">  </td>
+            <td> 10n.png  <img src="http://openweathermap.org/img/wn/10n@2x.png" width="50px" height="50px" alt="">  </td>
+            <td> rain </td>
+        </tr>
+        <tr>
+            <td>11d.png  <img src="http://openweathermap.org/img/wn/11d@2x.png" width="50px" height="50px" alt="">  </td>
+            <td> 11n.png  <img src="http://openweathermap.org/img/wn/11n@2x.png" width="50px" height="50px" alt="">  </td>
+            <td> thunderstorm </td>
+        </tr>
+        <tr>
+            <td>13d.png  <img src="http://openweathermap.org/img/wn/13d@2x.png" width="50px" height="50px" alt="">  </td>
+            <td> 13n.png  <img src="http://openweathermap.org/img/wn/13n@2x.png" width="50px" height="50px" alt="">  </td>
+            <td> snow  </td>
+        </tr>
+        <tr>
+            <td>50d.png  <img src="http://openweathermap.org/img/wn/50d@2x.png" width="50px" height="50px" alt="">  </td>
+            <td> 50n.png  <img src="http://openweathermap.org/img/wn/50n@2x.png" width="50px" height="50px" alt="">  </td>
+            <td> mist </td>
+        </tr>
+    </tbody></table>
+
+</li>
+</ul>
+<table class="table table-bordered">
+    <caption><h3>Group 2xx: Thunderstorm(雷雨)</h3></caption>
+    <tbody><tr>
+        <th width="100">ID</th>
+        <th width="200">Main</th>
+        <th width="300">Description</th>
+        <th width="100">Icon</th>
+    </tr>
+    <tr>
+        <td> 200 </td>
+        <td> Thunderstorm </td>
+        <td> thunderstorm with light rain </td>
+        <td> <img src="http://openweathermap.org/img/wn/11d@2x.png" alt="" width="20"> 11d </td>
+    </tr>
+    <tr>
+        <td> 201 </td>
+        <td> Thunderstorm </td>
+        <td> thunderstorm with rain </td>
+        <td> <img src="http://openweathermap.org/img/wn/11d@2x.png" alt="" width="20"> 11d </td>
+    </tr>
+    <tr>
+        <td> 202 </td>
+        <td> Thunderstorm </td>
+        <td> thunderstorm with heavy rain </td>
+        <td> <img src="http://openweathermap.org/img/wn/11d@2x.png" alt="" width="20"> 11d </td>
+    </tr>
+    <tr>
+        <td> 210 </td>
+        <td> Thunderstorm </td>
+        <td> light thunderstorm </td>
+        <td> <img src="http://openweathermap.org/img/wn/11d@2x.png" alt="" width="20"> 11d </td>
+    </tr>
+    <tr>
+        <td> 211 </td>
+        <td> Thunderstorm </td>
+        <td> thunderstorm </td>
+        <td> <img src="http://openweathermap.org/img/wn/11d@2x.png" alt="" width="20"> 11d </td>
+    </tr>
+    <tr>
+        <td> 212 </td>
+        <td> Thunderstorm </td>
+        <td> heavy thunderstorm </td>
+        <td> <img src="http://openweathermap.org/img/wn/11d@2x.png" alt="" width="20"> 11d </td>
+    </tr>
+    <tr>
+        <td> 221 </td>
+        <td> Thunderstorm </td>
+        <td> ragged thunderstorm </td>
+        <td> <img src="http://openweathermap.org/img/wn/11d@2x.png" alt="" width="20"> 11d </td>
+    </tr>
+    <tr>
+        <td> 230 </td>
+        <td> Thunderstorm </td>
+        <td> thunderstorm with light drizzle </td>
+        <td> <img src="http://openweathermap.org/img/wn/11d@2x.png" alt="" width="20"> 11d </td>
+    </tr>
+    <tr>
+        <td> 231 </td>
+        <td> Thunderstorm </td>
+        <td> thunderstorm with drizzle </td>
+        <td> <img src="http://openweathermap.org/img/wn/11d@2x.png" alt="" width="20"> 11d </td>
+    </tr>
+    <tr>
+        <td> 232 </td>
+        <td> Thunderstorm </td>
+        <td> thunderstorm with heavy drizzle </td>
+        <td> <img src="http://openweathermap.org/img/wn/11d@2x.png" alt="" width="20"> 11d </td>
+    </tr>
+</tbody></table>
+
+<table class="table table-bordered">
+    <caption><h3>Group 3xx: Drizzle(霧雨)</h3></caption>
+    <tbody><tr>
+        <th width="100">ID</th>
+        <th width="200">Main</th>
+        <th width="300">Description</th>
+        <th width="100">Icon</th>
+    </tr>
+    <tr>
+        <td> 300 </td>
+        <td> Drizzle </td>
+        <td> light intensity drizzle </td>
+        <td> <img src="http://openweathermap.org/img/wn/09d@2x.png" alt="" width="20"> 09d </td>
+    </tr>
+    <tr>
+        <td> 301 </td>
+        <td> Drizzle </td>
+        <td> drizzle </td>
+        <td> <img src="http://openweathermap.org/img/wn/09d@2x.png" alt="" width="20"> 09d </td>
+    </tr>
+    <tr>
+        <td> 302 </td>
+        <td> Drizzle </td>
+        <td> heavy intensity drizzle </td>
+        <td> <img src="http://openweathermap.org/img/wn/09d@2x.png" alt="" width="20"> 09d </td>
+    </tr>
+    <tr>
+        <td> 310 </td>
+        <td> Drizzle </td>
+        <td> light intensity drizzle rain </td>
+        <td> <img src="http://openweathermap.org/img/wn/09d@2x.png" alt="" width="20"> 09d </td>
+    </tr>
+    <tr>
+        <td> 311 </td>
+        <td> Drizzle </td>
+        <td> drizzle rain </td>
+        <td> <img src="http://openweathermap.org/img/wn/09d@2x.png" alt="" width="20"> 09d </td>
+    </tr>
+    <tr>
+        <td> 312 </td>
+        <td> Drizzle </td>
+        <td> heavy intensity drizzle rain </td>
+        <td> <img src="http://openweathermap.org/img/wn/09d@2x.png" alt="" width="20"> 09d </td>
+    </tr>
+    <tr>
+        <td> 313 </td>
+        <td> Drizzle </td>
+        <td> shower rain and drizzle </td>
+        <td> <img src="http://openweathermap.org/img/wn/09d@2x.png" alt="" width="20"> 09d </td>
+    </tr>
+    <tr>
+        <td> 314 </td>
+        <td> Drizzle </td>
+        <td> heavy shower rain and drizzle </td>
+        <td> <img src="http://openweathermap.org/img/wn/09d@2x.png" alt="" width="20"> 09d </td>
+    </tr>
+    <tr>
+        <td> 321 </td>
+        <td> Drizzle </td>
+        <td> shower drizzle </td>
+        <td> <img src="http://openweathermap.org/img/wn/09d@2x.png" alt="" width="20"> 09d </td>
+    </tr>
+</tbody></table>
+
+<table class="table table-bordered">
+    <caption><h3>Group 5xx: Rain(雨)</h3></caption>
+    <tbody><tr>
+        <th width="100">ID</th>
+        <th width="200">Main</th>
+        <td width="300">Description</td>
+        <th width="100">Icon</th>
+    </tr>
+    <tr>
+        <td> 500 </td>
+        <td> Rain </td>
+        <td> light rain </td>
+        <td> <img src="http://openweathermap.org/img/wn/10d@2x.png" alt="" width="20"> 10d </td>
+    </tr>
+    <tr>
+        <td> 501 </td>
+        <td> Rain </td>
+        <td> moderate rain </td>
+        <td> <img src="http://openweathermap.org/img/wn/10d@2x.png" alt="" width="20"> 10d </td>
+    </tr>
+    <tr>
+        <td> 502 </td>
+        <td> Rain </td>
+        <td> heavy intensity rain  </td>
+        <td> <img src="http://openweathermap.org/img/wn/10d@2x.png" alt="" width="20"> 10d </td>
+    </tr>
+    <tr>
+        <td> 503 </td>
+        <td> Rain </td>
+        <td> very heavy rain </td>
+        <td> <img src="http://openweathermap.org/img/wn/10d@2x.png" alt="" width="20"> 10d </td>
+    </tr>
+    <tr>
+        <td> 504 </td>
+        <td> Rain </td>
+        <td> extreme rain </td>
+        <td> <img src="http://openweathermap.org/img/wn/10d@2x.png" alt="" width="20"> 10d </td>
+    </tr>
+    <tr>
+        <td> 511 </td>
+        <td> Rain </td>
+        <td> freezing rain </td>
+        <td> <img src="http://openweathermap.org/img/wn/13d@2x.png" alt="" width="20"> 13d </td>
+    </tr>
+    <tr>
+        <td> 520 </td>
+        <td> Rain </td>
+        <td> light intensity shower rain  </td>
+        <td> <img src="http://openweathermap.org/img/wn/09d@2x.png" alt="" width="20"> 09d </td>
+    </tr>
+    <tr>
+        <td> 521 </td>
+        <td> Rain </td>
+        <td> shower rain </td>
+        <td> <img src="http://openweathermap.org/img/wn/09d@2x.png" alt="" width="20"> 09d </td>
+    </tr>
+    <tr>
+        <td> 522 </td>
+        <td> Rain </td>
+        <td> heavy intensity shower rain </td>
+        <td> <img src="http://openweathermap.org/img/wn/09d@2x.png" alt="" width="20"> 09d </td>
+    </tr>
+    <tr>
+        <td> 531 </td>
+        <td> Rain </td>
+        <td> ragged shower rain </td>
+        <td> <img src="http://openweathermap.org/img/wn/09d@2x.png" alt="" width="20"> 09d </td>
+    </tr>
+</tbody></table>
+
+<table class="table table-bordered">
+        <caption><h3>Group 6xx: Snow(雪)</h3></caption>
+        <tbody><tr>
+            <th width="100">ID</th>
+            <th width="200">Main</th>
+            <td width="300">Description</td>
+            <th width="100">Icon</th>
+        </tr>
+        <tr>
+            <td> 600 </td>
+            <td> Snow </td>
+            <td> light snow </td>
+            <td> <img src="http://openweathermap.org/img/wn/13d@2x.png" alt="" width="20"> 13d </td>
+        </tr>
+        <tr>
+            <td> 601 </td>
+            <td> Snow </td>
+            <td> Snow </td>
+            <td> <img src="http://openweathermap.org/img/wn/13d@2x.png" alt="" width="20"> 13d</td>
+        </tr>
+        <tr>
+            <td> 602 </td>
+            <td> Snow </td>
+            <td> Heavy snow </td>
+            <td> <img src="http://openweathermap.org/img/wn/13d@2x.png" alt="" width="20"> 13d </td>
+        </tr>
+        <tr>
+            <td> 611 </td>
+            <td> Snow </td>
+            <td> Sleet </td>
+            <td> <img src="http://openweathermap.org/img/wn/13d@2x.png" alt="" width="20"> 13d </td>
+        </tr>
+        <tr>
+            <td> 612 </td>
+            <td> Snow </td>
+            <td> Light shower sleet </td>
+            <td><img src="http://openweathermap.org/img/wn/13d@2x.png" alt="" width="20"> 13d </td>
+        </tr>
+            <tr>
+            <td> 613 </td>
+            <td> Snow </td>
+            <td> Shower sleet </td>
+            <td><img src="http://openweathermap.org/img/wn/13d@2x.png" alt="" width="20"> 13d </td>
+        </tr>
+        <tr>
+            <td> 615 </td>
+            <td> Snow </td>
+            <td> Light rain and snow </td>
+            <td> <img src="http://openweathermap.org/img/wn/13d@2x.png" alt="" width="20"> 13d </td>
+        </tr>
+        <tr>
+            <td> 616 </td>
+            <td> Snow </td>
+            <td> Rain and snow </td>
+            <td> <img src="http://openweathermap.org/img/wn/13d@2x.png" alt="" width="20"> 13d </td>
+        </tr>
+        <tr>
+            <td> 620 </td>
+            <td> Snow </td>
+            <td> Light shower snow </td>
+            <td><img src="http://openweathermap.org/img/wn/13d@2x.png" alt="" width="20"> 13d </td>
+        </tr>
+        <tr>
+            <td> 621 </td>
+            <td> Snow </td>
+            <td> Shower snow </td>
+            <td><img src="http://openweathermap.org/img/wn/13d@2x.png" alt="" width="20"> 13d </td>
+        </tr>
+        <tr>
+            <td> 622 </td>
+            <td> Snow </td>
+            <td> Heavy shower snow </td>
+            <td><img src="http://openweathermap.org/img/wn/13d@2x.png" alt="" width="20"> 13d </td>
+        </tr>
+    </tbody></table>
+
+<h3>Group 7xx: Atmosphere(雰囲気) </h3>
+
+<table class="table table-bordered">
+        <tbody><tr>
+            <th width="100">ID </th>
+            <th width="200"> Main </th>
+            <td width="300"> Description </td>
+            <th width="100">Icon </th>
+        </tr>
+        <tr>
+            <td> 701 </td>
+            <td> Mist </td>
+            <td> mist </td>
+            <td><img src="http://openweathermap.org/img/wn/50d@2x.png" alt="" width="20"> 50d</td>
+        </tr>
+        <tr>
+            <td> 711 </td>
+            <td> Smoke </td>
+            <td> Smoke </td>
+            <td><img src="http://openweathermap.org/img/wn/50d@2x.png" alt="" width="20"> 50d</td>
+        </tr>
+        <tr>
+            <td> 721 </td>
+            <td> Haze </td>
+            <td> Haze </td>
+            <td><img src="http://openweathermap.org/img/wn/50d@2x.png" alt="" width="20"> 50d</td>
+        </tr>
+        <tr>
+            <td> 731 </td>
+            <td> Dust </td>
+            <td> sand/ dust whirls </td>
+            <td><img src="http://openweathermap.org/img/wn/50d@2x.png" alt="" width="20"> 50d</td>
+        </tr>
+        <tr>
+            <td> 741 </td>
+            <td> Fog </td>
+            <td> fog </td>
+            <td><img src="http://openweathermap.org/img/wn/50d@2x.png" alt="" width="20"> 50d</td>
+        </tr>
+        <tr>
+            <td>751 </td>
+            <td> Sand </td>
+            <td> sand </td>
+            <td><img src="http://openweathermap.org/img/wn/50d@2x.png" alt="" width="20"> 50d</td>
+        </tr>
+        <tr>
+            <td>761 </td>
+            <td> Dust </td>
+            <td> dust </td>
+            <td><img src="http://openweathermap.org/img/wn/50d@2x.png" alt="" width="20"> 50d</td>
+        </tr>
+        <tr>
+            <td>762 </td>
+            <td> Ash </td>
+            <td> volcanic ash </td>
+            <td><img src="http://openweathermap.org/img/wn/50d@2x.png" alt="" width="20"> 50d</td>
+        </tr>
+        <tr>
+            <td>771 </td>
+            <td> Squall </td>
+            <td> squalls </td>
+            <td><img src="http://openweathermap.org/img/wn/50d@2x.png" alt="" width="20"> 50d</td>
+        </tr>
+        <tr>
+            <td>781 </td>
+            <td> Tornado </td>
+            <td> tornado </td>
+            <td><img src="http://openweathermap.org/img/wn/50d@2x.png" alt="" width="20"> 50d</td>
+        </tr>
+    </tbody></table>
+
+<h3>Group 800: Clear(晴)</h3>
+
+<table class="table table-bordered">
+        <tbody><tr>
+            <th width="100">ID </th>
+            <th width="200"> Main </th>
+            <th width="300"> Description </th>
+            <th width="100">Icon </th>
+        </tr>
+        <tr>
+            <td> 800 </td>
+            <td> Clear </td>
+            <td> clear sky </td>
+            <td><img src="http://openweathermap.org/img/wn/01d@2x.png" alt="" width="20"> 01d <br><img src="http://openweathermap.org/img/w/01n.png" alt="" width="20"> 01n</td>
+        </tr>
+    </tbody></table>
+
+<h3>Group 80x: Clouds(曇)</h3>
+
+<table class="table table-bordered">
+        <tbody><tr>
+            <th width="100">ID </th>
+            <th width="200"> Main </th>
+            <th width="300"> Description </th>
+            <th width="100">Icon </th>
+        </tr>
+        <tr>
+            <td> 801 </td>
+            <td> Clouds </td>
+            <td> few clouds: 11-25% </td>
+            <td><img src="http://openweathermap.org/img/wn/02d@2x.png" alt="" width="20"> 02d <br><img src="http://openweathermap.org/img/wn/02n@2x.png" alt="" width="20"> 02n</td>
+        </tr>
+        <tr>
+            <td> 802 </td>
+            <td> Clouds </td>
+            <td> scattered clouds: 25-50%  </td>
+            <td><img src="http://openweathermap.org/img/wn/03d@2x.png" alt="" width="20"> 03d <br><img src="http://openweathermap.org/img/wn/03n@2x.png" alt="" width="20"> 03n</td>
+        </tr>
+        <tr>
+            <td> 803 </td>
+            <td> Clouds </td>
+            <td> broken clouds: 51-84%  </td>
+            <td> <img src="http://openweathermap.org/img/wn/04d@2x.png" alt="" width="20"> 04d <br><img src="http://openweathermap.org/img/wn/04n@2x.png" alt="" width="20"> 04n </td>
+        </tr>
+        <tr>
+            <td> 804 </td>
+            <td> Clouds </td>
+            <td> overcast clouds: 85-100%  </td>
+            <td><img src="http://openweathermap.org/img/wn/04d@2x.png" alt="" width="20"> 04d <br><img src="http://openweathermap.org/img/wn/04n@2x.png" alt="" width="20"> 04n</td>
+        </tr>
+    </tbody></table>
+
+<h1 id="python"><a href="#python" class="headerlink" title="python"></a>python</h1><h2 id="pythonプログラミング-8"><a href="#pythonプログラミング-8" class="headerlink" title="pythonプログラミング(8)"></a>pythonプログラミング(8)</h2><h4 id="1-OpenWeatherMapへのアクセス"><a href="#1-OpenWeatherMapへのアクセス" class="headerlink" title="1. OpenWeatherMapへのアクセス"></a>1. OpenWeatherMapへのアクセス</h4><ul>
+<li>モジュールのインポート<ul>
+<li>pequests: http通信モジュール</li>
+<li>pprint: pretty printer モジュール</li>
+<li>json: JSON形式のファイル入出力を行うためのモジュール</li>
+</ul>
+</li>
+<li>webサイトへのリクエスト<ul>
+<li>requests.get()</li>
+</ul>
+</li>
+<li>JSON形式への変換<ul>
+<li>.json()</li>
+</ul>
+</li>
+</ul>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> pprint</span><br><span class="line"><span class="keyword">import</span> requests</span><br><span class="line"><span class="keyword">import</span> json</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">url = <span class="string">"https://api.openweathermap.org/data/2.5/onecall?"</span></span><br><span class="line">loc = <span class="string">"lat=35.0211&amp;lon=135.7538"</span></span><br><span class="line">unit= <span class="string">"&amp;units=metric"</span></span><br><span class="line">lang= <span class="string">"&amp;lang=ja"</span></span><br><span class="line">excl= <span class="string">"&amp;minutely,hourly,daily"</span></span><br><span class="line">key = <span class="string">"&amp;appid=*******************************"</span></span><br><span class="line">							<span class="comment"># 「***」を自分のkeyで変更する</span></span><br><span class="line"></span><br><span class="line">r = requests.get(url + loc + unit + lang + excl + key)</span><br><span class="line">rj= r.json()</span><br><span class="line"></span><br><span class="line">pprint.pprint(rj)</span><br><span class="line"></span><br><span class="line"><span class="comment">#天気データをjasonで書き出し</span></span><br><span class="line"><span class="keyword">with</span> open(<span class="string">"work.json"</span>,<span class="string">"w"</span>) <span class="keyword">as</span> fw:</span><br><span class="line">    json.dump(rj,fw)</span><br></pre></td></tr></table></figure>
+
+<h4 id="2-時刻の取り扱い方"><a href="#2-時刻の取り扱い方" class="headerlink" title="2. 時刻の取り扱い方"></a>2. 時刻の取り扱い方</h4><ul>
+<li>OpenWeatherMapでは，時刻がUTC(秒単位)で表現 されている</li>
+<li>現在の時刻(UTC)を取得するには，timeモジュールをイ ンポートし，time.time()関数を用いる</li>
+<li>年，月，日，時，分，秒の情報に変換するには，datetimeモ ジュールをインポートして，次の関数を用いる<ul>
+<li>datetime.fromtimestamp()</li>
+<li>datetime.utcfromtimestamp()</li>
+</ul>
+</li>
+</ul>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> time</span><br><span class="line"><span class="keyword">from</span> datetime <span class="keyword">import</span> datetime</span><br><span class="line"></span><br><span class="line">now = time.time()</span><br><span class="line">print(<span class="string">"Current time:"</span>,now)</span><br><span class="line"></span><br><span class="line">loc = datetime.fromtimestamp(now)</span><br><span class="line">print(<span class="string">"Local time (Tokyo/Asia):"</span>,loc)</span><br><span class="line"></span><br><span class="line">utc = datetime.utcfromtimestamp(now)</span><br><span class="line">print(<span class="string">"Current Time (UTC):"</span>,utc</span><br><span class="line">      </span><br><span class="line"><span class="comment"># Current time: 1593502692.6013591</span></span><br><span class="line"><span class="comment"># Local time (Tokyo/Asia): 2020-06-30 16:38:12.601359</span></span><br><span class="line"><span class="comment"># Current Time (UTC): 2020-06-30 07:38:12.601359</span></span><br></pre></td></tr></table></figure>
+
+
+
+<h2 id="演習課題"><a href="#演習課題" class="headerlink" title="演習課題"></a>演習課題</h2><h4 id="演習課題-1"><a href="#演習課題-1" class="headerlink" title="演習課題(1)"></a>演習課題(1)</h4><ul>
+<li>OpenWeatherMapにユーザ登録を行い， API key を取得しなさい</li>
+<li>One Call API を用いて，現在の天候情報を取得し なさい(API Keyが必要)</li>
+<li>取得した天候情報をJSON形式のファイルに書き込み なさい(ファイル名: work.json)</li>
+<li>work.jsonの内容を読み込み，どのような構造に なっているかを解析しなさい</li>
+</ul>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> pprint</span><br><span class="line"><span class="keyword">import</span> requests</span><br><span class="line"><span class="keyword">import</span> json</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">url = <span class="string">"https://api.openweathermap.org/data/2.5/onecall?"</span></span><br><span class="line">loc = <span class="string">"lat=35.0211&amp;lon=135.7538"</span></span><br><span class="line">unit= <span class="string">"&amp;units=metric"</span></span><br><span class="line">lang= <span class="string">"&amp;lang=ja"</span></span><br><span class="line">excl= <span class="string">"&amp;minutely,hourly,daily"</span></span><br><span class="line">key = <span class="string">"&amp;appid=*******************************"</span></span><br><span class="line">							<span class="comment"># 「***」を自分のkeyで変更する</span></span><br><span class="line"></span><br><span class="line">r = requests.get(url + loc + unit + lang + excl + key)</span><br><span class="line">rj= r.json()</span><br><span class="line"></span><br><span class="line">pprint.pprint(rj)</span><br><span class="line"></span><br><span class="line"><span class="comment">#天気データをjasonで書き出し</span></span><br><span class="line"><span class="keyword">with</span> open(<span class="string">"work.json"</span>,<span class="string">"w"</span>) <span class="keyword">as</span> fw:</span><br><span class="line">    json.dump(rj,fw)</span><br></pre></td></tr></table></figure>
+
+<h4 id="演習課題-2"><a href="#演習課題-2" class="headerlink" title="演習課題(2)"></a>演習課題(2)</h4><p>work.jsonの内容を解析し，得られる情報を標準出 力に print しなさい。ただし，出力はJSON形式の データをそのままプリントせず，個々の項目(キーとバ リュー)をそれぞれ識別して印刷して下さい。</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> json</span><br><span class="line"><span class="keyword">import</span> time</span><br><span class="line"><span class="keyword">from</span> datetime <span class="keyword">import</span> datetime</span><br><span class="line"></span><br><span class="line"><span class="comment">#jasonデータを読み込み</span></span><br><span class="line"><span class="keyword">with</span> open(<span class="string">"work.json"</span>,<span class="string">"r"</span>) <span class="keyword">as</span> f:</span><br><span class="line">    data = json.loads(f.read())</span><br><span class="line"></span><br><span class="line"><span class="comment">#時間を変換する</span></span><br><span class="line">time = datetime.fromtimestamp(data[<span class="string">"current"</span>][<span class="string">"dt"</span>])</span><br><span class="line">Sunrisetime = datetime.fromtimestamp(data[<span class="string">"current"</span>][<span class="string">"sunrise"</span>])</span><br><span class="line">Sunsettime  = datetime.fromtimestamp(data[<span class="string">"current"</span>][<span class="string">"sunset"</span>])</span><br><span class="line"></span><br><span class="line"><span class="comment">#天気状況</span></span><br><span class="line">temp = data[<span class="string">"current"</span>][<span class="string">"temp"</span>]</span><br><span class="line">weather= data[<span class="string">"current"</span>][<span class="string">"weather"</span>][<span class="number">0</span>][<span class="string">"description"</span>]</span><br><span class="line"></span><br><span class="line"><span class="comment">#プリント</span></span><br><span class="line">print(<span class="string">"天気データ更新の時間 (Tokyo/Asia):"</span>,time)</span><br><span class="line">print(<span class="string">"日の出時間:"</span>,Sunrisetime)</span><br><span class="line">print(<span class="string">"日の落時間:"</span>,Sunsettime)</span><br><span class="line">print(<span class="string">"温度:"</span>,temp)</span><br><span class="line">print(<span class="string">"天気状況:"</span>,weather)</span><br><span class="line">print(<span class="string">"家に出る前、傘を忘れないでください"</span>)</span><br><span class="line"></span><br><span class="line"><span class="comment"># 天気データ更新の時間 (Tokyo/Asia): 2020-06-30 17:19:31</span></span><br><span class="line"><span class="comment"># 日の出時間: 2020-06-30 04:46:05</span></span><br><span class="line"><span class="comment"># 日の落時間: 2020-06-30 19:14:57</span></span><br><span class="line"><span class="comment"># 温度: 23.45</span></span><br><span class="line"><span class="comment"># 天気状況: 適度な雨</span></span><br><span class="line"><span class="comment"># 家に出る前、傘を忘れないでください</span></span><br></pre></td></tr></table></figure>
+
+
+        </div>
+
+        
+        <section class="post-tags">
+            <div>
+                <!-- 标签 -->
+                <span>Tags:</span>
+                <span class="tag">
+                    
+                    
+                        <a href="/tags/%E6%97%A5%E6%9C%AC%E8%AA%9E/"># 日本語</a>
+                    
+                        <a href="/tags/%E3%83%A1%E3%83%A2/"># メモ</a>
+                    
+                        <a href="/tags/python/"># python</a>
+                    
+                        
+                </span>
+                <!-- 下面这段代码是阅读量统计 -->
+                <span id="/2020/06/30/2020-06-30-IoT%E3%81%A8%E7%84%A1%E7%B7%9A%E3%83%8D%E3%83%83%E3%83%88%E3%83%AF%E3%83%BC%E3%82%AF(8)/" class="leancloud-visitors view" data-flag-title="IoTと無線ネットワーク(8)">
+                    <em class="post-meta-item-text">&nbsp;&nbsp;Pageviews:</em>
+                    <i class="leancloud-visitors-count">loading</i>
+                </span>
+            </div>
+            <div>
+                <a href="javascript:window.history.back();">back</a>
+                <span>· </span>
+                <a href="/">home</a>
+            </div>
+        </section>
+        <section class="post-nav">
+            
+            
+            <a class="next" rel="next" href="/2020/06/25/2020-06-25-IoT%E3%81%A8%E7%84%A1%E7%B7%9A%E3%83%8D%E3%83%83%E3%83%88%E3%83%AF%E3%83%BC%E3%82%AF(7)/">IoTと無線ネットワーク(7)</a>
+            
+        </section>
+        <!-- 下面这段代码是评论的 -->
+        <br><br><br>
+        
+            <section id="comments" class="comments">
+              <style>
+                .comments{margin:30px;padding:10px;background:#fff}
+                @media screen and (max-width:800px){.comments{margin:auto;padding:10px;background:#fff}}
+              </style>
+              <div class="valine_comment"></div>
+<!--载入js，在</body>之前插入即可-->
+<!--Leancloud 操作库:-->
+<script src="//cdn1.lncld.net/static/js/3.0.4/av-min.js"></script>
+<!--Valine 的核心代码库-->
+<script src="//unpkg.com/valine/dist/Valine.min.js"></script>
+<script>
+  new Valine({
+      el: '.valine_comment',
+      app_id: 'mvWomOzSrHta71qCetznk9Ys-MdYXbMMI',
+      app_key: 'hxu4GRlAhGXaNfQG3AhvgebE',
+      placeholder: '这里留言。。',
+      notify: 'true',
+      verify: 'true',
+      visitor: true // 阅读量统计
+    });
+</script>
+            </section>
+        
+    </article>
+
+</div>
+        </div>
+        <footer id="footer" class="footer">
+    <div class="copyright">
+        <span>© GanWt | Powered by <span>Hexo</span> & <span>Chic</span></span>
+    </div>
+</footer>
+
+    </div>
+</body>
+</html>
