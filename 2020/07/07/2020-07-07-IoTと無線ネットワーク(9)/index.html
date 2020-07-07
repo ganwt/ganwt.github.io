@@ -1,0 +1,394 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+<meta name="viewport"
+      content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+<meta http-equiv="X-UA-Compatible" content="ie=edge">
+
+    <meta name="author" content="GanWt">
+
+
+
+
+
+<title>IoTと無線ネットワーク(9) | GanWt</title>
+
+
+
+    <link rel="icon" href="/ganwt.ico">
+
+
+
+
+    <!-- stylesheets list from _config.yml -->
+    
+    <link rel="stylesheet" href="/css/style.css">
+    
+
+
+
+    <!-- scripts list from _config.yml -->
+    
+    <script src="/js/script.js"></script>
+    
+    <script src="/js/tocbot.min.js"></script>
+    
+
+
+
+    
+    
+        
+            <!-- MathJax配置，可通过单美元符号书写行内公式等 -->
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+    "HTML-CSS": {
+        preferredFont: "TeX",
+        availableFonts: ["STIX","TeX"],
+        linebreaks: { automatic:true },
+        EqnChunk: (MathJax.Hub.Browser.isMobile ? 10 : 50)
+    },
+    tex2jax: {
+        inlineMath: [ ["$", "$"], ["\\(","\\)"] ],
+        processEscapes: true,
+        ignoreClass: "tex2jax_ignore|dno",
+        skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+    },
+    TeX: {
+        equationNumbers: { autoNumber: "AMS" },
+        noUndefined: { attributes: { mathcolor: "red", mathbackground: "#FFEEEE", mathsize: "90%" } },
+        Macros: { href: "{}" }
+    },
+    messageStyle: "none"
+    });
+</script>
+<!-- 给MathJax元素添加has-jax class -->
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax(), i;
+        for(i=0; i < all.length; i += 1) {
+            all[i].SourceElement().parentNode.className += ' has-jax';
+        }
+    });
+</script>
+<!-- 通过连接CDN加载MathJax的js代码 -->
+<script type="text/javascript" async
+        src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js?config=TeX-MML-AM_CHTML">
+</script>
+
+
+        
+    
+
+
+<meta name="generator" content="Hexo 4.2.0"><link rel="alternate" href="/atom.xml" title="GanWt" type="application/atom+xml">
+</head>
+<body>
+    <div class="wrapper">
+        <header>
+    <nav class="navbar">
+        <div class="container">
+            <div class="navbar-header header-logo"><a href="/">GanWt Blog</a></div>
+            <div class="menu navbar-right">
+                
+                    <a class="menu-item" href="/archives">Posts</a>
+                
+                    <a class="menu-item" href="/categories">Categories</a>
+                
+                    <a class="menu-item" href="/tags">Tags</a>
+                
+                    <a class="menu-item" href="/about">About</a>
+                
+                <input id="switch_default" type="checkbox" class="switch_default">
+                <label for="switch_default" class="toggleBtn"></label>
+            </div>
+        </div>
+    </nav>
+
+    
+    <nav class="navbar-mobile" id="nav-mobile">
+        <div class="container">
+            <div class="navbar-header">
+                <div>
+                    <a href="/">GanWt Blog</a><a id="mobile-toggle-theme">·&nbsp;Light</a>
+                </div>
+                <div class="menu-toggle" onclick="mobileBtn()">&#9776; Menu</div>
+            </div>
+            <div class="menu" id="mobile-menu">
+                
+                    <a class="menu-item" href="/archives">Posts</a>
+                
+                    <a class="menu-item" href="/categories">Categories</a>
+                
+                    <a class="menu-item" href="/tags">Tags</a>
+                
+                    <a class="menu-item" href="/about">About</a>
+                
+            </div>
+        </div>
+    </nav>
+
+</header>
+<script>
+    var mobileBtn = function f() {
+        var toggleMenu = document.getElementsByClassName("menu-toggle")[0];
+        var mobileMenu = document.getElementById("mobile-menu");
+        if(toggleMenu.classList.contains("active")){
+           toggleMenu.classList.remove("active")
+            mobileMenu.classList.remove("active")
+        }else{
+            toggleMenu.classList.add("active")
+            mobileMenu.classList.add("active")
+        }
+    }
+</script>
+        <div class="main">
+            <div class="container">
+    
+    
+        <div class="post-toc">
+    <div class="tocbot-list">
+    </div>
+    <div class="tocbot-list-menu">
+        <a class="tocbot-toc-expand" onclick="expand_toc()">Expand all</a>
+        <a onclick="go_top()">Back to top</a>
+        <a onclick="go_bottom()">Go to bottom</a>
+    </div>
+</div>
+
+<script>
+    document.ready(
+        function () {
+            tocbot.init({
+                tocSelector: '.tocbot-list',
+                contentSelector: '.post-content',
+                headingSelector: 'h1, h2, h3, h4, h5',
+                collapseDepth: 1,
+                orderedList: false,
+                scrollSmooth: true,
+            })
+        }
+    )
+
+    function expand_toc() {
+        var b = document.querySelector(".tocbot-toc-expand");
+        tocbot.init({
+            tocSelector: '.tocbot-list',
+            contentSelector: '.post-content',
+            headingSelector: 'h1, h2, h3, h4, h5',
+            collapseDepth: 6,
+            orderedList: false,
+            scrollSmooth: true,
+        });
+        b.setAttribute("onclick", "collapse_toc()");
+        b.innerHTML = "Collapse all"
+    }
+
+    function collapse_toc() {
+        var b = document.querySelector(".tocbot-toc-expand");
+        tocbot.init({
+            tocSelector: '.tocbot-list',
+            contentSelector: '.post-content',
+            headingSelector: 'h1, h2, h3, h4, h5',
+            collapseDepth: 1,
+            orderedList: false,
+            scrollSmooth: true,
+        });
+        b.setAttribute("onclick", "expand_toc()");
+        b.innerHTML = "Expand all"
+    }
+
+    function go_top() {
+        window.scrollTo(0, 0);
+    }
+
+    function go_bottom() {
+        window.scrollTo(0, document.body.scrollHeight);
+    }
+
+</script>
+    
+
+    
+    <article class="post-wrap">
+        <header class="post-header">
+            <h1 class="post-title">IoTと無線ネットワーク(9)</h1>
+            
+                <div class="post-meta">
+                    
+                        Author: <a itemprop="author" rel="author" href="/">GanWt</a>
+                    
+
+                    
+                        <span class="post-time">
+                        Date: <a href="#">July 7, 2020&nbsp;&nbsp;17:58:03</a>
+                        </span>
+                    
+                    
+                        <span class="post-category">
+                    Category:
+                            
+                                <a href="/categories/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/">学习笔记</a>
+                            
+                        </span>
+                    
+                </div>
+            
+        </header>
+
+        <div class="post-content">
+            <h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>今日は気象情報の取得と分析です。</p>
+<p>よ、始めましょう！</p>
+<h1 id="IoT知識"><a href="#IoT知識" class="headerlink" title="IoT知識"></a>IoT知識</h1><p>なし</p>
+<h1 id="Python"><a href="#Python" class="headerlink" title="Python"></a>Python</h1><h2 id="pythonプログラミング-8"><a href="#pythonプログラミング-8" class="headerlink" title="pythonプログラミング(8)"></a>pythonプログラミング(8)</h2><h3 id="1-一時間ごとの天気予報の取得方法"><a href="#1-一時間ごとの天気予報の取得方法" class="headerlink" title="1. 一時間ごとの天気予報の取得方法"></a>1. 一時間ごとの天気予報の取得方法</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> pprint</span><br><span class="line"><span class="keyword">import</span> requests</span><br><span class="line"><span class="keyword">import</span> json</span><br><span class="line"></span><br><span class="line">url = <span class="string">"https://api.openweathermap.org/data/2.5/onecall?"</span></span><br><span class="line">loc = <span class="string">"lat=35.0211&amp;lon=135.7538"</span></span><br><span class="line">unit= <span class="string">"&amp;units=metric"</span></span><br><span class="line">lang= <span class="string">"&amp;lang=ja"</span></span><br><span class="line">excl= <span class="string">"&amp;exclude=current,minutely,daily"</span></span><br><span class="line">key = <span class="string">"&amp;appid=******************"</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">r = requests.get(url + loc + unit + lang + excl + key)</span><br><span class="line">rj= r.json()</span><br><span class="line"></span><br><span class="line">pprint.pprint(rj)</span><br><span class="line"></span><br><span class="line"><span class="comment">#天気データをjasonで書き出し</span></span><br><span class="line"><span class="keyword">with</span> open(<span class="string">"work.json"</span>,<span class="string">"w"</span>) <span class="keyword">as</span> fw:</span><br><span class="line">    json.dump(rj,fw)</span><br></pre></td></tr></table></figure>
+
+
+
+<h3 id="2-時間を扱う方法"><a href="#2-時間を扱う方法" class="headerlink" title="2. 時間を扱う方法"></a>2. 時間を扱う方法</h3><ul>
+<li><h4 id="datetimeモジュール中のオブジェクト"><a href="#datetimeモジュール中のオブジェクト" class="headerlink" title="datetimeモジュール中のオブジェクト"></a>datetimeモジュール中のオブジェクト</h4><ul>
+<li><p>datetime.datetime : 日時(日付と時刻)</p>
+</li>
+<li><p>datetime.date : 日付</p>
+</li>
+<li><p>datetime.time : 時刻 </p>
+</li>
+<li><p>datetime.timedelta : 時間差・経過時間</p>
+</li>
+</ul>
+</li>
+</ul>
+<ul>
+<li><h4 id="datetimeオブジェクト"><a href="#datetimeオブジェクト" class="headerlink" title="datetimeオブジェクト"></a>datetimeオブジェクト</h4><ul>
+<li><p>日付(年，月，日)と時刻(時，分，秒， マイクロ秒)の両方の情報を持つオ ブジェクト</p>
+</li>
+<li><p>それぞれの情報には，属性 year, month, day, hour, minute, second, microsecondでアク セス</p>
+</li>
+<li><p>現在の時刻を取得する関数 now()</p>
+</li>
+<li><p>曜日は，関数 weekday()で計算 できる(月〜日：０〜６)</p>
+<img src="https://ganwt.com/image/2020-07-07-IoTと無線ネットワーク(9)/1.png" alt="1" style="zoom:50%;" />
+
+
+
+</li>
+</ul>
+</li>
+</ul>
+<ul>
+<li><h4 id="datetimeオブジェクトのコンストラクタ"><a href="#datetimeオブジェクトのコンストラクタ" class="headerlink" title="datetimeオブジェクトのコンストラクタ"></a>datetimeオブジェクトのコンストラクタ</h4><ul>
+<li><p>datetime(year, month, day, hour=0, minute=0, second=0, microsecond=0, tzinfo=None)</p>
+<img src="https://ganwt.com/image/2020-07-07-IoTと無線ネットワーク(9)/2.png" alt="2" style="zoom:50%;" />
+</li>
+</ul>
+</li>
+<li><h4 id="UTCからローカルタイムへの変換"><a href="#UTCからローカルタイムへの変換" class="headerlink" title="UTCからローカルタイムへの変換"></a>UTCからローカルタイムへの変換</h4><img src="https://ganwt.com/image/2020-07-07-IoTと無線ネットワーク(9)/3.png" alt="3" style="zoom:50%;" />
+
+
+
+
+
+</li>
+</ul>
+<h3 id="3-グラフの描画-matplotlib"><a href="#3-グラフの描画-matplotlib" class="headerlink" title="3. グラフの描画(matplotlib)"></a>3. グラフの描画(matplotlib)</h3>  <img src="https://ganwt.com/image/2020-07-07-IoTと無線ネットワーク(9)/4.png" alt="4" style="zoom:50%;" />
+
+
+
+<h4 id="ラベルの指定"><a href="#ラベルの指定" class="headerlink" title="ラベルの指定"></a>ラベルの指定</h4>  <img src="https://ganwt.com/image/2020-07-07-IoTと無線ネットワーク(9)/5.png" alt="5" style="zoom:50%;" />
+
+
+
+<h4 id="複数のグラフを同じ座標軸に描画"><a href="#複数のグラフを同じ座標軸に描画" class="headerlink" title="複数のグラフを同じ座標軸に描画"></a>複数のグラフを同じ座標軸に描画</h4>  <img src="https://ganwt.com/image/2020-07-07-IoTと無線ネットワーク(9)/6.png" alt="6" style="zoom:50%;" />
+
+
+
+<h2 id="演習課題"><a href="#演習課題" class="headerlink" title="演習課題"></a>演習課題</h2><ol>
+<li>OpenWeatherMapから1時間ごとの天候情報を取得しなさい。日時，気温，湿度，体感温度，降水量</li>
+<li>取得した情報をグラフで表現しなさい。</li>
+<li>取得した情報を分析して，これからn時間外出する場合に傘を持って行くべきかどうかを判断するプログラムを作成しなさい</li>
+</ol>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> pprint</span><br><span class="line"><span class="keyword">import</span> requests</span><br><span class="line"><span class="keyword">import</span> json</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">url = <span class="string">"https://api.openweathermap.org/data/2.5/onecall?"</span></span><br><span class="line">loc = <span class="string">"lat=35.0211&amp;lon=135.7538"</span></span><br><span class="line">unit= <span class="string">"&amp;units=metric"</span></span><br><span class="line">lang= <span class="string">"&amp;lang=ja"</span></span><br><span class="line">excl= <span class="string">"&amp;exclude=current,minutely,daily"</span></span><br><span class="line">key = <span class="string">"&amp;appid=******"</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">r = requests.get(url + loc + unit + lang + excl + key)</span><br><span class="line">rj= r.json()</span><br><span class="line"></span><br><span class="line">pprint.pprint(rj)</span><br><span class="line"></span><br><span class="line"><span class="comment">#天気データをjasonで書き出し</span></span><br><span class="line"><span class="keyword">with</span> open(<span class="string">"work.json"</span>,<span class="string">"w"</span>) <span class="keyword">as</span> fw:</span><br><span class="line">    json.dump(rj,fw)</span><br></pre></td></tr></table></figure>
+
+
+
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> json</span><br><span class="line"><span class="keyword">import</span> time</span><br><span class="line"><span class="keyword">import</span> matplotlib.pyplot <span class="keyword">as</span> plt</span><br><span class="line"><span class="keyword">from</span> datetime <span class="keyword">import</span> datetime</span><br><span class="line"></span><br><span class="line"><span class="comment">#jasonデータを読み込み</span></span><br><span class="line"><span class="keyword">with</span> open(<span class="string">"work.json"</span>,<span class="string">"r"</span>) <span class="keyword">as</span> f:</span><br><span class="line">    data = json.loads(f.read())</span><br><span class="line"></span><br><span class="line"><span class="comment">#日時</span></span><br><span class="line">time = [datetime.fromtimestamp(data[<span class="string">"hourly"</span>][<span class="number">0</span>][<span class="string">"dt"</span>]),</span><br><span class="line">        datetime.fromtimestamp(data[<span class="string">"hourly"</span>][<span class="number">1</span>][<span class="string">"dt"</span>]),</span><br><span class="line">        datetime.fromtimestamp(data[<span class="string">"hourly"</span>][<span class="number">2</span>][<span class="string">"dt"</span>])]</span><br><span class="line"></span><br><span class="line"><span class="comment">#気温</span></span><br><span class="line">weather=[data[<span class="string">"hourly"</span>][<span class="number">0</span>][<span class="string">"weather"</span>][<span class="number">0</span>][<span class="string">"description"</span>],</span><br><span class="line">         data[<span class="string">"hourly"</span>][<span class="number">1</span>][<span class="string">"weather"</span>][<span class="number">0</span>][<span class="string">"description"</span>],</span><br><span class="line">         data[<span class="string">"hourly"</span>][<span class="number">2</span>][<span class="string">"weather"</span>][<span class="number">0</span>][<span class="string">"description"</span>]]</span><br><span class="line"></span><br><span class="line"><span class="comment">#気温</span></span><br><span class="line">temp = [data[<span class="string">"hourly"</span>][<span class="number">0</span>][<span class="string">"temp"</span>],</span><br><span class="line">        data[<span class="string">"hourly"</span>][<span class="number">1</span>][<span class="string">"temp"</span>],</span><br><span class="line">        data[<span class="string">"hourly"</span>][<span class="number">2</span>][<span class="string">"temp"</span>]]</span><br><span class="line"></span><br><span class="line"><span class="comment">#湿度</span></span><br><span class="line">humidity=[data[<span class="string">"hourly"</span>][<span class="number">0</span>][<span class="string">"humidity"</span>],</span><br><span class="line">          data[<span class="string">"hourly"</span>][<span class="number">1</span>][<span class="string">"humidity"</span>],</span><br><span class="line">          data[<span class="string">"hourly"</span>][<span class="number">2</span>][<span class="string">"humidity"</span>]]</span><br><span class="line"></span><br><span class="line"><span class="comment">#体感温度</span></span><br><span class="line">feels_like=[data[<span class="string">"hourly"</span>][<span class="number">0</span>][<span class="string">"feels_like"</span>],</span><br><span class="line">            data[<span class="string">"hourly"</span>][<span class="number">1</span>][<span class="string">"feels_like"</span>],</span><br><span class="line">            data[<span class="string">"hourly"</span>][<span class="number">2</span>][<span class="string">"feels_like"</span>]]</span><br><span class="line"></span><br><span class="line"><span class="comment">#降水量</span></span><br><span class="line">rain = [data[<span class="string">"hourly"</span>][<span class="number">0</span>][<span class="string">"rain"</span>][<span class="string">"1h"</span>],</span><br><span class="line">        data[<span class="string">"hourly"</span>][<span class="number">1</span>][<span class="string">"rain"</span>][<span class="string">"1h"</span>],</span><br><span class="line">        data[<span class="string">"hourly"</span>][<span class="number">2</span>][<span class="string">"rain"</span>][<span class="string">"1h"</span>]]</span><br><span class="line"></span><br><span class="line"><span class="comment">#グラフ</span></span><br><span class="line">hour = [time[<span class="number">0</span>].hour,time[<span class="number">1</span>].hour,time[<span class="number">2</span>].hour]</span><br><span class="line"><span class="comment">#気温と体感温度</span></span><br><span class="line">plt.subplot(<span class="number">221</span>)</span><br><span class="line">plt.title(<span class="string">"Three hours temp FeelsLike"</span>)</span><br><span class="line">plt.plot(hour,temp,label=<span class="string">"temp"</span>)</span><br><span class="line">plt.plot(hour,feels_like,label=<span class="string">"FeelsLike"</span>)</span><br><span class="line"></span><br><span class="line"><span class="comment">#湿度</span></span><br><span class="line">plt.subplot(<span class="number">222</span>)</span><br><span class="line">plt.title(<span class="string">"Three hours humidity"</span>)</span><br><span class="line">plt.plot(hour,humidity,label=<span class="string">"humidity"</span>)</span><br><span class="line"></span><br><span class="line"><span class="comment">#降水量</span></span><br><span class="line">plt.subplot(<span class="number">212</span>)</span><br><span class="line">plt.plot(hour,rain,label=<span class="string">"rain"</span>)</span><br><span class="line"></span><br><span class="line">plt.show</span><br><span class="line">        </span><br><span class="line"></span><br><span class="line"><span class="comment">#プリント("NO.1")</span></span><br><span class="line">print(<span class="string">"NO.1"</span>)</span><br><span class="line">print(<span class="string">"日時:"</span>,time[<span class="number">0</span>])</span><br><span class="line">print(<span class="string">"気温:"</span>,temp[<span class="number">0</span>])</span><br><span class="line">print(<span class="string">"湿度:"</span>,humidity[<span class="number">0</span>])</span><br><span class="line">print(<span class="string">"体感温度:"</span>,feels_like[<span class="number">0</span>])</span><br><span class="line">print(<span class="string">"降水量:"</span>,rain[<span class="number">0</span>])</span><br><span class="line">print(<span class="string">"天気:"</span>,weather[<span class="number">0</span>],<span class="string">",傘を忘れないでください"</span>)</span><br><span class="line"><span class="comment">#プリント("NO.2")</span></span><br><span class="line">print()</span><br><span class="line">print(<span class="string">"NO.2"</span>)</span><br><span class="line">print(<span class="string">"日時:"</span>,time[<span class="number">1</span>])</span><br><span class="line">print(<span class="string">"気温:"</span>,temp[<span class="number">1</span>])</span><br><span class="line">print(<span class="string">"湿度:"</span>,humidity[<span class="number">1</span>])</span><br><span class="line">print(<span class="string">"体感温度:"</span>,feels_like[<span class="number">1</span>])</span><br><span class="line">print(<span class="string">"降水量:"</span>,rain[<span class="number">1</span>])</span><br><span class="line">print(<span class="string">"天気:"</span>,weather[<span class="number">1</span>],<span class="string">",傘を忘れないでください"</span>)</span><br><span class="line"><span class="comment">#プリント("NO.3")</span></span><br><span class="line">print()</span><br><span class="line">print(<span class="string">"NO.3"</span>)</span><br><span class="line">print(<span class="string">"日時:"</span>,time[<span class="number">2</span>])</span><br><span class="line">print(<span class="string">"気温:"</span>,temp[<span class="number">2</span>])</span><br><span class="line">print(<span class="string">"湿度:"</span>,humidity[<span class="number">2</span>])</span><br><span class="line">print(<span class="string">"体感温度:"</span>,feels_like[<span class="number">2</span>])</span><br><span class="line">print(<span class="string">"降水量:"</span>,rain[<span class="number">2</span>])</span><br><span class="line">print(<span class="string">"天気:"</span>,weather[<span class="number">2</span>],<span class="string">",傘を忘れないでください"</span>)</span><br></pre></td></tr></table></figure>
+
+<p>実行結果は以下：</p>
+<p><img src="2020-07-07-IoT%E3%81%A8%E7%84%A1%E7%B7%9A%E3%83%8D%E3%83%83%E3%83%88%E3%83%AF%E3%83%BC%E3%82%AF(9)/7.png" alt="7"></p>
+
+        </div>
+
+        
+        <section class="post-tags">
+            <div>
+                <!-- 标签 -->
+                <span>Tags:</span>
+                <span class="tag">
+                    
+                    
+                        <a href="/tags/%E6%97%A5%E6%9C%AC%E8%AA%9E/"># 日本語</a>
+                    
+                        <a href="/tags/%E3%83%A1%E3%83%A2/"># メモ</a>
+                    
+                        <a href="/tags/python/"># python</a>
+                    
+                        
+                </span>
+                <!-- 下面这段代码是阅读量统计 -->
+                <span id="/2020/07/07/2020-07-07-IoT%E3%81%A8%E7%84%A1%E7%B7%9A%E3%83%8D%E3%83%83%E3%83%88%E3%83%AF%E3%83%BC%E3%82%AF(9)/" class="leancloud-visitors view" data-flag-title="IoTと無線ネットワーク(9)">
+                    <em class="post-meta-item-text">&nbsp;&nbsp;Pageviews:</em>
+                    <i class="leancloud-visitors-count">loading</i>
+                </span>
+            </div>
+            <div>
+                <a href="javascript:window.history.back();">back</a>
+                <span>· </span>
+                <a href="/">home</a>
+            </div>
+        </section>
+        <section class="post-nav">
+            
+            
+            <a class="next" rel="next" href="/2020/06/30/2020-06-30-IoT%E3%81%A8%E7%84%A1%E7%B7%9A%E3%83%8D%E3%83%83%E3%83%88%E3%83%AF%E3%83%BC%E3%82%AF(8)/">IoTと無線ネットワーク(8)</a>
+            
+        </section>
+        <!-- 下面这段代码是评论的 -->
+        <br><br><br>
+        
+            <section id="comments" class="comments">
+              <style>
+                .comments{margin:30px;padding:10px;background:#fff}
+                @media screen and (max-width:800px){.comments{margin:auto;padding:10px;background:#fff}}
+              </style>
+              <div class="valine_comment"></div>
+<!--载入js，在</body>之前插入即可-->
+<!--Leancloud 操作库:-->
+<script src="//cdn1.lncld.net/static/js/3.0.4/av-min.js"></script>
+<!--Valine 的核心代码库-->
+<script src="//unpkg.com/valine/dist/Valine.min.js"></script>
+<script>
+  new Valine({
+      el: '.valine_comment',
+      app_id: 'mvWomOzSrHta71qCetznk9Ys-MdYXbMMI',
+      app_key: 'hxu4GRlAhGXaNfQG3AhvgebE',
+      placeholder: '这里留言。。',
+      notify: 'true',
+      verify: 'true',
+      visitor: true // 阅读量统计
+    });
+</script>
+            </section>
+        
+    </article>
+
+</div>
+        </div>
+        <footer id="footer" class="footer">
+    <div class="copyright">
+        <span>© GanWt | Powered by <span>Hexo</span> & <span>Chic</span></span>
+    </div>
+</footer>
+
+    </div>
+</body>
+</html>
