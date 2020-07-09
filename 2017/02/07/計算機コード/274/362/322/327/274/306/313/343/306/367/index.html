@@ -1,0 +1,705 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+<meta name="viewport"
+      content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+<meta http-equiv="X-UA-Compatible" content="ie=edge">
+
+    <meta name="author" content="GanWt">
+
+
+
+
+
+<title>計算機コード/\274\362\322\327\274\306\313\343\306\367 | GanWt</title>
+
+
+
+    <link rel="icon" href="/ganwt.ico">
+
+
+
+
+    <!-- stylesheets list from _config.yml -->
+    
+    <link rel="stylesheet" href="/css/style.css">
+    
+
+
+
+    <!-- scripts list from _config.yml -->
+    
+    <script src="/js/script.js"></script>
+    
+    <script src="/js/tocbot.min.js"></script>
+    
+
+
+
+    
+    
+        
+    
+
+
+</head>
+<body>
+    <div class="wrapper">
+        <header>
+    <nav class="navbar">
+        <div class="container">
+            <div class="navbar-header header-logo"><a href="/">GanWt Blog</a></div>
+            <div class="menu navbar-right">
+                
+                    <a class="menu-item" href="/archives">Posts</a>
+                
+                    <a class="menu-item" href="/categories">Categories</a>
+                
+                    <a class="menu-item" href="/tags">Tags</a>
+                
+                    <a class="menu-item" href="/about">About</a>
+                
+                <input id="switch_default" type="checkbox" class="switch_default">
+                <label for="switch_default" class="toggleBtn"></label>
+            </div>
+        </div>
+    </nav>
+
+    
+    <nav class="navbar-mobile" id="nav-mobile">
+        <div class="container">
+            <div class="navbar-header">
+                <div>
+                    <a href="/">GanWt Blog</a><a id="mobile-toggle-theme">·&nbsp;Light</a>
+                </div>
+                <div class="menu-toggle" onclick="mobileBtn()">&#9776; Menu</div>
+            </div>
+            <div class="menu" id="mobile-menu">
+                
+                    <a class="menu-item" href="/archives">Posts</a>
+                
+                    <a class="menu-item" href="/categories">Categories</a>
+                
+                    <a class="menu-item" href="/tags">Tags</a>
+                
+                    <a class="menu-item" href="/about">About</a>
+                
+            </div>
+        </div>
+    </nav>
+
+</header>
+<script>
+    var mobileBtn = function f() {
+        var toggleMenu = document.getElementsByClassName("menu-toggle")[0];
+        var mobileMenu = document.getElementById("mobile-menu");
+        if(toggleMenu.classList.contains("active")){
+           toggleMenu.classList.remove("active")
+            mobileMenu.classList.remove("active")
+        }else{
+            toggleMenu.classList.add("active")
+            mobileMenu.classList.add("active")
+        }
+    }
+</script>
+        <div class="main">
+            <div class="container">
+    
+    
+
+    
+    <article class="post-wrap">
+        <header class="post-header">
+            <h1 class="post-title">計算機コード/\274\362\322\327\274\306\313\343\306\367</h1>
+            
+                <div class="post-meta">
+                    
+                        Author: <a itemprop="author" rel="author" href="/">GanWt</a>
+                    
+
+                    
+                        <span class="post-time">
+                        Date: <a href="#">February 7, 2017&nbsp;&nbsp;10:05:48</a>
+                        </span>
+                    
+                    
+                </div>
+            
+        </header>
+
+        <div class="post-content">
+            <!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8" />
+<title>简易计算器</title>
+<style>
+	body {
+		background-color: #eee;
+	}
+	#calculator {
+		margin: 100px 0 0 150px;
+	}
+</style>
+<meta name="generator" content="Hexo 4.2.0"><link rel="alternate" href="/atom.xml" title="GanWt" type="application/atom+xml">
+</head>
+<body>
+
+<!-- 简易计算器 -->
+<div id="calculator">
+	<p>
+		<input type="text" class="formerInput" value="1" />
+		<span class="sign">+</span>
+		<input type="text" class="laterInput" value="1" />
+		<span>=</span>
+		<span class="resultOutput">2</span>
+	</p>
+	<p>
+		<!-- <input type="button" value="+" onclick="addHandler();" />
+		<input type="button" value="-" onclick="subtractHandler();" />
+		<input type="button" value="×" onclick="multiplyHandler();" />
+		<input type="button" value="÷" onclick="divideHandler();" /> -->
+		<input type="button" value="+" class="btn" title="add" />
+		<input type="button" value="-" class="btn" title="subtract" />
+		<input type="button" value="×" class="btn" title="multiply" />
+		<input type="button" value="÷" class="btn" title="divide" />
+		<input type="button" value="%" class="btn" title="mod" />
+		<input type="button" value="^" class="btn" title="power" />
+		<input type="button" value="1/x" class="btn" title="invert" />
+	</p>
+</div>
+
+<script>
+    // // 最容易做到的
+	    // // 获取元素
+	    // var calculator = document.querySelector('#calculator');
+	    // var formerInput = calculator.querySelector('.formerInput');
+	    // var laterInput = calculator.querySelector('.laterInput');
+	    // var sign = calculator.querySelector('.sign');
+	    // var resultOutput = calculator.querySelector('.resultOutput');
+
+	    // // 加
+	    // function addHandler() {
+	    // 	sign.innerHTML = '+';
+	    // 	resultOutput.innerHTML = +formerInput.value + +laterInput.value;
+	    // }
+	    // // 减
+	    // function subtractHandler() {
+	    // 	sign.innerHTML = '-';
+	    // 	resultOutput.innerHTML = formerInput.value - laterInput.value;
+	    // }
+	    // // 乘
+	    // function multiplyHandler() {
+	    // 	sign.innerHTML = '×';
+	    // 	resultOutput.innerHTML = formerInput.value * laterInput.value;
+	    // }
+	    // // 除
+	    // function divideHandler() {
+	    // 	sign.innerHTML = '÷';
+	    // 	resultOutput.innerHTML = formerInput.value / laterInput.value;
+	    // }
+
+    // // 第一次改进--结构和行为分离
+	    // // 获取元素
+	    // var calculator = document.querySelector('#calculator');
+	    // var formerInput = calculator.querySelector('.formerInput');
+	    // var laterInput = calculator.querySelector('.laterInput');
+	    // var sign = calculator.querySelector('.sign');
+	    // var resultOutput = calculator.querySelector('.resultOutput');
+	    // var btns = calculator.querySelectorAll('.btn');
+
+	    // // 绑定事件
+	    // // +
+	    // btns[0].onclick = addHandler;
+	    // // -
+	    // btns[1].onclick = subtractHandler;
+	    // // ×
+	    // btns[2].onclick = multiplyHandler;
+	    // // ÷
+	    // btns[3].onclick = divideHandler;
+
+	    // // 加
+	    // function addHandler() {
+	    // 	sign.innerHTML = '+';
+	    // 	resultOutput.innerHTML = +formerInput.value + +laterInput.value;
+	    // }
+	    // // 减
+	    // function subtractHandler() {
+	    // 	sign.innerHTML = '-';
+	    // 	resultOutput.innerHTML = formerInput.value - laterInput.value;
+	    // }
+	    // // 乘
+	    // function multiplyHandler() {
+	    // 	sign.innerHTML = '×';
+	    // 	resultOutput.innerHTML = formerInput.value * laterInput.value;
+	    // }
+	    // // 除
+	    // function divideHandler() {
+	    // 	sign.innerHTML = '÷';
+	    // 	resultOutput.innerHTML = formerInput.value / laterInput.value;
+	    // }
+
+    // // 第二次改进--循环
+	    // // 获取元素
+	    // var calculator = document.querySelector('#calculator');
+	    // var formerInput = calculator.querySelector('.formerInput');
+	    // var laterInput = calculator.querySelector('.laterInput');
+	    // var sign = calculator.querySelector('.sign');
+	    // var resultOutput = calculator.querySelector('.resultOutput');
+	    // var btns = calculator.querySelectorAll('.btn');
+
+	    // // 绑定事件
+	    // for (var i = 0; i < btns.length; i++) {
+	    // 	btns[i].onclick = function () {
+	    // 		switch (this.title) {
+	    // 			case 'add':
+	    // 				addHandler();
+	    // 				break;
+	    // 			case 'subtract':
+	    // 				subtractHandler();
+	    // 				break;
+	    // 			case 'multiply':
+	    // 				multiplyHandler();
+	    // 				break;
+	    // 			case 'divide':
+	    // 				divideHandler();
+	    // 				break;
+	    // 		}
+	    // 	};
+	    // }
+	    // // // +
+	    // // btns[0].onclick = addHandler;
+	    // // // -
+	    // // btns[1].onclick = subtractHandler;
+	    // // // ×
+	    // // btns[2].onclick = multiplyHandler;
+	    // // // ÷
+	    // // btns[3].onclick = divideHandler;
+
+	    // // 加
+	    // function addHandler() {
+	    // 	sign.innerHTML = '+';
+	    // 	resultOutput.innerHTML = +formerInput.value + +laterInput.value;
+	    // }
+	    // // 减
+	    // function subtractHandler() {
+	    // 	sign.innerHTML = '-';
+	    // 	resultOutput.innerHTML = formerInput.value - laterInput.value;
+	    // }
+	    // // 乘
+	    // function multiplyHandler() {
+	    // 	sign.innerHTML = '×';
+	    // 	resultOutput.innerHTML = formerInput.value * laterInput.value;
+	    // }
+	    // // 除
+	    // function divideHandler() {
+	    // 	sign.innerHTML = '÷';
+	    // 	resultOutput.innerHTML = formerInput.value / laterInput.value;
+	    // }
+
+    // // 第三次改进--提取函数
+	   //  // 获取元素
+	   //  var calculator = document.querySelector('#calculator');
+	   //  var formerInput = calculator.querySelector('.formerInput');
+	   //  var laterInput = calculator.querySelector('.laterInput');
+	   //  var sign = calculator.querySelector('.sign');
+	   //  var resultOutput = calculator.querySelector('.resultOutput');
+	   //  var btns = calculator.querySelectorAll('.btn');
+
+	   //  // 绑定事件
+	   //  each(btns, function (index, elem	) {
+	   //  	elem.onclick = function () {
+	   //  		switch (this.title) {
+	   //  			case 'add':
+	   //  				addHandler();
+	   //  				break;
+	   //  			case 'subtract':
+	   //  				subtractHandler();
+	   //  				break;
+	   //  			case 'multiply':
+	   //  				multiplyHandler();
+	   //  				break;
+	   //  			case 'divide':
+	   //  				divideHandler();
+	   //  				break;
+	   //  		}
+	   //  	};
+	   //  });
+	    
+	   //  // 遍历
+	   //  function each(array, fn) {
+	   //  	for (var i = 0; i < array.length; i++) {
+	   //  		fn(i, array[i]);
+	   //  	}
+	   //  }
+
+	   //  // 更新符号
+	   //  function updateSign(symbol) {
+	   //  	sign.innerHTML = symbol;
+	   //  }
+
+	   //  // 加法
+	   //  function add(num1, num2) {
+	   //  	return +num1 + +num2;
+	   //  }
+	   //  // 减法
+	   //  function subtract(num1, num2) {
+	   //  	return num1 - num2;
+	   //  }
+	   //  // 乘法
+	   //  function multiply(num1, num2) {
+	   //  	return num1 * num2;
+	   //  }
+	   //  // 除法
+	   //  function divide(num1, num2) {
+	   //  	return num1 / num2;
+	   //  }
+
+	   //  // 输出结果
+	   //  function outputResult(result) {
+	   //  	resultOutput.innerHTML = result;
+	   //  }
+
+	   //  // 加
+	   //  function addHandler() {
+	   //  	// sign.innerHTML = '+';
+	   //  	updateSign('+');
+	   //  	outputResult(add(formerInput.value, laterInput.value));
+	   //  }
+	   //  // 减
+	   //  function subtractHandler() {
+	   //  	updateSign('-');
+	   //  	outputResult(subtract(formerInput.value, laterInput.value));
+	   //  }
+	   //  // 乘
+	   //  function multiplyHandler() {
+	   //  	updateSign('×');
+	   //  	outputResult(multiply(formerInput.value, laterInput.value));
+	   //  }
+	   //  // 除
+	   //  function divideHandler() {
+	   //  	updateSign('÷');
+	   //  	outputResult(divide(formerInput.value, laterInput.value));
+	   //  }
+
+	  // // 第四次改进--管理代码(找到组织)
+		 //    // 获取元素
+		 //    var wrapElem = document.querySelector('#calculator');
+		 //    var calculatorElem = {
+		 //    	formerInput: wrapElem.querySelector('.formerInput'),
+		 //    	laterInput: wrapElem.querySelector('.laterInput'),
+		 //    	sign: wrapElem.querySelector('.sign'),
+		 //    	resultOutput: wrapElem.querySelector('.resultOutput'),
+		 //    	btns: wrapElem.querySelectorAll('.btn')
+		 //    };
+
+		 //    // 绑定事件
+		 //    each(calculatorElem.btns, function (index, elem	) {
+		 //    	elem.onclick = function () {
+		 //    		switch (this.title) {
+		 //    			case 'add':
+		 //    				addHandler();
+		 //    				break;
+		 //    			case 'subtract':
+		 //    				subtractHandler();
+		 //    				break;
+		 //    			case 'multiply':
+		 //    				multiplyHandler();
+		 //    				break;
+		 //    			case 'divide':
+		 //    				divideHandler();
+		 //    				break;
+		 //    		}
+		 //    	};
+		 //    });
+		    
+		 //    // 遍历
+		 //    function each(array, fn) {
+		 //    	for (var i = 0; i < array.length; i++) {
+		 //    		fn(i, array[i]);
+		 //    	}
+		 //    }
+
+		 //    // 更新符号
+		 //    function updateSign(symbol) {
+		 //    	calculatorElem.sign.innerHTML = symbol;
+		 //    }
+
+		 //    var operation = {
+		 //    	add: function(num1, num2) {
+			//     	return +num1 + +num2;
+			//     },
+			// subtract: function(num1, num2) {
+			//     	return num1 - num2;
+			//     },
+			// multiply: function(num1, num2) {
+			//     	return num1 * num2;
+			//     },
+			// divide: function(num1, num2) {
+			//     	return num1 / num2;
+		 //   	 }
+		 //    };
+
+		 //    // 输出结果
+		 //    function outputResult(result) {
+		 //    	calculatorElem.resultOutput.innerHTML = result;
+		 //    }
+
+		 //    // 加
+		 //    function addHandler() {
+		 //    	// sign.innerHTML = '+';
+		 //    	updateSign('+');
+		 //    	outputResult(operation.add(calculatorElem.formerInput.value, calculatorElem.laterInput.value));
+		 //    }
+		 //    // 减
+		 //    function subtractHandler() {
+		 //    	updateSign('-');
+		 //    	outputResult(operation.subtract(calculatorElem.formerInput.value, calculatorElem.laterInput.value));
+		 //    }
+		 //    // 乘
+		 //    function multiplyHandler() {
+		 //    	updateSign('×');
+		 //    	outputResult(operation.multiply(calculatorElem.formerInput.value, calculatorElem.laterInput.value));
+		 //    }
+		 //    // 除
+		 //    function divideHandler() {
+		 //    	updateSign('÷');
+		 //    	outputResult(operation.divide(calculatorElem.formerInput.value, calculatorElem.laterInput.value));
+		 //    }
+
+	// // 第五次改进--OCP开放--封闭原则
+		// 	    // 获取元素
+		// 	    var wrapElem = document.querySelector('#calculator');
+		// 	    var calculatorElem = {
+		// 	    	formerInput: wrapElem.querySelector('.formerInput'),
+		// 	    	laterInput: wrapElem.querySelector('.laterInput'),
+		// 	    	sign: wrapElem.querySelector('.sign'),
+		// 	    	resultOutput: wrapElem.querySelector('.resultOutput'),
+		// 	    	btns: wrapElem.querySelectorAll('.btn')
+		// 	    };
+
+		// 	    // 绑定事件
+		// 	    each(calculatorElem.btns, function (index, elem	) {
+		// 		    	elem.onclick = function () {
+		// 		    		updateSign(this.value);
+		// 		    		outputResult(operate(this.title, calculatorElem.formerInput.value, calculatorElem.laterInput.value));
+		// 		    	};
+		// 	    });
+			    
+
+
+		// 	    // 遍历
+		// 	    function each(array, fn) {
+		// 	    	for (var i = 0; i < array.length; i++) {
+		// 	    		fn(i, array[i]);
+		// 	    	}
+		// 	    }
+
+		// 	    // 更新符号
+		// 	    function updateSign(symbol) {
+		// 	    	calculatorElem.sign.innerHTML = symbol;
+		// 	    }
+
+		// 	    // 运算
+		// 	    function operate(name, num1, num2) {
+		// 	    		if (!operation[name]) throw new Error('不存在名为' + name + '的运算方法！');
+		// 	    		return operation[name](num1, num2);
+		// 	    }
+
+		// 	    var operation = {
+		// 	    	add: function(num1, num2) {
+		// 		    	return +num1 + +num2;
+		// 		    },
+		// 		subtract: function(num1, num2) {
+		// 		    	return num1 - num2;
+		// 		    },
+		// 		multiply: function(num1, num2) {
+		// 		    	return num1 * num2;
+		// 		    },
+		// 		divide: function(num1, num2) {
+		// 		    	return num1 / num2;
+		// 	   	 },
+		// 	   	 addOperation: function (name, fn) {
+		// 	   	 	if (!this[name]) {
+		// 	   	 		this[name] = fn;
+		// 	   	 	}
+		// 	   	 	return this;
+		// 	   	 }
+		// 	    };
+
+		// 	    operation.addOperation('mod', function (num1, num2) {
+		// 	    	return num1 % num2;
+		// 	    }).addOperation('power', function (base, power) {
+		// 	    	return Math.pow(base, power);
+		// 	    });
+
+		// 	    // 输出结果
+		// 	    function outputResult(result) {
+		// 	    	calculatorElem.resultOutput.innerHTML = result;
+		// 	    }
+
+	// 第六次改进--模块化
+		// (function () {
+		// 	// 获取元素
+		//     var wrapElem = document.querySelector('#calculator');
+		//     var calculatorElem = {
+		//     	formerInput: wrapElem.querySelector('.formerInput'),
+		//     	laterInput: wrapElem.querySelector('.laterInput'),
+		//     	sign: wrapElem.querySelector('.sign'),
+		//     	resultOutput: wrapElem.querySelector('.resultOutput'),
+		//     	btns: wrapElem.querySelectorAll('.btn')
+		//     };
+
+		    // 绑定事件
+		    each(calculatorElem.btns, function (index, elem	) {
+			    	elem.onclick = function () {
+			    		updateSign(this.value);
+			    		outputResult(operate(this.title, calculatorElem.formerInput.value, calculatorElem.laterInput.value));
+			    	};
+		    });
+		    
+
+
+		//     // 遍历
+		//     function each(array, fn) {
+		//     	for (var i = 0; i < array.length; i++) {
+		//     		fn(i, array[i]);
+		//     	}
+		//     }
+
+		//     // 更新符号
+		//     function updateSign(symbol) {
+		//     	calculatorElem.sign.innerHTML = symbol;
+		//     }
+
+		//     // 运算
+		//     var operate = (function () {
+		//     		var operation = {
+		// 		    	add: function(num1, num2) {
+		// 			    	return +num1 + +num2;
+		// 			    },
+		// 			subtract: function(num1, num2) {
+		// 			    	return num1 - num2;
+		// 			    },
+		// 			multiply: function(num1, num2) {
+		// 			    	return num1 * num2;
+		// 			    },
+		// 			divide: function(num1, num2) {
+		// 			    	return num1 / num2;
+		// 		   	 },
+		// 		   	 addOperation: function (name, fn) {
+		// 		   	 	if (!operation[name]) {
+		// 		   	 		operation[name] = fn;
+		// 		   	 	}
+		// 		   	 	return operation;
+		// 		   	 }
+		// 	    };
+
+		//     	// 	function operate(name, num1, num2) {
+		// 	    // 		if (!operation[name]) throw new Error('不存在名为' + name + '的运算方法！');
+		// 	    // 		return operation[name](num1, num2);
+		// 	    // }
+		// 	    function operate(name) {
+		// 	    		if (!operation[name]) throw new Error('不存在名为' + name + '的运算方法！');
+		// 	    		return operation[name].apply(operation, [].slice.call(arguments, 1, arguments.length));
+		// 	    }
+		// 	    operate.addOperation = operation.addOperation;
+
+		// 	    return operate;
+		// 	    // return function (name, num1, num2) {
+		// 	    // 		if (!operation[name]) throw new Error('不存在名为' + name + '的运算方法！');
+		// 	    // 		return operation[name](num1, num2);
+		// 	    // };
+			    
+		//     })();
+
+		    
+		    
+		//     operate.addOperation('mod', function (num1, num2) {
+		//     	return num1 % num2;
+		//     }).addOperation('power', function (base, power) {
+		//     	return Math.pow(base, power);
+		//     }).addOperation('invert', function (num) {
+		//     	return 1 / num;
+		//     });
+
+		//     // 输出结果
+		//     function outputResult(result) {
+		//     	calculatorElem.resultOutput.innerHTML = result;
+		//     }
+		// })();
+
+	// 第七次改进
+	  
+</script>
+</body>
+</html>
+        </div>
+
+        
+        <section class="post-tags">
+            <div>
+                <!-- 标签 -->
+                <span>Tags:</span>
+                <span class="tag">
+                    
+                </span>
+                <!-- 下面这段代码是阅读量统计 -->
+                <span id="/2017/02/07/%E8%A8%88%E7%AE%97%E6%A9%9F%E3%82%B3%E3%83%BC%E3%83%88%E3%82%99/%5C274%5C362%5C322%5C327%5C274%5C306%5C313%5C343%5C306%5C367/" class="leancloud-visitors view" data-flag-title="計算機コード/\274\362\322\327\274\306\313\343\306\367">
+                    <em class="post-meta-item-text">&nbsp;&nbsp;Pageviews:</em>
+                    <i class="leancloud-visitors-count">loading</i>
+                </span>
+            </div>
+            <div>
+                <a href="javascript:window.history.back();">back</a>
+                <span>· </span>
+                <a href="/">home</a>
+            </div>
+        </section>
+        <section class="post-nav">
+            
+                <a class="prev" rel="prev" href="/2020/05/10/2020-05-10-hello-world/">Hello World</a>
+            
+            
+        </section>
+        <!-- 下面这段代码是评论的 -->
+        <br><br><br>
+        
+            <section id="comments" class="comments">
+              <style>
+                .comments{margin:30px;padding:10px;background:#fff}
+                @media screen and (max-width:800px){.comments{margin:auto;padding:10px;background:#fff}}
+              </style>
+              <div class="valine_comment"></div>
+<!--载入js，在</body>之前插入即可-->
+<!--Leancloud 操作库:-->
+<script src="//cdn1.lncld.net/static/js/3.0.4/av-min.js"></script>
+<!--Valine 的核心代码库-->
+<script src="//unpkg.com/valine/dist/Valine.min.js"></script>
+<script>
+  new Valine({
+      el: '.valine_comment',
+      app_id: 'mvWomOzSrHta71qCetznk9Ys-MdYXbMMI',
+      app_key: 'hxu4GRlAhGXaNfQG3AhvgebE',
+      placeholder: '这里留言。。',
+      notify: 'true',
+      verify: 'true',
+      visitor: true // 阅读量统计
+    });
+</script>
+            </section>
+        
+    </article>
+
+</div>
+        </div>
+        <footer id="footer" class="footer">
+    <div class="copyright">
+        <span>© GanWt | Powered by <span>Hexo</span> & <span>Chic</span></span>
+    </div>
+</footer>
+
+    </div>
+</body>
+</html>
