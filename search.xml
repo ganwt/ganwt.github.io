@@ -32,7 +32,7 @@
 <li><p>現在の時刻を取得する関数 now()</p>
 </li>
 <li><p>曜日は，関数 weekday()で計算 できる(月〜日：０〜６)</p>
-<img src="https://ganwt.com/image/2020-07-07-IoTと無線ネットワーク(9)/1.png" alt="1" style="zoom:50%;" />
+<img src="https://ganwt.github.io/image/2020-07-07-IoTと無線ネットワーク(9)/1.png" alt="1" style="zoom:50%;" />
 
 
 
@@ -43,11 +43,11 @@
 <ul>
 <li><h4 id="datetimeオブジェクトのコンストラクタ"><a href="#datetimeオブジェクトのコンストラクタ" class="headerlink" title="datetimeオブジェクトのコンストラクタ"></a>datetimeオブジェクトのコンストラクタ</h4><ul>
 <li><p>datetime(year, month, day, hour=0, minute=0, second=0, microsecond=0, tzinfo=None)</p>
-<img src="https://ganwt.com/image/2020-07-07-IoTと無線ネットワーク(9)/2.png" alt="2" style="zoom:50%;" />
+<img src="https://ganwt.github.io/image/2020-07-07-IoTと無線ネットワーク(9)/2.png" alt="2" style="zoom:50%;" />
 </li>
 </ul>
 </li>
-<li><h4 id="UTCからローカルタイムへの変換"><a href="#UTCからローカルタイムへの変換" class="headerlink" title="UTCからローカルタイムへの変換"></a>UTCからローカルタイムへの変換</h4><img src="https://ganwt.com/image/2020-07-07-IoTと無線ネットワーク(9)/3.png" alt="3" style="zoom:50%;" />
+<li><h4 id="UTCからローカルタイムへの変換"><a href="#UTCからローカルタイムへの変換" class="headerlink" title="UTCからローカルタイムへの変換"></a>UTCからローカルタイムへの変換</h4><img src="https://ganwt.github.io/image/2020-07-07-IoTと無線ネットワーク(9)/3.png" alt="3" style="zoom:50%;" />
 
 
 
@@ -55,15 +55,15 @@
 
 </li>
 </ul>
-<h3 id="3-グラフの描画-matplotlib"><a href="#3-グラフの描画-matplotlib" class="headerlink" title="3. グラフの描画(matplotlib)"></a>3. グラフの描画(matplotlib)</h3>  <img src="https://ganwt.com/image/2020-07-07-IoTと無線ネットワーク(9)/4.png" alt="4" style="zoom:50%;" />
+<h3 id="3-グラフの描画-matplotlib"><a href="#3-グラフの描画-matplotlib" class="headerlink" title="3. グラフの描画(matplotlib)"></a>3. グラフの描画(matplotlib)</h3>  <img src="https://ganwt.github.io/image/2020-07-07-IoTと無線ネットワーク(9)/4.png" alt="4" style="zoom:50%;" />
 
 
 
-<h4 id="ラベルの指定"><a href="#ラベルの指定" class="headerlink" title="ラベルの指定"></a>ラベルの指定</h4>  <img src="https://ganwt.com/image/2020-07-07-IoTと無線ネットワーク(9)/5.png" alt="5" style="zoom:50%;" />
+<h4 id="ラベルの指定"><a href="#ラベルの指定" class="headerlink" title="ラベルの指定"></a>ラベルの指定</h4>  <img src="https://ganwt.github.io/image/2020-07-07-IoTと無線ネットワーク(9)/5.png" alt="5" style="zoom:50%;" />
 
 
 
-<h4 id="複数のグラフを同じ座標軸に描画"><a href="#複数のグラフを同じ座標軸に描画" class="headerlink" title="複数のグラフを同じ座標軸に描画"></a>複数のグラフを同じ座標軸に描画</h4>  <img src="https://ganwt.com/image/2020-07-07-IoTと無線ネットワーク(9)/6.png" alt="6" style="zoom:50%;" />
+<h4 id="複数のグラフを同じ座標軸に描画"><a href="#複数のグラフを同じ座標軸に描画" class="headerlink" title="複数のグラフを同じ座標軸に描画"></a>複数のグラフを同じ座標軸に描画</h4>  <img src="https://ganwt.github.io/image/2020-07-07-IoTと無線ネットワーク(9)/6.png" alt="6" style="zoom:50%;" />
 
 
 
@@ -79,7 +79,7 @@
 <figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">import</span> json</span><br><span class="line"><span class="keyword">import</span> time</span><br><span class="line"><span class="keyword">import</span> matplotlib.pyplot <span class="keyword">as</span> plt</span><br><span class="line"><span class="keyword">from</span> datetime <span class="keyword">import</span> datetime</span><br><span class="line"></span><br><span class="line"><span class="comment">#jasonデータを読み込み</span></span><br><span class="line"><span class="keyword">with</span> open(<span class="string">"work.json"</span>,<span class="string">"r"</span>) <span class="keyword">as</span> f:</span><br><span class="line">    data = json.loads(f.read())</span><br><span class="line"></span><br><span class="line"><span class="comment">#日時</span></span><br><span class="line">time = [datetime.fromtimestamp(data[<span class="string">"hourly"</span>][<span class="number">0</span>][<span class="string">"dt"</span>]),</span><br><span class="line">        datetime.fromtimestamp(data[<span class="string">"hourly"</span>][<span class="number">1</span>][<span class="string">"dt"</span>]),</span><br><span class="line">        datetime.fromtimestamp(data[<span class="string">"hourly"</span>][<span class="number">2</span>][<span class="string">"dt"</span>])]</span><br><span class="line"></span><br><span class="line"><span class="comment">#気温</span></span><br><span class="line">weather=[data[<span class="string">"hourly"</span>][<span class="number">0</span>][<span class="string">"weather"</span>][<span class="number">0</span>][<span class="string">"description"</span>],</span><br><span class="line">         data[<span class="string">"hourly"</span>][<span class="number">1</span>][<span class="string">"weather"</span>][<span class="number">0</span>][<span class="string">"description"</span>],</span><br><span class="line">         data[<span class="string">"hourly"</span>][<span class="number">2</span>][<span class="string">"weather"</span>][<span class="number">0</span>][<span class="string">"description"</span>]]</span><br><span class="line"></span><br><span class="line"><span class="comment">#気温</span></span><br><span class="line">temp = [data[<span class="string">"hourly"</span>][<span class="number">0</span>][<span class="string">"temp"</span>],</span><br><span class="line">        data[<span class="string">"hourly"</span>][<span class="number">1</span>][<span class="string">"temp"</span>],</span><br><span class="line">        data[<span class="string">"hourly"</span>][<span class="number">2</span>][<span class="string">"temp"</span>]]</span><br><span class="line"></span><br><span class="line"><span class="comment">#湿度</span></span><br><span class="line">humidity=[data[<span class="string">"hourly"</span>][<span class="number">0</span>][<span class="string">"humidity"</span>],</span><br><span class="line">          data[<span class="string">"hourly"</span>][<span class="number">1</span>][<span class="string">"humidity"</span>],</span><br><span class="line">          data[<span class="string">"hourly"</span>][<span class="number">2</span>][<span class="string">"humidity"</span>]]</span><br><span class="line"></span><br><span class="line"><span class="comment">#体感温度</span></span><br><span class="line">feels_like=[data[<span class="string">"hourly"</span>][<span class="number">0</span>][<span class="string">"feels_like"</span>],</span><br><span class="line">            data[<span class="string">"hourly"</span>][<span class="number">1</span>][<span class="string">"feels_like"</span>],</span><br><span class="line">            data[<span class="string">"hourly"</span>][<span class="number">2</span>][<span class="string">"feels_like"</span>]]</span><br><span class="line"></span><br><span class="line"><span class="comment">#降水量</span></span><br><span class="line">rain = [data[<span class="string">"hourly"</span>][<span class="number">0</span>][<span class="string">"rain"</span>][<span class="string">"1h"</span>],</span><br><span class="line">        data[<span class="string">"hourly"</span>][<span class="number">1</span>][<span class="string">"rain"</span>][<span class="string">"1h"</span>],</span><br><span class="line">        data[<span class="string">"hourly"</span>][<span class="number">2</span>][<span class="string">"rain"</span>][<span class="string">"1h"</span>]]</span><br><span class="line"></span><br><span class="line"><span class="comment">#グラフ</span></span><br><span class="line">hour = [time[<span class="number">0</span>].hour,time[<span class="number">1</span>].hour,time[<span class="number">2</span>].hour]</span><br><span class="line"><span class="comment">#気温と体感温度</span></span><br><span class="line">plt.subplot(<span class="number">221</span>)</span><br><span class="line">plt.title(<span class="string">"Three hours temp FeelsLike"</span>)</span><br><span class="line">plt.plot(hour,temp,label=<span class="string">"temp"</span>)</span><br><span class="line">plt.plot(hour,feels_like,label=<span class="string">"FeelsLike"</span>)</span><br><span class="line"></span><br><span class="line"><span class="comment">#湿度</span></span><br><span class="line">plt.subplot(<span class="number">222</span>)</span><br><span class="line">plt.title(<span class="string">"Three hours humidity"</span>)</span><br><span class="line">plt.plot(hour,humidity,label=<span class="string">"humidity"</span>)</span><br><span class="line"></span><br><span class="line"><span class="comment">#降水量</span></span><br><span class="line">plt.subplot(<span class="number">212</span>)</span><br><span class="line">plt.plot(hour,rain,label=<span class="string">"rain"</span>)</span><br><span class="line"></span><br><span class="line">plt.show</span><br><span class="line">        </span><br><span class="line"></span><br><span class="line"><span class="comment">#プリント("NO.1")</span></span><br><span class="line">print(<span class="string">"NO.1"</span>)</span><br><span class="line">print(<span class="string">"日時:"</span>,time[<span class="number">0</span>])</span><br><span class="line">print(<span class="string">"気温:"</span>,temp[<span class="number">0</span>])</span><br><span class="line">print(<span class="string">"湿度:"</span>,humidity[<span class="number">0</span>])</span><br><span class="line">print(<span class="string">"体感温度:"</span>,feels_like[<span class="number">0</span>])</span><br><span class="line">print(<span class="string">"降水量:"</span>,rain[<span class="number">0</span>])</span><br><span class="line">print(<span class="string">"天気:"</span>,weather[<span class="number">0</span>],<span class="string">",傘を忘れないでください"</span>)</span><br><span class="line"><span class="comment">#プリント("NO.2")</span></span><br><span class="line">print()</span><br><span class="line">print(<span class="string">"NO.2"</span>)</span><br><span class="line">print(<span class="string">"日時:"</span>,time[<span class="number">1</span>])</span><br><span class="line">print(<span class="string">"気温:"</span>,temp[<span class="number">1</span>])</span><br><span class="line">print(<span class="string">"湿度:"</span>,humidity[<span class="number">1</span>])</span><br><span class="line">print(<span class="string">"体感温度:"</span>,feels_like[<span class="number">1</span>])</span><br><span class="line">print(<span class="string">"降水量:"</span>,rain[<span class="number">1</span>])</span><br><span class="line">print(<span class="string">"天気:"</span>,weather[<span class="number">1</span>],<span class="string">",傘を忘れないでください"</span>)</span><br><span class="line"><span class="comment">#プリント("NO.3")</span></span><br><span class="line">print()</span><br><span class="line">print(<span class="string">"NO.3"</span>)</span><br><span class="line">print(<span class="string">"日時:"</span>,time[<span class="number">2</span>])</span><br><span class="line">print(<span class="string">"気温:"</span>,temp[<span class="number">2</span>])</span><br><span class="line">print(<span class="string">"湿度:"</span>,humidity[<span class="number">2</span>])</span><br><span class="line">print(<span class="string">"体感温度:"</span>,feels_like[<span class="number">2</span>])</span><br><span class="line">print(<span class="string">"降水量:"</span>,rain[<span class="number">2</span>])</span><br><span class="line">print(<span class="string">"天気:"</span>,weather[<span class="number">2</span>],<span class="string">",傘を忘れないでください"</span>)</span><br></pre></td></tr></table></figure>
 
 <p>実行結果は以下：</p>
-<img src="https://ganwt.com/image/2020-07-07-IoTと無線ネットワーク(9)/7.png" alt="6" style="zoom:70%;" />
+<img src="https://ganwt.github.io/image/2020-07-07-IoTと無線ネットワーク(9)/7.png" alt="6" style="zoom:70%;" />
 
 
 
@@ -99,34 +99,34 @@
     <content><![CDATA[<h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>接下来开发新功能，称之为<strong>「角距離（かくきょり）」</strong> ，中文称之为<strong>「角距（jiǎo jù）」</strong> 。引用百度百科的解释：</p>
 <p><em>「角距，即角距离，也称为角分离、视距离、或视分离，在数学(特别是几何学和三角学)和自然科学(包括天文学、地质学等等)，从不同于两个点物体的位置（即第三点）观察这两个物体，由观测者指向这两个物体的直线之间所夹角度的大小。角距离(或分离)与角度本身是同义的，但意义却是对两个天体(对恒星，是当从地球观测)之间线距离的建议(通常是很大或未知的)。」</em></p>
 <p>大概印象如下：</p>
-<img src="https://ganwt.com/image/JavaScript实现：中心:重心:点距离:x与y距离:垂线与距离/1.png" alt="1" style="zoom:50%;" />
+<img src="https://ganwt.github.io/image/JavaScript实现：中心:重心:点距离:x与y距离:垂线与距离/1.png" alt="1" style="zoom:50%;" />
 
 <p>而我们打算要实现的功能有：<strong>中心/重心/点距离/x与y距离/垂线与距离</strong> 。最终是通过JavaScript/canvas来实现的，因为还没开始写，这边先整理一下思路、公式之类的。</p>
 <h2 id="ここからやるよ"><a href="#ここからやるよ" class="headerlink" title="ここからやるよ"></a>ここからやるよ</h2><p>先理解一下canvas的坐标系。</p>
-<img src="https://ganwt.com/image/JavaScript实现：中心:重心:点距离:x与y距离:垂线与距离/2.png" alt="2" style="zoom:50%;" />
+<img src="https://ganwt.github.io/image/JavaScript实现：中心:重心:点距离:x与y距离:垂线与距离/2.png" alt="2" style="zoom:50%;" />
 
 <p>canvas的坐标系是左上角（0,0）开始，所以都是正值，负值是看不见的，和中学时候学习的坐标系略有不同。</p>
 <figure class="highlight html"><table><tr><td class="code"><pre><span class="line"><span class="meta">&lt;!DOCTYPE <span class="meta-keyword">html</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">html</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">head</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">meta</span> <span class="attr">charset</span>=<span class="string">"utf-8"</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">title</span>&gt;</span>Canvas绘制直线<span class="tag">&lt;/<span class="name">title</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">head</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">body</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">canvas</span> <span class="attr">id</span>=<span class="string">"canvas"</span> <span class="attr">width</span>=<span class="string">"200"</span> <span class="attr">height</span>=<span class="string">"150"</span> <span class="attr">style</span>=<span class="string">"border: 0.0625rem;"</span>&gt;</span><span class="tag">&lt;/<span class="name">canvas</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">body</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">script</span>&gt;</span></span><br><span class="line"><span class="javascript">        <span class="keyword">var</span> canvas = <span class="built_in">document</span>.getElementById(<span class="string">"canvas"</span>);</span></span><br><span class="line"><span class="actionscript">      	<span class="keyword">var</span> cxt = canvas.getContext(<span class="string">"2d"</span>);</span></span><br><span class="line"><span class="actionscript">      	<span class="comment">//画直线</span></span></span><br><span class="line"><span class="javascript">        <span class="built_in">window</span>.onload = <span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span></span><br><span class="line">            cxt.moveTo(80,20);</span><br><span class="line">            cxt.lineTo(20,60);</span><br><span class="line">            cxt.stroke();</span><br><span class="line">        &#125;</span><br><span class="line">    <span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">html</span>&gt;</span></span><br></pre></td></tr></table></figure>
 
 
 
-<img src="https://ganwt.com/image/JavaScript实现：中心:重心:点距离:x与y距离:垂线与距离/3.png" alt="2" style="zoom:50%;" />
+<img src="https://ganwt.github.io/image/JavaScript实现：中心:重心:点距离:x与y距离:垂线与距离/3.png" alt="2" style="zoom:50%;" />
 
 <p>上图左边是中学时学的坐标系（使用笛卡尔坐标系）将 (0,0) 放置在正中央，y 轴由下至上 x 轴由左至右。而上图右边的电脑窗口的坐标系在 y 轴的方向是相反的。(0,0) 被定义在左上角并往右边及往下延伸。</p>
-<h3 id="1-中心"><a href="#1-中心" class="headerlink" title="1. 中心"></a>1. 中心</h3><img src="https://ganwt.com/image/JavaScript实现：中心:重心:点距离:x与y距离:垂线与距离/4.png" alt="4" style="zoom:50%;" />
+<h3 id="1-中心"><a href="#1-中心" class="headerlink" title="1. 中心"></a>1. 中心</h3><img src="https://ganwt.github.io/image/JavaScript实现：中心:重心:点距离:x与y距离:垂线与距离/4.png" alt="4" style="zoom:50%;" />
 
 <p>如图，A点和B点点中心点怎么求呢？直接 ${A}<em>(x,y)-{B}</em>(x,y)$ 就可以了。</p>
 <figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="comment">//A点</span></span><br><span class="line"><span class="keyword">var</span> Ax = <span class="number">80</span>,</span><br><span class="line">    Ay = <span class="number">20</span>;</span><br><span class="line"></span><br><span class="line"><span class="comment">//B点</span></span><br><span class="line"><span class="keyword">var</span> Bx = <span class="number">20</span>,</span><br><span class="line">    By = <span class="number">60</span>;</span><br><span class="line"></span><br><span class="line"><span class="comment">//中心点</span></span><br><span class="line"><span class="keyword">var</span> Cx = Ax-Bx,</span><br><span class="line">    Cy = Ay-By;</span><br></pre></td></tr></table></figure>
 
 
 
-<h3 id="2-重心"><a href="#2-重心" class="headerlink" title="2. 重心"></a>2. 重心</h3><img src="https://ganwt.com/image/JavaScript实现：中心:重心:点距离:x与y距离:垂线与距离/5.jpg" alt="5" style="zoom:50%;" />
+<h3 id="2-重心"><a href="#2-重心" class="headerlink" title="2. 重心"></a>2. 重心</h3><img src="https://ganwt.github.io/image/JavaScript实现：中心:重心:点距离:x与y距离:垂线与距离/5.jpg" alt="5" style="zoom:50%;" />
 
 <figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="keyword">var</span> Ax,Ay, <span class="comment">//设置A点坐标</span></span><br><span class="line">    Bx,By, <span class="comment">//设置B点坐标</span></span><br><span class="line">    Cx,Cy, <span class="comment">//设置C点坐标</span></span><br><span class="line">    CGx, <span class="comment">//Center of gravity</span></span><br><span class="line">    CGy; <span class="comment">//重心</span></span><br><span class="line">CGx = (Ax + Bx + Cx) / <span class="number">3</span>;</span><br><span class="line">CGy = (Ay + By + Cy) / <span class="number">3</span>;</span><br></pre></td></tr></table></figure>
 
 
 
-<h3 id="3-两点距離"><a href="#3-两点距離" class="headerlink" title="3. 两点距離"></a>3. 两点距離</h3><img src="https://ganwt.com/image/JavaScript实现：中心:重心:点距离:x与y距离:垂线与距离/6.png" alt="6" style="zoom:50%;" />
+<h3 id="3-两点距離"><a href="#3-两点距離" class="headerlink" title="3. 两点距離"></a>3. 两点距離</h3><img src="https://ganwt.github.io/image/JavaScript实现：中心:重心:点距离:x与y距离:垂线与距离/6.png" alt="6" style="zoom:50%;" />
 
 <p>页面中有 AB 两个点，那么我们设两点坐标 A(x1, y1)、B(x2, y2)。我们可以将 AB 的连线看成是直角三角形的斜边，图中 C 为直角三角形的直角。现在我们已知 A、B 两点的坐标，那么边长 BC 就是 |x1 - x2|，边长 AC 就是 |y1 - y2|。</p>
 <p>那么根据<a href="http://baike.baidu.com/link?url=ciDltiPXjII5DYE-KByq5G3rYWueLBOpMwDz3BjgfzRVvmI2YX0KP7CzmNNnke2KUJgMwpbq13of5U1alv1fA_dK37sAENPWmAg0NyjTNOckFDtfGeWoeSRVQ7SMbVWv" target="_blank" rel="noopener">勾股定理</a>  $a^2 + b^2 = c^2$  ，斜边 AB 就求得公式为 $|AB|=\sqrt{(x1-x2)^2+(y1-y2)^2}$ 公式已经知道了，下面用代码的形式写出来：</p>
@@ -134,21 +134,21 @@
 
 <p><code>Math.sqrt</code>方法是求平方根，<code>Math.pow(n, 2)</code>是求一个数的平方。上面的的方法就是根据两点的坐标求得两点的距离。</p>
 <p>除了根据勾股定理之外，我们还可以根据一次函数的来得到斜边的长度，将斜边 AB 看成一个一次函数 y = kx + b，将 A、B 两点的坐标代入，我们就可以得到 $|AB|=\sqrt{1+k^2}|x1-x2|=\sqrt{1+\frac{1}{k^2}}|y1-y2|$ 。</p>
-<h3 id="4-xy座標距離"><a href="#4-xy座標距離" class="headerlink" title="4. xy座標距離"></a>4. xy座標距離</h3><h4 id="①-x座標距離"><a href="#①-x座標距離" class="headerlink" title="① x座標距離"></a>① x座標距離</h4><img src="https://ganwt.com/image/JavaScript实现：中心:重心:点距离:x与y距离:垂线与距离/7.png" alt="7" style="zoom:50%;" />
+<h3 id="4-xy座標距離"><a href="#4-xy座標距離" class="headerlink" title="4. xy座標距離"></a>4. xy座標距離</h3><h4 id="①-x座標距離"><a href="#①-x座標距離" class="headerlink" title="① x座標距離"></a>① x座標距離</h4><img src="https://ganwt.github.io/image/JavaScript实现：中心:重心:点距离:x与y距离:垂线与距离/7.png" alt="7" style="zoom:50%;" />
 
 <p>手绘图，大概这么个意思。<code>B(x,y)</code>  - <code>A(x,y)</code> 的坐标，取结果 <code>Distance(x,y)</code>  的 x 就是了。</p>
 <figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="keyword">var</span> Ax,Ay, <span class="comment">//设置A点坐标</span></span><br><span class="line">    Bx,By, <span class="comment">//设置B点坐标</span></span><br><span class="line">    Distancex, <span class="comment">//距離x</span></span><br><span class="line">    Distancey; <span class="comment">//距離y</span></span><br><span class="line">Distancex = Ax - Bx;</span><br><span class="line">Distancey = Ay - By;</span><br></pre></td></tr></table></figure>
 
 
 
-<h4 id="②-y座標距離"><a href="#②-y座標距離" class="headerlink" title="② y座標距離"></a>② y座標距離</h4><img src="https://ganwt.com/image/JavaScript实现：中心:重心:点距离:x与y距离:垂线与距离/8.png" alt="8" style="zoom:50%;" />
+<h4 id="②-y座標距離"><a href="#②-y座標距離" class="headerlink" title="② y座標距離"></a>② y座標距離</h4><img src="https://ganwt.github.io/image/JavaScript实现：中心:重心:点距离:x与y距离:垂线与距离/8.png" alt="8" style="zoom:50%;" />
 
 <p>也是手绘图，大概这么个意思。<code>B(x,y)</code>  - <code>A(x,y)</code> 的坐标，取结果 <code>Distance(x,y)</code>  的 y 就是了。</p>
 <figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="keyword">var</span> Ax,Ay, <span class="comment">//设置A点坐标</span></span><br><span class="line">    Bx,By, <span class="comment">//设置B点坐标</span></span><br><span class="line">    Distancex, <span class="comment">//距離x</span></span><br><span class="line">    Distancey; <span class="comment">//距離y</span></span><br><span class="line">Distancex = Ax - Bx;</span><br><span class="line">Distancey = Ay - By;</span><br></pre></td></tr></table></figure>
 
 
 
-<h3 id="5-直線の交叉点"><a href="#5-直線の交叉点" class="headerlink" title="5. 直線の交叉点"></a>5. 直線の交叉点</h3><img src="https://ganwt.com/image/JavaScript实现：中心:重心:点距离:x与y距离:垂线与距离/9.png" alt="10" style="zoom:50%;" />
+<h3 id="5-直線の交叉点"><a href="#5-直線の交叉点" class="headerlink" title="5. 直線の交叉点"></a>5. 直線の交叉点</h3><img src="https://ganwt.github.io/image/JavaScript实现：中心:重心:点距离:x与y距离:垂线与距离/9.png" alt="10" style="zoom:50%;" />
 
 <p>如上图，已知四个点<code>(Ax,Ay)</code>、<code>(Bx,By)</code>、<code>(Cx,Cy)</code>、<code>(Dx,Dy)</code>，其中<code>(Ax,Ay)</code>、<code>(Bx,By)</code>确定<code>直线1</code>，<code>(Cx,Cy)</code>、<code>(Dx,Dy)</code> 确定<code>直线2</code>，求<code>直线1</code>、<code>直线2</code>的交点<code>(CrossPointx,CrossPointy)</code>，公式如下:</p>
 <p>$$CrossPointy=\frac{[(Ay-By)\times(Cy-Dy)\times Ax+(Cy-Dy)\times(Bx-Ax)\times Ay + (By-Ay)\times(Cy-Dy)\times Dx+(Dx-Cx)\times(By-Ay)\times Dy]}{[(Bx-Ax)\times(Cy-Dy)+(Ay-By)\times(Cx-Dx)]}$$</p>
@@ -159,8 +159,8 @@
 
 <h3 id="6-点直線間垂線と距離"><a href="#6-点直線間垂線と距離" class="headerlink" title="6. 点直線間垂線と距離"></a>6. 点直線間垂線と距離</h3><p>垂线：当两条直线相交所成的四个角中，有一个角是直角时，即两条直线互相垂直，其中一条直线叫做另一直线的垂线，交点叫垂足。</p>
 <p>垂足：如果两直线的夹角为直角，那么就说这两条直线互相垂直，其中一条直线叫做另一条直线的垂线，他们的交点叫做垂足，或者一条直线垂直交于另一直线，其交点称为该直线的垂足。</p>
-<h4 id=""><a href="#" class="headerlink" title=""></a><img src="https://ganwt.com/image/JavaScript实现：中心:重心:点距离:x与y距离:垂线与距离/10.png" alt="10" style="zoom:75%;" /></h4><p>图上有 <code>x y z</code> 三个坐标轴，<a href="https://unity.com" target="_blank" rel="noopener">Unity</a> 和 canvas 都可以画 2D 3D 的图。接下来画的是2D图，所以坐标用(x,y)就可以了。为了方便理解，把图重新画一下，以下图为准。</p>
-<img src="https://ganwt.com/image/JavaScript实现：中心:重心:点距离:x与y距离:垂线与距离/11.png" alt="11" style="zoom:50%;" />
+<h4 id=""><a href="#" class="headerlink" title=""></a><img src="https://ganwt.github.io/image/JavaScript实现：中心:重心:点距离:x与y距离:垂线与距离/10.png" alt="10" style="zoom:75%;" /></h4><p>图上有 <code>x y z</code> 三个坐标轴，<a href="https://unity.com" target="_blank" rel="noopener">Unity</a> 和 canvas 都可以画 2D 3D 的图。接下来画的是2D图，所以坐标用(x,y)就可以了。为了方便理解，把图重新画一下，以下图为准。</p>
+<img src="https://ganwt.github.io/image/JavaScript实现：中心:重心:点距离:x与y距离:垂线与距离/11.png" alt="11" style="zoom:50%;" />
 
 <p>公式：</p>
 <p>$$ T=\frac{(C-A)\times(A-B)}{(A-B)^2} $$</p>
@@ -216,11 +216,11 @@
 <li><p><a href="https://openweathermap.org/guide%23payment" target="_blank" rel="noopener">IV. Payment process</a></p>
 </li>
 </ul>
-<h3 id="2-ユーザ登録"><a href="#2-ユーザ登録" class="headerlink" title="2. ユーザ登録"></a>2. ユーザ登録</h3><img src="https://ganwt.com/image/2020-06-30-IoTと無線ネットワーク(8)/1.png" alt="image-00020630181115284" style="zoom:50%;" />
+<h3 id="2-ユーザ登録"><a href="#2-ユーザ登録" class="headerlink" title="2. ユーザ登録"></a>2. ユーザ登録</h3><img src="https://ganwt.github.io/image/2020-06-30-IoTと無線ネットワーク(8)/1.png" alt="image-00020630181115284" style="zoom:50%;" />
 
 
 
-<img src="https://ganwt.com/image/2020-06-30-IoTと無線ネットワーク(8)/2.png" alt="image-00020630181336499" style="zoom:50%;" />
+<img src="https://ganwt.github.io/image/2020-06-30-IoTと無線ネットワーク(8)/2.png" alt="image-00020630181336499" style="zoom:50%;" />
 
 <h3 id="3-APIからのレスポンス"><a href="#3-APIからのレスポンス" class="headerlink" title="3. APIからのレスポンス"></a>3. APIからのレスポンス</h3><ul>
 <li>lat : 緯度 (latitude)</li>
@@ -778,40 +778,40 @@
 </ul>
 <h4 id="2-mathモジュールのインポートと実行例"><a href="#2-mathモジュールのインポートと実行例" class="headerlink" title="2.mathモジュールのインポートと実行例"></a>2.mathモジュールのインポートと実行例</h4><ul>
 <li><p>定数</p>
-<p><img src="https://ganwt.com/image/2020-06-25-IoT%E3%81%A8%E7%84%A1%E7%B7%9A%E3%83%8D%E3%83%83%E3%83%88%E3%83%AF%E3%83%BC%E3%82%AF(7)/1.png" alt="iot5"></p>
+<p><img src="https://ganwt.github.io/image/2020-06-25-IoT%E3%81%A8%E7%84%A1%E7%B7%9A%E3%83%8D%E3%83%83%E3%83%88%E3%83%AF%E3%83%BC%E3%82%AF(7)/1.png" alt="iot5"></p>
 </li>
 </ul>
 <ul>
 <li><p>sqrt</p>
-<p><img src="https://ganwt.com/image/2020-06-25-IoT%E3%81%A8%E7%84%A1%E7%B7%9A%E3%83%8D%E3%83%83%E3%83%88%E3%83%AF%E3%83%BC%E3%82%AF(7)/2.png" alt="iot5"></p>
+<p><img src="https://ganwt.github.io/image/2020-06-25-IoT%E3%81%A8%E7%84%A1%E7%B7%9A%E3%83%8D%E3%83%83%E3%83%88%E3%83%AF%E3%83%BC%E3%82%AF(7)/2.png" alt="iot5"></p>
 </li>
 </ul>
 <ul>
 <li><p>三角関数</p>
-<p><img src="https://ganwt.com/image/2020-06-25-IoT%E3%81%A8%E7%84%A1%E7%B7%9A%E3%83%8D%E3%83%83%E3%83%88%E3%83%AF%E3%83%BC%E3%82%AF(7)/3.png" alt="iot5"></p>
+<p><img src="https://ganwt.github.io/image/2020-06-25-IoT%E3%81%A8%E7%84%A1%E7%B7%9A%E3%83%8D%E3%83%83%E3%83%88%E3%83%AF%E3%83%BC%E3%82%AF(7)/3.png" alt="iot5"></p>
 </li>
 </ul>
 <h4 id="3-組み込みモジュールの使用例"><a href="#3-組み込みモジュールの使用例" class="headerlink" title="3.組み込みモジュールの使用例"></a>3.組み込みモジュールの使用例</h4><ul>
 <li><p>random</p>
 <p>rondom.randint (n, m)    n から m の間の整数 型乱数を返す関数</p>
-<p><img src="https://ganwt.com/image/2020-06-25-IoT%E3%81%A8%E7%84%A1%E7%B7%9A%E3%83%8D%E3%83%83%E3%83%88%E3%83%AF%E3%83%BC%E3%82%AF(7)/4.png" alt="iot5"></p>
+<p><img src="https://ganwt.github.io/image/2020-06-25-IoT%E3%81%A8%E7%84%A1%E7%B7%9A%E3%83%8D%E3%83%83%E3%83%88%E3%83%AF%E3%83%BC%E3%82%AF(7)/4.png" alt="iot5"></p>
 </li>
 </ul>
 <ul>
 <li><p>statistics</p>
-<p><img src="https://ganwt.com/image/2020-06-25-IoT%E3%81%A8%E7%84%A1%E7%B7%9A%E3%83%8D%E3%83%83%E3%83%88%E3%83%AF%E3%83%BC%E3%82%AF(7)/5.png" alt="iot5"></p>
+<p><img src="https://ganwt.github.io/image/2020-06-25-IoT%E3%81%A8%E7%84%A1%E7%B7%9A%E3%83%8D%E3%83%83%E3%83%88%E3%83%AF%E3%83%BC%E3%82%AF(7)/5.png" alt="iot5"></p>
 </li>
 </ul>
 <ul>
 <li><p>keyword</p>
-<p><img src="https://ganwt.com/image/2020-06-25-IoT%E3%81%A8%E7%84%A1%E7%B7%9A%E3%83%8D%E3%83%83%E3%83%88%E3%83%AF%E3%83%BC%E3%82%AF(7)/6.png" alt="iot5"></p>
+<p><img src="https://ganwt.github.io/image/2020-06-25-IoT%E3%81%A8%E7%84%A1%E7%B7%9A%E3%83%8D%E3%83%83%E3%83%88%E3%83%AF%E3%83%BC%E3%82%AF(7)/6.png" alt="iot5"></p>
 </li>
 </ul>
 <h3 id="二、ファイル入出力"><a href="#二、ファイル入出力" class="headerlink" title="二、ファイル入出力"></a>二、ファイル入出力</h3><h4 id="1-ファイルパス"><a href="#1-ファイルパス" class="headerlink" title="1.ファイルパス"></a>1.ファイルパス</h4><ul>
 <li><p>os.path.join( path, *path ) 1つまたはそれ以上のファイルパスの構成要素を結合 する関数</p>
 </li>
 <li><p>様々なOSに対応</p>
-<p><img src="https://ganwt.com/image/2020-06-25-IoT%E3%81%A8%E7%84%A1%E7%B7%9A%E3%83%8D%E3%83%83%E3%83%88%E3%83%AF%E3%83%BC%E3%82%AF(7)/7.png" alt="iot5"></p>
+<p><img src="https://ganwt.github.io/image/2020-06-25-IoT%E3%81%A8%E7%84%A1%E7%B7%9A%E3%83%8D%E3%83%83%E3%83%88%E3%83%AF%E3%83%BC%E3%82%AF(7)/7.png" alt="iot5"></p>
 </li>
 </ul>
 <h4 id="2-open関数とcloseメソッド"><a href="#2-open関数とcloseメソッド" class="headerlink" title="2.open関数とcloseメソッド"></a>2.open関数とcloseメソッド</h4><ul>
@@ -822,36 +822,36 @@
 <li><p>w     書き込み専用</p>
 </li>
 <li><p>w+   読み書き可</p>
-<p><img src="https://ganwt.com/image/2020-06-25-IoT%E3%81%A8%E7%84%A1%E7%B7%9A%E3%83%8D%E3%83%83%E3%83%88%E3%83%AF%E3%83%BC%E3%82%AF(7)/8.png" alt="iot5"></p>
+<p><img src="https://ganwt.github.io/image/2020-06-25-IoT%E3%81%A8%E7%84%A1%E7%B7%9A%E3%83%8D%E3%83%83%E3%83%88%E3%83%AF%E3%83%BC%E3%82%AF(7)/8.png" alt="iot5"></p>
 </li>
 </ul>
 </li>
 </ul>
 <h4 id="3-日本語文字列を書き込む場合"><a href="#3-日本語文字列を書き込む場合" class="headerlink" title="3.日本語文字列を書き込む場合"></a>3.日本語文字列を書き込む場合</h4><ul>
 <li><p>encoding: 変換方式を指定</p>
-<p><img src="https://ganwt.com/image/2020-06-25-IoT%E3%81%A8%E7%84%A1%E7%B7%9A%E3%83%8D%E3%83%83%E3%83%88%E3%83%AF%E3%83%BC%E3%82%AF(7)/9.png" alt="iot5"></p>
+<p><img src="https://ganwt.github.io/image/2020-06-25-IoT%E3%81%A8%E7%84%A1%E7%B7%9A%E3%83%8D%E3%83%83%E3%83%88%E3%83%AF%E3%83%BC%E3%82%AF(7)/9.png" alt="iot5"></p>
 </li>
 </ul>
 <h4 id="4-ファイルを自動的に閉じる"><a href="#4-ファイルを自動的に閉じる" class="headerlink" title="4.ファイルを自動的に閉じる"></a>4.ファイルを自動的に閉じる</h4><ul>
 <li><p>プログラムのコードが全て実行された後でファイルが 自動的に閉じられる</p>
-<p><img src="https://ganwt.com/image/2020-06-25-IoT%E3%81%A8%E7%84%A1%E7%B7%9A%E3%83%8D%E3%83%83%E3%83%88%E3%83%AF%E3%83%BC%E3%82%AF(7)/10.png" alt="iot5"></p>
+<p><img src="https://ganwt.github.io/image/2020-06-25-IoT%E3%81%A8%E7%84%A1%E7%B7%9A%E3%83%8D%E3%83%83%E3%83%88%E3%83%AF%E3%83%BC%E3%82%AF(7)/10.png" alt="iot5"></p>
 </li>
 </ul>
 <ul>
 <li><p>実行後の読み込み実行例</p>
-<p><img src="https://ganwt.com/image/2020-06-25-IoT%E3%81%A8%E7%84%A1%E7%B7%9A%E3%83%8D%E3%83%83%E3%83%88%E3%83%AF%E3%83%BC%E3%82%AF(7)/11.png" alt="iot5"></p>
+<p><img src="https://ganwt.github.io/image/2020-06-25-IoT%E3%81%A8%E7%84%A1%E7%B7%9A%E3%83%8D%E3%83%83%E3%83%88%E3%83%AF%E3%83%BC%E3%82%AF(7)/11.png" alt="iot5"></p>
 </li>
 </ul>
-<h4 id="5-ファイルのコンテンツをlistに格納"><a href="#5-ファイルのコンテンツをlistに格納" class="headerlink" title="5.ファイルのコンテンツをlistに格納"></a>5.ファイルのコンテンツをlistに格納</h4><p><img src="https://ganwt.com/image/2020-06-25-IoT%E3%81%A8%E7%84%A1%E7%B7%9A%E3%83%8D%E3%83%83%E3%83%88%E3%83%AF%E3%83%BC%E3%82%AF(7)/12.png" alt="iot5"></p>
-<h4 id="6-csvファイルへの書き込み"><a href="#6-csvファイルへの書き込み" class="headerlink" title="6.csvファイルへの書き込み"></a>6.csvファイルへの書き込み</h4><p><img src="https://ganwt.com/image/2020-06-25-IoT%E3%81%A8%E7%84%A1%E7%B7%9A%E3%83%8D%E3%83%83%E3%83%88%E3%83%AF%E3%83%BC%E3%82%AF(7)/13.png" alt="iot5"></p>
-<h4 id="7-csvファイルからの読み込み"><a href="#7-csvファイルからの読み込み" class="headerlink" title="7.csvファイルからの読み込み"></a>7.csvファイルからの読み込み</h4><p><img src="https://ganwt.com/image/2020-06-25-IoT%E3%81%A8%E7%84%A1%E7%B7%9A%E3%83%8D%E3%83%83%E3%83%88%E3%83%AF%E3%83%BC%E3%82%AF(7)/14.png" alt="iot5"></p>
-<h2 id="演習課題"><a href="#演習課題" class="headerlink" title="演習課題"></a>演習課題</h2><h4 id="演習課題１"><a href="#演習課題１" class="headerlink" title="演習課題１"></a>演習課題１</h4><p><img src="https://ganwt.com/image/2020-06-25-IoT%E3%81%A8%E7%84%A1%E7%B7%9A%E3%83%8D%E3%83%83%E3%83%88%E3%83%AF%E3%83%BC%E3%82%AF(7)/15.png" alt="iot5"></p>
+<h4 id="5-ファイルのコンテンツをlistに格納"><a href="#5-ファイルのコンテンツをlistに格納" class="headerlink" title="5.ファイルのコンテンツをlistに格納"></a>5.ファイルのコンテンツをlistに格納</h4><p><img src="https://ganwt.github.io/image/2020-06-25-IoT%E3%81%A8%E7%84%A1%E7%B7%9A%E3%83%8D%E3%83%83%E3%83%88%E3%83%AF%E3%83%BC%E3%82%AF(7)/12.png" alt="iot5"></p>
+<h4 id="6-csvファイルへの書き込み"><a href="#6-csvファイルへの書き込み" class="headerlink" title="6.csvファイルへの書き込み"></a>6.csvファイルへの書き込み</h4><p><img src="https://ganwt.github.io/image/2020-06-25-IoT%E3%81%A8%E7%84%A1%E7%B7%9A%E3%83%8D%E3%83%83%E3%83%88%E3%83%AF%E3%83%BC%E3%82%AF(7)/13.png" alt="iot5"></p>
+<h4 id="7-csvファイルからの読み込み"><a href="#7-csvファイルからの読み込み" class="headerlink" title="7.csvファイルからの読み込み"></a>7.csvファイルからの読み込み</h4><p><img src="https://ganwt.github.io/image/2020-06-25-IoT%E3%81%A8%E7%84%A1%E7%B7%9A%E3%83%8D%E3%83%83%E3%83%88%E3%83%AF%E3%83%BC%E3%82%AF(7)/14.png" alt="iot5"></p>
+<h2 id="演習課題"><a href="#演習課題" class="headerlink" title="演習課題"></a>演習課題</h2><h4 id="演習課題１"><a href="#演習課題１" class="headerlink" title="演習課題１"></a>演習課題１</h4><p><img src="https://ganwt.github.io/image/2020-06-25-IoT%E3%81%A8%E7%84%A1%E7%B7%9A%E3%83%8D%E3%83%83%E3%83%88%E3%83%AF%E3%83%BC%E3%82%AF(7)/15.png" alt="iot5"></p>
 <figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">import</span> csv</span><br><span class="line"></span><br><span class="line"><span class="keyword">with</span> open(<span class="string">"st.csv"</span>,<span class="string">"w"</span>,newline=<span class="string">""</span>) <span class="keyword">as</span> f:</span><br><span class="line">    write=csv.writer(f,delimiter=<span class="string">","</span>)</span><br><span class="line">    write.writerow([<span class="number">0</span>,<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>,<span class="number">4</span>,<span class="number">5</span>,<span class="number">6</span>,<span class="number">7</span>,<span class="number">8</span>,<span class="number">9</span>])</span><br><span class="line">    write.writerow([<span class="number">1</span>,<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>,<span class="number">4</span>,<span class="number">5</span>,<span class="number">6</span>,<span class="number">7</span>,<span class="number">8</span>,<span class="number">9</span>])</span><br><span class="line">    write.writerow([<span class="number">2</span>,<span class="number">2</span>,<span class="number">4</span>,<span class="number">6</span>,<span class="number">8</span>,<span class="number">10</span>,<span class="number">12</span>,<span class="number">14</span>,<span class="number">16</span>,<span class="number">18</span>])</span><br><span class="line">    write.writerow([<span class="number">3</span>,<span class="number">3</span>,<span class="number">6</span>,<span class="number">9</span>,<span class="number">12</span>,<span class="number">15</span>,<span class="number">18</span>,<span class="number">21</span>,<span class="number">24</span>,<span class="number">27</span>])</span><br><span class="line">    write.writerow([<span class="number">4</span>,<span class="number">4</span>,<span class="number">8</span>,<span class="number">12</span>,<span class="number">16</span>,<span class="number">20</span>,<span class="number">24</span>,<span class="number">28</span>,<span class="number">32</span>,<span class="number">36</span>])</span><br><span class="line">    write.writerow([<span class="number">5</span>,<span class="number">5</span>,<span class="number">10</span>,<span class="number">15</span>,<span class="number">20</span>,<span class="number">25</span>,<span class="number">30</span>,<span class="number">35</span>,<span class="number">40</span>,<span class="number">45</span>])</span><br><span class="line">    write.writerow([<span class="number">6</span>,<span class="number">6</span>,<span class="number">12</span>,<span class="number">18</span>,<span class="number">24</span>,<span class="number">30</span>,<span class="number">36</span>,<span class="number">42</span>,<span class="number">48</span>,<span class="number">54</span>])</span><br><span class="line">    write.writerow([<span class="number">7</span>,<span class="number">7</span>,<span class="number">14</span>,<span class="number">21</span>,<span class="number">28</span>,<span class="number">35</span>,<span class="number">42</span>,<span class="number">49</span>,<span class="number">56</span>,<span class="number">63</span>])</span><br><span class="line">    write.writerow([<span class="number">8</span>,<span class="number">8</span>,<span class="number">16</span>,<span class="number">24</span>,<span class="number">32</span>,<span class="number">40</span>,<span class="number">48</span>,<span class="number">56</span>,<span class="number">64</span>,<span class="number">72</span>])</span><br><span class="line">    write.writerow([<span class="number">9</span>,<span class="number">9</span>,<span class="number">18</span>,<span class="number">27</span>,<span class="number">36</span>,<span class="number">45</span>,<span class="number">54</span>,<span class="number">63</span>,<span class="number">72</span>,<span class="number">81</span>])</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> csv</span><br><span class="line"></span><br><span class="line"><span class="keyword">with</span> open(<span class="string">"st.csv"</span>,<span class="string">"r"</span>) <span class="keyword">as</span> f:</span><br><span class="line">    r=csv.reader(f,delimiter=<span class="string">","</span>)</span><br><span class="line">    <span class="keyword">for</span> row <span class="keyword">in</span> r:</span><br><span class="line">        print(<span class="string">","</span>.join(row))</span><br><span class="line">        </span><br><span class="line"><span class="comment"># 0,1,2,3,4,5,6,7,8,9</span></span><br><span class="line"><span class="comment"># 1,1,2,3,4,5,6,7,8,9</span></span><br><span class="line"><span class="comment"># 2,2,4,6,8,10,12,14,16,18</span></span><br><span class="line"><span class="comment"># 3,3,6,9,12,15,18,21,24,27</span></span><br><span class="line"><span class="comment"># 4,4,8,12,16,20,24,28,32,36</span></span><br><span class="line"><span class="comment"># 5,5,10,15,20,25,30,35,40,45</span></span><br><span class="line"><span class="comment"># 6,6,12,18,24,30,36,42,48,54</span></span><br><span class="line"><span class="comment"># 7,7,14,21,28,35,42,49,56,63</span></span><br><span class="line"><span class="comment"># 8,8,16,24,32,40,48,56,64,72</span></span><br><span class="line"><span class="comment"># 9,9,18,27,36,45,54,63,72,81</span></span><br></pre></td></tr></table></figure>
 
 
 
-<h4 id="演習課題２"><a href="#演習課題２" class="headerlink" title="演習課題２"></a>演習課題２</h4><p><img src="https://ganwt.com/image/2020-06-25-IoT%E3%81%A8%E7%84%A1%E7%B7%9A%E3%83%8D%E3%83%83%E3%83%88%E3%83%AF%E3%83%BC%E3%82%AF(7)/16.png" alt="iot5"></p>
-<p><img src="https://ganwt.com/image/2020-06-25-IoT%E3%81%A8%E7%84%A1%E7%B7%9A%E3%83%8D%E3%83%83%E3%83%88%E3%83%AF%E3%83%BC%E3%82%AF(7)/17.png" alt="iot5"></p>
+<h4 id="演習課題２"><a href="#演習課題２" class="headerlink" title="演習課題２"></a>演習課題２</h4><p><img src="https://ganwt.github.io/image/2020-06-25-IoT%E3%81%A8%E7%84%A1%E7%B7%9A%E3%83%8D%E3%83%83%E3%83%88%E3%83%AF%E3%83%BC%E3%82%AF(7)/16.png" alt="iot5"></p>
+<p><img src="https://ganwt.github.io/image/2020-06-25-IoT%E3%81%A8%E7%84%A1%E7%B7%9A%E3%83%8D%E3%83%83%E3%83%88%E3%83%AF%E3%83%BC%E3%82%AF(7)/17.png" alt="iot5"></p>
 <figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">import</span> csv</span><br><span class="line"></span><br><span class="line"><span class="keyword">with</span> open(<span class="string">"st2.csv"</span>,<span class="string">"r"</span>) <span class="keyword">as</span> f:</span><br><span class="line">    r=csv.reader(f,delimiter=<span class="string">","</span>)</span><br><span class="line">    data = []</span><br><span class="line">    <span class="keyword">for</span> line <span class="keyword">in</span> r:</span><br><span class="line">        line = [int(c) <span class="keyword">if</span> c != <span class="string">""</span> <span class="keyword">else</span> <span class="number">0</span> <span class="keyword">for</span> c <span class="keyword">in</span> line ]</span><br><span class="line">        data.append(line)</span><br><span class="line">        </span><br><span class="line">print(data)</span><br><span class="line"></span><br><span class="line"><span class="comment"># [[0, 6, 0, 0, 0, 1, 0, 0, 2], </span></span><br><span class="line"><span class="comment">#  [0, 9, 0, 0, 0, 0, 0, 5, 0], </span></span><br><span class="line"><span class="comment">#  [0, 0, 0, 4, 7, 0, 9, 0, 0],</span></span><br><span class="line"><span class="comment">#  [8, 0, 0, 0, 1, 4, 5, 0, 0],</span></span><br><span class="line"><span class="comment">#  [0, 0, 2, 0, 0, 0, 0, 0, 0], </span></span><br><span class="line"><span class="comment">#  [0, 0, 0, 9, 0, 0, 8, 0, 7], </span></span><br><span class="line"><span class="comment">#  [0, 0, 8, 0, 0, 6, 3, 1, 0],</span></span><br><span class="line"><span class="comment">#  [4, 0, 6, 0, 2, 0, 0, 0, 0],</span></span><br><span class="line"><span class="comment">#  [0, 0, 0, 0, 0, 0, 2, 0, 0]]</span></span><br></pre></td></tr></table></figure>
 ]]></content>
       <categories>
@@ -904,16 +904,16 @@
 <li><p>基本形 [expression for item in iterable]</p>
 </li>
 <li><p>例: for文を用いた記述</p>
-<img src="https://ganwt.com/image/2020-06-16-IoTと無線ネットワーク(6)/1.png" alt="25509830" style="zoom:50%;" />
+<img src="https://ganwt.github.io/image/2020-06-16-IoTと無線ネットワーク(6)/1.png" alt="25509830" style="zoom:50%;" />
 </li>
 <li><p>等価な内包表記</p>
-<img src="https://ganwt.com/image/2020-06-16-IoTと無線ネットワーク(6)/2.png" alt="25525271" style="zoom:50%;" />
+<img src="https://ganwt.github.io/image/2020-06-16-IoTと無線ネットワーク(6)/2.png" alt="25525271" style="zoom:50%;" />
 </li>
 <li><p>条件付き内包表記</p>
-<img src="https://ganwt.com/image/2020-06-16-IoTと無線ネットワーク(6)/3.png" alt="25543631" style="zoom:50%;" />
+<img src="https://ganwt.github.io/image/2020-06-16-IoTと無線ネットワーク(6)/3.png" alt="25543631" style="zoom:50%;" />
 </li>
 <li><p>等価なfor文での記述</p>
-<img src="https://ganwt.com/image/2020-06-16-IoTと無線ネットワーク(6)/4.png" alt="25556942" style="zoom:50%;" />
+<img src="https://ganwt.github.io/image/2020-06-16-IoTと無線ネットワーク(6)/4.png" alt="25556942" style="zoom:50%;" />
 
 
 
@@ -921,7 +921,7 @@
 </ul>
 <ul>
 <li><p>ネストした内包表現</p>
-<img src="https://ganwt.com/image/2020-06-16-IoTと無線ネットワーク(6)/5.png" alt="25612437" style="zoom:50%;" />
+<img src="https://ganwt.github.io/image/2020-06-16-IoTと無線ネットワーク(6)/5.png" alt="25612437" style="zoom:50%;" />
 
 
 
@@ -931,7 +931,7 @@
 <li><p>辞書の生成</p>
 </li>
 <li><p>{key_item: value_item for item in iterable}</p>
-<img src="https://ganwt.com/image/2020-06-16-IoTと無線ネットワーク(6)/6.png" alt="25701954" style="zoom:50%;" />
+<img src="https://ganwt.github.io/image/2020-06-16-IoTと無線ネットワーク(6)/6.png" alt="25701954" style="zoom:50%;" />
 
 
 
@@ -941,7 +941,7 @@
 <li><p>集合の生成</p>
 </li>
 <li><p>{item for item in iterable}</p>
-<img src="https://ganwt.com/image/2020-06-16-IoTと無線ネットワーク(6)/7.png" alt="25740915" style="zoom:50%;" />
+<img src="https://ganwt.github.io/image/2020-06-16-IoTと無線ネットワーク(6)/7.png" alt="25740915" style="zoom:50%;" />
 
 </li>
 </ul>
@@ -951,7 +951,7 @@
 <li><p>系列(シーケンス)を順次生成するオブジェクト</p>
 </li>
 <li><p>利用方法: 巨大なシーケンスを一度に生成すると巨大 なメモリ空間を消費するが，順次生成すれば，巨大な メモリ空間は必要ない</p>
-<img src="https://ganwt.com/image/2020-06-16-IoTと無線ネットワーク(6)/8.png" alt="25842544" style="zoom:50%;" />
+<img src="https://ganwt.github.io/image/2020-06-16-IoTと無線ネットワーク(6)/8.png" alt="25842544" style="zoom:50%;" />
 
 
 
@@ -959,7 +959,7 @@
 </ul>
 <ul>
 <li><p>次の値を生成する関数 next</p>
-<img src="https://ganwt.com/image/2020-06-16-IoTと無線ネットワーク(6)/9.png" alt="25930434" style="zoom:50%;" />
+<img src="https://ganwt.github.io/image/2020-06-16-IoTと無線ネットワーク(6)/9.png" alt="25930434" style="zoom:50%;" />
 
 </li>
 </ul>
@@ -975,7 +975,7 @@
 <li><p>書式</p>
 </li>
 <li><p>関数名(引数の並び)</p>
-<img src="https://ganwt.com/image/2020-06-16-IoTと無線ネットワーク(6)/10.png" alt="30416884" style="zoom:50%;" />
+<img src="https://ganwt.github.io/image/2020-06-16-IoTと無線ネットワーク(6)/10.png" alt="30416884" style="zoom:50%;" />
 
 </li>
 </ul>
@@ -993,7 +993,7 @@
 <li><p>呼び出し方法</p>
 <ul>
 <li><p>関数名(引数の並び)</p>
-<img src="https://ganwt.com/image/2020-06-16-IoTと無線ネットワーク(6)/11.png" alt="30601418" style="zoom:50%;" />
+<img src="https://ganwt.github.io/image/2020-06-16-IoTと無線ネットワーク(6)/11.png" alt="30601418" style="zoom:50%;" />
 
 </li>
 </ul>
@@ -1024,10 +1024,10 @@
 </ul>
 <h4 id="5-階乗関数"><a href="#5-階乗関数" class="headerlink" title="5.階乗関数"></a>5.階乗関数</h4><ul>
 <li><p>関数の定義の中で自分 自身を呼び出す関数</p>
-<img src="https://ganwt.com/image/2020-06-16-IoTと無線ネットワーク(6)/12.png" alt="31016624" style="zoom:50%;" />
+<img src="https://ganwt.github.io/image/2020-06-16-IoTと無線ネットワーク(6)/12.png" alt="31016624" style="zoom:50%;" />
 </li>
 <li><p>階乗関数の定義</p>
-<img src="https://ganwt.com/image/2020-06-16-IoTと無線ネットワーク(6)/13.png" alt="31036947" style="zoom:50%;" />
+<img src="https://ganwt.github.io/image/2020-06-16-IoTと無線ネットワーク(6)/13.png" alt="31036947" style="zoom:50%;" />
 
 
 
@@ -1035,16 +1035,16 @@
 </ul>
 <ul>
 <li><p>ループ版の階乗関数</p>
-<img src="https://ganwt.com/image/2020-06-16-IoTと無線ネットワーク(6)/14.png" alt="31112511" style="zoom:50%;" />
+<img src="https://ganwt.github.io/image/2020-06-16-IoTと無線ネットワーク(6)/14.png" alt="31112511" style="zoom:50%;" />
 
 </li>
 </ul>
 <h4 id="6-フィボナッチ数"><a href="#6-フィボナッチ数" class="headerlink" title="6.フィボナッチ数"></a>6.フィボナッチ数</h4><ul>
 <li><p>フィボナッチ数列: 0,1,1,2,3,5,8,13,21,34, ⋯</p>
-<img src="https://ganwt.com/image/2020-06-16-IoTと無線ネットワーク(6)/15.png" alt="31228324" style="zoom:50%;" />
+<img src="https://ganwt.github.io/image/2020-06-16-IoTと無線ネットワーク(6)/15.png" alt="31228324" style="zoom:50%;" />
 </li>
 <li><p>定義</p>
-<img src="https://ganwt.com/image/2020-06-16-IoTと無線ネットワーク(6)/16.png" alt="31242754" style="zoom:50%;" />
+<img src="https://ganwt.github.io/image/2020-06-16-IoTと無線ネットワーク(6)/16.png" alt="31242754" style="zoom:50%;" />
 
 
 
@@ -1059,7 +1059,7 @@
 <li><p>移動するときには，杭Cを用いても良い</p>
 </li>
 <li><p>ただし，小さい円盤の上に大きい円盤を乗せてはいけない</p>
-<img src="https://ganwt.com/image/2020-06-16-IoTと無線ネットワーク(6)/17.png" alt="31339829" style="zoom:50%;" />
+<img src="https://ganwt.github.io/image/2020-06-16-IoTと無線ネットワーク(6)/17.png" alt="31339829" style="zoom:50%;" />
 
 
 
@@ -1072,20 +1072,20 @@
 <li><p>杭Aに置かれた円盤を杭B に移動する</p>
 </li>
 <li><p>杭Cに置かれた𝑛 − 1枚の 円盤を杭Bに移動する</p>
-<img src="https://ganwt.com/image/2020-06-16-IoTと無線ネットワーク(6)/18.png" alt="31531935" style="zoom:50%;" />
+<img src="https://ganwt.github.io/image/2020-06-16-IoTと無線ネットワーク(6)/18.png" alt="31531935" style="zoom:50%;" />
 </li>
 </ol>
 <ul>
 <li><p>ハノイの塔問題を解くプログラム</p>
-<img src="https://ganwt.com/image/2020-06-16-IoTと無線ネットワーク(6)/19.png" alt="31619969" style="zoom:50%;" />
+<img src="https://ganwt.github.io/image/2020-06-16-IoTと無線ネットワーク(6)/19.png" alt="31619969" style="zoom:50%;" />
 
 
 
 </li>
 </ul>
-<h3 id="三、組込み関数"><a href="#三、組込み関数" class="headerlink" title="三、組込み関数"></a>三、組込み関数</h3><img src="https://ganwt.com/image/2020-06-16-IoTと無線ネットワーク(6)/20.png" alt="31710644" style="zoom:50%;" />
+<h3 id="三、組込み関数"><a href="#三、組込み関数" class="headerlink" title="三、組込み関数"></a>三、組込み関数</h3><img src="https://ganwt.github.io/image/2020-06-16-IoTと無線ネットワーク(6)/20.png" alt="31710644" style="zoom:50%;" />
 
-<img src="https://ganwt.com/image/2020-06-16-IoTと無線ネットワーク(6)/21.png" alt="31730667" style="zoom:50%;" />
+<img src="https://ganwt.github.io/image/2020-06-16-IoTと無線ネットワーク(6)/21.png" alt="31730667" style="zoom:50%;" />
 
 
 
@@ -1103,28 +1103,28 @@
 </ul>
 <h4 id="2-グローバル変数の例"><a href="#2-グローバル変数の例" class="headerlink" title="2.グローバル変数の例"></a>2.グローバル変数の例</h4><ul>
 <li><p>グローバル変数へのアクセス</p>
-<img src="https://ganwt.com/image/2020-06-16-IoTと無線ネットワーク(6)/22.png" alt="32349299" style="zoom:50%;" />
+<img src="https://ganwt.github.io/image/2020-06-16-IoTと無線ネットワーク(6)/22.png" alt="32349299" style="zoom:50%;" />
 </li>
 <li><p>関数の中でグローバル変数に書き込む場合には global宣言が必要</p>
-<img src="https://ganwt.com/image/2020-06-16-IoTと無線ネットワーク(6)/23.png" alt="32405363" style="zoom:50%;" />
+<img src="https://ganwt.github.io/image/2020-06-16-IoTと無線ネットワーク(6)/23.png" alt="32405363" style="zoom:50%;" />
 </li>
 <li><p>global宣言がないと、xはローカル変数と見なされ、 値が代入される前に参照されるのでエラーになる</p>
-<img src="https://ganwt.com/image/2020-06-16-IoTと無線ネットワーク(6)/24.png" alt="32418660" style="zoom:50%;" />
+<img src="https://ganwt.github.io/image/2020-06-16-IoTと無線ネットワーク(6)/24.png" alt="32418660" style="zoom:50%;" />
 </li>
 <li><p>UnboundLocalError</p>
-<img src="https://ganwt.com/image/2020-06-16-IoTと無線ネットワーク(6)/25.png" alt="32438211" style="zoom:50%;" />
+<img src="https://ganwt.github.io/image/2020-06-16-IoTと無線ネットワーク(6)/25.png" alt="32438211" style="zoom:50%;" />
 
 </li>
 </ul>
-<h4 id="3-ローカル変数の例"><a href="#3-ローカル変数の例" class="headerlink" title="3.ローカル変数の例"></a>3.ローカル変数の例</h4><img src="https://ganwt.com/image/2020-06-16-IoTと無線ネットワーク(6)/26.png" alt="32507816" style="zoom:50%;" />
+<h4 id="3-ローカル変数の例"><a href="#3-ローカル変数の例" class="headerlink" title="3.ローカル変数の例"></a>3.ローカル変数の例</h4><img src="https://ganwt.github.io/image/2020-06-16-IoTと無線ネットワーク(6)/26.png" alt="32507816" style="zoom:50%;" />
 
 <ul>
 <li><p>ローカル変数は関数の外からアクセスできない</p>
-<img src="https://ganwt.com/image/2020-06-16-IoTと無線ネットワーク(6)/27.png" alt="32558362" style="zoom:50%;" />
+<img src="https://ganwt.github.io/image/2020-06-16-IoTと無線ネットワーク(6)/27.png" alt="32558362" style="zoom:50%;" />
 </li>
 <li><p>ローカル変数は関数の外からアクセスできない</p>
 </li>
-<li><img src="https://ganwt.com/image/2020-06-16-IoTと無線ネットワーク(6)/28.png" alt="32615460" style="zoom:50%;" />
+<li><img src="https://ganwt.github.io/image/2020-06-16-IoTと無線ネットワーク(6)/28.png" alt="32615460" style="zoom:50%;" />
 
 
 
@@ -1132,16 +1132,16 @@
 </ul>
 <h3 id="五、例外処理"><a href="#五、例外処理" class="headerlink" title="五、例外処理"></a>五、例外処理</h3><ul>
 <li><p>b=0の場合にはどうなるか?</p>
-<img src="https://ganwt.com/image/2020-06-16-IoTと無線ネットワーク(6)/29.png" alt="32747195" style="zoom:50%;" />
+<img src="https://ganwt.github.io/image/2020-06-16-IoTと無線ネットワーク(6)/29.png" alt="32747195" style="zoom:50%;" />
 </li>
 <li><p>注:0割り算エラーは，整数割り算 //，剰余%の演算でも発生する</p>
-<img src="https://ganwt.com/image/2020-06-16-IoTと無線ネットワーク(6)/30.png" alt="32807249" style="zoom:50%;" />
+<img src="https://ganwt.github.io/image/2020-06-16-IoTと無線ネットワーク(6)/30.png" alt="32807249" style="zoom:50%;" />
 </li>
 <li><p>0割り算例外を検出して対応する記述</p>
-<img src="https://ganwt.com/image/2020-06-16-IoTと無線ネットワーク(6)/31.png" alt="32821984" style="zoom:50%;" />
+<img src="https://ganwt.github.io/image/2020-06-16-IoTと無線ネットワーク(6)/31.png" alt="32821984" style="zoom:50%;" />
 </li>
 <li><p>0割り算と不正入力例外を検出して対応する記述</p>
-<img src="https://ganwt.com/image/2020-06-16-IoTと無線ネットワーク(6)/32.png" alt="32840252" style="zoom:50%;" />
+<img src="https://ganwt.github.io/image/2020-06-16-IoTと無線ネットワーク(6)/32.png" alt="32840252" style="zoom:50%;" />
 </li>
 <li><p><a href="https://docs.python.org/ja/3/tutorial/errors.html" target="_blank" rel="noopener">https://docs.python.org/ja/3/tutorial/errors.html</a></p>
 </li>
@@ -1175,42 +1175,42 @@
 <h1 id="IoT知識"><a href="#IoT知識" class="headerlink" title="IoT知識"></a>IoT知識</h1><p>略</p>
 <h1 id="python"><a href="#python" class="headerlink" title="python"></a>python</h1><h2 id="pythonプログラミング-5"><a href="#pythonプログラミング-5" class="headerlink" title="pythonプログラミング(5)"></a>pythonプログラミング(5)</h2><h3 id="一、単純文と複合文"><a href="#一、単純文と複合文" class="headerlink" title="一、単純文と複合文"></a>一、単純文と複合文</h3><h4 id="1-単純文と複合文簡単紹介"><a href="#1-単純文と複合文簡単紹介" class="headerlink" title="1.単純文と複合文簡単紹介"></a>1.単純文と複合文簡単紹介</h4><ul>
 <li><p>単純文: 1行のコードで記述</p>
-<img src="https://ganwt.com/image/2020-06-09-IoTと無線ネットワーク(5)/1.png" alt="image-00020625122823055" style="zoom:50%;" />
+<img src="https://ganwt.github.io/image/2020-06-09-IoTと無線ネットワーク(5)/1.png" alt="image-00020625122823055" style="zoom:50%;" />
 </li>
 <li><p>複合文:1つ以上の節で構成</p>
 <p>1つの節は2行以上のコードで 記述</p>
 <p>1行目:ヘッダ(header)部，行末に “:”</p>
 <p>2行目とそれ以降: スイート(suite)部</p>
-<img src="https://ganwt.com/image/2020-06-09-IoTと無線ネットワーク(5)/2.png" alt="image-00020625123004555" style="zoom:50%;" />
+<img src="https://ganwt.github.io/image/2020-06-09-IoTと無線ネットワーク(5)/2.png" alt="image-00020625123004555" style="zoom:50%;" />
 
 </li>
 </ul>
 <h4 id="2-複合文の例"><a href="#2-複合文の例" class="headerlink" title="2.複合文の例"></a>2.複合文の例</h4><ul>
 <li><p>例1: if文</p>
 </li>
-<li><img src="https://ganwt.com/image/2020-06-09-IoTと無線ネットワーク(5)/3.png" alt="image-00020625123204190" style="zoom:50%;" />
+<li><img src="https://ganwt.github.io/image/2020-06-09-IoTと無線ネットワーク(5)/3.png" alt="image-00020625123204190" style="zoom:50%;" />
 </li>
 <li><p>例2: for文</p>
-<img src="https://ganwt.com/image/2020-06-09-IoTと無線ネットワーク(5)/4.png" alt="image-00020625123219377" style="zoom:50%;" />
+<img src="https://ganwt.github.io/image/2020-06-09-IoTと無線ネットワーク(5)/4.png" alt="image-00020625123219377" style="zoom:50%;" />
 </li>
 <li><p>例3: while文</p>
-<img src="https://ganwt.com/image/2020-06-09-IoTと無線ネットワーク(5)/5.png" alt="image-00020625123233510" style="zoom:50%;" />
+<img src="https://ganwt.github.io/image/2020-06-09-IoTと無線ネットワーク(5)/5.png" alt="image-00020625123233510" style="zoom:50%;" />
 
 </li>
 </ul>
 <h3 id="二、条件文"><a href="#二、条件文" class="headerlink" title="二、条件文"></a>二、条件文</h3><p>if, elif, elseを用いて 構成</p>
 <ul>
 <li><p>例1(if)</p>
-<img src="https://ganwt.com/image/2020-06-09-IoTと無線ネットワーク(5)/6.png" alt="image-00020625123440749" style="zoom:50%;" />
+<img src="https://ganwt.github.io/image/2020-06-09-IoTと無線ネットワーク(5)/6.png" alt="image-00020625123440749" style="zoom:50%;" />
 </li>
 <li><p>例2(if-else)</p>
-<img src="https://ganwt.com/image/2020-06-09-IoTと無線ネットワーク(5)/7.png" alt="image-00020625123455795" style="zoom:50%;" />
+<img src="https://ganwt.github.io/image/2020-06-09-IoTと無線ネットワーク(5)/7.png" alt="image-00020625123455795" style="zoom:50%;" />
 </li>
 <li><p>例3(if-elif-else)</p>
-<img src="https://ganwt.com/image/2020-06-09-IoTと無線ネットワーク(5)/8.png" alt="image-00020625123512037" style="zoom:50%;" />
+<img src="https://ganwt.github.io/image/2020-06-09-IoTと無線ネットワーク(5)/8.png" alt="image-00020625123512037" style="zoom:50%;" />
 </li>
 <li><p>例4 (if-elif-…- else)</p>
-<img src="https://ganwt.com/image/2020-06-09-IoTと無線ネットワーク(5)/9.png" alt="image-00020625123526013" style="zoom:50%;" />
+<img src="https://ganwt.github.io/image/2020-06-09-IoTと無線ネットワーク(5)/9.png" alt="image-00020625123526013" style="zoom:50%;" />
 
 
 
@@ -1219,19 +1219,19 @@
 <h3 id="三、for文"><a href="#三、for文" class="headerlink" title="三、for文"></a>三、for文</h3><p>for-in-range</p>
 <ul>
 <li><p>例: 0, 1, 2, … , 9に ついて繰り返す</p>
-<img src="https://ganwt.com/image/2020-06-09-IoTと無線ネットワーク(5)/10.png" alt="image-00020625123646957" style="zoom:50%;" />
+<img src="https://ganwt.github.io/image/2020-06-09-IoTと無線ネットワーク(5)/10.png" alt="image-00020625123646957" style="zoom:50%;" />
 </li>
 <li><p>例: リストの要素について繰り返す</p>
-<img src="https://ganwt.com/image/2020-06-09-IoTと無線ネットワーク(5)/11.png" alt="image-00020625123708075" style="zoom:50%;" />
+<img src="https://ganwt.github.io/image/2020-06-09-IoTと無線ネットワーク(5)/11.png" alt="image-00020625123708075" style="zoom:50%;" />
 </li>
 <li><p>例: 文字列内の文字について繰り返す</p>
-<img src="https://ganwt.com/image/2020-06-09-IoTと無線ネットワーク(5)/12.png" alt="image-00020625123722807" style="zoom:50%;" />
+<img src="https://ganwt.github.io/image/2020-06-09-IoTと無線ネットワーク(5)/12.png" alt="image-00020625123722807" style="zoom:50%;" />
 
 </li>
 </ul>
 <h3 id="四、while文"><a href="#四、while文" class="headerlink" title="四、while文"></a>四、while文</h3><ul>
 <li><p>条件が真(True)であるあいだ繰り返す</p>
-<img src="https://ganwt.com/image/2020-06-09-IoTと無線ネットワーク(5)/13.png" alt="image-00020625123846007" style="zoom:50%;" />
+<img src="https://ganwt.github.io/image/2020-06-09-IoTと無線ネットワーク(5)/13.png" alt="image-00020625123846007" style="zoom:50%;" />
 
 
 
@@ -1243,7 +1243,7 @@
 <li><p>ループによる繰り返しを中断するためにbreak文を用 いる</p>
 </li>
 <li><p>for文の中でもbreak文が使える</p>
-<img src="https://ganwt.com/image/2020-06-09-IoTと無線ネットワーク(5)/14.png" alt="image-00020625124000491" style="zoom:50%;" />
+<img src="https://ganwt.github.io/image/2020-06-09-IoTと無線ネットワーク(5)/14.png" alt="image-00020625124000491" style="zoom:50%;" />
 
 </li>
 </ul>
@@ -1270,22 +1270,22 @@
 </ul>
 <h4 id="2-関数-rangeの使用例"><a href="#2-関数-rangeの使用例" class="headerlink" title="2.関数 rangeの使用例"></a>2.関数 rangeの使用例</h4><ol>
 <li><p>range( end )</p>
-<img src="https://ganwt.com/image/2020-06-09-IoTと無線ネットワーク(5)/15.png" alt="image-00020625124539944" style="zoom:50%;" />
+<img src="https://ganwt.github.io/image/2020-06-09-IoTと無線ネットワーク(5)/15.png" alt="image-00020625124539944" style="zoom:50%;" />
 </li>
 <li><p>range( start，end )</p>
-<img src="https://ganwt.com/image/2020-06-09-IoTと無線ネットワーク(5)/16.png" alt="image-00020625124556813" style="zoom:50%;" />
+<img src="https://ganwt.github.io/image/2020-06-09-IoTと無線ネットワーク(5)/16.png" alt="image-00020625124556813" style="zoom:50%;" />
 </li>
 <li><p>range( start，end, step )</p>
-<img src="https://ganwt.com/image/2020-06-09-IoTと無線ネットワーク(5)/17.png" alt="image-00020625124609840" style="zoom:50%;" />
+<img src="https://ganwt.github.io/image/2020-06-09-IoTと無線ネットワーク(5)/17.png" alt="image-00020625124609840" style="zoom:50%;" />
 </li>
 <li><p>range( start，end, step )</p>
 <ul>
 <li>step の値が負の場合には，値を減少させる</li>
 </ul>
-<img src="https://ganwt.com/image/2020-06-09-IoTと無線ネットワーク(5)/18.png" alt="image-00020625124634074" style="zoom:50%;" />
+<img src="https://ganwt.github.io/image/2020-06-09-IoTと無線ネットワーク(5)/18.png" alt="image-00020625124634074" style="zoom:50%;" />
 </li>
 <li><p>rangeそのものは関数であって値を持たない</p>
-<img src="https://ganwt.com/image/2020-06-09-IoTと無線ネットワーク(5)/19.png" alt="image-00020625124654152" style="zoom:50%;" />
+<img src="https://ganwt.github.io/image/2020-06-09-IoTと無線ネットワーク(5)/19.png" alt="image-00020625124654152" style="zoom:50%;" />
 </li>
 <li><p>listの生成</p>
 <ul>
@@ -1304,7 +1304,7 @@
 </ul>
 </li>
 </ul>
-<img src="https://ganwt.com/image/2020-06-09-IoTと無線ネットワーク(5)/21.png" alt="image-00020625124836576" style="zoom:50%;" />
+<img src="https://ganwt.github.io/image/2020-06-09-IoTと無線ネットワーク(5)/21.png" alt="image-00020625124836576" style="zoom:50%;" />
 
 </li>
 </ol>

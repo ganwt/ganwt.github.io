@@ -241,34 +241,34 @@
             <h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>接下来开发新功能，称之为<strong>「角距離（かくきょり）」</strong> ，中文称之为<strong>「角距（jiǎo jù）」</strong> 。引用百度百科的解释：</p>
 <p><em>「角距，即角距离，也称为角分离、视距离、或视分离，在数学(特别是几何学和三角学)和自然科学(包括天文学、地质学等等)，从不同于两个点物体的位置（即第三点）观察这两个物体，由观测者指向这两个物体的直线之间所夹角度的大小。角距离(或分离)与角度本身是同义的，但意义却是对两个天体(对恒星，是当从地球观测)之间线距离的建议(通常是很大或未知的)。」</em></p>
 <p>大概印象如下：</p>
-<img src="https://ganwt.com/image/JavaScript实现：中心:重心:点距离:x与y距离:垂线与距离/1.png" alt="1" style="zoom:50%;" />
+<img src="https://ganwt.github.io/image/JavaScript实现：中心:重心:点距离:x与y距离:垂线与距离/1.png" alt="1" style="zoom:50%;" />
 
 <p>而我们打算要实现的功能有：<strong>中心/重心/点距离/x与y距离/垂线与距离</strong> 。最终是通过JavaScript/canvas来实现的，因为还没开始写，这边先整理一下思路、公式之类的。</p>
 <h2 id="ここからやるよ"><a href="#ここからやるよ" class="headerlink" title="ここからやるよ"></a>ここからやるよ</h2><p>先理解一下canvas的坐标系。</p>
-<img src="https://ganwt.com/image/JavaScript实现：中心:重心:点距离:x与y距离:垂线与距离/2.png" alt="2" style="zoom:50%;" />
+<img src="https://ganwt.github.io/image/JavaScript实现：中心:重心:点距离:x与y距离:垂线与距离/2.png" alt="2" style="zoom:50%;" />
 
 <p>canvas的坐标系是左上角（0,0）开始，所以都是正值，负值是看不见的，和中学时候学习的坐标系略有不同。</p>
 <figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;!DOCTYPE <span class="meta-keyword">html</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">html</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">head</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">meta</span> <span class="attr">charset</span>=<span class="string">"utf-8"</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">title</span>&gt;</span>Canvas绘制直线<span class="tag">&lt;/<span class="name">title</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">head</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">body</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">canvas</span> <span class="attr">id</span>=<span class="string">"canvas"</span> <span class="attr">width</span>=<span class="string">"200"</span> <span class="attr">height</span>=<span class="string">"150"</span> <span class="attr">style</span>=<span class="string">"border: 0.0625rem;"</span>&gt;</span><span class="tag">&lt;/<span class="name">canvas</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">body</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">script</span>&gt;</span></span><br><span class="line"><span class="javascript">        <span class="keyword">var</span> canvas = <span class="built_in">document</span>.getElementById(<span class="string">"canvas"</span>);</span></span><br><span class="line"><span class="actionscript">      	<span class="keyword">var</span> cxt = canvas.getContext(<span class="string">"2d"</span>);</span></span><br><span class="line"><span class="actionscript">      	<span class="comment">//画直线</span></span></span><br><span class="line"><span class="javascript">        <span class="built_in">window</span>.onload = <span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span></span><br><span class="line">            cxt.moveTo(80,20);</span><br><span class="line">            cxt.lineTo(20,60);</span><br><span class="line">            cxt.stroke();</span><br><span class="line">        &#125;</span><br><span class="line">    <span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">html</span>&gt;</span></span><br></pre></td></tr></table></figure>
 
 
 
-<img src="https://ganwt.com/image/JavaScript实现：中心:重心:点距离:x与y距离:垂线与距离/3.png" alt="2" style="zoom:50%;" />
+<img src="https://ganwt.github.io/image/JavaScript实现：中心:重心:点距离:x与y距离:垂线与距离/3.png" alt="2" style="zoom:50%;" />
 
 <p>上图左边是中学时学的坐标系（使用笛卡尔坐标系）将 (0,0) 放置在正中央，y 轴由下至上 x 轴由左至右。而上图右边的电脑窗口的坐标系在 y 轴的方向是相反的。(0,0) 被定义在左上角并往右边及往下延伸。</p>
-<h3 id="1-中心"><a href="#1-中心" class="headerlink" title="1. 中心"></a>1. 中心</h3><img src="https://ganwt.com/image/JavaScript实现：中心:重心:点距离:x与y距离:垂线与距离/4.png" alt="4" style="zoom:50%;" />
+<h3 id="1-中心"><a href="#1-中心" class="headerlink" title="1. 中心"></a>1. 中心</h3><img src="https://ganwt.github.io/image/JavaScript实现：中心:重心:点距离:x与y距离:垂线与距离/4.png" alt="4" style="zoom:50%;" />
 
 <p>如图，A点和B点点中心点怎么求呢？直接 ${A}<em>(x,y)-{B}</em>(x,y)$ 就可以了。</p>
 <figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//A点</span></span><br><span class="line"><span class="keyword">var</span> Ax = <span class="number">80</span>,</span><br><span class="line">    Ay = <span class="number">20</span>;</span><br><span class="line"></span><br><span class="line"><span class="comment">//B点</span></span><br><span class="line"><span class="keyword">var</span> Bx = <span class="number">20</span>,</span><br><span class="line">    By = <span class="number">60</span>;</span><br><span class="line"></span><br><span class="line"><span class="comment">//中心点</span></span><br><span class="line"><span class="keyword">var</span> Cx = Ax-Bx,</span><br><span class="line">    Cy = Ay-By;</span><br></pre></td></tr></table></figure>
 
 
 
-<h3 id="2-重心"><a href="#2-重心" class="headerlink" title="2. 重心"></a>2. 重心</h3><img src="https://ganwt.com/image/JavaScript实现：中心:重心:点距离:x与y距离:垂线与距离/5.jpg" alt="5" style="zoom:50%;" />
+<h3 id="2-重心"><a href="#2-重心" class="headerlink" title="2. 重心"></a>2. 重心</h3><img src="https://ganwt.github.io/image/JavaScript实现：中心:重心:点距离:x与y距离:垂线与距离/5.jpg" alt="5" style="zoom:50%;" />
 
 <figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> Ax,Ay, <span class="comment">//设置A点坐标</span></span><br><span class="line">    Bx,By, <span class="comment">//设置B点坐标</span></span><br><span class="line">    Cx,Cy, <span class="comment">//设置C点坐标</span></span><br><span class="line">    CGx, <span class="comment">//Center of gravity</span></span><br><span class="line">    CGy; <span class="comment">//重心</span></span><br><span class="line">CGx = (Ax + Bx + Cx) / <span class="number">3</span>;</span><br><span class="line">CGy = (Ay + By + Cy) / <span class="number">3</span>;</span><br></pre></td></tr></table></figure>
 
 
 
-<h3 id="3-两点距離"><a href="#3-两点距離" class="headerlink" title="3. 两点距離"></a>3. 两点距離</h3><img src="https://ganwt.com/image/JavaScript实现：中心:重心:点距离:x与y距离:垂线与距离/6.png" alt="6" style="zoom:50%;" />
+<h3 id="3-两点距離"><a href="#3-两点距離" class="headerlink" title="3. 两点距離"></a>3. 两点距離</h3><img src="https://ganwt.github.io/image/JavaScript实现：中心:重心:点距离:x与y距离:垂线与距离/6.png" alt="6" style="zoom:50%;" />
 
 <p>页面中有 AB 两个点，那么我们设两点坐标 A(x1, y1)、B(x2, y2)。我们可以将 AB 的连线看成是直角三角形的斜边，图中 C 为直角三角形的直角。现在我们已知 A、B 两点的坐标，那么边长 BC 就是 |x1 - x2|，边长 AC 就是 |y1 - y2|。</p>
 <p>那么根据<a href="http://baike.baidu.com/link?url=ciDltiPXjII5DYE-KByq5G3rYWueLBOpMwDz3BjgfzRVvmI2YX0KP7CzmNNnke2KUJgMwpbq13of5U1alv1fA_dK37sAENPWmAg0NyjTNOckFDtfGeWoeSRVQ7SMbVWv" target="_blank" rel="noopener">勾股定理</a>  $a^2 + b^2 = c^2$  ，斜边 AB 就求得公式为 $|AB|=\sqrt{(x1-x2)^2+(y1-y2)^2}$ 公式已经知道了，下面用代码的形式写出来：</p>
@@ -276,21 +276,21 @@
 
 <p><code>Math.sqrt</code>方法是求平方根，<code>Math.pow(n, 2)</code>是求一个数的平方。上面的的方法就是根据两点的坐标求得两点的距离。</p>
 <p>除了根据勾股定理之外，我们还可以根据一次函数的来得到斜边的长度，将斜边 AB 看成一个一次函数 y = kx + b，将 A、B 两点的坐标代入，我们就可以得到 $|AB|=\sqrt{1+k^2}|x1-x2|=\sqrt{1+\frac{1}{k^2}}|y1-y2|$ 。</p>
-<h3 id="4-xy座標距離"><a href="#4-xy座標距離" class="headerlink" title="4. xy座標距離"></a>4. xy座標距離</h3><h4 id="①-x座標距離"><a href="#①-x座標距離" class="headerlink" title="① x座標距離"></a>① x座標距離</h4><img src="https://ganwt.com/image/JavaScript实现：中心:重心:点距离:x与y距离:垂线与距离/7.png" alt="7" style="zoom:50%;" />
+<h3 id="4-xy座標距離"><a href="#4-xy座標距離" class="headerlink" title="4. xy座標距離"></a>4. xy座標距離</h3><h4 id="①-x座標距離"><a href="#①-x座標距離" class="headerlink" title="① x座標距離"></a>① x座標距離</h4><img src="https://ganwt.github.io/image/JavaScript实现：中心:重心:点距离:x与y距离:垂线与距离/7.png" alt="7" style="zoom:50%;" />
 
 <p>手绘图，大概这么个意思。<code>B(x,y)</code>  - <code>A(x,y)</code> 的坐标，取结果 <code>Distance(x,y)</code>  的 x 就是了。</p>
 <figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> Ax,Ay, <span class="comment">//设置A点坐标</span></span><br><span class="line">    Bx,By, <span class="comment">//设置B点坐标</span></span><br><span class="line">    Distancex, <span class="comment">//距離x</span></span><br><span class="line">    Distancey; <span class="comment">//距離y</span></span><br><span class="line">Distancex = Ax - Bx;</span><br><span class="line">Distancey = Ay - By;</span><br></pre></td></tr></table></figure>
 
 
 
-<h4 id="②-y座標距離"><a href="#②-y座標距離" class="headerlink" title="② y座標距離"></a>② y座標距離</h4><img src="https://ganwt.com/image/JavaScript实现：中心:重心:点距离:x与y距离:垂线与距离/8.png" alt="8" style="zoom:50%;" />
+<h4 id="②-y座標距離"><a href="#②-y座標距離" class="headerlink" title="② y座標距離"></a>② y座標距離</h4><img src="https://ganwt.github.io/image/JavaScript实现：中心:重心:点距离:x与y距离:垂线与距离/8.png" alt="8" style="zoom:50%;" />
 
 <p>也是手绘图，大概这么个意思。<code>B(x,y)</code>  - <code>A(x,y)</code> 的坐标，取结果 <code>Distance(x,y)</code>  的 y 就是了。</p>
 <figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> Ax,Ay, <span class="comment">//设置A点坐标</span></span><br><span class="line">    Bx,By, <span class="comment">//设置B点坐标</span></span><br><span class="line">    Distancex, <span class="comment">//距離x</span></span><br><span class="line">    Distancey; <span class="comment">//距離y</span></span><br><span class="line">Distancex = Ax - Bx;</span><br><span class="line">Distancey = Ay - By;</span><br></pre></td></tr></table></figure>
 
 
 
-<h3 id="5-直線の交叉点"><a href="#5-直線の交叉点" class="headerlink" title="5. 直線の交叉点"></a>5. 直線の交叉点</h3><img src="https://ganwt.com/image/JavaScript实现：中心:重心:点距离:x与y距离:垂线与距离/9.png" alt="10" style="zoom:50%;" />
+<h3 id="5-直線の交叉点"><a href="#5-直線の交叉点" class="headerlink" title="5. 直線の交叉点"></a>5. 直線の交叉点</h3><img src="https://ganwt.github.io/image/JavaScript实现：中心:重心:点距离:x与y距离:垂线与距离/9.png" alt="10" style="zoom:50%;" />
 
 <p>如上图，已知四个点<code>(Ax,Ay)</code>、<code>(Bx,By)</code>、<code>(Cx,Cy)</code>、<code>(Dx,Dy)</code>，其中<code>(Ax,Ay)</code>、<code>(Bx,By)</code>确定<code>直线1</code>，<code>(Cx,Cy)</code>、<code>(Dx,Dy)</code> 确定<code>直线2</code>，求<code>直线1</code>、<code>直线2</code>的交点<code>(CrossPointx,CrossPointy)</code>，公式如下:</p>
 <p>$$CrossPointy=\frac{[(Ay-By)\times(Cy-Dy)\times Ax+(Cy-Dy)\times(Bx-Ax)\times Ay + (By-Ay)\times(Cy-Dy)\times Dx+(Dx-Cx)\times(By-Ay)\times Dy]}{[(Bx-Ax)\times(Cy-Dy)+(Ay-By)\times(Cx-Dx)]}$$</p>
@@ -301,8 +301,8 @@
 
 <h3 id="6-点直線間垂線と距離"><a href="#6-点直線間垂線と距離" class="headerlink" title="6. 点直線間垂線と距離"></a>6. 点直線間垂線と距離</h3><p>垂线：当两条直线相交所成的四个角中，有一个角是直角时，即两条直线互相垂直，其中一条直线叫做另一直线的垂线，交点叫垂足。</p>
 <p>垂足：如果两直线的夹角为直角，那么就说这两条直线互相垂直，其中一条直线叫做另一条直线的垂线，他们的交点叫做垂足，或者一条直线垂直交于另一直线，其交点称为该直线的垂足。</p>
-<h4 id=""><a href="#" class="headerlink" title=""></a><img src="https://ganwt.com/image/JavaScript实现：中心:重心:点距离:x与y距离:垂线与距离/10.png" alt="10" style="zoom:75%;" /></h4><p>图上有 <code>x y z</code> 三个坐标轴，<a href="https://unity.com" target="_blank" rel="noopener">Unity</a> 和 canvas 都可以画 2D 3D 的图。接下来画的是2D图，所以坐标用(x,y)就可以了。为了方便理解，把图重新画一下，以下图为准。</p>
-<img src="https://ganwt.com/image/JavaScript实现：中心:重心:点距离:x与y距离:垂线与距离/11.png" alt="11" style="zoom:50%;" />
+<h4 id=""><a href="#" class="headerlink" title=""></a><img src="https://ganwt.github.io/image/JavaScript实现：中心:重心:点距离:x与y距离:垂线与距离/10.png" alt="10" style="zoom:75%;" /></h4><p>图上有 <code>x y z</code> 三个坐标轴，<a href="https://unity.com" target="_blank" rel="noopener">Unity</a> 和 canvas 都可以画 2D 3D 的图。接下来画的是2D图，所以坐标用(x,y)就可以了。为了方便理解，把图重新画一下，以下图为准。</p>
+<img src="https://ganwt.github.io/image/JavaScript实现：中心:重心:点距离:x与y距离:垂线与距离/11.png" alt="11" style="zoom:50%;" />
 
 <p>公式：</p>
 <p>$$ T=\frac{(C-A)\times(A-B)}{(A-B)^2} $$</p>
